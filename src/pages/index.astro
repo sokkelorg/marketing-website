@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>	
+	<img src="assets/logo.svg" alt="XOPS" class="logo" />
+	<p class="intro">
+		We believe that DevOps <span>(Application Management, Software Delivery
+		Engineering, Agile IT Operations, CI/CD Automation, GitOps—whatever
+			terminology you prefer)</span> is in need of a renaissance.
+	</p>
+</Layout>
+
+<style>
+	.logo {
+		width: 100px;
+	}
+	.intro {
+		max-width: 60ch;
+		font-size: 1.5rem;
+		font-weight: 600;
+		line-height: 1.3;
+	}
+
+	.intro span {
+		color: #888888;
+	}
+</style>
