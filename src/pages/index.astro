@@ -3,30 +3,146 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <img src="assets/logo.svg" alt="XOPS" class="logo" />
-  <p class="intro">
-    We believe that DevOps <span
-      >(Application Management, Software Delivery Engineering, Agile IT
-      Operations, CI/CD Automation, GitOps—whatever terminology you prefer)</span
-    > is in need of a renaissance.
-  </p>
-  <p>
-    Sokkel is the foundation for smarter, smoother software development.
-    Reliable DevOps that lets your team create, ship, and innovate without
-    friction—because infrastructure shouldn’t belong to just one developer, but
-    to the whole team.
-  </p>
+  <main>
+    <header>
+      <img src="assets/logo.svg" alt="XOPS" class="logo" />
+    </header>
+    <h1>
+      The Go-to DevOps <span>Blueprint</span>. So you can focus on building
+      great products.
+    </h1>
+    <p>
+      Sokkel is the foundation for smarter, smoother software development.
+      Reliable DevOps that lets your team create, ship, and innovate without
+      friction—because infrastructure shouldn’t belong to just one developer,
+      but to the whole team.
+    </p>
+
+    <p class="intro">
+      We believe that DevOps <span
+        >(Application Management, Software Delivery Engineering, Agile IT
+        Operations, CI/CD Automation, GitOps—whatever terminology you prefer)</span
+      > is in need of a renaissance.
+    </p>
+
+    <img
+      class="arrow-down-illustration"
+      src="assets/arrow-down.gif"
+      alt="arrow down"
+    />
+
+    <p>
+      Today’s landscape is filled with tools that should empower teams—but too
+      often, they introduce friction instead. Designed more for checklists than
+      for people, they prioritize complexity over clarity, rigidity over
+      adaptability. Availability is an afterthought, pricing feels arbitrary,
+      and the experience? Functional at best, but rarely delightful.
+    </p>
+
+    <img
+      class="illustration"
+      src="assets/jon-frickey-door.gif"
+      alt="looking for door illustration"
+    />
+
+    <p>
+      Some tools are too simple to be effective—lacking the depth teams need to
+      build and scale with confidence. Others are overloaded with complexity,
+      bloated with redundant features that add more frustration than value.
+      Neither truly serves the teams that rely on them.
+    </p>
+
+    <p>
+      Another option? Hire a dedicated DevOps engineer. But in today’s market,
+      they’re hard to find and even harder to afford. For many teams, that means
+      the responsibility falls elsewhere—often on the developer who shows the
+      slightest curiosity. For them, it’s a high-stakes, invisible role where
+      seamless success is taken for granted, yet failure is instantly felt. It’s
+      the 3 AM pager buzz on a Saturday, the behind-the-scenes scramble, the
+      quiet expectation that everything just works—until it doesn’t.
+    </p>
+
+    <p class="statement">
+      Sound familiar?<br />
+      Yeah, we thought so.
+    </p>
+
+    <h2>Webelive</h2>
+    <p>
+      Every team deserves tools that don’t just work, but work for
+      them—intuitive, reliable, and built to keep pace with their ambitions. Yet
+      too often, they’re stuck wrestling with complexity, distractions, and
+      bottlenecks that slow them down instead of propelling them forward.
+    </p>
+
+    <img
+      class="illustration"
+      src="assets/jon-frickey-crash.gif"
+      alt="crash illustration"
+    />
+
+    <p>
+      That’s where we come in. Powered by the Sokkel blueprint and flexible
+      building blocks, we strip away the friction, making technical operations
+      seamless and effortless. So teams can do what they do best—create
+      fantastic software that delivers real impact. No hurdles, no
+      headaches—just a smooth ride to building something great.
+    </p>
+
+    <p>Move that truck 🚛💨</p>
+  </main>
 </Layout>
 
 <style>
+  main {
+    max-width: 60ch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header {
+    align-self: flex-start;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 2.9rem;
+  }
+
+  h1 span {
+    color: hsl(240, 100%, 50%);
+  }
+
+  h2 {
+    align-self: flex-start;
+    margin-bottom: 0px;
+  }
+
+  p {
+    width: 100%;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  p.statement {
+    font-weight: bold;
+  }
+
   .logo {
     width: 100px;
+    margin-bottom: 4.25rem;
   }
-  .intro {
-    max-width: 60ch;
-    font-size: 1.5rem;
-    font-weight: 600;
-    line-height: 1.3;
+
+  .arrow-down-illustration {
+    max-width: 130px;
+    margin-block: 5rem;
+  }
+
+  .illustration {
+    max-width: 445px;
+    margin-block: 2rem;
   }
 
   .intro span {
