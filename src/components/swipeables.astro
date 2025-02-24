@@ -1,0 +1,199 @@
+---
+const cards = [
+  {
+    imageUrl: "https://placeimg.com/600/300/people",
+    title: "Demo card 1",
+    description: "This is a demo for Tinder like swipe cards",
+  },
+  {
+    imageUrl: "https://placeimg.com/600/300/animals",
+    title: "Demo card 2",
+    description: "This is a demo for Tinder like swipe cards",
+  },
+  {
+    imageUrl: "https://placeimg.com/600/300/nature",
+    title: "Demo card 3",
+    description: "This is a demo for Tinder like swipe cards",
+  },
+  {
+    imageUrl: "https://placeimg.com/600/300/tech",
+    title: "Demo card 4",
+    description: "This is a demo for Tinder like swipe cards",
+  },
+  {
+    imageUrl: "https://placeimg.com/600/300/arch",
+    title: "Demo card 5",
+    description: "This is a demo for Tinder like swipe cards",
+  },
+];
+---
+
+<div class="swipeables-cards">
+  {
+    cards.map((card, index) => (
+      <div class="swipeables-card">
+        <h3>{card.title}</h3>
+        <p>{card.description}</p>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  const container = document.querySelector(".swipeables-cards");
+  const allCards = document.querySelectorAll(".swipeables-card");
+
+  function initCards() {
+    const newCards = document.querySelectorAll(
+      ".swipeables-card:not(.removed)"
+    );
+
+    newCards.forEach((card, index) => {
+      card.style.zIndex = allCards.length - index;
+      card.style.transform = `scale(${(20 - index) / 20}) translateY(-${30 * index}px)`;
+      card.style.opacity = (10 - index) / 10;
+    });
+
+    container.classList.add("loaded");
+  }
+
+  initCards();
+
+  allCards.forEach((card) => {
+    let isMoving = false;
+
+    let startX = 0;
+    let startY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let lastX = 0;
+    let lastY = 0;
+    let lastTime = 0;
+    let velocityX = 0;
+    let velocityY = 0;
+
+    card.addEventListener("pointerdown", (e) => {
+      startX = e.clientX;
+      startY = e.clientY;
+      lastX = startX;
+      lastY = startY;
+      lastTime = Date.now();
+      isMoving = true;
+      card.classList.add("moving");
+      card.style.transition = "none"; // Disable transitions during drag
+    });
+
+    card.addEventListener("pointermove", (e) => {
+      if (!isMoving) return;
+
+      currentX = e.clientX - startX;
+      currentY = e.clientY - startY;
+
+      const rotate = currentX * 0.03 * (currentY / 80);
+      card.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${rotate}deg)`;
+
+      const now = Date.now();
+      const timeDiff = now - lastTime;
+
+      if (timeDiff > 0) {
+        velocityX = (e.clientX - lastX) / timeDiff;
+        velocityY = (e.clientY - lastY) / timeDiff;
+
+        lastX = e.clientX;
+        lastY = e.clientY;
+        lastTime = now;
+      }
+    });
+
+    card.addEventListener("pointerup", (e) => {
+      if (!isMoving) return;
+
+      isMoving = false;
+      card.classList.remove("moving");
+      card.style.transition = "transform 0.3s ease-in-out"; // Re-enable transitions
+
+      const moveOutWidth = document.body.clientWidth;
+      const keep = Math.abs(currentX) < 80 || Math.abs(velocityX) < 0.5;
+      card.classList.toggle("removed", !keep);
+
+      if (keep) {
+        card.style.transform = "";
+      } else {
+        const endX = Math.max(Math.abs(velocityX) * moveOutWidth, moveOutWidth);
+        const toX = currentX > 0 ? endX : -endX;
+        const endY = Math.abs(velocityY) * moveOutWidth;
+        const toY = currentY > 0 ? endY : -endY;
+        const rotate = currentX * 0.03 * (currentY / 80);
+
+        card.style.transform = `translate(${toX}px, ${toY + currentY}px) rotate(${rotate}deg)`;
+        initCards();
+      }
+    });
+
+    card.addEventListener("pointercancel", () => {
+      if (!isMoving) return;
+      isMoving = false;
+      card.classList.remove("moving");
+      card.style.transition = "transform 0.3s ease-in-out";
+      card.style.transform = ""; // Reset the transform to its original state
+    });
+  });
+</script>
+
+<style>
+  .swipeables-cards {
+    height: 600px;
+    flex-grow: 1;
+    padding-top: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+  }
+
+  .swipeables-cards.loaded {
+    opacity: 1;
+  }
+
+  .swipeables-card {
+    display: inline-block;
+    width: 345px;
+    max-width: 400px;
+    height: 500px;
+    background: #ffffff;
+    padding-bottom: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: absolute;
+    will-change: transform;
+    transition: transform 0.3s ease-in-out;
+    cursor: grab;
+    background: black;
+    color: white;
+  }
+
+  .swipeables-card.moving {
+    transition: none;
+    cursor: grabbing;
+  }
+
+  .swipeables-card img {
+    max-width: 100%;
+    pointer-events: none;
+  }
+
+  .swipeables-card h3 {
+    margin-top: 32px;
+    font-size: 32px;
+    padding: 0 16px;
+    pointer-events: none;
+  }
+
+  .swipeables-card p {
+    margin-top: 24px;
+    font-size: 20px;
+    padding: 0 16px;
+    pointer-events: none;
+  }
+</style>
