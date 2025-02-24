@@ -11,7 +11,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.2.5"
+    "@astrojs/react": "^4.2.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "astro": "^5.2.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "volta": {
     "node": "22.13.2",
