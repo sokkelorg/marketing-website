@@ -1,39 +1,70 @@
 ---
 const cards = [
   {
-    imageUrl: "https://placeimg.com/600/300/people",
-    title: "Demo card 1",
-    description: "This is a demo for Tinder like swipe cards",
+    backgroundImage:
+      "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWZmY2RmZzFjNDR6MmcxYnprOWt1eDliNGFvN3hiN3ppOHVocXoxcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6wrdG8vt4X86Pauc/giphy.gif",
+    statement:
+      "Your infrastructure documentation is a mythical creature - often spoken of, rarely seen",
+    source: {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com",
+    },
+    answers: {
+      agree: "I agree",
+      disagree: "I disagree",
+      unknown: "I don't know",
+    },
   },
   {
-    imageUrl: "https://placeimg.com/600/300/animals",
-    title: "Demo card 2",
-    description: "This is a demo for Tinder like swipe cards",
+    backgroundImage:
+      "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTdpZ2w1ajh1a2VmMGcyMm9kNmJreXlqNzRudWp0dG5pNW5sdzZyZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OAHvbQLumpmta/giphy.gif",
+    statement:
+      "Your infrastructure is a black box - no one knows what's inside",
+    answers: {
+      agree: "I agree",
+      disagree: "I disagree",
+      unknown: "I don't know",
+    },
   },
   {
-    imageUrl: "https://placeimg.com/600/300/nature",
-    title: "Demo card 3",
-    description: "This is a demo for Tinder like swipe cards",
-  },
-  {
-    imageUrl: "https://placeimg.com/600/300/tech",
-    title: "Demo card 4",
-    description: "This is a demo for Tinder like swipe cards",
-  },
-  {
-    imageUrl: "https://placeimg.com/600/300/arch",
-    title: "Demo card 5",
-    description: "This is a demo for Tinder like swipe cards",
+    backgroundImage:
+      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWd5dWJzdWp1MGQ5djFtcGR6b2Zkd2plMjdpY2tyeW5ncDg5Y3hjbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PxHEc3YRy3cfRuNBVE/giphy.gif",
+    statement:
+      "Your infrastructure is a ticking time bomb - it could explode at any moment",
+    answers: {
+      agree: "I agree",
+      disagree: "I disagree",
+      unknown: "I don't know",
+    },
   },
 ];
+
+const setStyle = (card) => {
+  if (!card.backgroundImage) {
+    return {};
+  }
+
+  return {
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${card.backgroundImage})`,
+  };
+};
 ---
 
 <div class="swipeables-cards">
   {
     cards.map((card, index) => (
-      <div class="swipeables-card">
-        <h3>{card.title}</h3>
-        <p>{card.description}</p>
+      <div class="swipeables-card" style={setStyle(card)}>
+        <p>{card.statement}</p>
+        {card.source && (
+          <a
+            href={card.source.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="source"
+          >
+            Source: {card.source.name} ↗
+          </a>
+        )}
       </div>
     ))
   }
@@ -45,7 +76,7 @@ const cards = [
 
   function initCards() {
     const newCards = document.querySelectorAll(
-      ".swipeables-card:not(.removed)"
+      ".swipeables-card:not(.removed)",
     );
 
     newCards.forEach((card, index) => {
@@ -73,6 +104,9 @@ const cards = [
     let velocityY = 0;
 
     card.addEventListener("pointerdown", (e) => {
+      // Check if clicking a link
+      if (e.target.tagName === "A") return;
+
       startX = e.clientX;
       startY = e.clientY;
       lastX = startX;
@@ -81,6 +115,7 @@ const cards = [
       isMoving = true;
       card.classList.add("moving");
       card.style.transition = "none"; // Disable transitions during drag
+      card.setPointerCapture(e.pointerId);
     });
 
     card.addEventListener("pointermove", (e) => {
@@ -91,6 +126,19 @@ const cards = [
 
       const rotate = currentX * 0.03 * (currentY / 80);
       card.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${rotate}deg)`;
+
+      const opacity = Math.min(Math.abs(currentX) / 100, 0.8);
+      card.style.setProperty("--swipe-opacity", opacity);
+
+      // Remove previous classes
+      card.classList.remove("swipe-left", "swipe-right");
+
+      // Add appropriate class
+      if (currentX > 0) {
+        card.classList.add("swipe-right");
+      } else {
+        card.classList.add("swipe-left");
+      }
 
       const now = Date.now();
       const timeDiff = now - lastTime;
@@ -108,8 +156,9 @@ const cards = [
     card.addEventListener("pointerup", (e) => {
       if (!isMoving) return;
 
+      card.releasePointerCapture(e.pointerId);
       isMoving = false;
-      card.classList.remove("moving");
+      card.classList.remove("moving", "swipe-left", "swipe-right");
       card.style.transition = "transform 0.3s ease-in-out"; // Re-enable transitions
 
       const moveOutWidth = document.body.clientWidth;
@@ -118,6 +167,8 @@ const cards = [
 
       if (keep) {
         card.style.transform = "";
+        card.classList.remove("swipe-left", "swipe-right");
+        card.style.setProperty("--swipe-opacity", 0);
       } else {
         const endX = Math.max(Math.abs(velocityX) * moveOutWidth, moveOutWidth);
         const toX = currentX > 0 ? endX : -endX;
@@ -127,6 +178,18 @@ const cards = [
 
         card.style.transform = `translate(${toX}px, ${toY + currentY}px) rotate(${rotate}deg)`;
         initCards();
+
+        if (currentX > 0) {
+          const event = new CustomEvent("voted", {
+            detail: { card, result: "agree" },
+          });
+          card.dispatchEvent(event);
+        } else {
+          const event = new CustomEvent("voted", {
+            detail: { card, result: "disagree" },
+          });
+          card.dispatchEvent(event);
+        }
       }
     });
 
@@ -136,6 +199,14 @@ const cards = [
       card.classList.remove("moving");
       card.style.transition = "transform 0.3s ease-in-out";
       card.style.transform = ""; // Reset the transform to its original state
+
+      // Remove previous classes
+      card.classList.remove("swipe-left", "swipe-right");
+      card.style.setProperty("--swipe-opacity", 0);
+    });
+
+    card.addEventListener("voted", (e) => {
+      console.log("Voted", e.detail.result);
     });
   });
 </script>
@@ -145,11 +216,11 @@ const cards = [
     height: 600px;
     flex-grow: 1;
     padding-top: 40px;
-    text-align: center;
     display: flex;
     justify-content: center;
     align-items: flex-end;
     position: relative;
+    overflow: visible;
   }
 
   .swipeables-cards.loaded {
@@ -157,20 +228,68 @@ const cards = [
   }
 
   .swipeables-card {
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
     width: 345px;
-    max-width: 400px;
     height: 500px;
-    background: #ffffff;
-    padding-bottom: 40px;
-    border-radius: 8px;
+
+    margin-top: 24px;
+    padding: 1.5rem;
+    padding-bottom: 2rem;
+
+    border-radius: 1rem;
     overflow: hidden;
     position: absolute;
+
     will-change: transform;
     transition: transform 0.3s ease-in-out;
     cursor: grab;
-    background: black;
+    background: orange;
     color: white;
+    z-index: 10000;
+
+    font-size: 2rem;
+    font-weight: 700;
+    text-wrap: pretty;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .swipeables-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* For right swipe (green) */
+  .swipeables-card.swipe-right::after {
+    background-color: hsla(120, 100%, 50%, 0.4); /* Green */
+    opacity: var(--swipe-opacity, 0);
+  }
+
+  /* For left swipe (red) */
+  .swipeables-card.swipe-left::after {
+    background-color: hsla(0, 100%, 50%, 0.4); /* Red */
+    opacity: var(--swipe-opacity, 0);
+  }
+
+  .swipeables-card .source {
+    display: block;
+    margin-top: 16px;
+    font-size: 16px;
+    color: white;
+    text-decoration: underline;
   }
 
   .swipeables-card.moving {
@@ -183,17 +302,7 @@ const cards = [
     pointer-events: none;
   }
 
-  .swipeables-card h3 {
-    margin-top: 32px;
-    font-size: 32px;
-    padding: 0 16px;
-    pointer-events: none;
-  }
-
   .swipeables-card p {
-    margin-top: 24px;
-    font-size: 20px;
-    padding: 0 16px;
-    pointer-events: none;
+    margin: 0px;
   }
 </style>
