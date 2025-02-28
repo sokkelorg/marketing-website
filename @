@@ -62,18 +62,11 @@ const setStyle = (card) => {
 <script>
   const container = document.querySelector(".swipeables-cards");
   const allCards = document.querySelectorAll(".swipeables-card");
-  const agreeButton = document.querySelector("[data-agree-button]");
-  const disagreeButton = document.querySelector("[data-disagree-button]");
 
   function initCards() {
     const newCards = document.querySelectorAll(
       ".swipeables-card:not(.removed)",
     );
-
-    // Mark the first card as the top card
-    if (newCards.length > 0) {
-      newCards[0].classList.add("current");
-    }
 
     newCards.forEach((card, index) => {
       card.style.zIndex = allCards.length - index;
@@ -85,47 +78,6 @@ const setStyle = (card) => {
   }
 
   initCards();
-
-  agreeButton.addEventListener("click", () => {
-    console.log("Clicky");
-    const currentCard = document.querySelector(".swipeables-card.current");
-    if (!currentCard) return;
-
-    // animate the card out to the right
-    currentCard.style.transform = `translate(50dvw, 5px) rotate(180deg)`;
-
-    currentCard.classList.remove("current");
-
-    setTimeout(() => {
-      currentCard.classList.add("removed");
-      initCards();
-    }, 300);
-
-    const event = new CustomEvent("voted", {
-      detail: { card: currentCard, result: "agree" },
-    });
-    currentCard.dispatchEvent(event);
-  });
-
-  disagreeButton.addEventListener("click", () => {
-    const currentCard = document.querySelector(".swipeables-card.current");
-    if (!currentCard) return;
-
-    // animate the card out to the left
-    currentCard.style.transform = `translate(-50dvw, 5px) rotate(-180deg)`;
-
-    currentCard.classList.remove("current");
-
-    setTimeout(() => {
-      currentCard.classList.add("removed");
-      initCards();
-    }, 300);
-
-    const event = new CustomEvent("voted", {
-      detail: { card: currentCard, result: "disagree" },
-    });
-    currentCard.dispatchEvent(event);
-  });
 
   allCards.forEach((card) => {
     let isMoving = false;
@@ -164,7 +116,7 @@ const setStyle = (card) => {
       const rotate = currentX * 0.03 * (currentY / 80);
       card.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${rotate}deg)`;
 
-      const opacity = Math.min(Math.abs(currentX) / 100, 0.3);
+      const opacity = Math.min(Math.abs(currentX) / 100, 0.8);
       card.style.setProperty("--swipe-opacity", opacity);
 
       // Remove previous classes
@@ -172,12 +124,8 @@ const setStyle = (card) => {
 
       // Add appropriate class
       if (currentX > 0) {
-        disagreeButton.classList.remove("active");
-        agreeButton.classList.add("active");
         card.classList.add("swipe-right");
       } else {
-        agreeButton.classList.remove("active");
-        disagreeButton.classList.add("active");
         card.classList.add("swipe-left");
       }
 
@@ -200,8 +148,6 @@ const setStyle = (card) => {
       card.releasePointerCapture(e.pointerId);
       isMoving = false;
       card.classList.remove("moving", "swipe-left", "swipe-right");
-      agreeButton.classList.remove("active");
-      disagreeButton.classList.remove("active");
       card.style.transition = "transform 0.3s ease-in-out"; // Re-enable transitions
 
       const moveOutWidth = document.body.clientWidth;
@@ -213,7 +159,6 @@ const setStyle = (card) => {
         card.classList.remove("swipe-left", "swipe-right");
         card.style.setProperty("--swipe-opacity", 0);
       } else {
-        card.classList.remove("current");
         const endX = Math.max(Math.abs(velocityX) * moveOutWidth, moveOutWidth);
         const toX = currentX > 0 ? endX : -endX;
         const endY = Math.abs(velocityY) * moveOutWidth;
@@ -274,10 +219,9 @@ const setStyle = (card) => {
   }
 
   .swipeables-actions > button {
-    padding-block: 0.5rem;
+    --bg-color: hsl(0, 0%, 90%);
     padding-inline: 1rem;
-    line-height: 1.5rem;
-
+    padding-block: 0.5rem;
     font-size: 0.875rem;
     font-family: inherit;
     font-weight: 700;
@@ -285,17 +229,22 @@ const setStyle = (card) => {
     background: none;
     cursor: pointer;
     border-radius: 0.375rem;
-    background-color: hsl(0, 0%, 91%);
   }
 
-  .swipeables-actions > button.active,
-  .swipeables-actions > button:hover {
-    /* box-shadow:inset 0 0 0 2px hsl(0, 0%, 80%); */
-    background-color: hsl(0, 0%, 80%);
+  .swipeables-actions > .disagree-button {
+    background-color: hsl(3, 100%, 80%);
   }
 
-  .swipeables-actions > button:active {
-    background-color: hsl(0, 0%, 70%);
+  .swipeables-actions > .disagree-button:hover {
+    background-color: hsl(3, 100%, 70%);
+  }
+
+  .swipeables-actions > .agree-button {
+    background-color: hsl(151, 100%, 72%);
+  }
+
+  .swipeables-actions > .agree-button:hover {
+    background-color: hsl(151, 100%, 72%);
   }
 
   .swipeables-cards.loaded {
@@ -353,29 +302,22 @@ const setStyle = (card) => {
     z-index: 1;
   }
 
-  .swipeables-card.swipe-left::after,
+  /* For right swipe (green) */
   .swipeables-card.swipe-right::after {
-    background-color: black;
+    background-color: hsla(120, 100%, 50%, 0.4);
     opacity: var(--swipe-opacity, 0);
   }
 
-  /* /* For right swipe (green, agree) */
-  /* .swipeables-card.swipe-right::after { */
-  /*   background-color: hsla(120, 100%, 50%, 0.4); */
-  /*   opacity: var(--swipe-opacity, 0); */
-  /* } */
-  /**/
-  /* /* For left swipe (red, disagree) */
-  /* .swipeables-card.swipe-left::after { */
-  /*   background-color: hsla(0, 100%, 50%, 0.4); */
-  /*   opacity: var(--swipe-opacity, 0); */
-  /* } */
+  /* For left swipe (red) */
+  .swipeables-card.swipe-left::after {
+    background-color: hsla(0, 100%, 50%, 0.4);
+    opacity: var(--swipe-opacity, 0);
+  }
 
   .swipeables-card .source {
     display: block;
     margin-top: 16px;
     font-size: 16px;
-    font-weight: 500;
     color: white;
   }
 

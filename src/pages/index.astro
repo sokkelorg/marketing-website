@@ -1,163 +1,444 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Swipeables from "../components/swipeables.astro";
+import Card from "../components/card.astro";
+import ContactSection from "../components/contact-section.astro";
+import { Picture } from 'astro:assets';
+import { client } from "../sanity-client.ts";
+import theTeam from "../assets/team.jpg";
+
+const problems = await client.fetch(`*[_type == 'problem'].problem`);
+const statuses = await client.fetch(
+  `*[_type == 'status'] | order(date asc).status`,
+);
+
+// This initial problem is only for SEO purposes
+const problem = problems[Math.floor(Math.random() * problems.length)];
 ---
+
+<script define:vars={{ problems }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll("[data-refresh-button]");
+    const problemTitle = document.querySelector("[data-problem]");
+    if (!problemTitle || !buttons) {
+      console.error("Problem title or buttons not found");
+      return;
+    }
+
+    function newRandomProblem() {
+      const randomProblemKey = Math.floor(Math.random() * problems.length);
+      const problem = problems[randomProblemKey];
+
+      problemTitle.classList.add("visible");
+      problemTitle.textContent = problem;
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        newRandomProblem();
+      });
+    });
+
+    newRandomProblem();
+  });
+</script>
 
 <Layout>
   <main>
-    <header>
-      <img src="assets/logo.svg" alt="Sokkel" class="logo" />
-    </header>
+    <section class="hero">
+      <header>
+        <img src="assets/logo-symbol.gif" alt="Sokkel" class="logo-symbol" />
+      </header>
 
-    <h1>
-      Your Go-to DevOps <span>Blueprint</span>. So you can focus on building
-      great products.
-    </h1>
+      <div class="content">
+        <p>
+          No one starts a company just to do DevOps. Or, we did. So you don’t
+          have to, because:
+        </p>
 
-    <p>
-      Sokkel is the foundation for smarter, smoother software development.
-      Reliable DevOps that lets your team create, ship, and innovate without
-      friction—because infrastructure shouldn’t belong to just one developer,
-      but to the whole team.
-    </p>
+        <h1 data-problem set:text={problem} />
+      </div>
 
-    <p class="intro">
-      We believe that DevOps <span
-        >(Application Management, Software Delivery Engineering, Agile IT
-        Operations, CI/CD Automation, GitOps—whatever terminology you prefer)</span
-      > is in need of a renaissance.
-    </p>
-
-    <img
-      class="arrow-down-illustration"
-      src="assets/arrow-down.gif"
-      alt="arrow down"
-    />
+      <div class="actions">
+        <button class="refresh-button" data-refresh-button> Refresh</button>
+        <kbd data-refresh-button>
+          <span class="symbol">⌘</span>
+          <span>+</span>
+          <span>R</span>
+        </kbd>
+      </div>
+    </section>
 
     <Swipeables />
 
-    <p>
-      Today’s landscape is filled with tools that should empower teams—but too
-      often, they introduce friction instead. Designed more for checklists than
-      for people, they prioritize complexity over clarity, rigidity over
-      adaptability. Availability is an afterthought, pricing feels arbitrary,
-      and the experience? Functional at best, but rarely delightful.
-    </p>
+    <section class="introduction">
+      <img src="assets/logo.svg" alt="Sokkel" class="logo" />
+      <strong>
+        The foundation for running your applications, effortlessly.
+      </strong>
 
-    <img
-      class="illustration"
-      src="assets/jon-frickey-door.gif"
-      alt="looking for door illustration"
-    />
+      <p>
+        We’re building a platform that eliminates DevOps guesswork—with
+        AI-powered Sokkel Blueprints for the perfect setup, real-time insights
+        to keep you in control, and smart optimizations that cut the clutter. So
+        you can focus on what matters—building and scaling great software.
+      </p>
 
-    <p>
-      Some tools are too simple to be effective—lacking the depth teams need to
-      build and scale with confidence. Others are overloaded with complexity,
-      bloated with redundant features that add more frustration than value.
-      Neither truly serves the teams that rely on them.
-    </p>
+      <img
+        class="illustration lambo-tape"
+        src="assets/lambo-tape.gif"
+        alt="Burning Lamborghini with gaff tape"
+      />
 
-    <p>
-      Another option? Hire a dedicated DevOps engineer. But in today’s market,
-      they’re hard to find and even harder to afford. For many teams, that means
-      the responsibility falls elsewhere—often on the developer who shows the
-      slightest curiosity. For them, it’s a high-stakes, invisible role where
-      seamless success is taken for granted, yet failure is instantly felt. It’s
-      the 3 AM pager buzz on a Saturday, the behind-the-scenes scramble, the
-      quiet expectation that everything just works—until it doesn’t.
-    </p>
+      <p class="caption">
+        No more duct-taped solutions. No more forgotten configs. No more 2 AM
+        fire drills. Just seamless infrastructure, done right.
+      </p>
 
-    <p class="statement">
-      Sound familiar?<br />
-      Yeah, we thought so.
-    </p>
+      <img
+        class="illustration arrow-down"
+        src="assets/arrow-down.gif"
+        alt="arrow down"
+      />
+    </section>
 
-    <h2>We believe</h2>
-    <p>
-      Every team deserves tools that don’t just work, but work for
-      them—intuitive, reliable, and built to keep pace with their ambitions. Yet
-      too often, they’re stuck wrestling with complexity, distractions, and
-      bottlenecks that slow them down instead of propelling them forward.
-    </p>
+    <section>
+      <Card
+        emoji="🚀"
+        title="AI-powered Blueprints – Set up and manage your applications effortlessly."
+      >
+        <p>
+          Answer a few questions, and get a ready-to-go setup—whether you’re
+          starting fresh or migrating.
+        </p>
+      </Card>
+      <Card
+        emoji="📊"
+        title="Real-time insights –  See everything, zoom into anything."
+      >
+        <p>
+          Get a clear overview of how your setup connects, with the ability to
+          drill down into performance, costs, and issues.
+        </p>
+      </Card>
+      <Card
+        emoji="🤖"
+        title="AI Agent Sokky optimizations – Automate, optimize, relax."
+      >
+        <p>
+          Agent Sokky fine-tunes your setup, reduces costs, and keeps things
+          running smoothly—hands-free.
+        </p>
+      </Card>
+      <Card emoji="🌍" title="Powered by GCP – built for maximum flexibility.">
+        <p>
+          Fully optimized for Google Cloud, giving you the freedom to scale,
+          adapt, and grow without limitations.
+        </p>
+      </Card>
+      <Card
+        emoji="🛠"
+        title="Built for SMBs – Less overhead, more time for building."
+      >
+        <p>
+          No DevOps team needed. Sokkel simplifies everything so you can focus
+          on growing your software.
+        </p>
+      </Card>
+    </section>
 
-    <img
-      class="illustration"
-      src="assets/jon-frickey-crash.gif"
-      alt="crash illustration"
-    />
+    <section class="status">
+      <div class="marquee-container">
+        <div class="marquee">
+          <ul class="marquee-content">
+            {statuses.map((status) => <li>{status}</li>)}
+          </ul>
+          <!-- Mirrors the content above -->
+          <ul class="marquee-content" aria-hidden="true">
+            {statuses.map((status) => <li>{status}</li>)}
+          </ul>
+        </div>
+      </div>
 
-    <p>
-      That’s where we come in. Powered by the Sokkel blueprint and flexible
-      building blocks, we strip away the friction, making technical operations
-      seamless and effortless. So teams can do what they do best—create
-      fantastic software that delivers real impact. No hurdles, no
-      headaches—just a smooth ride to building something great.
-    </p>
+      <p>TL;DR – The Marquee Version:</p>
 
-    <p>Move that truck 🚛💨</p>
+      <ul>
+        {statuses.map((status) => <li>{status}</li>)}
+      </ul>
+
+      <a href="https://tally.so/r/wb6R62" class="button">Fancy updates?</a>
+    </section>
+
+    <section class="about">
+      <Picture class="team" src={theTeam} formats={['avif', 'webp']} width="395" alt="The team; Marius, Simen, and Martin" />
+
+      <h2>Hello <span aria-hidden="true">👋</span></h2>
+
+      <p>
+        This is us: Marius, Simen, and Martin. Three builders. One designer. Two
+        developers.
+      </p>
+
+      <p>
+        Between us, we’ve been at Finn.no, No Isolation, Auk, AYR, Folio, Bjerk
+        and SpotOn. We’ve seen what works, what doesn’t, and what should exist
+        but doesn’t (yet).
+      </p>
+
+      <p>So we’re building Sokkel!</p>
+    </section>
+
+    <ContactSection />
   </main>
 </Layout>
 
 <style>
   main {
+    --gap: 10rem;
     background: #ffffff;
     display: flex;
     flex-direction: column;
-    align-items: center;
     border-radius: 24px;
 
     max-width: 393px;
     margin-inline: auto;
     padding: 1.5rem;
-  }
 
-  header {
-    align-self: flex-start;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    line-height: 2.9rem;
-  }
-
-  h1 span {
-    color: hsl(240, 100%, 50%);
-  }
-
-  h2 {
-    align-self: flex-start;
-    margin-bottom: 0px;
-  }
-
-  p {
-    width: 100%;
     font-size: 1.5rem;
     line-height: 2rem;
+    gap: var(--gap);
+  }
+
+  section.hero {
+    min-height: calc(100dvh - var(--gap) - 5rem);
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  section.hero > .content > h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 2.9rem;
+    margin-block: 0;
+
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  section.hero > .content > h1.visible {
+    opacity: 1;
+  }
+
+  section.hero > .content p {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding: 0;
+  }
+
+  section.hero > .actions {
+    display: flex;
+    gap: 1rem;
+  }
+
+  section.hero > .actions > .refresh-button {
+    font-family: inherit;
+    background: none;
+    border: none;
+    color: hsl(240, 100%, 50%);
+    cursor: pointer;
+    font-size: 0.875rem;
+    margin: 0;
+    padding: 0;
+    text-decoration: underline;
+  }
+
+  section.hero > .actions > .refresh-button:hover {
+    text-decoration: none;
+  }
+
+  section.hero > .actions > kbd {
+    background-color: #e9e9e9;
+    border-radius: 4px;
+
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
+    line-height: normal;
+
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.875rem;
+    justify-content: center;
+    gap: 1px;
+    color: #000;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  section.hero > .actions > kbd > .symbol {
+    font-size: 18px;
   }
 
   p.statement {
     font-weight: bold;
   }
 
+  .logo-symbol {
+    max-width: 40px;
+  }
+
   .logo {
-    max-width: 345px;
+    width: 100%;
     margin-bottom: 4.25rem;
   }
 
-  .arrow-down-illustration {
+  .illustration {
+    display: block;
+    align-self: center;
+    width: 100%;
+    max-width: 445px;
+    margin-block: 1rem;
+  }
+
+  .illustration.lambo-tape {
+    max-width: 80%;
+  }
+
+  .illustration.arrow-down {
     max-width: 130px;
     margin-block: 5rem;
   }
 
-  .illustration {
-    width: 100%;
-    max-width: 445px;
-    margin-inline: 2rem;
-    margin-block: 1rem;
-  }
-
   .intro span {
     color: #888888;
+  }
+
+  section.introduction {
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  section.introduction > .caption {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  section.status {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  section.status .marquee-container {
+    overflow: hidden;
+    margin-inline: -1.5rem;
+    padding-block: 1rem;
+  }
+
+  section.status .marquee-container > .marquee {
+    background-color: hsl(240, 100%, 50%);
+    color: white;
+    transform: rotate(-6deg);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-inline: -2rem;
+    margin-block: 1rem;
+
+    --gap: 2rem;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--gap);
+  }
+
+  section.status > .marquee-container > .marquee > .marquee-content {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    gap: var(--gap);
+    min-width: 100%;
+    animation: scroll 10s linear infinite;
+  }
+
+  /* remove margin right on the last marquee item */
+  section.status
+    > .marquee-container
+    > .marquee
+    > .marquee-content
+    > li:last-child {
+    margin-inline-end: -2.5rem;
+  }
+
+  section.status > .button {
+    margin-block-start: 2rem;
+  }
+
+  section.status > p {
+    margin-block-start: 2.5rem;
+    margin-block-end: 0;
+  }
+
+  section.status > ul {
+    list-style-type: none;
+    margin-block-start: 0.5rem;
+    padding-inline-start: 1.2rem;
+  }
+
+  section.status > ul > li::before {
+    content: "🔹 "; /* Add blue diamond emoji and a space */
+    margin-left: -1.5em; /* Pull the emoji back to align properly */
+  }
+
+  section.about {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  section.about > h2 {
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.5rem;
+  }
+
+  section.about .team {
+    border-radius: 0.5rem;
+  }
+
+  .button {
+    display: block;
+    padding: 10px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    color: white;
+    background-color: #000000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* If user prefers reduced motion, remove both marquee and the
+* the TLDR text, showing only the list */
+    .marquee {
+      display: none;
+    }
+
+    section.status > p {
+      display: none;
+    }
   }
 </style>
