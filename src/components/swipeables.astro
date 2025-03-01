@@ -256,6 +256,11 @@ const setStyle = (card) => {
 </script>
 
 <style>
+  .swipeables {
+    touch-action: none; /* Prevents browsers from handling touch events in their own way */
+    user-select: none; /* Prevents text selection during swipes */
+  }
+
   .swipeables-cards {
     height: 600px;
     flex-grow: 1;
@@ -334,9 +339,16 @@ const setStyle = (card) => {
     font-weight: 700;
     text-wrap: pretty;
 
+    touch-action: none;
+    -webkit-touch-callout: none;
+
     background: black;
     background-size: cover;
     background-position: center;
+  }
+
+  .swipeables-card p {
+    user-select: none;
   }
 
   .swipeables-card::after {
