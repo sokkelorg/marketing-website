@@ -92,17 +92,17 @@ const setStyle = (card) => {
             "session_id": sessionID,
             "statement_id": statementId, 
             feedback,
-            token,
+            "recaptcha_token": token,
         };
 
         console.log('Submitted', body);
-        // fetch("https://feedback-api.sokkel.app/submit", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify(body),
-        // });
+        fetch("https://feedback-api.sokkel.app/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        });
       });
     });
   }
