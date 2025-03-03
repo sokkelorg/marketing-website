@@ -35,7 +35,7 @@ const setStyle = (card) => {
   <div class="swipeables-cards">
     {
       cards.map((card, index) => (
-        <div class="swipeables-card" data-statement-id={card._id} style={setStyle(card)}>
+    <div class="swipeables-card" data-statement-id={card._id} data-agree-answer={card.answers?.agree} data-disagree-answer={card.answers?.disagree} style={setStyle(card)}>
           <p>{card.statement}</p>
           {card.source && (card.source.url ? (
             <a
@@ -107,6 +107,21 @@ const setStyle = (card) => {
     });
   }
 
+  function setButtonText(card) {
+    if (card.dataset.agreeAnswer) {
+      agreeButton.textContent = card.dataset.agreeAnswer;
+    } else {
+      agreeButton.textContent = "Agree";
+    }
+
+    if (card.dataset.disagreeAnswer) {
+      disagreeButton.textContent = card.dataset.disagreeAnswer;
+    } else {
+      disagreeButton.textContent = "Disagree";
+    }
+  }
+
+
   function initCards() {
     const newCards = document.querySelectorAll(
       ".swipeables-card:not(.removed)",
@@ -115,6 +130,7 @@ const setStyle = (card) => {
     // Mark the first card as the top card
     if (newCards.length > 0) {
       newCards[0].classList.add("current");
+      setButtonText(newCards[0]);
     }
 
     newCards.forEach((card, index) => {
@@ -129,7 +145,6 @@ const setStyle = (card) => {
   initCards();
 
   agreeButton.addEventListener("click", () => {
-    console.log("Clicky");
     const currentCard = document.querySelector(".swipeables-card.current");
     if (!currentCard) return;
 
