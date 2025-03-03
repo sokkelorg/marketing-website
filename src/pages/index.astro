@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Swipeables from "../components/swipeables.astro";
 import Card from "../components/card.astro";
 import ContactSection from "../components/contact-section.astro";
-import { Picture } from 'astro:assets';
+import { Picture } from "astro:assets";
 import { client } from "../sanity-client.ts";
 import theTeam from "../assets/team.jpg";
 
@@ -170,7 +170,13 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
     </section>
 
     <section class="about">
-      <Picture class="team" src={theTeam} layout="full-width" formats={['avif', 'webp']} alt="The team; Marius, Simen, and Martin" />
+      <Picture
+        class="team"
+        src={theTeam}
+        layout="full-width"
+        formats={["avif", "webp"]}
+        alt="The team; Marius, Simen, and Martin"
+      />
 
       <h2>Hello <span aria-hidden="true">👋</span></h2>
 
