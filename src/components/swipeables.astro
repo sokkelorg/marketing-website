@@ -10,6 +10,7 @@ function urlFor(source) {
 
 const cards = await client.fetch(`
   *[_type == 'statement'] {
+    _id,
     backgroundImage,
     statement,
     source,
@@ -34,7 +35,7 @@ const setStyle = (card) => {
   <div class="swipeables-cards">
     {
       cards.map((card, index) => (
-        <div class="swipeables-card" style={setStyle(card)}>
+        <div class="swipeables-card" data-statement-id={card._id} style={setStyle(card)}>
           <p>{card.statement}</p>
           {card.source && card.source.url ? (
             <a
@@ -64,6 +65,47 @@ const setStyle = (card) => {
   const allCards = document.querySelectorAll(".swipeables-card");
   const agreeButton = document.querySelector("[data-agree-button]");
   const disagreeButton = document.querySelector("[data-disagree-button]");
+
+  // Returns a UUID stored in localStorage, or create a new
+  function getSessionID() {
+    const sessionID = localStorage.getItem("sessionID");
+    if (sessionID) return sessionID;
+
+    // Check if we have self.crypto.randomUUID
+    if (window.crypto && window.crypto.randomUUID) {
+      const newSessionID = window.crypto.randomUUID();
+      localStorage.setItem("sessionID", newSessionID);
+      return newSessionID;
+    }
+
+    // Fallback to Math.random
+    const newSessionID = Math.random().toString(36).substring(2);
+    localStorage.setItem("sessionID", newSessionID);
+    return newSessionID;
+  }
+
+  function submitFeedback(feedback, statementId) {
+    grecaptcha.ready(function () {
+      const sessionID = getSessionID();
+      grecaptcha.execute('6LeEducqAAAAACnrF0X6R20PYHeblFtlN-ddQTGB', {action: 'submit'}).then(function(token) {
+        const body = {
+            "session_id": sessionID,
+            "statement_id": statementId, 
+            feedback,
+            token,
+        };
+
+        console.log('Submitted', body);
+        // fetch("https://feedback-api.sokkel.app/submit", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(body),
+        // });
+      });
+    });
+  }
 
   function initCards() {
     const newCards = document.querySelectorAll(
@@ -250,7 +292,7 @@ const setStyle = (card) => {
     });
 
     card.addEventListener("voted", (e) => {
-      console.log("Voted", e.detail.result);
+      submitFeedback(e.detail.result, e.detail.card.dataset.statementId);
     });
   });
 </script>
