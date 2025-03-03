@@ -37,7 +37,7 @@ const setStyle = (card) => {
       cards.map((card, index) => (
         <div class="swipeables-card" data-statement-id={card._id} style={setStyle(card)}>
           <p>{card.statement}</p>
-          {card.source && card.source.url ? (
+          {card.source && (card.source.url ? (
             <a
               href={card.source.url}
               target="_blank"
@@ -48,7 +48,7 @@ const setStyle = (card) => {
             </a>
           ) : (
             <span class="source">Source: {card.source.name}</span>
-          )}
+          ))}
         </div>
       ))
     }
