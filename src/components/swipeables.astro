@@ -73,7 +73,7 @@ const setStyle = (card) => {
       <img src="assets/gameover.svg" alt="Tap One of The Buttons" />
     </div>
     <div class="actions">
-      <a href="#letstalk" class="button">Let's talk</a>
+      <a href="#contact" class="button">Let's talk</a>
       <a href="https://tally.so/r/wb6R62" class="button">Fancy updates?</a>
     </div>
   </div>
@@ -404,9 +404,17 @@ const setStyle = (card) => {
       background-color: hsl(0, 0%, 80%);
     }
 
+    .no-more-cards .button {
+      color: white;
+      background-color: hsl(0, 0%, 0%);
+    }
+
     @media (hover: hover) {
       .actions > .button:hover {
         background-color: hsl(0, 0%, 85%);
+      }
+      .no-more-cards .button:hover {
+        background-color: hsl(0, 0%, 15%);
       }
     }
 
@@ -456,8 +464,12 @@ const setStyle = (card) => {
       align-items: center;
     }
 
+    .no-more-cards .card {
+      cursor: auto;
+    }
+
     .card img {
-      max-width: 100%;
+      max-width: 234px;
     }
 
     .swipeables-card {
