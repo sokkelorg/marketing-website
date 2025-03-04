@@ -45,157 +45,167 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
 
 <Layout>
   <div class="container">
-  <main>
-    <section class="hero">
-      <header>
-        <img src="assets/logo-symbol.gif" alt="Sokkel" class="logo-symbol" />
-      </header>
+    <main>
+      <section class="hero">
+        <header>
+          <img src="assets/logo-symbol.gif" alt="Sokkel" class="logo-symbol" />
+        </header>
 
-      <div class="content">
-        <p>
-          No one starts a company just to do DevOps. Or, we did. So you don’t
-          have to, because:
-        </p>
+        <div class="content">
+          <p>
+            No one starts a company just to do DevOps. Or, we did. So you don’t
+            have to, because:
+          </p>
 
-        <h1 data-problem set:text={problem} />
-      </div>
-
-      <div class="actions">
-        <button class="refresh-button" data-refresh-button> Refresh</button>
-        <kbd data-refresh-button>
-          <span class="symbol">⌘</span>
-          <span>+</span>
-          <span>R</span>
-        </kbd>
-      </div>
-    </section>
-
-    <Swipeables />
-
-    <section class="introduction">
-      <img src="assets/logo.svg" alt="Sokkel" class="logo" />
-      <strong>
-        The foundation for running your applications, effortlessly.
-      </strong>
-
-      <p>
-        We’re building a platform that eliminates DevOps guesswork—with
-        AI-powered Sokkel Blueprints for the perfect setup, real-time insights
-        to keep you in control, and smart optimizations that cut the clutter. So
-        you can focus on what matters—building and scaling great software.
-      </p>
-
-      <img
-        class="illustration lambo-tape"
-        src="assets/lambo-tape.gif"
-        alt="Burning Lamborghini with gaff tape"
-      />
-
-      <p class="caption">
-        No more duct-taped solutions. No more forgotten configs. No more 2 AM
-        fire drills. Just seamless infrastructure, done right.
-      </p>
-
-      <img
-        class="illustration arrow-down"
-        src="assets/arrow-down.gif"
-        alt="arrow down"
-      />
-    </section>
-
-    <section>
-      <Card
-        emoji="🚀"
-        title="AI-powered Blueprints – Set up and manage your applications effortlessly."
-      >
-        <p>
-          Answer a few questions, and get a ready-to-go setup—whether you’re
-          starting fresh or migrating.
-        </p>
-      </Card>
-      <Card
-        emoji="📊"
-        title="Real-time insights –  See everything, zoom into anything."
-      >
-        <p>
-          Get a clear overview of how your setup connects, with the ability to
-          drill down into performance, costs, and issues.
-        </p>
-      </Card>
-      <Card
-        emoji="🤖"
-        title="AI Agent Stacky optimizations – Automate, optimize, relax."
-      >
-        <p>
-          Stacky fine-tunes your setup, reduces costs, and keeps things
-          running smoothly—hands-free.
-        </p>
-      </Card>
-      <Card emoji="🌍" title="Powered by GCP – built for maximum flexibility.">
-        <p>
-          Fully optimized for Google Cloud, giving you the freedom to scale,
-          adapt, and grow without limitations.
-        </p>
-      </Card>
-      <Card
-        emoji="🛠"
-        title="Built for SMBs – Less overhead, more time for building."
-      >
-        <p>
-          No DevOps team needed. Sokkel simplifies everything so you can focus
-          on growing your software.
-        </p>
-      </Card>
-    </section>
-
-    <section class="status">
-      <div class="marquee-container">
-        <div class="marquee">
-          <ul class="marquee-content">
-            {statuses.map((status) => <li>{status}</li>)}
-          </ul>
-          <!-- Mirrors the content above -->
-          <ul class="marquee-content" aria-hidden="true">
-            {statuses.map((status) => <li>{status}</li>)}
-          </ul>
+          <h1 data-problem set:text={problem} />
         </div>
-      </div>
 
-      <p>TL;DR – The Marquee Version:</p>
+        <div class="actions">
+          <button class="refresh-button" data-refresh-button> Refresh</button>
+          <kbd data-refresh-button>
+            <span class="symbol">⌘</span>
+            <span>+</span>
+            <span>R</span>
+          </kbd>
+        </div>
+      </section>
 
-      <ul>
-        {statuses.map((status) => <li>{status}</li>)}
-      </ul>
+      <Swipeables />
 
-      <a href="https://tally.so/r/wb6R62" class="button">Fancy updates?</a>
-    </section>
+      <section class="introduction">
+        <img src="assets/logo.svg" alt="Sokkel" class="logo" />
+        <strong>
+          The foundation and building bloks for managing your applications,
+          smooooothly.
+        </strong>
+        <div>
+          <p>
+            Sokkel eliminates DevOps guesswork with AI-powered Blueprints for
+            the perfect setup, a real-time insights dashboard to keep you in
+            control, and smart optimizations from AI Agent Sokky to cut the
+            clutter.
+          </p>
 
-    <section class="about">
-      <Picture
-        class="team"
-        src={theTeam}
-        layout="full-width"
-        formats={["avif", "webp"]}
-        alt="The team; Marius, Simen, and Martin"
-      />
+          <p>
+            Whether you’re an SMB building something new or migrating from an
+            existing setup, Sokkel gets you up and running fast, securely and
+            delightfully.
+          </p>
+        </div>
+        <img
+          class="illustration lambo-tape"
+          src="assets/lambo-tape.gif"
+          alt="Burning Lamborghini with gaff tape"
+        />
 
-      <h2>Hello <span aria-hidden="true">👋</span></h2>
+        <p class="caption">
+          No more duct-taped solutions. No more forgotten configs. No more 2 AM
+          fire drills. Just seamless infrastructure, done right.
+        </p>
 
-      <p>
-        This is us: Marius, Simen, and Martin. Three builders. One designer. Two
-        developers.
-      </p>
+        <img
+          class="illustration arrow-down"
+          src="assets/arrow-down.gif"
+          alt="arrow down"
+        />
+      </section>
 
-      <p>
-        Between us, we’ve been at Finn.no, No Isolation, Auk, AYR, Folio, Bjerk
-        and SpotOn. We’ve seen what works, what doesn’t, and what should exist
-        but doesn’t (yet).
-      </p>
+      <section>
+        <Card
+          emoji="🚀"
+          title="AI-powered Blueprints – Set up and manage your applications effortlessly."
+        >
+          <p>
+            Answer a few questions, and get a ready-to-go setup—whether you’re
+            starting fresh or migrating.
+          </p>
+        </Card>
+        <Card
+          emoji="📊"
+          title="Real-time insights –  See everything, zoom into anything."
+        >
+          <p>
+            Get a clear overview of how your setup connects, with the ability to
+            drill down into performance, costs, and issues.
+          </p>
+        </Card>
+        <Card
+          emoji="🤖"
+          title="AI Agent Stacky optimizations – Automate, optimize, relax."
+        >
+          <p>
+            Stacky fine-tunes your setup, reduces costs, and keeps things
+            running smoothly—hands-free.
+          </p>
+        </Card>
+        <Card
+          emoji="🌍"
+          title="Powered by GCP – built for maximum flexibility."
+        >
+          <p>
+            Fully optimized for Google Cloud, giving you the freedom to scale,
+            adapt, and grow without limitations.
+          </p>
+        </Card>
+        <Card
+          emoji="🛠"
+          title="Built for SMBs – Less overhead, more time for building."
+        >
+          <p>
+            No DevOps team needed. Sokkel simplifies everything so you can focus
+            on growing your software.
+          </p>
+        </Card>
+      </section>
 
-      <p>So we’re building Sokkel!</p>
-    </section>
+      <section class="status">
+        <div class="marquee-container">
+          <div class="marquee">
+            <ul class="marquee-content">
+              {statuses.map((status) => <li>{status}</li>)}
+            </ul>
+            <!-- Mirrors the content above -->
+            <ul class="marquee-content" aria-hidden="true">
+              {statuses.map((status) => <li>{status}</li>)}
+            </ul>
+          </div>
+        </div>
 
-    <ContactSection />
+        <p>TL;DR – The Marquee Version:</p>
+
+        <ul>
+          {statuses.map((status) => <li>{status}</li>)}
+        </ul>
+
+        <a href="https://tally.so/r/wb6R62" class="button">Fancy updates?</a>
+      </section>
+
+      <section class="about">
+        <Picture
+          class="team"
+          src={theTeam}
+          layout="full-width"
+          formats={["avif", "webp"]}
+          alt="The team; Marius, Simen, and Martin"
+        />
+
+        <h2>Hello <span aria-hidden="true">👋</span></h2>
+
+        <p>
+          This is us: Marius, Simen, and Martin. Three builders. One designer.
+          Two developers.
+        </p>
+
+        <p>
+          Between us, we’ve been at Finn.no, No Isolation, Auk, AYR, Folio,
+          Bjerk and SpotOn. We’ve seen what works, what doesn’t, and what should
+          exist but doesn’t (yet).
+        </p>
+
+        <p>So we’re building Sokkel!</p>
+      </section>
+
+      <ContactSection />
     </main>
   </div>
 </Layout>
@@ -207,21 +217,19 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
     display: flex;
     flex-direction: column;
 
-
     margin-inline: auto;
     padding: 1.5rem;
 
     font-size: 1.5rem;
     line-height: 2rem;
     gap: var(--gap);
-
   }
 
   @media (min-width: 440px) {
     main {
+      margin-block: 2rem;
       border-radius: 24px;
       max-width: 393px;
-      margin-block: 2rem;
     }
   }
 
@@ -317,7 +325,7 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
   .logo {
     width: 100%;
     height: 100%;
-    margin-bottom: 4.25rem;
+    margin-bottom: 2rem;
   }
 
   .illustration {
@@ -334,7 +342,8 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
 
   .illustration.arrow-down {
     max-width: 130px;
-    margin-block: 5rem;
+    margin-block-start: 5rem;
+    margin-block-end: 0;
   }
 
   .intro span {
@@ -351,6 +360,7 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
   section.introduction > .caption {
     font-size: 0.875rem;
     line-height: 1.25rem;
+    text-wrap: pretty;
   }
 
   section.status {

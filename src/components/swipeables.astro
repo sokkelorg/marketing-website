@@ -148,7 +148,9 @@ const setStyle = (card) => {
     function initCards(randomize) {
       // Randomize the cards in the DOM
       if (randomize) {
-        const newCards = document.querySelectorAll(".swipeables-card:not(.removed)");
+        const newCards = document.querySelectorAll(
+          ".swipeables-card:not(.removed)",
+        );
         const cardsArray = Array.from(newCards);
         cardsArray.sort(() => Math.random() - 0.5);
         cardsArray.forEach((card) => container.appendChild(card));
@@ -179,7 +181,6 @@ const setStyle = (card) => {
     agreeButton.addEventListener("click", () => {
       const currentCard = document.querySelector(".swipeables-card.current");
       if (!currentCard) return;
-
 
       // animate the card out to the right
       currentCard.style.transform = `translate(max(50dvw, 800px), 5px) rotate(180deg)`;
@@ -351,7 +352,10 @@ const setStyle = (card) => {
         submitFeedback(e.detail.result, e.detail.card.dataset.statementId);
 
         // Is the last card?
-        if (document.querySelectorAll(".swipeables-card:not(.removed)").length === 0) {
+        if (
+          document.querySelectorAll(".swipeables-card:not(.removed)").length ===
+          0
+        ) {
           document.querySelector(".no-more-cards").style.display = "block";
           document.querySelector(".swipeables-cards").style.display = "none";
           document.querySelector(".swipeable-actions").style.display = "none";
@@ -524,6 +528,5 @@ const setStyle = (card) => {
     .swipeables-card p {
       margin: 0px;
     }
-
   </style>
 </section>
