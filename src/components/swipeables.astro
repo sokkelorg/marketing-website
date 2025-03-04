@@ -68,11 +68,9 @@ const setStyle = (card) => {
   </div>
 
   <div class="no-more-cards">
-    <div class="card">
-      <p>
-        No cards left in your area. Come back later, move around or click on one
-        of the options <span aria-hidden="true">👇</span>
-      </p>
+    <div class="card gameover">
+      <img src="assets/gameover.gif" alt="Game Over" />
+      <img src="assets/gameover.svg" alt="Tap One of The Buttons" />
     </div>
     <div class="actions">
       <a href="#letstalk" class="button">Let's talk</a>
@@ -85,6 +83,8 @@ const setStyle = (card) => {
     const allCards = document.querySelectorAll(".swipeables-card");
     const agreeButton = document.querySelector("[data-agree-button]");
     const disagreeButton = document.querySelector("[data-disagree-button]");
+
+    const isMobile = window.matchMedia("(max-width: 600px)").matches;
 
     // Returns a UUID stored in localStorage, or create a new
     function getSessionID() {
@@ -145,7 +145,15 @@ const setStyle = (card) => {
       }
     }
 
-    function initCards() {
+    function initCards(randomize) {
+      // Randomize the cards in the DOM
+      if (randomize) {
+        const newCards = document.querySelectorAll(".swipeables-card:not(.removed)");
+        const cardsArray = Array.from(newCards);
+        cardsArray.sort(() => Math.random() - 0.5);
+        cardsArray.forEach((card) => container.appendChild(card));
+      }
+
       const newCards = document.querySelectorAll(
         ".swipeables-card:not(.removed)",
       );
@@ -166,14 +174,15 @@ const setStyle = (card) => {
       container.classList.add("loaded");
     }
 
-    initCards();
+    initCards(true);
 
     agreeButton.addEventListener("click", () => {
       const currentCard = document.querySelector(".swipeables-card.current");
       if (!currentCard) return;
 
+
       // animate the card out to the right
-      currentCard.style.transform = `translate(max(50dvw, 500px), 5px) rotate(180deg)`;
+      currentCard.style.transform = `translate(max(50dvw, 800px), 5px) rotate(180deg)`;
 
       currentCard.classList.remove("current");
 
@@ -185,7 +194,7 @@ const setStyle = (card) => {
           detail: { card: currentCard, result: "agree" },
         });
         currentCard.dispatchEvent(event);
-      }, 300);
+      }, 100);
     });
 
     disagreeButton.addEventListener("click", () => {
@@ -193,7 +202,7 @@ const setStyle = (card) => {
       if (!currentCard) return;
 
       // animate the card out to the left
-      currentCard.style.transform = `translate(min(-50dvw, -500px), 5px) rotate(-180deg)`;
+      currentCard.style.transform = `translate(min(-50dvw, -800px), 5px) rotate(-180deg)`;
 
       currentCard.classList.remove("current");
 
@@ -205,7 +214,7 @@ const setStyle = (card) => {
           detail: { card: currentCard, result: "disagree" },
         });
         currentCard.dispatchEvent(event);
-      }, 300);
+      }, 100);
     });
 
     allCards.forEach((card) => {
@@ -222,6 +231,7 @@ const setStyle = (card) => {
       let velocityY = 0;
 
       card.addEventListener("pointerdown", (e) => {
+        if (isMobile) return;
         // Check if clicking a link
         if (e.target.tagName === "A") return;
 
@@ -237,6 +247,7 @@ const setStyle = (card) => {
       });
 
       card.addEventListener("pointermove", (e) => {
+        if (isMobile) return;
         if (!isMoving) return;
 
         currentX = e.clientX - startX;
@@ -276,6 +287,7 @@ const setStyle = (card) => {
       });
 
       card.addEventListener("pointerup", (e) => {
+        if (isMobile) return;
         if (!isMoving) return;
 
         card.releasePointerCapture(e.pointerId);
@@ -322,7 +334,9 @@ const setStyle = (card) => {
       });
 
       card.addEventListener("pointercancel", () => {
+        if (isMobile) return;
         if (!isMoving) return;
+
         isMoving = false;
         card.classList.remove("moving");
         card.style.transition = "transform 0.3s ease-in-out";
@@ -351,10 +365,10 @@ const setStyle = (card) => {
       visibility: hidden;
     }
 
-    .swipeables {
-      touch-action: none; /* Prevents browsers from handling touch events in their own way */
-      user-select: none; /* Prevents text selection during swipes */
-    }
+    /* .swipeables { */
+    /*   touch-action: none; */
+    /*   user-select: none; */
+    /* } */
 
     .no-more-cards {
       display: none;
@@ -392,17 +406,13 @@ const setStyle = (card) => {
       background: none;
       cursor: pointer;
       border-radius: 0.375rem;
-      background-color: hsl(0, 0%, 91%);
-    }
-
-    .actions > .button.active,
-    .actions > .button:hover {
-      /* box-shadow:inset 0 0 0 2px hsl(0, 0%, 80%); */
       background-color: hsl(0, 0%, 80%);
     }
 
-    .actions > .button:active {
-      background-color: hsl(0, 0%, 70%);
+    @media (hover: hover) {
+      .actions > .button:hover {
+        background-color: hsl(0, 0%, 85%);
+      }
     }
 
     .swipeables-cards.loaded {
@@ -412,8 +422,6 @@ const setStyle = (card) => {
     .swipeables-card.removed {
       display: none;
     }
-
-
 
     .card,
     .swipeables-card {
@@ -429,8 +437,8 @@ const setStyle = (card) => {
       justify-content: space-between;
       align-items: flex-start;
 
-      width: 80dvw;
-      height: 70dvh;
+      width: 80vw;
+      height: 70vh;
       max-width: 345px;
       max-height: 500px;
 
@@ -442,15 +450,19 @@ const setStyle = (card) => {
       cursor: grab;
       color: white;
       z-index: 10000;
-      touch-action: none;
-      -webkit-touch-callout: none;
+
       background: black;
       background-size: cover;
       background-position: center;
     }
 
     .card {
-      justify-content: flex-end;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card img {
+      max-width: 100%;
     }
 
     .swipeables-card {
@@ -481,18 +493,6 @@ const setStyle = (card) => {
       opacity: var(--swipe-opacity, 0);
     }
 
-    /* /* For right swipe (green, agree) */
-    /* .swipeables-card.swipe-right::after { */
-    /*   background-color: hsla(120, 100%, 50%, 0.4); */
-    /*   opacity: var(--swipe-opacity, 0); */
-    /* } */
-    /**/
-    /* /* For left swipe (red, disagree) */
-    /* .swipeables-card.swipe-left::after { */
-    /*   background-color: hsla(0, 100%, 50%, 0.4); */
-    /*   opacity: var(--swipe-opacity, 0); */
-    /* } */
-
     .swipeables-card .source {
       display: block;
       margin-top: 16px;
@@ -512,11 +512,11 @@ const setStyle = (card) => {
 
     .swipeables-card img {
       max-width: 100%;
-      pointer-events: none;
     }
 
     .swipeables-card p {
       margin: 0px;
     }
+
   </style>
 </section>
