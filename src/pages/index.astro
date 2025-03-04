@@ -124,10 +124,10 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
       </Card>
       <Card
         emoji="🤖"
-        title="AI Agent Sokky optimizations – Automate, optimize, relax."
+        title="AI Agent Stacky optimizations – Automate, optimize, relax."
       >
         <p>
-          Agent Sokky fine-tunes your setup, reduces costs, and keeps things
+          Stacky fine-tunes your setup, reduces costs, and keeps things
           running smoothly—hands-free.
         </p>
       </Card>
@@ -217,22 +217,11 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
 
   }
 
-  /* only on desktop */
   @media (min-width: 440px) {
-    /* .container { */
-    /*   display: flex; */
-    /*   justify-content: center; */
-    /*   align-items: center; */
-    /*   min-height: 100vh; */
-    /* } */
     main {
       border-radius: 24px;
       max-width: 393px;
-
-      /* overflow-y: scroll; */
-      /* max-height: 85dvh; */
       margin-block: 2rem;
-      /* aspect-ratio: 440 / 956; */
     }
   }
 
@@ -261,6 +250,7 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
 
     opacity: 0;
     transition: opacity 0.5s ease;
+    text-wrap: pretty;
   }
 
   section.hero > .content > h1.visible {
