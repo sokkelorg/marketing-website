@@ -204,15 +204,22 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
     background: #ffffff;
     display: flex;
     flex-direction: column;
-    border-radius: 24px;
 
-    max-width: 393px;
+
     margin-inline: auto;
     padding: 1.5rem;
 
     font-size: 1.5rem;
     line-height: 2rem;
     gap: var(--gap);
+  }
+
+  /* only on desktop */
+  @media (min-width: 440px) {
+    main {
+      border-radius: 24px;
+      max-width: 393px;
+    }
   }
 
   section.hero {
