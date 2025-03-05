@@ -43,7 +43,40 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
   });
 </script>
 
-<Layout>
+<Layout
+  schema={[
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Sokkel",
+      alternateName: ["Sokkel", "Sokky", "sokkel.io"],
+      url: "https://sokkel.io/",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Sokkel",
+      url: "https://sokkel.io/",
+      logo: "https://sokkel.io/assets/logo.svg",
+      sameAs: ["https://www.linkedin.com/company/sokkel"],
+      image: "https://sokkel.io/assets/team.jpg",
+      description:
+        "Sokkel is the foundation and building blocks for managing your applications, smooooothly.",
+      telephone: "+4795308087",
+      email: "hello@sokkel.io",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Arbins gate 11",
+        addressLocality: "Oslo",
+        addressCountry: "NO",
+        addressRegion: "Oslo",
+        postalCode: "0253",
+      },
+      vatID: "NO935108500",
+      iso6523Code: "0192:935108500",
+    },
+  ]}
+>
   <div class="container">
     <main>
       <section class="hero">
