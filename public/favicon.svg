@@ -1,4 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 128 128">
-    <path fill="#00F" d="M0 0h128v128H0z"/>
-    <path fill="#33F" fill-rule="evenodd" d="M29.867 29.867h68.266V51.2H55.467v4.267h42.666v42.666H29.867V76.8h42.666v-4.267H29.867V29.867Z" clip-rule="evenodd"/>
+    <path class="other" d="M0 0h128v128H0z"/>
+    <path class="symbol" fill-rule="evenodd" d="M29.867 29.867h68.266V51.2H55.467v4.267h42.666v42.666H29.867V76.8h42.666v-4.267H29.867V29.867Z" clip-rule="evenodd"/>
+    <style>
+        .other { fill: #6666FF; }
+        .symbol { fill: #0000FF; }
+
+        @media (prefers-color-scheme: dark) {
+            .other { fill: #0000FF; }
+            .symbol { fill: #6666FF; }
+        }
+    </style>
 </svg>
