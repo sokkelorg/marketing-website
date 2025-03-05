@@ -1,9 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 128 128">
-    <path fill-rule="evenodd" d="M-.436-.436H128V128H-.436V83.85h80.272v-8.027H-.436V-.437Zm48.163 44.15H128v8.027H47.727v-8.027Z" clip-rule="evenodd"/>
-    <style>
-        path { fill: #000; }
-        @media (prefers-color-scheme: dark) {
-            path { fill: #FFF; }
-        }
-    </style>
+    <path fill="#00F" d="M0 0h128v128H0z"/>
+    <path fill="#33F" fill-rule="evenodd" d="M29.867 29.867h68.266V51.2H55.467v4.267h42.666v42.666H29.867V76.8h42.666v-4.267H29.867V29.867Z" clip-rule="evenodd"/>
 </svg>
