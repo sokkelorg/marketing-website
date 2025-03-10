@@ -46,35 +46,26 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     concurrency:
-      group: "Deploy to ${inputs.environment}"
+      group: "Deploy to ${{ inputs.environment }}"
     environment:
-      name: "${inputs.environment}"
+      name: "${{ inputs.environment }}"
+      url: ${{ vars.WEBSITE_URL }}
 
     steps:
-      - name: Download built website 📦
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: website
           path: ./website
 
-      - id: list-working-directory
-        name: List working directory
-        run: ls -la
-
-      - id: list-website
-        name: List website
-        run: ls -la ./website
-
-      - id: auth
-        name: Authenticate to Google Cloud 🔐
+      - name: Authenticate with Google Cloud 🔐
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: projects/184284737035/locations/global/workloadIdentityPools/marketing-website/providers/marketing-website-github-actions
 
-      - name: Set up Cloud SDK
+      - name: Set up Cloud SDK ⚙️
         uses: google-github-actions/setup-gcloud@v2
         with:
           version: ">= 502.0.0"
 
-      - name: "Use gcloud CLI"
-        run: "gcloud info"
+      - name: Sync to bucket 🪣
+        run: "gcloud storage rsync --delete-unmatched-destination-objects ./website ${{ vars.WEBSITE_BUCKET_URL }}"
