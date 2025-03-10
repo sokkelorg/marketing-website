@@ -35,9 +35,10 @@ jobs:
       - name: Build 🔨
         run: pnpm build
 
-      - name: Upload GitHub Pages assets 📦️
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload built website 📦️
+        uses: actions/upload-artifact@v4
         with:
+          name: website
           path: ./dist
 
   deploy:
@@ -50,9 +51,19 @@ jobs:
       name: "${inputs.environment}"
 
     steps:
+      - name: Download built website 📦
+        uses: actions/upload-artifact@v4
+        with:
+          name: website
+          path: ./website
+
       - id: list-working-directory
-        name: "List working directory"
+        name: List working directory
         run: ls -la
+
+      - id: list-website
+        name: List website
+        run: ls -la ./website
 
       - id: auth
         name: Authenticate to Google Cloud 🔐
