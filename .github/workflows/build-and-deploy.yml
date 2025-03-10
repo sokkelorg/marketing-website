@@ -68,4 +68,4 @@ jobs:
           version: ">= 502.0.0"
 
       - name: Sync to bucket 🪣
-        run: "gcloud storage rsync --delete-unmatched-destination-objects ./website ${{ vars.WEBSITE_BUCKET_URL }}"
+        run: "gcloud storage rsync ./website ${{ vars.WEBSITE_BUCKET_URL }} --delete-unmatched-destination-objects"
