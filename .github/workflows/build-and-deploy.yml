@@ -1,0 +1,69 @@
+name: Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: Environment to deploy to
+        required: true
+        type: environment
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build:
+    name: Lint, format, test and build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v2
+
+      - name: Use Node LTS ✨
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: pnpm
+
+      - name: Install dependencies 📦️
+        run: pnpm install --frozen-lockfile
+
+      - name: Build 🔨
+        run: pnpm build
+
+      - name: Upload GitHub Pages assets 📦️
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    name: Deployment
+    runs-on: ubuntu-latest
+    needs: build
+    concurrency:
+      group: "Deploy to ${inputs.environment}"
+    environment:
+      name: "${inputs.environment}"
+
+    steps:
+      - id: list-working-directory
+        name: "List working directory"
+        run: ls -la
+
+      - id: auth
+        name: Authenticate to Google Cloud 🔐
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/184284737035/locations/global/workloadIdentityPools/marketing-website/providers/marketing-website-github-actions
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          version: ">= 502.0.0"
+
+      - name: "Use gcloud CLI"
+        run: "gcloud info"
