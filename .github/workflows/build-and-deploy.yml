@@ -3,7 +3,7 @@ name: Build and deploy
 on:
   workflow_dispatch:
     inputs:
-      env:
+      environment:
         description: Environment to deploy to
         required: true
         type: environment
