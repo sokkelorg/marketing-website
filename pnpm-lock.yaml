@@ -17,6 +17,12 @@ dependencies:
   astro:
     specifier: ^5.2.5
     version: 5.2.5(typescript@5.7.3)
+  astro-integration-lottie:
+    specifier: ^0.3.2
+    version: 0.3.2(lottie-web@5.12.2)
+  lottie-web:
+    specifier: ^5.12.2
+    version: 5.12.2
   schema-dts:
     specifier: ^1.1.5
     version: 1.1.5
@@ -944,6 +950,14 @@ packages:
     resolution: {integrity: sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==}
     dev: false
 
+  /astro-integration-lottie@0.3.2(lottie-web@5.12.2):
+    resolution: {integrity: sha512-YPE5XjWNbu+kKTlNm4+buvL6oZDwaECiS4Mo4m3kZnykZjHOJPNoStsIN2wLgJmryRUqPZxeKiIA+tIrT6HD1Q==}
+    peerDependencies:
+      lottie-web: ^5.10.0
+    dependencies:
+      lottie-web: 5.12.2
+    dev: false
+
   /astro@5.2.5(typescript@5.7.3):
     resolution: {integrity: sha512-AYXyYkc+c5xbKTm48FyQA91y81nXyNPAaoyafR0LUugE4lAwuvIUcXDBfMzmbuP1lGRvsE33G2oypv6gbGaPFg==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
@@ -1736,6 +1750,10 @@ packages:
 
   /longest-streak@3.1.0:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
+    dev: false
+
+  /lottie-web@5.12.2:
+    resolution: {integrity: sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==}
     dev: false
 
   /lru-cache@10.4.3:
