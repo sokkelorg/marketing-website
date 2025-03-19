@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Swipeables from "../components/swipeables.astro";
 import Card from "../components/card.astro";
+import LinkButton from "../components/link-button.astro";
 import ContactSection from "../components/contact-section.astro";
 import { Picture } from "astro:assets";
 import { client } from "../sanity-client.ts";
@@ -210,7 +211,7 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
           {statuses.map((status) => <li>{status}</li>)}
         </ul>
 
-        <a href="https://tally.so/r/wb6R62" class="button">Fancy updates?</a>
+        <LinkButton href="https://tally.so/r/wb6R62">Fancy updates?</LinkButton>
       </section>
 
       <section class="about">
@@ -478,24 +479,6 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
 
   section.about .team {
     border-radius: 0.5rem;
-  }
-
-  .button {
-    display: block;
-    padding: 10px 16px;
-    font-size: 14px;
-    font-weight: 500;
-    text-align: center;
-    color: white;
-    background-color: #000000;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  .button:hover {
-    background-color: #262626;
   }
 
   @keyframes scroll {
