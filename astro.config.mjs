@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 
 import sitemap from "@astrojs/sitemap";
+import lottie from "astro-integration-lottie";
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,5 +12,5 @@ export default defineConfig({
     responsiveImages: true,
   },
 
-  integrations: [sitemap()],
+  integrations: [sitemap(), lottie()],
 });

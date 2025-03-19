@@ -1,9 +1,74 @@
-<div class="container">
+---
+import Layout from "../layouts/Layout.astro";
+import LottieAnimation from "astro-integration-lottie/Lottie.astro";
+---
+
+<Layout>
   <main>
     <div class="content">
-      <p>We haven't made this page yet.</p><p>
-        <a href="/">Start over?</a>
+      <LottieAnimation
+        class="stacky-404"
+        src="/assets/stacky-404.json"
+        autoplay="visible"
+      />
+      <h1>404 &ndash; Well oh well</h1>
+      <p>
+        Double-check the address, or let us know at <a
+          href="mailto:hello@sokkel.io">hello@sokkel.io</a
+        >, and we'll smoooothly guide you back.
       </p>
+      <a class="home" href="/">Take me home</a>
     </div>
   </main>
-</div>
+</Layout>
+
+<style>
+  body {
+    background-color: white;
+  }
+
+  .content {
+    margin: 0 auto;
+    width: 300px;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+
+    text-align: center;
+    line-height: 24px;
+    font-size: 16px;
+
+    .stacky-404 {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .home {
+      font-size: 16px;
+      padding: 16px 32px;
+      user-select: none;
+      background-color: black;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+    }
+  }
+</style>
