@@ -18,6 +18,15 @@ const painPoints = [
   "Security is tricky, who has access?",
   "No visibility, debugging sucks.",
 ];
+
+const cards = [
+  // TODO: Fetch these from Sanity.
+  { emoji:"🚀", title:"AI-powered Blueprints – Set up and manage your applications effortlessly.", content: 'Answer a few questions, and get a ready-to-go setup—whether you’re  starting fresh or migrating.' },
+  { emoji:"📊", title:"Real-time insights –  See everything, zoom into anything.", content: 'Get a clear overview of how your setup connects, with the ability to  drill down into performance, costs, and issues.' },
+  { emoji:"🤖", title:"AI Agent Stacky optimizations – Automate, optimize, relax.", content: 'Stacky fine-tunes your setup, reduces costs, and keeps things  running smoothly—hands-free.' },
+  { emoji:"🌍", title:"Powered by GCP – built for maximum flexibility.", content: 'Fully optimized for Google Cloud, giving you the freedom to scale, adapt, and grow without limitations.' },
+  { emoji:"🛠", title:"Built for SMBs – Less overhead, more time for building.", content: 'No DevOps team needed. Sokkel simplifies everything so you can focus on growing your software.' },
+]
 ---
 
 <Layout
@@ -80,60 +89,16 @@ const painPoints = [
         about.
       </h2>
 
-        <div>
+        <section id="pain-points">
           <h3>DevOps today? Kinda painful.</h3>
           <ol>
             {painPoints.map((point) => <li>{point}</li>)}
           </ol>
-        </div>
+        </section>
 
       <section id="cards">
         <h2>That's why Sokkel is making it smooooth.</h2>
-        <Card
-          emoji="🚀"
-          title="AI-powered Blueprints – Set up and manage your applications effortlessly."
-        >
-          <p>
-            Answer a few questions, and get a ready-to-go setup—whether you’re
-            starting fresh or migrating.
-          </p>
-        </Card>
-        <Card
-          emoji="📊"
-          title="Real-time insights –  See everything, zoom into anything."
-        >
-          <p>
-            Get a clear overview of how your setup connects, with the ability to
-            drill down into performance, costs, and issues.
-          </p>
-        </Card>
-        <Card
-          emoji="🤖"
-          title="AI Agent Stacky optimizations – Automate, optimize, relax."
-        >
-          <p>
-            Stacky fine-tunes your setup, reduces costs, and keeps things
-            running smoothly—hands-free.
-          </p>
-        </Card>
-        <Card
-          emoji="🌍"
-          title="Powered by GCP – built for maximum flexibility."
-        >
-          <p>
-            Fully optimized for Google Cloud, giving you the freedom to scale,
-            adapt, and grow without limitations.
-          </p>
-        </Card>
-        <Card
-          emoji="🛠"
-          title="Built for SMBs – Less overhead, more time for building."
-        >
-          <p>
-            No DevOps team needed. Sokkel simplifies everything so you can focus
-            on growing your software.
-          </p>
-        </Card>
+        {cards.map(({ emoji, title, content}) => <Card emoji={emoji} title={title} >{content}</Card>)}
       </section>
     </main>
   </div>
@@ -217,43 +182,33 @@ const painPoints = [
   }
 
   h2 {
-      line-height: 2.5rem;
-      font-size: 2.5rem;
+      font-size: 3rem;
+      margin: 0;
+  }
+
+  section#pain-points {
+      h3 {
+          margin: 0;
+        font-size: 1rem;
+          font-style: italic;
+      }
+
+      ol {
+          margin: 0;
+          font-size: 1rem;
+      }
   }
 
   section#cards {
-    h2 {
-        line-height: 1rem;
-        font-size: unset;
-        margin: 0;
-        font-style: italic;
-    }
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      h2 {
+          line-height: unset;
+          font-size: 1rem;
+          font-weight: 400;
+          font-style: italic;
+      }
   }
 </style>
-
-<script define:vars={{ problems }}>
-  document.addEventListener("DOMContentLoaded", () => {
-    const buttons = document.querySelectorAll("[data-refresh-button]");
-    const problemTitle = document.querySelector("[data-problem]");
-    if (!problemTitle || !buttons) {
-      console.error("Problem title or buttons not found");
-      return;
-    }
-
-    function newRandomProblem() {
-      const randomProblemKey = Math.floor(Math.random() * problems.length);
-      const problem = problems[randomProblemKey];
-
-      problemTitle.classList.add("visible");
-      problemTitle.textContent = problem;
-    }
-
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        newRandomProblem();
-      });
-    });
-
-    newRandomProblem();
-  });
-</script>
