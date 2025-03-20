@@ -1,21 +1,23 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/header.astro";
-import Swipeables from "../components/swipeables.astro";
 import Card from "../components/card.astro";
 import LinkButton from "../components/link-button.astro";
-import ContactSection from "../components/contact-section.astro";
-import { Picture } from "astro:assets";
 import { client } from "../sanity-client.ts";
-import theTeam from "../assets/team.jpg";
 
 const problems = await client.fetch(`*[_type == 'problem'].problem`);
-const statuses = await client.fetch(
-  `*[_type == 'status'] | order(date asc).status`,
-);
 
 // This initial problem is only for SEO purposes
 const problem = problems[Math.floor(Math.random() * problems.length)];
+
+const painPoints = [
+  // TODO: Fetch these from Sanity.
+  "Too complex, cloud is a maze.",
+  "Too many tools, config chaos.",
+  "Costs run wild, surprise bills.",
+  "Security is tricky, who has access?",
+  "No visibility, debugging sucks.",
+];
 ---
 
 <Layout
@@ -54,68 +56,39 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
 >
   <div class="container">
     <main>
-      <section class="hero">
-        <Header link={{ text: "About us", href: "/about-us" }} } />
-        <div class="content">
-          <p>
-            No one starts a company just to do DevOps. Or, we did. So you don’t
-            have to, because:
-          </p>
+      <Header link={{ text: "About us", href: "/about-us" }} />
+      <section id="hero">
+        <img src="/assets/logo.svg" alt="Sokkel" class="logo" />
+        <h1>
+          The AI-powered <span aria-hidden="true">✨</span> platform for managing
+          all your applications. <span class="smoooothly">Smoooothly.</span>
+        </h1>
 
-          <h1 data-problem set:text={problem} />
-        </div>
-
-        <div class="actions">
-          <button class="refresh-button" data-refresh-button> Refresh</button>
-          <kbd data-refresh-button>
-            <span class="symbol">⌘</span>
-            <span>+</span>
-            <span>R</span>
-          </kbd>
-        </div>
+        <!--TODO: Don't let the button take up the full width-->
+        <LinkButton href="https://tally.so/r/wb6R62">Join waitlist</LinkButton>
+        <p class="problem">Because: {problem}</p>
       </section>
 
-      <Swipeables />
+      <img
+        class="illustration lambo-tape"
+        src="/assets/lambo-tape.gif"
+        alt="Burning Lamborghini with duct tape"
+      />
 
-      <section class="introduction">
-        <img src="assets/logo.svg" alt="Sokkel" class="logo" />
-        <strong>
-          The foundation and building blocks for managing your applications,
-          smooooothly.
-        </strong>
+      <h2>
+        We are on a mission to make DevOps something you <i>don't</i> have to worry
+        about.
+      </h2>
+
         <div>
-          <p>
-            Sokkel eliminates DevOps guesswork with AI-powered Blueprints for
-            the perfect setup, a real-time insights dashboard to keep you in
-            control, and smart optimizations from AI Agent Stacky to cut the
-            clutter.
-          </p>
-
-          <p>
-            Whether you’re an SMB building something new or migrating from an
-            existing setup, Sokkel gets you up and running fast, securely and
-            delightfully.
-          </p>
+          <h3>DevOps today? Kinda painful.</h3>
+          <ol>
+            {painPoints.map((point) => <li>{point}</li>)}
+          </ol>
         </div>
-        <img
-          class="illustration lambo-tape"
-          src="assets/lambo-tape.gif"
-          alt="Burning Lamborghini with gaff tape"
-        />
 
-        <p class="caption">
-          No more duct-taped solutions. No more forgotten configs. No more 2 AM
-          fire drills. Just seamless infrastructure, done right.
-        </p>
-
-        <img
-          class="illustration arrow-down"
-          src="assets/arrow-down.gif"
-          alt="arrow down"
-        />
-      </section>
-
-      <section class="cards">
+      <section id="cards">
+        <h2>That's why Sokkel is making it smooooth.</h2>
         <Card
           emoji="🚀"
           title="AI-powered Blueprints – Set up and manage your applications effortlessly."
@@ -162,62 +135,12 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
           </p>
         </Card>
       </section>
-
-      <section class="status">
-        <div class="marquee-container">
-          <div class="marquee">
-            <ul class="marquee-content">
-              {statuses.map((status) => <li>{status}</li>)}
-            </ul>
-            <!-- Mirrors the content above -->
-            <ul class="marquee-content" aria-hidden="true">
-              {statuses.map((status) => <li>{status}</li>)}
-            </ul>
-          </div>
-        </div>
-
-        <p>TL;DR – The Marquee Version:</p>
-
-        <ul>
-          {statuses.map((status) => <li>{status}</li>)}
-        </ul>
-
-        <LinkButton href="https://tally.so/r/wb6R62">Fancy updates?</LinkButton>
-      </section>
-
-      <section class="about">
-        <Picture
-          class="team"
-          src={theTeam}
-          layout="full-width"
-          formats={["avif", "webp"]}
-          alt="The team; Marius, Simen, and Martin"
-        />
-
-        <h2>Hello <span aria-hidden="true">👋</span></h2>
-
-        <p>
-          This is us: Marius, Simen, and Martin. Three builders. One designer.
-          Two developers.
-        </p>
-
-        <p>
-          Between us, we’ve been at Finn.no, No Isolation, Auk, AYR, Folio,
-          Bjerk and SpotOn. We’ve seen what works, what doesn’t, and what should
-          exist but doesn’t (yet).
-        </p>
-
-        <p>So we’re building Sokkel!</p>
-      </section>
-
-      <ContactSection />
     </main>
   </div>
 </Layout>
 
 <style>
   main {
-    --gap: 10rem;
     background: #ffffff;
     display: flex;
     flex-direction: column;
@@ -227,7 +150,7 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
 
     font-size: 1.5rem;
     line-height: 2rem;
-    gap: var(--gap);
+    gap: 6rem;
   }
 
   @media (min-width: 450px) {
@@ -238,94 +161,6 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
     }
   }
 
-  section.hero {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  section.hero > .content {
-    display: grid;
-    gap: 1rem;
-  }
-
-  section.hero > .content > p {
-    margin: 0;
-  }
-
-  section.hero > .content > h1 {
-    font-size: 2.5rem;
-    font-weight: 900;
-    line-height: 2.9rem;
-    margin-block: 0;
-
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    text-wrap: pretty;
-  }
-
-  section.hero > .content > h1.visible {
-    opacity: 1;
-  }
-
-  section.hero > .content p {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    padding: 0;
-  }
-
-  section.hero > .actions {
-    display: flex;
-    gap: 1rem;
-  }
-
-  section.hero > .actions > .refresh-button {
-    font-family: inherit;
-    background: none;
-    border: none;
-    color: hsl(240, 100%, 50%);
-    cursor: pointer;
-    font-size: 0.875rem;
-    margin: 0;
-    padding: 0;
-    text-decoration: underline;
-  }
-
-  section.hero > .actions > .refresh-button:hover {
-    text-decoration: none;
-  }
-
-  section.hero > .actions > kbd {
-    background-color: #e9e9e9;
-    border-radius: 4px;
-
-    padding-block: 0.5rem;
-    padding-inline: 1rem;
-    line-height: normal;
-
-    display: inline-flex;
-    align-items: center;
-    font-size: 0.875rem;
-    justify-content: center;
-    gap: 1px;
-    color: #000;
-    user-select: none;
-    cursor: pointer;
-  }
-
-  section.hero > .actions > kbd > .symbol {
-    font-size: 18px;
-  }
-
-  section.cards {
-    display: grid;
-    gap: 1rem;
-  }
-
-  p.statement {
-    font-weight: bold;
-  }
-
   .illustration {
     display: block;
     align-self: center;
@@ -334,132 +169,64 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
     margin-block: 1rem;
   }
 
-  .illustration.lambo-tape {
-    max-width: 80%;
-  }
-
-  .illustration.arrow-down {
-    max-width: 130px;
-    margin-block-start: 5rem;
-    margin-block-end: 0;
-  }
-
-  .intro span {
-    color: #888888;
-  }
-
-  section.introduction {
-    margin-top: 10rem;
+  section#hero {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-  }
+    gap: 2rem;
 
-  section.introduction > .caption {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    text-wrap: pretty;
-  }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      line-height: 2.9rem;
+      margin-block: 0;
+      text-wrap: pretty;
 
-  section.status {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
-
-  section.status .marquee-container {
-    overflow: hidden;
-    margin-inline: -1.5rem;
-    padding-block: 1rem;
-  }
-
-  section.status .marquee-container > .marquee {
-    background-color: hsl(240, 100%, 50%);
-    color: white;
-    transform: rotate(-6deg);
-    font-size: 1rem;
-    font-weight: 600;
-    margin-inline: -2rem;
-    margin-block: 1rem;
-
-    --gap: 2rem;
-    position: relative;
-    display: flex;
-    overflow: hidden;
-    user-select: none;
-    gap: var(--gap);
-  }
-
-  section.status > .marquee-container > .marquee > .marquee-content {
-    flex-shrink: 0;
-    display: flex;
-    justify-content: space-around;
-    gap: var(--gap);
-    min-width: 100%;
-    animation: scroll 10s linear infinite;
-  }
-
-  /* remove margin right on the last marquee item */
-  section.status
-    > .marquee-container
-    > .marquee
-    > .marquee-content
-    > li:last-child {
-    margin-inline-end: -2.5rem;
-  }
-
-  section.status > .button {
-    margin-block-start: 2rem;
-  }
-
-  section.status > p {
-    margin-block-start: 2.5rem;
-    margin-block-end: 0;
-  }
-
-  section.status > ul {
-    list-style-type: none;
-    margin-block-start: 0.5rem;
-    padding-inline-start: 1.2rem;
-  }
-
-  section.status > ul > li::before {
-    content: "🔹 "; /* Add blue diamond emoji and a space */
-    margin-left: -1.5em; /* Pull the emoji back to align properly */
-  }
-
-  section.about {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-
-  section.about > h2 {
-    font-size: 1rem;
-    font-weight: 800;
-    line-height: 1.5rem;
-  }
-
-  section.about .team {
-    border-radius: 0.5rem;
-  }
-
-  @keyframes scroll {
-    from {
-      transform: translateX(0);
+      .smoooothly {
+        background: linear-gradient(
+          270deg,
+          #ccccff 31.45%,
+          #9999ff 40.36%,
+          #6666ff 48.59%,
+          #3333ff 57.5%,
+          #0000ff 65.72%,
+          #0000cc 74.64%,
+          #000099 83.55%,
+          #000066 91.77%,
+          #000033 100%
+        );
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
     }
-    to {
-      transform: translateX(calc(-100% - var(--gap)));
+
+    .logo {
+      max-width: 212px;
+      // Set the specific height to prevent the content from jumping on page load.
+      height: 32px;
+    }
+
+    .problem {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      color: #525252;
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    /* If user prefers reduced motion, remove both marquee and the
-* the TLDR text, showing only the list */
-    .marquee {
-      display: none;
-    }
+  .lambo-tape {
+      max-width: 80%;
+  }
 
-    section.status > p {
-      display: none;
+  h2 {
+      line-height: 2.5rem;
+      font-size: 2.5rem;
+  }
+
+  section#cards {
+    h2 {
+        line-height: 1rem;
+        font-size: unset;
+        margin: 0;
+        font-style: italic;
     }
   }
 </style>

@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/header.astro";
+import ContactSection from "../components/contact-section.astro";
+import { Picture } from "astro:assets";
+import theTeam from "../assets/team.jpg";
+---
+
+<Layout>
+  <Header link={{ href: "/", text: "Close" }} />
+  <main>
+    <Picture
+      class="team"
+      src={theTeam}
+      layout="full-width"
+      formats={["avif", "webp"]}
+      alt="The team; Marius, Simen, and Martin"
+    />
+
+    <h2>Hello <span aria-hidden="true">👋</span></h2>
+
+    <p>
+      This is us: Marius, Simen, and Martin. Three builders. One designer. Two
+      developers.
+    </p>
+
+    <p>
+      Between us, we’ve been at Finn.no, No Isolation, Auk, AYR, Folio, Bjerk
+      and SpotOn. We’ve seen what works, what doesn’t, and what should exist but
+      doesn’t (yet).
+    </p>
+
+    <p>So we’re building Sokkel!</p>
+
+    <ContactSection />
+  </main>
+</Layout>
+
+<style>
+  main {
+    font-size: 1rem;
+    line-height: 1.5rem;
+
+    h1 {
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.5rem;
+    }
+
+    .team {
+      border-radius: 0.5rem;
+    }
+  }
+</style>

@@ -4,10 +4,10 @@ const { emoji, title } = Astro.props;
 
 <article>
   <header>
-    <h2>
+    <h3>
       <span aria-hidden="true" set:text={emoji} />
       {title}
-    </h2>
+    </h3>
   </header>
   <div class="content">
     <slot />
@@ -25,7 +25,7 @@ const { emoji, title } = Astro.props;
     gap: 0.875rem;
   }
 
-  h2 {
+  h3 {
     font-size: 1rem;
     font-weight: 600;
     color: hsl(0, 0%, 20%);
