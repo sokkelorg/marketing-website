@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/header.astro";
 import Swipeables from "../components/swipeables.astro";
 import Card from "../components/card.astro";
 import LinkButton from "../components/link-button.astro";
@@ -16,33 +17,6 @@ const statuses = await client.fetch(
 // This initial problem is only for SEO purposes
 const problem = problems[Math.floor(Math.random() * problems.length)];
 ---
-
-<script define:vars={{ problems }}>
-  document.addEventListener("DOMContentLoaded", () => {
-    const buttons = document.querySelectorAll("[data-refresh-button]");
-    const problemTitle = document.querySelector("[data-problem]");
-    if (!problemTitle || !buttons) {
-      console.error("Problem title or buttons not found");
-      return;
-    }
-
-    function newRandomProblem() {
-      const randomProblemKey = Math.floor(Math.random() * problems.length);
-      const problem = problems[randomProblemKey];
-
-      problemTitle.classList.add("visible");
-      problemTitle.textContent = problem;
-    }
-
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        newRandomProblem();
-      });
-    });
-
-    newRandomProblem();
-  });
-</script>
 
 <Layout
   schema={[
@@ -81,10 +55,7 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
   <div class="container">
     <main>
       <section class="hero">
-        <header>
-          <img src="assets/logo-symbol.gif" alt="Sokkel" class="logo-symbol" />
-        </header>
-
+        <Header link={{ text: "About us", href: "/about-us" }} } />
         <div class="content">
           <p>
             No one starts a company just to do DevOps. Or, we did. So you don’t
@@ -355,16 +326,6 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
     font-weight: bold;
   }
 
-  .logo-symbol {
-    max-width: 40px;
-  }
-
-  .logo {
-    width: 100%;
-    height: 100%;
-    margin-bottom: 2rem;
-  }
-
   .illustration {
     display: block;
     align-self: center;
@@ -502,3 +463,30 @@ const problem = problems[Math.floor(Math.random() * problems.length)];
     }
   }
 </style>
+
+<script define:vars={{ problems }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll("[data-refresh-button]");
+    const problemTitle = document.querySelector("[data-problem]");
+    if (!problemTitle || !buttons) {
+      console.error("Problem title or buttons not found");
+      return;
+    }
+
+    function newRandomProblem() {
+      const randomProblemKey = Math.floor(Math.random() * problems.length);
+      const problem = problems[randomProblemKey];
+
+      problemTitle.classList.add("visible");
+      problemTitle.textContent = problem;
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        newRandomProblem();
+      });
+    });
+
+    newRandomProblem();
+  });
+</script>
