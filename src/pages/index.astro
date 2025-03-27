@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/header.astro";
 import Card from "../components/card.astro";
-import LinkButton from "../components/link-button.astro";
+import WaitlistButton from "../components/waitlist-button.astro";
 import Footer from "../components/footer.astro";
 import { client } from "../sanity-client.ts";
 
@@ -100,7 +100,7 @@ const cards = [
       </h1>
 
       <!--TODO: Don't let the button take up the full width-->
-      <LinkButton href="https://tally.so/r/wb6R62">Join waitlist</LinkButton>
+      <WaitlistButton />
       <p class="problem">Because: {problem}</p>
     </section>
 
