@@ -23,30 +23,36 @@ const cards = [
   // TODO: Fetch these from Sanity.
   {
     emoji: "🚀",
-    title: "AI-powered Blueprints – The perfect setup, effortlessly and smooooth!",
-    content: "Whether you’re starting fresh or migrating, we deliver a fast, secure, and fully optimized setup from day one. No manual tweaking, no hidden pitfalls — just a smooth, scalable foundation built right."
+    title:
+      "AI-powered Blueprints – The perfect setup, effortlessly and smooooth!",
+    content:
+      "Whether you’re starting fresh or migrating, we deliver a fast, secure, and fully optimized setup from day one. No manual tweaking, no hidden pitfalls — just a smooth, scalable foundation built right.",
   },
   {
     emoji: "📊",
     title: "Real-time insights – See everything, zoom into anything",
-    content: "Gain complete visibility into your infrastructure with a clear, connected overview. Dive deep into performance metrics, cost breakdowns, and potential issues — so you’re always in control and never caught off guard."
+    content:
+      "Gain complete visibility into your infrastructure with a clear, connected overview. Dive deep into performance metrics, cost breakdowns, and potential issues — so you’re always in control and never caught off guard.",
   },
   {
     emoji: "🤖",
     title: "Meet Stacky – Your AI agent for smart automation and optimization",
-    content: "Stacky fine-tunes your infrastructure, optimizes performance, and eliminates waste. From cutting costs to preventing bottlenecks, Stacky keeps your applications running smoothly and efficiently, so you can focus on building instead of firefighting."
+    content:
+      "Stacky fine-tunes your infrastructure, optimizes performance, and eliminates waste. From cutting costs to preventing bottlenecks, Stacky keeps your applications running smoothly and efficiently, so you can focus on building instead of firefighting.",
   },
   {
     emoji: "🛠",
     title: "Built for SMBs – Less overhead, more time to build",
-    content: "Sokkel takes the complexity out of DevOps, so you can focus on what matters — growing your software. SMBs need more than just automation; they need smart guardrails that keep infrastructure secure, efficient, and hassle-free."
+    content:
+      "Sokkel takes the complexity out of DevOps, so you can focus on what matters — growing your software. SMBs need more than just automation; they need smart guardrails that keep infrastructure secure, efficient, and hassle-free.",
   },
   {
     emoji: "🌍",
     title: "From day one to day one thousand – built for seamless scaling",
-    content: "Sokkel ensures your infrastructure is fully optimized right from the start. Easily scale, adapt, and grow your applications without complexity or constraints."
-  }
-]
+    content:
+      "Sokkel ensures your infrastructure is fully optimized right from the start. Easily scale, adapt, and grow your applications without complexity or constraints.",
+  },
+];
 ---
 
 <Layout
@@ -109,17 +115,22 @@ const cards = [
         about.
       </h2>
 
-        <section id="pain-points">
-          <h3>DevOps today? Kinda painful.</h3>
-          <ol>
-            {painPoints.map((point) => <li>{point}</li>)}
-          </ol>
-        </section>
+      <section id="pain-points">
+        <h3>DevOps today? Kinda painful.</h3>
+        <ol>
+          {painPoints.map((point) => <li>{point}</li>)}
+        </ol>
+      </section>
 
       <section id="cards">
         <h2>That's why Sokkel is making it smooooth:</h2>
-        {cards.map(({ emoji, title, content }) =>
-          <Card emoji={emoji} title={title}>{content}</Card>)}
+        {
+          cards.map(({ emoji, title, content }) => (
+            <Card emoji={emoji} title={title}>
+              {content}
+            </Card>
+          ))
+        }
       </section>
     </main>
   </div>
@@ -185,10 +196,9 @@ const cards = [
       }
     }
 
-
     .logo {
       max-width: 212px;
-      // Set the specific height to prevent the content from jumping on page load.
+      /* Set the specific height to prevent the content from jumping on page load.*/
       height: 32px;
     }
 
@@ -200,38 +210,38 @@ const cards = [
   }
 
   .lambo-tape {
-      max-width: 80%;
+    max-width: 80%;
   }
 
   h2#mission-statement {
-      font-weight: 800;
-      font-size: 2.7rem;
-      line-height: 3rem;
+    font-weight: 800;
+    font-size: 2.7rem;
+    line-height: 3rem;
   }
 
   section#pain-points {
-      h3 {
-          margin: 0;
-        font-size: 1rem;
-          font-style: italic;
-      }
+    h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-style: italic;
+    }
 
-      ol {
-          margin: 0;
-          font-size: 1rem;
-      }
+    ol {
+      margin: 0;
+      font-size: 1rem;
+    }
   }
 
   section#cards {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
-      h2 {
-          line-height: unset;
-          font-size: 1.2rem;
-          font-weight: 400;
-          font-style: italic;
-      }
+    h2 {
+      line-height: unset;
+      font-size: 1.2rem;
+      font-weight: 400;
+      font-style: italic;
+    }
   }
 </style>
