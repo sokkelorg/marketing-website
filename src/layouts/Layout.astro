@@ -132,9 +132,9 @@ const canonical = new URL(path, Astro.site);
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.svg" />
-    
+
     <meta name="viewport" content="width=device-width" />
-    <link type="text/plain" rel="author" href={makeURL('/humans.txt')} />
+    <link type="text/plain" rel="author" href={makeURL("/humans.txt")} />
 
     <meta name="robots" content="index,follow" />
     <meta name="description" content={description} />
@@ -161,9 +161,26 @@ const canonical = new URL(path, Astro.site);
       defer></script>
   </head>
   <body>
-    <slot />
+    <div class="container">
+      <slot />
+    </div>
   </body>
 </html>
+
+<style>
+  .container {
+    max-width: 393px;
+    margin-inline: auto;
+    padding: 1.5rem;
+
+    background: #ffffff;
+
+    @media (min-width: 600px) {
+      margin-block: 2rem;
+      border-radius: 24px;
+    }
+  }
+</style>
 
 <style is:global>
   html,

@@ -90,74 +90,59 @@ const cards = [
     },
   ]}
 >
-  <div class="container">
-    <main>
-      <Header link={{ text: "About us", href: "/about-us" }} />
-      <section id="hero">
-        <img src="/assets/logo.svg" alt="Sokkel" class="logo" />
-        <h1>
-          The AI-powered <span aria-hidden="true">✨</span> platform for managing
-          all your applications. <span class="smoooothly">Smoooothly.</span>
-        </h1>
+  <main>
+    <Header link={{ text: "About us", href: "/about-us" }} />
+    <section id="hero">
+      <img src="/assets/logo.svg" alt="Sokkel" class="logo" />
+      <h1>
+        The AI-powered <span aria-hidden="true">✨</span> platform for managing all
+        your applications. <span class="smoooothly">Smoooothly.</span>
+      </h1>
 
-        <!--TODO: Don't let the button take up the full width-->
-        <LinkButton href="https://tally.so/r/wb6R62">Join waitlist</LinkButton>
-        <p class="problem">Because: {problem}</p>
-      </section>
+      <!--TODO: Don't let the button take up the full width-->
+      <LinkButton href="https://tally.so/r/wb6R62">Join waitlist</LinkButton>
+      <p class="problem">Because: {problem}</p>
+    </section>
 
-      <img
-        class="illustration lambo-tape"
-        src="/assets/lambo-tape.gif"
-        alt="Burning Lamborghini with duct tape"
-      />
-
-      <h2 id="mission-statement">
-        We are on a mission to make DevOps something you <i>don't</i> have to worry
-        about.
-      </h2>
-
-      <section id="pain-points">
-        <h3>DevOps today? Kinda painful.</h3>
-        <ol>
-          {painPoints.map((point) => <li>{point}</li>)}
-        </ol>
-      </section>
-
-      <section id="cards">
-        <h2>That's why Sokkel is making it smooooth:</h2>
-        {
-          cards.map(({ emoji, title, content }) => (
-            <Card emoji={emoji} title={title}>
-              {content}
-            </Card>
-          ))
-        }
-      </section>
-    </main>
-    <Footer
-      links={[
-        { href: "/game", text: "DevOps card game" },
-        { href: "/about-us", text: "About us" },
-      ]}
-      }
+    <img
+      class="illustration lambo-tape"
+      src="/assets/lambo-tape.gif"
+      alt="Burning Lamborghini with duct tape"
     />
-  </div>
+
+    <h2 id="mission-statement">
+      We are on a mission to make DevOps something you <i>don't</i> have to worry
+      about.
+    </h2>
+
+    <section id="pain-points">
+      <h3>DevOps today? Kinda painful.</h3>
+      <ol>
+        {painPoints.map((point) => <li>{point}</li>)}
+      </ol>
+    </section>
+
+    <section id="cards">
+      <h2>That's why Sokkel is making it smooooth:</h2>
+      {
+        cards.map(({ emoji, title, content }) => (
+          <Card emoji={emoji} title={title}>
+            {content}
+          </Card>
+        ))
+      }
+    </section>
+  </main>
+  <Footer
+    links={[
+      { href: "/game", text: "DevOps card game" },
+      { href: "/about-us", text: "About us" },
+    ]}
+    }
+  />
 </Layout>
 
 <style>
-  .container {
-    max-width: 393px;
-    margin-inline: auto;
-    padding: 1.5rem;
-
-    background: #ffffff;
-
-    @media (min-width: 600px) {
-      margin-block: 2rem;
-      border-radius: 24px;
-    }
-  }
-
   main {
     display: flex;
     flex-direction: column;
