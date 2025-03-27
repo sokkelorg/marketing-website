@@ -21,11 +21,31 @@ const painPoints = [
 
 const cards = [
   // TODO: Fetch these from Sanity.
-  { emoji:"🚀", title:"AI-powered Blueprints – Set up and manage your applications effortlessly.", content: 'Answer a few questions, and get a ready-to-go setup—whether you’re  starting fresh or migrating.' },
-  { emoji:"📊", title:"Real-time insights –  See everything, zoom into anything.", content: 'Get a clear overview of how your setup connects, with the ability to  drill down into performance, costs, and issues.' },
-  { emoji:"🤖", title:"AI Agent Stacky optimizations – Automate, optimize, relax.", content: 'Stacky fine-tunes your setup, reduces costs, and keeps things  running smoothly—hands-free.' },
-  { emoji:"🌍", title:"Powered by GCP – built for maximum flexibility.", content: 'Fully optimized for Google Cloud, giving you the freedom to scale, adapt, and grow without limitations.' },
-  { emoji:"🛠", title:"Built for SMBs – Less overhead, more time for building.", content: 'No DevOps team needed. Sokkel simplifies everything so you can focus on growing your software.' },
+  {
+    emoji: "🚀",
+    title: "AI-powered Blueprints – The perfect setup, effortlessly and smooooth!",
+    content: "Whether you’re starting fresh or migrating, we deliver a fast, secure, and fully optimized setup from day one. No manual tweaking, no hidden pitfalls — just a smooth, scalable foundation built right."
+  },
+  {
+    emoji: "📊",
+    title: "Real-time insights – See everything, zoom into anything",
+    content: "Gain complete visibility into your infrastructure with a clear, connected overview. Dive deep into performance metrics, cost breakdowns, and potential issues — so you’re always in control and never caught off guard."
+  },
+  {
+    emoji: "🤖",
+    title: "Meet Stacky – Your AI agent for smart automation and optimization",
+    content: "Stacky fine-tunes your infrastructure, optimizes performance, and eliminates waste. From cutting costs to preventing bottlenecks, Stacky keeps your applications running smoothly and efficiently, so you can focus on building instead of firefighting."
+  },
+  {
+    emoji: "🛠",
+    title: "Built for SMBs – Less overhead, more time to build",
+    content: "Sokkel takes the complexity out of DevOps, so you can focus on what matters — growing your software. SMBs need more than just automation; they need smart guardrails that keep infrastructure secure, efficient, and hassle-free."
+  },
+  {
+    emoji: "🌍",
+    title: "From day one to day one thousand – built for seamless scaling",
+    content: "Sokkel ensures your infrastructure is fully optimized right from the start. Easily scale, adapt, and grow your applications without complexity or constraints."
+  }
 ]
 ---
 
@@ -97,8 +117,9 @@ const cards = [
         </section>
 
       <section id="cards">
-        <h2>That's why Sokkel is making it smooooth.</h2>
-        {cards.map(({ emoji, title, content}) => <Card emoji={emoji} title={title} >{content}</Card>)}
+        <h2>That's why Sokkel is making it smooooth:</h2>
+        {cards.map(({ emoji, title, content }) =>
+          <Card emoji={emoji} title={title}>{content}</Card>)}
       </section>
     </main>
   </div>
@@ -206,7 +227,7 @@ const cards = [
 
       h2 {
           line-height: unset;
-          font-size: 1rem;
+          font-size: 1.2rem;
           font-weight: 400;
           font-style: italic;
       }
