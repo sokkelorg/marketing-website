@@ -1,14 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Swipeables from "../components/swipeables.astro";
+import Header from "../components/header.astro";
 ---
 
 <Layout>
-  <div class="container">
-    <main>
-      <div class="content">
-        <Swipeables />
-      </div>
-    </main>
-  </div>
+  <Header link={{ href: "/", text: "Close" }} />
+  <main>
+    <div class="content">
+      <Swipeables />
+    </div>
+  </main>
 </Layout>
