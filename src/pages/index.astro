@@ -1,4 +1,5 @@
 ---
+import { z } from "zod";
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/header.astro";
 import Card from "../components/card.astro";
@@ -20,40 +21,22 @@ const painPoints = [
   "No visibility, debugging sucks.",
 ];
 
-const cards = [
-  // TODO: Fetch these from Sanity.
-  {
-    emoji: "🚀",
-    title:
-      "AI-powered Blueprints – The perfect setup, effortlessly and smooooth!",
-    content:
-      "Whether you’re starting fresh or migrating, we deliver a fast, secure, and fully optimized setup from day one. No manual tweaking, no hidden pitfalls — just a smooth, scalable foundation built right.",
-  },
-  {
-    emoji: "📊",
-    title: "Real-time insights – See everything, zoom into anything",
-    content:
-      "Gain complete visibility into your infrastructure with a clear, connected overview. Dive deep into performance metrics, cost breakdowns, and potential issues — so you’re always in control and never caught off guard.",
-  },
-  {
-    emoji: "🤖",
-    title: "Meet Stacky – Your AI agent for smart automation and optimization",
-    content:
-      "Stacky fine-tunes your infrastructure, optimizes performance, and eliminates waste. From cutting costs to preventing bottlenecks, Stacky keeps your applications running smoothly and efficiently, so you can focus on building instead of firefighting.",
-  },
-  {
-    emoji: "🛠",
-    title: "Built for SMBs – Less overhead, more time to build",
-    content:
-      "Sokkel takes the complexity out of DevOps, so you can focus on what matters — growing your software. SMBs need more than just automation; they need smart guardrails that keep infrastructure secure, efficient, and hassle-free.",
-  },
-  {
-    emoji: "🌍",
-    title: "From day one to day one thousand – built for seamless scaling",
-    content:
-      "Sokkel ensures your infrastructure is fully optimized right from the start. Easily scale, adapt, and grow your applications without complexity or constraints.",
-  },
-];
+const featureCardShape = z.object({
+  emoji: z.string(),
+  title: z.string(),
+  content: z.string(),
+});
+
+const featureCards = z.array(featureCardShape).parse(
+  await client.fetch(`
+    *[_type == 'featureCard'] {
+      _id,
+      emoji,
+      title,
+      content
+    }
+  `),
+);
 ---
 
 <Layout
@@ -125,7 +108,7 @@ const cards = [
     <section id="cards">
       <h2>That's why Sokkel is making it smooooth:</h2>
       {
-        cards.map(({ emoji, title, content }) => (
+        featureCards.map(({ emoji, title, content }) => (
           <Card emoji={emoji} title={title}>
             {content}
           </Card>
