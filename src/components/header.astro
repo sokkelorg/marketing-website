@@ -7,8 +7,10 @@ const { link } = Astro.props;
 ---
 
 <header>
-  <img src="/assets/logo-symbol.gif" alt="Sokkel." />
-  <a href={link.href}>{link.text}</a>
+  <a href="/">
+    <img src="/assets/logo-symbol.gif" alt="Sokkel." />
+  </a>
+  <a class="header-link" href={link.href}>{link.text}</a>
 </header>
 
 <style>
@@ -25,7 +27,7 @@ const { link } = Astro.props;
       border-radius: 8px;
     }
 
-    a {
+    .header-link {
       font-size: 14px;
       color: #0000ff;
     }
