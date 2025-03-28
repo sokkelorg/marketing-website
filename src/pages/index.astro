@@ -90,8 +90,8 @@ const cards = [
     },
   ]}
 >
+  <Header link={{ text: "About us", href: "/about-us" }} />
   <main>
-    <Header link={{ text: "About us", href: "/about-us" }} />
     <section id="hero">
       <img src="/assets/logo.svg" alt="Sokkel." class="logo" />
       <h1>
@@ -144,12 +144,17 @@ const cards = [
 
 <style>
   main {
+    --gap: 6rem;
+
+    margin-top: 15dvh; /* TODO: I'm not entirely sure about this behaviour. */
+    margin-bottom: var(--gap);
+
     display: flex;
     flex-direction: column;
 
     font-size: 1.5rem;
     line-height: 2rem;
-    gap: 6rem;
+    gap: var(--gap);
   }
 
   .illustration {
