@@ -4,14 +4,12 @@ const { emoji, title } = Astro.props;
 
 <article>
   <header>
-    <h2>
-      <span aria-hidden="true" set:text={emoji} />
-      {title}
-    </h2>
+    <div class="emoji" aria-hidden="true" set:text={emoji} />
+    <h3>{title}</h3>
   </header>
-  <div class="content">
+  <p>
     <slot />
-  </div>
+  </p>
 </article>
 
 <style>
@@ -19,31 +17,29 @@ const { emoji, title } = Astro.props;
     background-color: #eee;
     border-radius: 0.75rem;
     padding: 1.5rem;
-    box-shadow: 0;
     isolation: isolate;
     display: grid;
     gap: 0.875rem;
-  }
 
-  h2 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: hsl(0, 0%, 20%);
-    margin: 0;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 1rem;
-    line-height: 1.5rem;
-    text-wrap: pretty;
-  }
+    .emoji {
+      margin: 0;
+      font-size: 1rem;
+    }
 
-  .content {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
+    h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: hsl(0, 0%, 20%);
+      line-height: 1.6rem;
+      text-wrap: pretty;
+    }
 
-  .content > :global(p) {
-    margin: 0px;
+    p {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.3rem;
+    }
   }
 </style>

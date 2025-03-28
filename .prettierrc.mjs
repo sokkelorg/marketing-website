@@ -9,4 +9,5 @@ export default {
       },
     },
   ],
+  singleQuote: true,
 };

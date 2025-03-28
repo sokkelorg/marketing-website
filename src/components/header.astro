@@ -1,0 +1,33 @@
+---
+type Props = {
+  link: { href: string; text: string };
+};
+
+const { link } = Astro.props;
+---
+
+<header>
+  <img src="/assets/logo-symbol.gif" alt="Sokkel." />
+  <a href={link.href}>{link.text}</a>
+</header>
+
+<style>
+  header {
+    width: 100%;
+    min-height: 64px;
+    margin-bottom: 2rem;
+
+    display: flex;
+    justify-content: space-between;
+
+    img {
+      max-width: 64px;
+      border-radius: 8px;
+    }
+
+    a {
+      font-size: 14px;
+      color: #0000ff;
+    }
+  }
+</style>
