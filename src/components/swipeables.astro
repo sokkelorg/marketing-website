@@ -2,6 +2,7 @@
 import { client } from "../sanity-client.ts";
 import imageUrlBuilder from "@sanity/image-url";
 import { z } from "zod";
+import WaitlistButton from "../components/waitlist-button.astro";
 
 const builder = imageUrlBuilder(client);
 
@@ -105,7 +106,7 @@ const setStyle = (card: (typeof cards)[number]) => {
     </div>
     <div class="actions">
       <a href="/about-us#contact" class="button">Let's talk</a>
-      <a href="https://tally.so/r/wb6R62" class="button">Fancy updates?</a>
+      <WaitlistButton />
     </div>
   </div>
 
