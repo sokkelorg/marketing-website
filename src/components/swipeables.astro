@@ -1,24 +1,55 @@
 ---
 import { client } from "../sanity-client.ts";
 import imageUrlBuilder from "@sanity/image-url";
+import { z } from "zod";
 
 const builder = imageUrlBuilder(client);
 
-function urlFor(source) {
-  return builder.image(source);
+const imageShape = z.object({
+  _type: z.literal("image"),
+  asset: z.object({
+    _ref: z.string(),
+    _type: z.string(),
+  }),
+});
+
+function urlFor(image: z.TypeOf<typeof imageShape>) {
+  return builder.image(image);
 }
 
-const cards = await client.fetch(`
-  *[_type == 'statement'] {
-    _id,
-    backgroundImage,
-    statement,
-    source,
-    answers
-  }
-`);
+const cardShape = z.object({
+  _id: z.string(),
+  backgroundImage: imageShape.optional(),
+  statement: z.string(),
+  source: z
+    .object({
+      name: z.string(),
+      url: z.string(),
+    })
+    .partial()
+    .nullable(),
+  answers: z
+    .object({
+      agree: z.string(),
+      disagree: z.string(),
+    })
+    .partial()
+    .nullable(),
+});
 
-const setStyle = (card) => {
+const cards = z.array(cardShape).parse(
+  await client.fetch(`
+    *[_type == 'statement'] {
+      _id,
+      backgroundImage,
+      statement,
+      source,
+      answers
+    }
+  `),
+);
+
+const setStyle = (card: (typeof cards)[number]) => {
   if (!card.backgroundImage) {
     return {};
   }

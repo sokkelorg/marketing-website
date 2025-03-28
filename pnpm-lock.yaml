@@ -29,6 +29,9 @@ dependencies:
   sharp:
     specifier: ^0.33.5
     version: 0.33.5
+  zod:
+    specifier: ^3.24.2
+    version: 3.24.2
 
 devDependencies:
   prettier:
@@ -86,7 +89,7 @@ packages:
     dependencies:
       sitemap: 8.0.0
       stream-replace-string: 2.0.0
-      zod: 3.24.1
+      zod: 3.24.2
     dev: false
 
   /@astrojs/telemetry@3.2.0:
@@ -1019,9 +1022,9 @@ packages:
       xxhash-wasm: 1.1.0
       yargs-parser: 21.1.1
       yocto-spinner: 0.2.0
-      zod: 3.24.1
-      zod-to-json-schema: 3.24.1(zod@3.24.1)
-      zod-to-ts: 1.2.0(typescript@5.7.3)(zod@3.24.1)
+      zod: 3.24.2
+      zod-to-json-schema: 3.24.1(zod@3.24.2)
+      zod-to-ts: 1.2.0(typescript@5.7.3)(zod@3.24.2)
     optionalDependencies:
       sharp: 0.33.5
     transitivePeerDependencies:
@@ -3163,26 +3166,26 @@ packages:
     engines: {node: '>=18'}
     dev: false
 
-  /zod-to-json-schema@3.24.1(zod@3.24.1):
+  /zod-to-json-schema@3.24.1(zod@3.24.2):
     resolution: {integrity: sha512-3h08nf3Vw3Wl3PK+q3ow/lIil81IT2Oa7YpQyUUDsEWbXveMesdfK1xBd2RhCkynwZndAxixji/7SYJJowr62w==}
     peerDependencies:
       zod: ^3.24.1
     dependencies:
-      zod: 3.24.1
+      zod: 3.24.2
     dev: false
 
-  /zod-to-ts@1.2.0(typescript@5.7.3)(zod@3.24.1):
+  /zod-to-ts@1.2.0(typescript@5.7.3)(zod@3.24.2):
     resolution: {integrity: sha512-x30XE43V+InwGpvTySRNz9kB7qFU8DlyEy7BsSTCHPH1R0QasMmHWZDCzYm6bVXtj/9NNJAZF3jW8rzFvH5OFA==}
     peerDependencies:
       typescript: ^4.9.4 || ^5.0.2
       zod: ^3
     dependencies:
       typescript: 5.7.3
-      zod: 3.24.1
+      zod: 3.24.2
     dev: false
 
-  /zod@3.24.1:
-    resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
+  /zod@3.24.2:
+    resolution: {integrity: sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==}
     dev: false
 
   /zwitch@2.0.4:
