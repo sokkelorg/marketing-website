@@ -7,6 +7,17 @@ import Header from "../components/header.astro";
 <Layout>
   <Header link={{ href: "/", text: "Close" }} />
   <main>
+    <h1>
+      DevOps playing cards based on assumptions and stuff found online. Have fun
+      <span aria-hidden="true"> 🃏 </span>
+    </h1>
     <Swipeables />
   </main>
 </Layout>
+
+<style>
+  h1 {
+    font-weight: 400;
+    font-size: 1.22rem;
+  }
+</style>
