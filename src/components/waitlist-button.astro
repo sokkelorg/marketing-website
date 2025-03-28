@@ -1,5 +1,11 @@
 ---
 import LinkButton from "./link-button.astro";
+
+export type Props = { wide?: true };
+
+const { wide } = Astro.props;
 ---
 
-<LinkButton href="https://tally.so/r/wb6R62">Join waitlist</LinkButton>
+<LinkButton href="https://tally.so/r/wb6R62" wide={wide}>
+  Join waitlist
+</LinkButton>
