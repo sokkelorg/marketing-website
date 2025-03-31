@@ -2,7 +2,7 @@
 import WaitlistButton from '../components/waitlist-button.astro';
 ---
 
-<section class="contact" id="contact">
+<section id="contact">
   <h2>Let's talk and connect</h2>
   <p>
     We’re building something exciting at Sokkel and are looking for like-minded
@@ -28,14 +28,14 @@ import WaitlistButton from '../components/waitlist-button.astro';
     </dd>
   </dl>
 
-  <p class="contact-message">
+  <p id="contact-message">
     Reach out – we'd love to hear from you!
     <span aria-hidden="true"> &lt;3</span>
   </p>
 </section>
 
 <style>
-  .contact {
+  #contact {
     line-height: 1.5rem;
     background-color: #ccccff;
 
@@ -45,7 +45,7 @@ import WaitlistButton from '../components/waitlist-button.astro';
 
   /* only mobile */
   @media (max-width: 600px) {
-    .contact {
+    #contact {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
@@ -71,7 +71,7 @@ import WaitlistButton from '../components/waitlist-button.astro';
     color: black;
   }
 
-  .contact-message {
+  #contact-message {
     font-style: italic;
     margin-block-end: 0;
   }
