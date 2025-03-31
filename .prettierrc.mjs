@@ -9,5 +9,5 @@ export default {
       },
     },
   ],
-  singleQuote: true,
+  singleQuote: false,
 };

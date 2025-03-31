@@ -1,0 +1,52 @@
+---
+import { z } from 'zod';
+import { client } from '../sanity-client.ts';
+
+const problems = z
+  .array(z.string())
+  .parse(await client.fetch(`*[_type == 'problem'].problem`));
+---
+
+<devops-problem data-problems={JSON.stringify(problems)}></devops-problem>
+
+<script>
+  import { z } from 'zod';
+
+  class DevopsProblem extends HTMLElement {
+    #problems: string[] = [
+      // This initial problem helps with SEO, and acts as a fallback if something fails.
+      "Managing your applications shouldn't involve calling Martin on his honeymoon.",
+    ];
+
+    constructor() {
+      super();
+
+      const { problems } = this.dataset;
+      if (problems == null) {
+        return;
+      }
+
+      const parseResult = z.array(z.string()).safeParse(JSON.parse(problems));
+
+      if (!parseResult.success) {
+        return;
+      }
+
+      this.#problems = parseResult.data;
+    }
+
+    connectedCallback() {
+      this.#renderProblem();
+    }
+
+    #getRandomProblem() {
+      return this.#problems[Math.floor(Math.random() * this.#problems.length)];
+    }
+
+    #renderProblem() {
+      this.innerText = this.#getRandomProblem();
+    }
+  }
+
+  customElements.define('devops-problem', DevopsProblem);
+</script>

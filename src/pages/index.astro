@@ -2,15 +2,11 @@
 import { z } from "zod";
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/header.astro";
+import DevopsProblem from "../components/devops-problem.astro";
 import Card from "../components/card.astro";
 import WaitlistButton from "../components/waitlist-button.astro";
 import Footer from "../components/footer.astro";
-import { client } from "../sanity-client.ts";
-
-const problems = await client.fetch(`*[_type == 'problem'].problem`);
-
-// This initial problem is only for SEO purposes
-const problem = problems[Math.floor(Math.random() * problems.length)];
+import { client } from "../sanity-client";
 
 const painPoints = [
   // TODO: Fetch these from Sanity.
@@ -81,9 +77,11 @@ const featureCards = z.array(featureCardShape).parse(
         The AI-powered <span aria-hidden="true">✨</span> platform for managing all
         your applications. <span class="smoooothly">Smoooothly.</span>
       </h1>
-
       <WaitlistButton />
-      <p class="problem">Because: {problem}</p>
+      <div id="problem">
+        Because:
+        <DevopsProblem />
+      </div>
     </section>
 
     <img
@@ -183,7 +181,7 @@ const featureCards = z.array(featureCardShape).parse(
       height: 32px;
     }
 
-    .problem {
+    #problem {
       font-size: 1rem;
       line-height: 1.5rem;
       color: #525252;
