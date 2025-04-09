@@ -102,8 +102,9 @@ const featureCards = z.array(featureCardShape).parse(
       </ol>
     </section>
 
+    <h2 id="painkiller">So, what's the painkiller?</h2>
+
     <section id="cards">
-      <h2>That's why Sokkel is making it smooooth:</h2>
       {
         featureCards.map(({ emoji, title, content }) => (
           <Card emoji={emoji} title={title}>
@@ -212,16 +213,16 @@ const featureCards = z.array(featureCardShape).parse(
     }
   }
 
+  h2#painkiller {
+    margin: 0;
+    font-weight: 800;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
   section#cards {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-
-    h2 {
-      line-height: unset;
-      font-size: 1.2rem;
-      font-weight: 400;
-      font-style: italic;
-    }
   }
 </style>
