@@ -2,6 +2,7 @@
 import { client } from "../sanity-client.ts";
 import imageUrlBuilder from "@sanity/image-url";
 import { z } from "zod";
+import LinkButton from "../components/link-button.astro";
 import WaitlistButton from "../components/waitlist-button.astro";
 
 const builder = imageUrlBuilder(client);
@@ -94,9 +95,8 @@ const setStyle = (card: (typeof cards)[number]) => {
   </div>
 
   <div class="swipeable-actions actions">
-    <button class="button disagree-button" data-disagree-button>Disagree</button
-    >
-    <button class="button agree-button" data-agree-button>Agree</button>
+    <button data-disagree-button>Disagree</button>
+    <button data-agree-button>Agree</button>
   </div>
 
   <div class="no-more-cards">
@@ -105,7 +105,7 @@ const setStyle = (card: (typeof cards)[number]) => {
       <img src="assets/gameover.svg" alt="Tap one of the buttons." />
     </div>
     <div class="actions">
-      <a href="/about-us#contact" class="button">Let's talk</a>
+      <LinkButton wide href="/about-us#contact">Let's talk</LinkButton>
       <WaitlistButton wide />
     </div>
   </div>
@@ -133,8 +133,7 @@ const setStyle = (card: (typeof cards)[number]) => {
     margin-top: 1rem;
   }
 
-  .actions > .button {
-    color: hsl(0, 0%, 0%);
+  button {
     text-decoration: none;
     text-align: center;
     padding-block: 0.5rem;
@@ -145,24 +144,14 @@ const setStyle = (card: (typeof cards)[number]) => {
     font-family: inherit;
     font-weight: 500;
     border: none;
-    background: none;
     cursor: pointer;
     border-radius: 0.375rem;
+
+    background: hsl(0, 0%, 90%) none;
+  }
+
+  button:hover {
     background-color: hsl(0, 0%, 80%);
-  }
-
-  .no-more-cards .button {
-    color: white;
-    background-color: hsl(0, 0%, 0%);
-  }
-
-  @media (hover: hover) {
-    .actions > .button:hover {
-      background-color: hsl(0, 0%, 75%);
-    }
-    .no-more-cards .button:hover {
-      background-color: hsl(0, 0%, 15%);
-    }
   }
 
   .swipeables-cards.loaded {
