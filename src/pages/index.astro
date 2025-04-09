@@ -1,20 +1,20 @@
 ---
-import { z } from 'zod';
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/header.astro';
-import DevopsProblem from '../components/devops-problem.astro';
-import Card from '../components/card.astro';
-import WaitlistButton from '../components/waitlist-button.astro';
-import Footer from '../components/footer.astro';
-import { client } from '../sanity-client';
+import { z } from "zod";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/header.astro";
+import DevopsProblem from "../components/devops-problem.astro";
+import Card from "../components/card.astro";
+import WaitlistButton from "../components/waitlist-button.astro";
+import Footer from "../components/footer.astro";
+import { client } from "../sanity-client";
 
 const painPoints = [
   // TODO: Fetch these from Sanity.
-  'Too complex, cloud is a maze.',
-  'Too many tools, config chaos.',
-  'Costs run wild, surprise bills.',
-  'Security is tricky, who has access?',
-  'No visibility, debugging sucks.',
+  "Too complex, cloud is a maze.",
+  "Too many tools, config chaos.",
+  "Costs run wild, surprise bills.",
+  "Security is tricky, who has access?",
+  "No visibility, debugging sucks.",
 ];
 
 const featureCardShape = z.object({
@@ -38,38 +38,38 @@ const featureCards = z.array(featureCardShape).parse(
 <Layout
   schema={[
     {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: 'Sokkel',
-      alternateName: ['Sokkel', 'Sokky', 'sokkel.io'],
-      url: 'https://sokkel.io/',
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Sokkel",
+      alternateName: ["Sokkel", "Sokky", "sokkel.io"],
+      url: "https://sokkel.io/",
     },
     {
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: 'Sokkel',
-      url: 'https://sokkel.io/',
-      logo: 'https://sokkel.io/assets/logo.svg',
-      sameAs: ['https://www.linkedin.com/company/sokkel'],
-      image: 'https://sokkel.io/assets/team.jpg',
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Sokkel",
+      url: "https://sokkel.io/",
+      logo: "https://sokkel.io/assets/logo.svg",
+      sameAs: ["https://www.linkedin.com/company/sokkel"],
+      image: "https://sokkel.io/assets/team.jpg",
       description:
-        'Sokkel is the foundation and building blocks for managing your applications, smooooothly.',
-      telephone: '+4795308087',
-      email: 'hello@sokkel.io',
+        "Sokkel is the foundation and building blocks for managing your applications, smooooothly.",
+      telephone: "+4795308087",
+      email: "hello@sokkel.io",
       address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'Arbins gate 11',
-        addressLocality: 'Oslo',
-        addressCountry: 'NO',
-        addressRegion: 'Oslo',
-        postalCode: '0253',
+        "@type": "PostalAddress",
+        streetAddress: "Arbins gate 11",
+        addressLocality: "Oslo",
+        addressCountry: "NO",
+        addressRegion: "Oslo",
+        postalCode: "0253",
       },
-      vatID: 'NO935108500',
-      iso6523Code: '0192:935108500',
+      vatID: "NO935108500",
+      iso6523Code: "0192:935108500",
     },
   ]}
 >
-  <Header link={{ text: 'About us', href: '/about-us' }} />
+  <Header link={{ text: "About us", href: "/about-us" }} />
   <main>
     <section id="hero">
       <img src="/assets/logo.svg" alt="Sokkel." class="logo" />
@@ -80,8 +80,7 @@ const featureCards = z.array(featureCardShape).parse(
       <WaitlistButton />
     </section>
     <div id="problem">
-      Because:
-      <DevopsProblem />
+        Because: <DevopsProblem />
     </div>
 
     <img
@@ -116,8 +115,8 @@ const featureCards = z.array(featureCardShape).parse(
   </main>
   <Footer
     links={[
-      { href: '/game', text: 'DevOps card game' },
-      { href: '/about-us', text: 'About us' },
+      { href: "/game", text: "DevOps card game" },
+      { href: "/about-us", text: "About us" },
     ]}
     }
   />
@@ -157,12 +156,12 @@ const featureCards = z.array(featureCardShape).parse(
       --bottom-margin: 2.5rem;
 
       /*
-             * 100 dvh: The full page height.
-             * 64px: The header (the logo is 64px tall.)
-             * 2rem: The header's bottom margin.
-             * 15dvh: The <main> element's top margin.
-             * --bottom-margin: The hero's bottom margin.
-             */
+       * 100 dvh: The full page height.
+       * 64px: The header (the logo is 64px tall.)
+       * 2rem: The header's bottom margin.
+       * 15dvh: The <main> element's top margin.
+       * --bottom-margin: The hero's bottom margin.
+       */
       height: calc(100dvh - 64px - 2rem - 15dvh - var(--bottom-margin));
       margin-bottom: var(--bottom-margin);
     }

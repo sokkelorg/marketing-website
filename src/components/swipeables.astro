@@ -1,14 +1,14 @@
 ---
-import { client } from '../sanity-client.ts';
-import imageUrlBuilder from '@sanity/image-url';
-import { z } from 'zod';
-import LinkButton from '../components/link-button.astro';
-import WaitlistButton from '../components/waitlist-button.astro';
+import { client } from "../sanity-client.ts";
+import imageUrlBuilder from "@sanity/image-url";
+import { z } from "zod";
+import LinkButton from "../components/link-button.astro";
+import WaitlistButton from "../components/waitlist-button.astro";
 
 const builder = imageUrlBuilder(client);
 
 const imageShape = z.object({
-  _type: z.literal('image'),
+  _type: z.literal("image"),
   asset: z.object({
     _ref: z.string(),
     _type: z.string(),
@@ -216,7 +216,7 @@ const setStyle = (card: (typeof cards)[number]) => {
   }
 
   .swipeables-card::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -262,28 +262,28 @@ const setStyle = (card: (typeof cards)[number]) => {
 </style>
 
 <script>
-  const container = document.querySelector('.swipeables-cards');
-  const allCards = document.querySelectorAll('.swipeables-card');
-  const agreeButton = document.querySelector('[data-agree-button]');
-  const disagreeButton = document.querySelector('[data-disagree-button]');
+  const container = document.querySelector(".swipeables-cards");
+  const allCards = document.querySelectorAll(".swipeables-card");
+  const agreeButton = document.querySelector("[data-agree-button]");
+  const disagreeButton = document.querySelector("[data-disagree-button]");
 
-  const isMobile = window.matchMedia('(max-width: 600px)').matches;
+  const isMobile = window.matchMedia("(max-width: 600px)").matches;
 
   // Returns a UUID stored in localStorage, or create a new
   function getSessionID() {
-    const sessionID = localStorage.getItem('sessionID');
+    const sessionID = localStorage.getItem("sessionID");
     if (sessionID) return sessionID;
 
     // Check if we have self.crypto.randomUUID
     if (window.crypto && window.crypto.randomUUID) {
       const newSessionID = window.crypto.randomUUID();
-      localStorage.setItem('sessionID', newSessionID);
+      localStorage.setItem("sessionID", newSessionID);
       return newSessionID;
     }
 
     // Fallback to Math.random
     const newSessionID = Math.random().toString(36).substring(2);
-    localStorage.setItem('sessionID', newSessionID);
+    localStorage.setItem("sessionID", newSessionID);
     return newSessionID;
   }
 
@@ -291,8 +291,8 @@ const setStyle = (card: (typeof cards)[number]) => {
     grecaptcha.ready(function () {
       const sessionID = getSessionID();
       grecaptcha
-        .execute('6LeEducqAAAAACnrF0X6R20PYHeblFtlN-ddQTGB', {
-          action: 'submit',
+        .execute("6LeEducqAAAAACnrF0X6R20PYHeblFtlN-ddQTGB", {
+          action: "submit",
         })
         .then(function (token) {
           const body = {
@@ -302,11 +302,11 @@ const setStyle = (card: (typeof cards)[number]) => {
             recaptcha_token: token,
           };
 
-          console.log('Submitted', body);
-          fetch('https://feedback-api.sokkel.app/submit', {
-            method: 'POST',
+          console.log("Submitted", body);
+          fetch("https://feedback-api.sokkel.app/submit", {
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
             body: JSON.stringify(body),
           });
@@ -318,13 +318,13 @@ const setStyle = (card: (typeof cards)[number]) => {
     if (card.dataset.agreeAnswer) {
       agreeButton.textContent = card.dataset.agreeAnswer;
     } else {
-      agreeButton.textContent = 'Agree';
+      agreeButton.textContent = "Agree";
     }
 
     if (card.dataset.disagreeAnswer) {
       disagreeButton.textContent = card.dataset.disagreeAnswer;
     } else {
-      disagreeButton.textContent = 'Disagree';
+      disagreeButton.textContent = "Disagree";
     }
   }
 
@@ -332,7 +332,7 @@ const setStyle = (card: (typeof cards)[number]) => {
     // Randomize the cards in the DOM
     if (randomize) {
       const newCards = document.querySelectorAll(
-        '.swipeables-card:not(.removed)',
+        ".swipeables-card:not(.removed)",
       );
       const cardsArray = Array.from(newCards);
       cardsArray.sort(() => Math.random() - 0.5);
@@ -340,12 +340,12 @@ const setStyle = (card: (typeof cards)[number]) => {
     }
 
     const newCards = document.querySelectorAll(
-      '.swipeables-card:not(.removed)',
+      ".swipeables-card:not(.removed)",
     );
 
     // Mark the first card as the top card
     if (newCards.length > 0) {
-      newCards[0].classList.add('current');
+      newCards[0].classList.add("current");
       setButtonText(newCards[0]);
     } else {
     }
@@ -356,46 +356,46 @@ const setStyle = (card: (typeof cards)[number]) => {
       card.style.opacity = (10 - index) / 10;
     });
 
-    container.classList.add('loaded');
+    container.classList.add("loaded");
   }
 
   initCards(true);
 
-  agreeButton.addEventListener('click', () => {
-    const currentCard = document.querySelector('.swipeables-card.current');
+  agreeButton.addEventListener("click", () => {
+    const currentCard = document.querySelector(".swipeables-card.current");
     if (!currentCard) return;
 
     // animate the card out to the right
     currentCard.style.transform = `translate(max(50dvw, 800px), 5px) rotate(180deg)`;
 
-    currentCard.classList.remove('current');
+    currentCard.classList.remove("current");
 
     setTimeout(() => {
-      currentCard.classList.add('removed');
+      currentCard.classList.add("removed");
       initCards();
 
-      const event = new CustomEvent('voted', {
-        detail: { card: currentCard, result: 'agree' },
+      const event = new CustomEvent("voted", {
+        detail: { card: currentCard, result: "agree" },
       });
       currentCard.dispatchEvent(event);
     }, 100);
   });
 
-  disagreeButton.addEventListener('click', () => {
-    const currentCard = document.querySelector('.swipeables-card.current');
+  disagreeButton.addEventListener("click", () => {
+    const currentCard = document.querySelector(".swipeables-card.current");
     if (!currentCard) return;
 
     // animate the card out to the left
     currentCard.style.transform = `translate(min(-50dvw, -800px), 5px) rotate(-180deg)`;
 
-    currentCard.classList.remove('current');
+    currentCard.classList.remove("current");
 
     setTimeout(() => {
-      currentCard.classList.add('removed');
+      currentCard.classList.add("removed");
       initCards();
 
-      const event = new CustomEvent('voted', {
-        detail: { card: currentCard, result: 'disagree' },
+      const event = new CustomEvent("voted", {
+        detail: { card: currentCard, result: "disagree" },
       });
       currentCard.dispatchEvent(event);
     }, 100);
@@ -414,10 +414,10 @@ const setStyle = (card: (typeof cards)[number]) => {
     let velocityX = 0;
     let velocityY = 0;
 
-    card.addEventListener('pointerdown', (e) => {
+    card.addEventListener("pointerdown", (e) => {
       if (isMobile) return;
       // Check if clicking a link
-      if (e.target.tagName === 'A') return;
+      if (e.target.tagName === "A") return;
 
       startX = e.clientX;
       startY = e.clientY;
@@ -425,12 +425,12 @@ const setStyle = (card: (typeof cards)[number]) => {
       lastY = startY;
       lastTime = Date.now();
       isMoving = true;
-      card.classList.add('moving');
-      card.style.transition = 'none'; // Disable transitions during drag
+      card.classList.add("moving");
+      card.style.transition = "none"; // Disable transitions during drag
       card.setPointerCapture(e.pointerId);
     });
 
-    card.addEventListener('pointermove', (e) => {
+    card.addEventListener("pointermove", (e) => {
       if (isMobile) return;
       if (!isMoving) return;
 
@@ -441,20 +441,20 @@ const setStyle = (card: (typeof cards)[number]) => {
       card.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${rotate}deg)`;
 
       const opacity = Math.min(Math.abs(currentX) / 100, 0.3);
-      card.style.setProperty('--swipe-opacity', opacity);
+      card.style.setProperty("--swipe-opacity", opacity);
 
       // Remove previous classes
-      card.classList.remove('swipe-left', 'swipe-right');
+      card.classList.remove("swipe-left", "swipe-right");
 
       // Add appropriate class
       if (currentX > 0) {
-        disagreeButton.classList.remove('active');
-        agreeButton.classList.add('active');
-        card.classList.add('swipe-right');
+        disagreeButton.classList.remove("active");
+        agreeButton.classList.add("active");
+        card.classList.add("swipe-right");
       } else {
-        agreeButton.classList.remove('active');
-        disagreeButton.classList.add('active');
-        card.classList.add('swipe-left');
+        agreeButton.classList.remove("active");
+        disagreeButton.classList.add("active");
+        card.classList.add("swipe-left");
       }
 
       const now = Date.now();
@@ -470,27 +470,27 @@ const setStyle = (card: (typeof cards)[number]) => {
       }
     });
 
-    card.addEventListener('pointerup', (e) => {
+    card.addEventListener("pointerup", (e) => {
       if (isMobile) return;
       if (!isMoving) return;
 
       card.releasePointerCapture(e.pointerId);
       isMoving = false;
-      card.classList.remove('moving', 'swipe-left', 'swipe-right');
-      agreeButton.classList.remove('active');
-      disagreeButton.classList.remove('active');
-      card.style.transition = 'transform 0.3s ease-in-out'; // Re-enable transitions
+      card.classList.remove("moving", "swipe-left", "swipe-right");
+      agreeButton.classList.remove("active");
+      disagreeButton.classList.remove("active");
+      card.style.transition = "transform 0.3s ease-in-out"; // Re-enable transitions
 
       const moveOutWidth = document.body.clientWidth;
       const keep = Math.abs(currentX) < 80 || Math.abs(velocityX) < 0.5;
-      card.classList.toggle('removed', !keep);
+      card.classList.toggle("removed", !keep);
 
       if (keep) {
-        card.style.transform = '';
-        card.classList.remove('swipe-left', 'swipe-right');
-        card.style.setProperty('--swipe-opacity', 0);
+        card.style.transform = "";
+        card.classList.remove("swipe-left", "swipe-right");
+        card.style.setProperty("--swipe-opacity", 0);
       } else {
-        card.classList.remove('current');
+        card.classList.remove("current");
         const endX = Math.max(Math.abs(velocityX) * moveOutWidth, moveOutWidth);
         const toX = currentX > 0 ? endX : -endX;
         const endY = Math.abs(velocityY) * moveOutWidth;
@@ -501,43 +501,43 @@ const setStyle = (card: (typeof cards)[number]) => {
         initCards();
 
         if (currentX > 0) {
-          const event = new CustomEvent('voted', {
-            detail: { card, result: 'agree' },
+          const event = new CustomEvent("voted", {
+            detail: { card, result: "agree" },
           });
           card.dispatchEvent(event);
         } else {
-          const event = new CustomEvent('voted', {
-            detail: { card, result: 'disagree' },
+          const event = new CustomEvent("voted", {
+            detail: { card, result: "disagree" },
           });
           card.dispatchEvent(event);
         }
       }
     });
 
-    card.addEventListener('pointercancel', () => {
+    card.addEventListener("pointercancel", () => {
       if (isMobile) return;
       if (!isMoving) return;
 
       isMoving = false;
-      card.classList.remove('moving');
-      card.style.transition = 'transform 0.3s ease-in-out';
-      card.style.transform = ''; // Reset the transform to its original state
+      card.classList.remove("moving");
+      card.style.transition = "transform 0.3s ease-in-out";
+      card.style.transform = ""; // Reset the transform to its original state
 
       // Remove previous classes
-      card.classList.remove('swipe-left', 'swipe-right');
-      card.style.setProperty('--swipe-opacity', 0);
+      card.classList.remove("swipe-left", "swipe-right");
+      card.style.setProperty("--swipe-opacity", 0);
     });
 
-    card.addEventListener('voted', (e) => {
+    card.addEventListener("voted", (e) => {
       submitFeedback(e.detail.result, e.detail.card.dataset.statementId);
 
       // Is the last card?
       if (
-        document.querySelectorAll('.swipeables-card:not(.removed)').length === 0
+        document.querySelectorAll(".swipeables-card:not(.removed)").length === 0
       ) {
-        document.querySelector('.no-more-cards').style.display = 'block';
-        document.querySelector('.swipeables-cards').style.display = 'none';
-        document.querySelector('.swipeable-actions').style.display = 'none';
+        document.querySelector(".no-more-cards").style.display = "block";
+        document.querySelector(".swipeables-cards").style.display = "none";
+        document.querySelector(".swipeable-actions").style.display = "none";
       }
     });
   });

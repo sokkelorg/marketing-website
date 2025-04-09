@@ -1,9 +1,9 @@
 ---
-import { z } from 'zod';
-import { client } from '../sanity-client.ts';
+import { z } from "zod";
+import { client } from "../sanity-client.ts";
 
 function ensureTrailingPunctuation(problem: string): string {
-  if (problem.endsWith('.') || problem.endsWith('!')) {
+  if (problem.endsWith(".") || problem.endsWith("!")) {
     return problem;
   }
 
@@ -44,12 +44,12 @@ const problemsJson = JSON.stringify(problems);
 
 <script>
   (() => {
-    const container = document.getElementById('problem-container');
+    const container = document.getElementById("problem-container");
     if (container == null) {
       return;
     }
 
-    const problemsJson = container.getAttribute('data-problems');
+    const problemsJson = container.getAttribute("data-problems");
     if (problemsJson == null) {
       return;
     }
@@ -61,7 +61,7 @@ const problemsJson = JSON.stringify(problems);
     }
 
     // Track which problem we're currently showing, to avoid rendering it twice in a row.
-    let problem = '';
+    let problem = "";
 
     function getNextProblem(): string {
       let nextProblem = getRandomProblem();
@@ -75,16 +75,16 @@ const problemsJson = JSON.stringify(problems);
     function refreshProblem() {
       problem = getNextProblem();
 
-      const newSpan = document.createElement('span');
-      newSpan.classList.add('typewriter');
+      const newSpan = document.createElement("span");
+      newSpan.classList.add("typewriter");
       newSpan.innerText = problem;
-      newSpan.style.setProperty('--characters', problem.length.toString());
+      newSpan.style.setProperty("--characters", problem.length.toString());
 
       if (container == null) {
         return;
       }
 
-      container.innerHTML = '';
+      container.innerHTML = "";
       container.appendChild(newSpan);
     }
 

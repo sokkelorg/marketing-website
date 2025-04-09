@@ -110,7 +110,7 @@ const {
   images = [defaultImage.toString()],
   type = "website",
   path = "/",
-  schema
+  schema,
 } = Astro.props;
 
 // const parsedImages = images.map((image) => parseSocialMediaImage(image));
@@ -122,87 +122,85 @@ const canonical = new URL(path, Astro.site);
 
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title set:text={title} />
-  <meta property="og:site_name" content="Sokkel" />
-  <link rel="sitemap" href="/sitemap-index.xml" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.svg" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title set:text={title} />
+    <meta property="og:site_name" content="Sokkel" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.svg" />
 
-  <meta name="viewport" content="width=device-width" />
-  <link type="text/plain" rel="author" href={makeURL("/humans.txt")} />
+    <meta name="viewport" content="width=device-width" />
+    <link type="text/plain" rel="author" href={makeURL("/humans.txt")} />
 
-  <meta name="robots" content="index,follow" />
-  <meta name="description" content={description} />
-  {canonical &&
-    <link rel="canonical" href={canonical} />}
+    <meta name="robots" content="index,follow" />
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={socialMediaTitle} />
-  <meta name="twitter:description" content={socialMediaDescription} />
-  <meta name="twitter:image" content={image} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={socialMediaTitle} />
+    <meta name="twitter:description" content={socialMediaDescription} />
+    <meta name="twitter:image" content={image} />
 
-  <meta property="og:url" content={canonical} />
-  <meta property="og:type" content={type} />
-  <meta property="og:title" content={socialMediaTitle} />
-  <meta property="og:description" content={socialMediaDescription} />
-  {images.map((img) =>
-    <meta property="og:image" content={img} />)}
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={socialMediaTitle} />
+    <meta property="og:description" content={socialMediaDescription} />
+    {images.map((img) => <meta property="og:image" content={img} />)}
 
-  <script
-    data-goatcounter="https://sokkel.goatcounter.com/count"
-    async
-    src="//gc.zgo.at/count.js"></script>
-  <script
-  src="https://www.google.com/recaptcha/api.js?render=6LeEducqAAAAACnrF0X6R20PYHeblFtlN-ddQTGB"
-  async
-  defer></script>
+    <script
+      data-goatcounter="https://sokkel.goatcounter.com/count"
+      async
+      src="//gc.zgo.at/count.js"></script>
+    <script
+      src="https://www.google.com/recaptcha/api.js?render=6LeEducqAAAAACnrF0X6R20PYHeblFtlN-ddQTGB"
+      async
+      defer></script>
   </head>
   <body>
-  <div class="container">
-  <slot />
-  </div>
+    <div class="container">
+      <slot />
+    </div>
   </body>
-  </html>
+</html>
 
-  <style>
+<style>
   .container {
-  max - width: 450px;
-  margin - inline: auto;
-  padding: 1.5rem;
+    max-width: 450px;
+    margin-inline: auto;
+    padding: 1.5rem;
 
-  background: #ffffff;
+    background: #ffffff;
 
-@media(min - width: 600px) {
-    margin-block: 2rem;
-  border - radius: 24px;
-}
-}
-  </style>
+    @media (min-width: 600px) {
+      margin-block: 2rem;
+      border-radius: 24px;
+    }
+  }
+</style>
 
-  <style is:global>
+<style is:global>
   html,
   body {
-  margin: 0;
+    margin: 0;
 
-  font - family:
-  -apple - system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
-  Cantarell, "Open Sans", "Helvetica Neue", sans - serif;
+    font-family:
+      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+      Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
-  background: #d9d9d9;
-  text - rendering: optimizeLegibility;
-  -webkit - font - smoothing: antialiased;
-}
+    background: #d9d9d9;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
 
   @media (max-width: 440px) {
-  body {
-    background: black;
+    body {
+      background: black;
+    }
   }
-}
 
   .grecaptcha-badge {
-  visibility: hidden;
-}
-  </style>
+    visibility: hidden;
+  }
+</style>
