@@ -7,7 +7,9 @@ export type Props = {
 const { href, wide = false } = Astro.props;
 ---
 
-<a href={href} class:list={['link-button', { wide }]}><slot /></a>
+<a href={href} class:list={['link-button', { wide }]}>
+  <slot />
+</a>
 
 <style>
   a {
