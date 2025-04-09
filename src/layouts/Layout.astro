@@ -1,6 +1,6 @@
 ---
 import type { WithContext, Thing } from "schema-dts";
-import { jsonLd } from "../json-ld";
+import "./reset.css";
 
 export type Props = {
   /**
@@ -98,8 +98,6 @@ Sokkel is the foundation and building blocks for managing your applications, smo
 
 const defaultTitle = "Sokkel";
 
-const makeAssetURL = (newPath: string) =>
-  new URL(`assets/${newPath}`, Astro.site).toString();
 const makeURL = (newPath: string) => new URL(newPath, Astro.site).toString();
 
 const defaultImage = new URL("/assets/sharing.png", Astro.site);
@@ -169,7 +167,7 @@ const canonical = new URL(path, Astro.site);
 
 <style>
   .container {
-    max-width: 393px;
+    max-width: 450px;
     margin-inline: auto;
     padding: 1.5rem;
 
