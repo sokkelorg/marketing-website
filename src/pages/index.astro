@@ -78,11 +78,11 @@ const featureCards = z.array(featureCardShape).parse(
         your applications. <span class="smoooothly">Smoooothly.</span>
       </h1>
       <WaitlistButton />
-      <div id="problem">
-        Because:
-        <DevopsProblem />
-      </div>
     </section>
+    <div id="problem">
+      Because:
+      <DevopsProblem />
+    </div>
 
     <img
       class="illustration lambo-tape"
@@ -151,6 +151,22 @@ const featureCards = z.array(featureCardShape).parse(
     flex-direction: column;
     gap: 2rem;
 
+    @media (max-height: 850px) {
+      /* Reduce the visual noise on small screens. */
+      justify-content: flex-end;
+      --bottom-margin: 2.5rem;
+
+      /*
+       * 100 dvh: The full page height.
+       * 64px: The header (the logo is 64px tall.)
+       * 2rem: The header's bottom margin.
+       * 15dvh: The <main> element's top margin.
+       * --bottom-margin: The hero's bottom margin.
+       */
+      height: calc(100dvh - 64px - 2rem - 15dvh - var(--bottom-margin));
+      margin-bottom: var(--bottom-margin);
+    }
+
     h1 {
       font-size: 2.5rem;
       font-weight: 900;
@@ -181,12 +197,12 @@ const featureCards = z.array(featureCardShape).parse(
       /* Set the specific height to prevent the content from jumping on page load.*/
       height: 32px;
     }
+  }
 
-    #problem {
-      font-size: 1rem;
-      line-height: 1.5rem;
-      color: #525252;
-    }
+  #problem {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #525252;
   }
 
   .lambo-tape {
