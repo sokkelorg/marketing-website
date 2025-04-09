@@ -1,6 +1,6 @@
 ---
-import type { WithContext, Thing } from "schema-dts";
-import "./reset.css";
+import type { WithContext, Thing } from 'schema-dts';
+import './reset.css';
 
 export type Props = {
   /**
@@ -64,7 +64,7 @@ export type Props = {
    *
    * @default website
    */
-  type?: "website" | "article";
+  type?: 'website' | 'article';
 
   /**
    * The path of the page. Used to generate the canonical URL.
@@ -96,11 +96,11 @@ const defaultDescription = `
 Sokkel is the foundation and building blocks for managing your applications, smooooothly.
 `;
 
-const defaultTitle = "Sokkel";
+const defaultTitle = 'Sokkel';
 
 const makeURL = (newPath: string) => new URL(newPath, Astro.site).toString();
 
-const defaultImage = new URL("/assets/sharing.png", Astro.site);
+const defaultImage = new URL('/assets/sharing.png', Astro.site);
 
 const {
   title = defaultTitle,
@@ -108,8 +108,8 @@ const {
   socialMediaTitle = title ?? defaultTitle,
   socialMediaDescription = description ?? defaultDescription,
   images = [defaultImage.toString()],
-  type = "website",
-  path = "/",
+  type = 'website',
+  path = '/',
   schema,
 } = Astro.props;
 
@@ -132,7 +132,7 @@ const canonical = new URL(path, Astro.site);
     <link rel="shortcut icon" href="/favicon.svg" />
 
     <meta name="viewport" content="width=device-width" />
-    <link type="text/plain" rel="author" href={makeURL("/humans.txt")} />
+    <link type="text/plain" rel="author" href={makeURL('/humans.txt')} />
 
     <meta name="robots" content="index,follow" />
     <meta name="description" content={description} />
@@ -186,8 +186,8 @@ const canonical = new URL(path, Astro.site);
     margin: 0;
 
     font-family:
-      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
-      Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+      Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
     background: #d9d9d9;
     text-rendering: optimizeLegibility;
