@@ -7,7 +7,7 @@ const { link } = Astro.props;
 ---
 
 <header>
-  <a href="/">
+  <a id="logo-link" href="/">
     <img src="/assets/logo-symbol.gif" alt="Sokkel." />
   </a>
   <a class="header-link" href={link.href}>{link.text}</a>
@@ -25,6 +25,10 @@ const { link } = Astro.props;
     img {
       max-width: 64px;
       border-radius: 8px;
+    }
+
+    #logo-link {
+      font-size: 0; /* The <a> adds 3px to the height if font-size is non-zero. */
     }
 
     .header-link {
