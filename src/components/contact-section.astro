@@ -2,7 +2,7 @@
 import WaitlistButton from '../components/waitlist-button.astro';
 ---
 
-<section id="contact">
+<section>
   <h2>Let's talk and connect</h2>
   <p>
     We’re building something exciting at Sokkel and are looking for like-minded
@@ -33,7 +33,7 @@ import WaitlistButton from '../components/waitlist-button.astro';
 </section>
 
 <style>
-  #contact {
+  section {
     line-height: 1.5rem;
     background-color: #ccccff;
 
@@ -41,15 +41,7 @@ import WaitlistButton from '../components/waitlist-button.astro';
     padding: 1.5rem 1.5rem 2rem;
 
     display: grid;
-    gap: 0.2rem;
-  }
-
-  /* only mobile */
-  @media (max-width: 600px) {
-    #contact {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-    }
+    gap: 1.5rem;
   }
 
   dl {
