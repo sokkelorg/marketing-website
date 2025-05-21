@@ -40,13 +40,13 @@ import Footer from '../components/footer.astro';
   ]}
 >
   <Header link={{ text: 'About us', href: '/about-us' }} />
-  <main>
-    <section id="hero">
-      <h1>
-        The AI-powered <span aria-hidden="true">✨</span> platform for managing all
-        your applications. <span class="smoooothly">Smoooothly.</span>
-      </h1>
 
+  <main>
+    <section>
+      <h1>Effortless software delivery</h1>
+      <h2>
+        The AI-powered <span aria-hidden="true">✨</span> platform that turns cloud complexity into clarity.
+      </h2>
       <WaitlistButton />
     </section>
 
@@ -56,11 +56,12 @@ import Footer from '../components/footer.astro';
       alt="Burning Lamborghini with duct tape."
     />
 
-    <h2 id="mission-statement">
+    <h2>
       We are on a mission to make DevOps something you <i>don't</i> have to worry
       about.
     </h2>
   </main>
+
   <Footer
     links={[
       { href: '/about-us', text: 'About us' },
