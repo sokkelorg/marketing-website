@@ -71,7 +71,7 @@ const pains: Pain[] = [
     </p>
     <p id="smooth">smooooooooooooooooooooooooooooooth.</p>
 
-    <section id="mission" class="card">
+    <section id="mission" class="card pitch">
       <h2>
         Our mission is simple: To make software delivery effortless and worryless — by turning cloud complexity into
         clarity with AI, automation, and smart defaults that just work.
@@ -125,6 +125,39 @@ const pains: Pain[] = [
           <img alt="todo" class="eyes" src="/assets/stacky-eyes.gif">
         </div>
       </div>
+
+      <p>In Sokkel's bar, you don't need to bring a recipe. You just tell him roughly what you want:</p>
+      <div class="strip">
+        <img alt="todo" class="smile" src="/assets/smile.gif">
+      </div>
+
+      <p>Stacky is already mixing the cloud resources needed, and serves you the perfect setup.</p>
+      <div class="strip">
+        <img alt="todo" src="/assets/bartender-stacky.gif">
+      </div>
+
+      <p>This is you, creating the best something ever, with Sokkel and Stacky:</p>
+      <div class="strip">
+        <img alt="todo" src="/assets/comic-panel-1.png" />
+        <img alt="todo" src="/assets/bartender-stacky.gif" />
+        <img alt="todo" src="/assets/comic-panel-5.png" />
+        <img alt="todo" src="/assets/comic-panel-6.png" />
+        <img alt="todo" src="/assets/comic-panel-7.png" />
+      </div>
+      <p>But now you've got Sokkel – and Stacky. Effortless software delivery. Continuous optimization. Zero
+        friction.</p>
+    </section>
+
+    <section id="promise" class="card pitch">
+      <img alt="Sokkel." src="/assets/logo.svg">
+      <h2>Not just a platform. A promise. Effortless. Worryless. Smooooth.</h2>
+      <WaitlistButton />
+    </section>
+
+    <section id="status" class="card">
+      <h2><span aria-hidden="true">🟢</span> Building mode</h2>
+      <p>We are currently building, testing, and validating the beta version of Sokkel and onboarding pilots.</p>
+      <WaitlistButton wide={true} />
     </section>
   </main>
 
@@ -155,12 +188,13 @@ const pains: Pain[] = [
     border-radius: 1rem;
   }
 
-  #mission {
-    max-height: 500px; /* The height of the background animation. */
+  .pitch {
     padding: 8rem 1.5rem;
-    background-image: url(/assets/flow-2.gif);
+
+    max-height: 500px; /* The height of the background animation. */
     background-position: center;
     background-repeat: no-repeat;
+    background-color: hsl(240, 100%, 70%);
     color: hsl(0, 0%, 98%);
     text-align: center;
 
@@ -168,6 +202,10 @@ const pains: Pain[] = [
       margin-bottom: 1.5rem;
       color: white;
     }
+  }
+
+  #mission {
+    background-image: url(/assets/flow-2.gif);
   }
 
   #pains {
@@ -234,4 +272,16 @@ const pains: Pain[] = [
     }
   }
 
+  .smile {
+    background-color: hsl(240, 100%, 70%);
+  }
+
+  #promise {
+    background-image: url(/assets/flow-3.gif);
+    background-blend-mode: color-burn;
+  }
+
+  #status {
+    border: 0.125rem hsl(0, 0%, 90%) solid;
+  }
 </style>
