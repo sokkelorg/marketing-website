@@ -1,38 +1,8 @@
 ---
-import { z } from 'zod';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/header.astro';
-import DevopsProblem from '../components/devops-problem.astro';
-import Card from '../components/card.astro';
 import WaitlistButton from '../components/waitlist-button.astro';
 import Footer from '../components/footer.astro';
-import { client } from '../sanity-client';
-
-const painPoints = [
-  // TODO: Fetch these from Sanity.
-  'Too complex, cloud is a maze.',
-  'Too many tools, config chaos.',
-  'Costs run wild, surprise bills.',
-  'Security is tricky, who has access?',
-  'No visibility, debugging sucks.',
-];
-
-const featureCardShape = z.object({
-  emoji: z.string(),
-  title: z.string(),
-  content: z.string(),
-});
-
-const featureCards = z.array(featureCardShape).parse(
-  await client.fetch(`
-    *[_type == 'featureCard'] {
-      _id,
-      emoji,
-      title,
-      content
-    }
-  `),
-);
 ---
 
 <Layout
@@ -76,11 +46,9 @@ const featureCards = z.array(featureCardShape).parse(
         The AI-powered <span aria-hidden="true">✨</span> platform for managing all
         your applications. <span class="smoooothly">Smoooothly.</span>
       </h1>
+
       <WaitlistButton />
     </section>
-    <div id="problem">
-      Because: <DevopsProblem />
-    </div>
 
     <img
       class="illustration lambo-tape"
@@ -92,25 +60,6 @@ const featureCards = z.array(featureCardShape).parse(
       We are on a mission to make DevOps something you <i>don't</i> have to worry
       about.
     </h2>
-
-    <section id="pain-points">
-      <h3>DevOps today? Kinda painful.</h3>
-      <ol>
-        {painPoints.map((point) => <li>{point}</li>)}
-      </ol>
-    </section>
-
-    <h2 id="painkiller">So, what's the painkiller?</h2>
-
-    <section id="cards">
-      {
-        featureCards.map(({ emoji, title, content }) => (
-          <Card emoji={emoji} title={title}>
-            {content}
-          </Card>
-        ))
-      }
-    </section>
   </main>
   <Footer
     links={[
@@ -121,121 +70,4 @@ const featureCards = z.array(featureCardShape).parse(
 </Layout>
 
 <style>
-  main {
-    --gap: 6rem;
-
-    margin-top: 15dvh; /* TODO: I'm not entirely sure about this behaviour. */
-    margin-bottom: var(--gap);
-
-    display: flex;
-    flex-direction: column;
-
-    font-size: 1.5rem;
-    line-height: 2rem;
-    gap: var(--gap);
-  }
-
-  .illustration {
-    display: block;
-    align-self: center;
-    width: 100%;
-    max-width: 445px;
-    margin-block: 1rem;
-  }
-
-  section#hero {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
-    @media (max-height: 850px) {
-      /* Reduce the visual noise on small screens. */
-      justify-content: flex-end;
-      --bottom-margin: 2.5rem;
-
-      /*
-       * 100 dvh: The full page height.
-       * 64px: The header (the logo is 64px tall.)
-       * 2rem: The header's bottom margin.
-       * 15dvh: The <main> element's top margin.
-       * --bottom-margin: The hero's bottom margin.
-       */
-      height: calc(100dvh - 64px - 2rem - 15dvh - var(--bottom-margin));
-      margin-bottom: var(--bottom-margin);
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 900;
-      line-height: 2.9rem;
-      margin-block: 0;
-      text-wrap: pretty;
-
-      .smoooothly {
-        background: linear-gradient(
-          270deg,
-          #ccccff 31.45%,
-          #9999ff 40.36%,
-          #6666ff 48.59%,
-          #3333ff 57.5%,
-          #0000ff 65.72%,
-          #0000cc 74.64%,
-          #000099 83.55%,
-          #000066 91.77%,
-          #000033 100%
-        );
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-    }
-
-    .logo {
-      max-width: 212px;
-      /* Set the specific height to prevent the content from jumping on page load.*/
-      height: 32px;
-    }
-  }
-
-  #problem {
-    font-size: 1rem;
-    line-height: 1.5rem;
-    color: #525252;
-  }
-
-  .lambo-tape {
-    max-width: 90%;
-  }
-
-  h2#mission-statement {
-    font-weight: 800;
-    font-size: 2.7rem;
-    line-height: 3rem;
-  }
-
-  section#pain-points {
-    h3 {
-      margin: 0;
-      font-size: 1rem;
-      font-style: italic;
-    }
-
-    ol {
-      margin: 0;
-      padding-inline: 1.5rem;
-      font-size: 1rem;
-    }
-  }
-
-  h2#painkiller {
-    margin: 0;
-    font-weight: 800;
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-  }
-
-  section#cards {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
 </style>
