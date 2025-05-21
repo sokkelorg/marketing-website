@@ -11,22 +11,22 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.2.1",
-    "@sanity/client": "^6.28.1",
+    "@astrojs/sitemap": "^3.4.0",
+    "@sanity/client": "^7.3.0",
     "@sanity/image-url": "^1.1.0",
-    "astro": "^5.2.5",
+    "astro": "^5.7.13",
     "astro-integration-lottie": "^0.3.2",
     "lottie-web": "^5.12.2",
     "schema-dts": "^1.1.5",
-    "sharp": "^0.33.5",
-    "zod": "^3.24.2"
+    "sharp": "^0.34.2",
+    "zod": "^3.25.17"
   },
   "volta": {
     "node": "22.13.2",
     "pnpm": "8.13.1"
   },
   "devDependencies": {
-    "prettier": "^3.5.0",
+    "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1"
   }
 }
