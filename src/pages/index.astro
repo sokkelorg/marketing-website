@@ -62,7 +62,7 @@ const pains: Pain[] = [
 
     <img
       class="illustration lambo-tape"
-      src="/assets/lambo-tape.gif"
+      src="/assets/burning-car-with-duct-tape.gif"
       alt="Burning Lamborghini with duct tape."
     />
 
@@ -93,6 +93,20 @@ const pains: Pain[] = [
         </div>
       ))}
     </section>
+
+    <section class="comic">
+      <div class="title">
+        <h2>Let us tell you a story we hear way too often…</h2>
+        <p>as a classic comic strip</p>
+      </div>
+      <p>This is you, creating your best software ever:</p>
+      <div class="strip">
+        <img alt="todo" src="/assets/comic-panel-1.png" />
+        <img alt="todo" src="/assets/comic-panel-2.png" />
+        <img alt="todo" src="/assets/comic-panel-3.png" />
+        <img alt="todo" src="/assets/comic-panel-4.png" />
+      </div>
+    </section>
   </main>
 
   <Footer
@@ -104,6 +118,12 @@ const pains: Pain[] = [
 </Layout>
 
 <style>
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
   #smooth {
     background: linear-gradient(270deg, #CCCCFF 0%, #9999FF 13%, #6666FF 25%, #3333FF 38%, #0000FF 50%, #0000CC 63%, #000099 76%, #000066 88%, #000033 100%);
     -webkit-background-clip: text;
@@ -117,13 +137,15 @@ const pains: Pain[] = [
   }
 
   #mission {
-    padding-block: 6rem;
-    background-color: blue;
+    padding: 8rem 1.5rem;
+    background-image: url(/assets/flow-2.gif);
+    background-position: center;
+    color: hsl(0, 0%, 98%);
     text-align: center;
 
     h2 {
-      color: white;
       margin-bottom: 1.5rem;
+      color: white;
     }
   }
 
@@ -153,6 +175,24 @@ const pains: Pain[] = [
           text-transform: uppercase;
         }
       }
+    }
+  }
+
+  .comic {
+    .title {
+      text-align: center;
+
+      p {
+        color: hsl(0, 0%, 60%)
+      }
+    }
+
+    .strip {
+      padding: 0.125rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
+      background-color: hsl(0, 0%, 10%);
     }
   }
 </style>
