@@ -107,6 +107,25 @@ const pains: Pain[] = [
         <img alt="todo" src="/assets/comic-panel-4.png" />
       </div>
     </section>
+
+    <section class="comic">
+      <div class="title">
+        <h2>So, what's the alternative?</h2>
+        <p>TL;DR: It's AI agent Stacky!</p>
+      </div>
+      <p>Think of Sokkel as a bar.</p>
+      <div class="strip">
+        <img alt="todo" src="/assets/bartender.gif">
+      </div>
+
+      <p>And Stacky (our AI Agent) as your bartender</p>
+      <div class="strip">
+        <div class="stacky">
+          <img alt="todo" class="body" src="/assets/stacky-peekaboo.png">
+          <img alt="todo" class="eyes" src="/assets/stacky-eyes.gif">
+        </div>
+      </div>
+    </section>
   </main>
 
   <Footer
@@ -137,9 +156,11 @@ const pains: Pain[] = [
   }
 
   #mission {
+    max-height: 500px; /* The height of the background animation. */
     padding: 8rem 1.5rem;
     background-image: url(/assets/flow-2.gif);
     background-position: center;
+    background-repeat: no-repeat;
     color: hsl(0, 0%, 98%);
     text-align: center;
 
@@ -195,4 +216,21 @@ const pains: Pain[] = [
       background-color: hsl(0, 0%, 10%);
     }
   }
+
+  .stacky {
+    display: grid;
+    margin: 0 auto;
+
+    .body, .eyes {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .eyes {
+      max-width: 35%;
+      align-self: center;
+      justify-self: center;
+    }
+  }
+
 </style>
