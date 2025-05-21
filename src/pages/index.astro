@@ -3,6 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/header.astro';
 import WaitlistButton from '../components/waitlist-button.astro';
 import Footer from '../components/footer.astro';
+
+type PainSource = { title: string; url: string };
+type Pain = { title: string; body: string; sources: PainSource[] };
+
+const pains: Pain[] = [
+  { title: 'Platform-talent crunch', body: '37 % of firms still can\'t hire the DevOps skills they need, stalling roadmaps and inflating salaries.', sources: [{ title: 'IT Pro', url: 'todo' }] },
+  { title: 'Cloud-cost black hole', body: 'Hours disappear hunting idle services; 21–50 % of spend is pure waste for 78 % of companies.', sources: [{ title: 'Tech Monitor', url: 'todo' }, { title: 'BetaNews', url: 'todo'}] },
+  { title: 'Security roulette', body: 'One breach can wipe you out; SMEs face an average hit of $3.3 M per incident.', sources: [{ title: 'newsroom.ibm.com', url: 'todo' }] },
+  { title: 'Tool-chain time sink', body: 'Nearly 40 % of engineering time vanishes maintaining internal & delivery tools instead of shipping features.', sources: [{ title: 'DZone', url: 'todo' }] },
+];
 ---
 
 <Layout
@@ -56,10 +66,33 @@ import Footer from '../components/footer.astro';
       alt="Burning Lamborghini with duct tape."
     />
 
-    <h2>
-      We are on a mission to make DevOps something you <i>don't</i> have to worry
-      about.
-    </h2>
+    <p>
+      Simple setups. Always optimized. Change-aware and insight-driven. A new, worryless standard for software delivery.
+    </p>
+    <p id="smooth">smooooooooooooooooooooooooooooooth.</p>
+
+    <section id="mission" class="card">
+      <h2>
+        Our mission is simple: To make software delivery effortless and worryless — by turning cloud complexity into
+        clarity with AI, automation, and smart defaults that just work.
+      </h2>
+      <WaitlistButton />
+    </section>
+
+    <section id="pains">
+      <h2>Software delivery today? Kinda painful.</h2>
+      {pains.map(pain => (
+        <div class="card pain">
+          <h3>{pain.title}</h3>
+          <p>{pain.body}</p>
+          <div class="sources">
+            {pain.sources.map(link => (
+              <a href={link.url} rel="noopener noreferrer">{link.title}</a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
   </main>
 
   <Footer
@@ -71,4 +104,55 @@ import Footer from '../components/footer.astro';
 </Layout>
 
 <style>
+  #smooth {
+    background: linear-gradient(270deg, #CCCCFF 0%, #9999FF 13%, #6666FF 25%, #3333FF 38%, #0000FF 50%, #0000CC 63%, #000099 76%, #000066 88%, #000033 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .card {
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  #mission {
+    padding-block: 6rem;
+    background-color: blue;
+    text-align: center;
+
+    h2 {
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  #pains {
+    display: flex;
+    flex-direction: column;;
+    gap: 1rem;
+
+    .pain {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      background-color: hsl(0, 90%, 97%);
+
+      .sources {
+        display: flex;
+        gap: 0.5rem;
+
+        a {
+          width: fit-content;
+          padding: 0.125rem 0.5rem;
+          border-radius: 1rem;
+          background-color: hsl(0, 0%, 0%);
+          color: hsl(0, 0%, 100%);
+          text-decoration: none;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
 </style>
