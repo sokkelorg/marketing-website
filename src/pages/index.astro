@@ -74,10 +74,10 @@ const pains: Pain[] = [
     </section>
 
     <section id="mission" class="card pitch">
-      <h2 class="text">
-        Our mission is simple: To make software delivery effortless and worryless — by turning cloud complexity into
-        clarity with AI, automation, and smart defaults that just work.
-      </h2>
+      <h2 class="title">Our mission is simple</h2>
+      <p class="body">
+        To set a new, worryless standard for software delivery — with simple setups, always-optimized, insight-driven, and change-aware environments, powered by AI.
+      </p>
       <WaitlistButton />
     </section>
 
@@ -244,6 +244,20 @@ const pains: Pain[] = [
     flex-direction: column;
     gap: calc(var(--spacing)*6);
     align-items: center;
+
+    .title {
+      margin: 0;
+      font-weight: var(--font-weight-normal);
+      font-size: var(--text-base-font-size);
+      line-height: var(--text-base-line-height);
+    }
+
+    .body {
+      margin: 0;
+      font-weight: var(--font-weight-bold);
+      font-size: var(--text-2xl-font-size);
+      line-height: var(--text-2xl-line-height);
+    }
   }
 
   #mission {
