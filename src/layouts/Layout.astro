@@ -1,6 +1,7 @@
 ---
 import type { WithContext, Thing } from 'schema-dts';
 import './reset.css';
+import './variables.css';
 
 export type Props = {
   /**
@@ -131,6 +132,10 @@ const canonical = new URL(path, Astro.site);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.svg" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width" />
     <link type="text/plain" rel="author" href={makeURL('/humans.txt')} />
 
@@ -148,15 +153,6 @@ const canonical = new URL(path, Astro.site);
     <meta property="og:title" content={socialMediaTitle} />
     <meta property="og:description" content={socialMediaDescription} />
     {images.map((img) => <meta property="og:image" content={img} />)}
-
-    <script
-      data-goatcounter="https://sokkel.goatcounter.com/count"
-      async
-      src="//gc.zgo.at/count.js"></script>
-    <script
-      src="https://www.google.com/recaptcha/api.js?render=6LeEducqAAAAACnrF0X6R20PYHeblFtlN-ddQTGB"
-      async
-      defer></script>
   </head>
   <body>
     <div class="container">
@@ -168,14 +164,14 @@ const canonical = new URL(path, Astro.site);
 <style>
   .container {
     display: grid;
-    gap: 3rem;
+    gap: calc(var(--spacing));
     padding-block: 3rem;
 
     max-width: 450px;
     margin-inline: auto;
     padding-inline: 1.5rem;
 
-    background: #ffffff;
+    background-color: var(--color-base-background);
 
     @media (min-width: 600px) {
       margin-block: 2rem;
@@ -197,14 +193,7 @@ const canonical = new URL(path, Astro.site);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
-
-  @media (max-width: 440px) {
-    body {
-      background: black;
-    }
-  }
-
-  .grecaptcha-badge {
-    visibility: hidden;
-  }
 </style>
+
+<script is:inline data-goatcounter="https://sokkel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+

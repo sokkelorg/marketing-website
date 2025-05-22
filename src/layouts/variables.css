@@ -1,0 +1,57 @@
+body {
+  /*
+   * Spacing is based on 4px (0.25rem) increments.
+   * When building, consider 1rem to be equivalent to 16px.
+   *
+   * For example, if you need spacing/6, use calc(var(--spacing)*6).
+   */
+  --spacing: 0.25rem;
+
+  --color-base-background: hsl(0, 0%, 100%);
+  --color-base-primary: hsl(0, 0%, 0%);
+  --color-base-primary-foreground: hsl(0, 0%, 100%);
+  --color-base-border: hsl(0, 0%, 90%);
+  --color-base-muted-foreground: hsl(0, 0%, 45%);
+  --color-base-card: hsl(0, 0%, 100%);
+  --color-base-card-foreground: hsl(0, 0%, 4%);
+
+  --color-destructive-foreground: hsl(0, 86%, 97%);
+
+  --color-blue-50: hsl(240, 100%, 90%);
+  --color-blue-100: hsl(240, 100%, 80%);
+  --color-blue-200: hsl(240, 100%, 74%);
+  --color-blue-300: hsl(240, 100%, 66%);
+  --color-blue-400: hsl(240, 100%, 58%);
+  --color-blue-500: hsl(240, 100%, 50%);
+  --color-blue-600: hsl(240, 100%, 44%);
+  --color-blue-700: hsl(240, 100%, 36%);
+  --color-blue-800: hsl(240, 100%, 28%);
+  --color-blue-900: hsl(240, 100%, 20%);
+  --color-blue-950: hsl(240, 100%, 12%);
+
+  --color-gray-50: hsl(0, 0%, 98%);
+  --color-gray-100: hsl(0, 0%, 96%);
+  --color-gray-200: hsl(0, 0%, 90%);
+  --color-gray-300: hsl(0, 0%, 83%);
+  --color-gray-400: hsl(0, 0%, 64%);
+  --color-gray-500: hsl(0, 0%, 45%);
+  --color-gray-600: hsl(0, 0%, 32%);
+  --color-gray-700: hsl(0, 0%, 25%);
+  --color-gray-800: hsl(0, 0%, 15%);
+  --color-gray-900: hsl(0, 0%, 9%);
+  --color-gray-950: hsl(0, 0%, 4%);
+
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --font-2xl-size-2xl: 1.5rem;
+  --font-2xl-line-height-normal: 2rem;
+
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1rem;
+}

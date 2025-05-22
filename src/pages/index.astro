@@ -61,7 +61,7 @@ const pains: Pain[] = [
     </section>
 
     <img
-      class="illustration lambo-tape"
+      class="lambo"
       src="/assets/burning-car-with-duct-tape.gif"
       alt="Burning Lamborghini with duct tape."
     />
@@ -72,7 +72,7 @@ const pains: Pain[] = [
     <p id="smooth">smooooooooooooooooooooooooooooooth.</p>
 
     <section id="mission" class="card pitch">
-      <h2>
+      <h2 class="text">
         Our mission is simple: To make software delivery effortless and worryless — by turning cloud complexity into
         clarity with AI, automation, and smart defaults that just work.
       </h2>
@@ -83,8 +83,8 @@ const pains: Pain[] = [
       <h2>Software delivery today? Kinda painful.</h2>
       {pains.map(pain => (
         <div class="card pain">
-          <h3>{pain.title}</h3>
-          <p>{pain.body}</p>
+          <h3 class="title">{pain.title}</h3>
+          <p class="body">{pain.body}</p>
           <div class="sources">
             {pain.sources.map(link => (
               <a href={link.url} rel="noopener noreferrer">{link.title}</a>
@@ -150,7 +150,7 @@ const pains: Pain[] = [
 
     <section id="promise" class="card pitch">
       <img alt="Sokkel." src="/assets/logo.svg">
-      <h2>Not just a platform. A promise. Effortless. Worryless. Smooooth.</h2>
+      <h2 class="text">Not just a platform. A promise. Effortless. Worryless. Smooooth.</h2>
       <WaitlistButton />
     </section>
 
@@ -173,7 +173,11 @@ const pains: Pain[] = [
   main {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: calc(var(--spacing)*16);
+  }
+
+  .lambo {
+    height: 226px;
   }
 
   #smooth {
@@ -184,24 +188,24 @@ const pains: Pain[] = [
   }
 
   .card {
-    padding: 1rem;
-    border-radius: 1rem;
+    border-radius: var(--radius-2xl);
+    padding: calc(var(--spacing)*6);
   }
 
   .pitch {
-    padding: 8rem 1.5rem;
-
     max-height: 500px; /* The height of the background animation. */
+    padding-block: calc(var(--spacing)*32);
+
     background-position: center;
     background-repeat: no-repeat;
-    background-color: hsl(240, 100%, 70%);
-    color: hsl(0, 0%, 98%);
+    background-color: var(--color-blue-200);
     text-align: center;
+    color: var(--color-base-background);
 
-    h2 {
-      margin-bottom: 1.5rem;
-      color: white;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing)*6);
+    align-items: center;
   }
 
   #mission {
@@ -216,19 +220,29 @@ const pains: Pain[] = [
     .pain {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: calc(var(--spacing)*2);
       background-color: hsl(0, 90%, 97%);
+
+      .title {
+        margin: 0;
+        font-weight: var(--font-weight-bold);
+      }
+
+     .body {
+        margin: 0;
+      }
 
       .sources {
         display: flex;
-        gap: 0.5rem;
+        gap: calc(var(--spacing)*2);
 
         a {
           width: fit-content;
-          padding: 0.125rem 0.5rem;
-          border-radius: 1rem;
-          background-color: hsl(0, 0%, 0%);
-          color: hsl(0, 0%, 100%);
+          font-weight: var(--font-weight-semibold);
+          padding: calc(var(--spacing)/2) calc(var(--spacing)*2);
+          border-radius: var(--radius-md);
+          background-color: var(--color-base-primary);
+          color: var(--color-base-primary-foreground);
           text-decoration: none;
           font-size: 0.75rem;
           text-transform: uppercase;
@@ -251,7 +265,7 @@ const pains: Pain[] = [
       display: flex;
       flex-direction: column;
       gap: 0.125rem;
-      background-color: hsl(0, 0%, 10%);
+      background-color: var(--color-base-primary);
     }
   }
 
