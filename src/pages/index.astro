@@ -9,10 +9,35 @@ type PainSource = { title: string; url: string };
 type Pain = { title: string; body: string; sources: PainSource[] };
 
 const pains: Pain[] = [
-  { title: 'Platform-talent crunch', body: '37 % of firms still can\'t hire the DevOps skills they need, stalling roadmaps and inflating salaries.', sources: [{ title: 'IT Pro', url: 'todo' }] },
-  { title: 'Cloud-cost black hole', body: 'Hours disappear hunting idle services; 21–50 % of spend is pure waste for 78 % of companies.', sources: [{ title: 'Tech Monitor', url: 'todo' }, { title: 'BetaNews', url: 'todo'}] },
-  { title: 'Security roulette', body: 'One breach can wipe you out; SMEs face an average hit of $3.3 M per incident.', sources: [{ title: 'newsroom.ibm.com', url: 'todo' }] },
-  { title: 'Tool-chain time sink', body: 'Nearly 40 % of engineering time vanishes maintaining internal & delivery tools instead of shipping features.', sources: [{ title: 'DZone', url: 'todo' }] },
+  {
+    title: 'Platform-talent crunch',
+    body: '37 % of firms still can\'t hire the DevOps skills they need, stalling roadmaps and inflating salaries.',
+    sources: [
+      { title: 'IT Pro', url: 'https://www.itpro.com/software/software-deployments-are-plagued-by-delays-rampant-skills-shortages-and-underinvestment-are-slowing-down-processes-and-its-costing-businesses-big' },
+    ],
+  },
+  {
+    title: 'Cloud-cost black hole',
+    body: 'Hours disappear hunting idle services; 21–50 % of spend is pure waste for 78 % of companies.',
+    sources: [
+      { title: 'Tech Monitor', url: 'https://www.techmonitor.ai/hardware/cloud/cloud-waste-hits-billions-as-78-of-firms-report-significant-expenditure-losses' },
+      { title: 'BetaNews', url: 'https://betanews.com/2025/03/19/84-percent-of-enterprises-are-struggling-to-manage-cloud-spending'},
+    ],
+  },
+  {
+    title: 'Security roulette',
+    body: 'One breach can wipe you out; SMEs face an average hit of $3.3 M per incident.',
+    sources: [
+      { title: 'newsroom.ibm.com', url: 'https://newsroom.ibm.com/2024-07-30-ibm-report-escalating-data-breach-disruption-pushes-costs-to-new-highs' },
+    ],
+  },
+  {
+    title: 'Tool-chain time sink',
+    body: 'Nearly 40 % of engineering time vanishes maintaining internal & delivery tools instead of shipping features.',
+    sources: [
+      { title: 'DZone', url: 'https://dzone.com/articles/devops-trends-2024-business-impact' },
+    ],
+  },
 ];
 ---
 
