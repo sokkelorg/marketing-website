@@ -50,6 +50,7 @@ body {
 
   --color-base-primary: hsl(0, 0%, 0%);
   --color-base-primary-alpha-80: hsla(0, 0%, 0%, 0.2);
+  --color-base-primary-alpha-60: hsla(0, 0%, 0%, 0.4);
 
   --color-base-primary-foreground: var(--color-base-background);
   --color-base-muted-foreground: hsl(0, 0%, 45%);
