@@ -166,8 +166,10 @@ const pains: Pain[] = [
     </section>
 
     <section id="status" class="card">
-      <h2><span aria-hidden="true">🟢</span> Building mode</h2>
-      <p>We are currently building, testing, and validating the beta version of Sokkel and onboarding pilots.</p>
+      <div class="text">
+        <h2 class="title"><span aria-hidden="true">🟢</span> Building mode</h2>
+        <p class="body">We are currently building, testing, and validating the beta version of Sokkel and onboarding pilots.</p>
+      </div>
       <WaitlistButton wide={true} />
     </section>
   </main>
@@ -390,5 +392,19 @@ const pains: Pain[] = [
 
   #status {
     border: 2px solid var(--color-base-border);
+    display: grid;
+    gap: calc(var(--spacing) * 8);
+
+    .text {
+      .title {
+        font-weight: var(--font-weight-semibold);
+        font-size: var(--text-base-font-size);
+        line-height: var(--text-base-line-height);
+      }
+
+      .body {
+        color: var(--color-base-muted-foreground);
+      }
+    }
   }
 </style>
