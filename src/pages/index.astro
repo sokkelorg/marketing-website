@@ -60,7 +60,16 @@ const pains: Pain[] = [
       <WaitlistButton />
     </section>
 
-    <img class="stacky" alt="Stacky." src="/assets/stacky.svg" />
+    <section id="stacky-intro">
+      <img class="stacky" alt="Stacky." src="/assets/stacky.svg" />
+      <div class="speech-bubble">
+        <img alt="Speech bubble arrow pointing to Stacky." class="arrow" src="/assets/arrow.svg">
+        <p class="card message">
+          Hi <span aria-hidden="true">👋</span> I'm Stacky – your AI sidekick for effortless software delivery. I keep
+          things tidy, tuned, and tantrum-free. You dream it, I'll keep it running.
+        </p>
+      </div>
+    </section>
 
     <section id="mission" class="pitch">
       <div class="background">
@@ -215,15 +224,33 @@ const pains: Pain[] = [
     padding: calc(var(--spacing)*6);
   }
 
-  #mission {
-    .background {
-      background-image: url(/assets/flow-mission.gif);
-    }
-  }
+  #stacky-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--spacing) * 6);
 
-  #promise {
-    .background {
-      background-image: url(/assets/flow-promise.gif);
+    .stacky {
+      width: 75%;
+      user-select: none;
+      user-focus: none;
+    }
+
+    .speech-bubble {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .arrow {
+        margin-bottom: -8px;
+        user-select: none;
+        user-focus: none;
+      }
+
+      .message {
+        margin: 0;
+        background-color: var(--color-gray-100);
+      }
     }
   }
 
@@ -266,6 +293,19 @@ const pains: Pain[] = [
       }
     }
   }
+
+  #mission {
+    .background {
+      background-image: url(/assets/flow-mission.gif);
+    }
+  }
+
+  #promise {
+    .background {
+      background-image: url(/assets/flow-promise.gif);
+    }
+  }
+
 
   #pains {
     h2 {
