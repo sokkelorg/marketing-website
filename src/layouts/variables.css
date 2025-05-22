@@ -43,11 +43,14 @@ body {
 
   /* Theme-independent colors go here. */
   --color-black: hsl(0, 0%, 0%);
-  --color-white: hsl(0, 0%, 100%);
 
   /* Light mode colors go here. */
-  --color-base-background: var(--color-white);
-  --color-base-primary: var(--color-black);
+  --color-base-background: hsl(0, 0%, 100%);
+  --color-base-background-alpha-80: hsla(0, 100%, 100%, 0.2);
+
+  --color-base-primary: hsl(0, 0%, 0%);
+  --color-base-primary-alpha-80: hsla(0, 0%, 0%, 0.2);
+
   --color-base-primary-foreground: var(--color-base-background);
   --color-base-muted-foreground: hsl(0, 0%, 45%);
   --color-base-border: hsl(0, 0%, 90%);

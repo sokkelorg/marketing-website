@@ -29,7 +29,7 @@ const { href, wide = false, inverted = false } = Astro.props;
   }
 
   a:hover {
-    background-color: hotpink;
+    background: linear-gradient(0deg, var(--color-base-background-alpha-80) 0%, var(--color-base-background-alpha-80) 100%), var(--color-base-primary);
   }
 
   a.wide {
@@ -42,6 +42,6 @@ const { href, wide = false, inverted = false } = Astro.props;
   }
 
   a.inverted:hover {
-    background-color: hotpink;
+    background: linear-gradient(0deg, var(--color-base-primary-alpha-80) 0%, var(--color-base-primary-alpha-80) 100%), var(--color-base-primary-foreground);
   }
 </style>
