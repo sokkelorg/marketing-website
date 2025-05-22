@@ -87,17 +87,19 @@ const pains: Pain[] = [
 
     <section id="pains">
       <h2>Software delivery today? Kinda painful.</h2>
-      {pains.map(pain => (
-        <div class="card pain">
-          <h3 class="title">{pain.title}</h3>
-          <p class="body">{pain.body}</p>
-          <div class="sources">
-            {pain.sources.map(link => (
-              <a href={link.url} rel="noopener noreferrer">{link.title}</a>
-            ))}
+      <div class="facts">
+        {pains.map(pain => (
+          <div class="card pain">
+            <h3 class="title">{pain.title}</h3>
+            <p class="body">{pain.body}</p>
+            <div class="sources">
+              {pain.sources.map(link => (
+                <a href={link.url} rel="noopener noreferrer">{link.title}</a>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </section>
 
     <section class="comic">
@@ -314,40 +316,43 @@ const pains: Pain[] = [
       line-height: var(--text-2xl-line-height);
     }
 
-    display: flex;
-    flex-direction: column;;
-    gap: 1rem;
+    .facts {
+      margin-top: calc(var(--spacing) * 6);
 
-    .pain {
-      display: flex;
-      flex-direction: column;
-      gap: calc(var(--spacing)*2);
-      background: linear-gradient(270deg, hsl(0, 89%, 96%) 0%, hsl(0, 84%, 90%) 100%);
+      display: grid;
+      gap: calc(var(--spacing) * 4);
 
-      .title {
-        margin: 0;
-        font-weight: var(--font-weight-bold);
-      }
-
-     .body {
-        margin: 0;
-      }
-
-      .sources {
+      .pain {
         display: flex;
-        gap: calc(var(--spacing)*2);
+        flex-direction: column;
+        gap: calc(var(--spacing) * 2);
+        background: linear-gradient(270deg, hsl(0, 89%, 96%) 0%, hsl(0, 84%, 90%) 100%);
 
-        a {
-          width: fit-content;
-          font-weight: var(--font-weight-semibold);
-          padding: calc(var(--spacing)*0.5) calc(var(--spacing)*2);
-          border-radius: var(--radius-md);
-          background-color: var(--color-base-primary);
-          color: var(--color-base-primary-foreground);
-          text-decoration: none;
-          font-size: var(--text-xxs-font-size);
-          line-height: var(--text-xxs-line-height);
-          text-transform: uppercase;
+        .title {
+          margin: 0;
+          font-weight: var(--font-weight-bold);
+        }
+
+        .body {
+          margin: 0;
+        }
+
+        .sources {
+          display: flex;
+          gap: calc(var(--spacing) * 2);
+
+          a {
+            width: fit-content;
+            font-weight: var(--font-weight-semibold);
+            padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 2);
+            border-radius: var(--radius-md);
+            background-color: var(--color-base-primary);
+            color: var(--color-base-primary-foreground);
+            text-decoration: none;
+            font-size: var(--text-xxs-font-size);
+            line-height: var(--text-xxs-line-height);
+            text-transform: uppercase;
+          }
         }
       }
     }
