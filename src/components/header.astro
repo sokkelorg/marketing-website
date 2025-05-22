@@ -39,7 +39,12 @@ const { link } = Astro.props;
 
     .header-link {
       font-size: 1rem;
-      color: #0000ff;
+      color: var(--color-base-primary);
+      text-decoration: none;
+    }
+
+    .header-link:hover {
+      text-decoration: underline;
     }
   }
 </style>
