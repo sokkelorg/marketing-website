@@ -73,12 +73,16 @@ const pains: Pain[] = [
       <p class="smooth">smoooooooooooooooooooooooooooooooooooooooth.</p>
     </section>
 
-    <section id="mission" class="card pitch">
-      <h2 class="title">Our mission is simple</h2>
-      <p class="body">
-        To set a new, worryless standard for software delivery — with simple setups, always-optimized, insight-driven, and change-aware environments, powered by AI.
-      </p>
-      <WaitlistButton />
+    <section class="pitch">
+      <img class="background" alt="Abstract flowing background." aria-hidden="true" src="/assets/flow-2.gif">
+      <div class="content">
+        <h2 class="title">Our mission is simple</h2>
+        <p class="body">
+          To set a new, worryless standard for software delivery — with simple setups, always-optimized, insight-driven,
+          and change-aware environments, powered by AI.
+        </p>
+        <WaitlistButton />
+      </div>
     </section>
 
     <section id="pains">
@@ -159,10 +163,13 @@ const pains: Pain[] = [
       </div>
     </section>
 
-    <section id="promise" class="card pitch">
-      <img alt="Sokkel." src="/assets/logo.svg">
-      <h2 class="text">Not just a platform. A promise. Effortless. Worryless. Smooooth.</h2>
-      <WaitlistButton />
+    <section class="pitch">
+      <img class="background" alt="Abstract flowing background." aria-hidden="true" src="/assets/flow-3.gif">
+      <div class="content">
+        <img alt="Sokkel." src="/assets/logo.svg">
+        <h2 class="text">Not just a platform. A promise. Effortless. Worryless. Smooooth.</h2>
+        <WaitlistButton />
+      </div>
     </section>
 
     <section id="status" class="card">
@@ -232,38 +239,52 @@ const pains: Pain[] = [
   }
 
   .pitch {
-    max-height: 500px; /* The height of the background animation. */
-    padding-block: calc(var(--spacing)*32);
+    overflow: hidden;
+    border-radius: var(--radius-2xl);
 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: var(--color-blue-200);
-    text-align: center;
-    color: var(--color-base-background);
+    background-color: var(--color-base-black);
 
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--spacing)*6);
-    align-items: center;
+    display: grid;
 
-    .title {
-      margin: 0;
-      font-weight: var(--font-weight-normal);
-      font-size: var(--text-base-font-size);
-      line-height: var(--text-base-line-height);
+    .background, .content {
+      grid-column: 1;
+      grid-row: 1;
     }
 
-    .body {
-      margin: 0;
-      font-weight: var(--font-weight-bold);
-      font-size: var(--text-2xl-font-size);
-      line-height: var(--text-2xl-line-height);
+    .background {
+      height: 100%;
+      user-select: none;
+      user-focus: none;
+    }
+
+    .content {
+      padding-block: calc(var(--spacing) * 32);
+      padding-inline: calc(var(--spacing) * 6);
+
+      text-align: center;
+      color: var(--color-base-background);
+
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--spacing) * 6);
+      align-items: center;
+
+      .title {
+        margin: 0;
+        font-weight: var(--font-weight-normal);
+        font-size: var(--text-base-font-size);
+        line-height: var(--text-base-line-height);
+      }
+
+      .body {
+        margin: 0;
+        font-weight: var(--font-weight-bold);
+        font-size: var(--text-2xl-font-size);
+        line-height: var(--text-2xl-line-height);
+      }
     }
   }
 
-  #mission {
-    background-image: url(/assets/flow-2.gif);
-  }
 
   #pains {
     h2 {
@@ -383,11 +404,6 @@ const pains: Pain[] = [
 
   .smile {
     background-color: hsl(240, 100%, 70%);
-  }
-
-  #promise {
-    background-image: url(/assets/flow-3.gif);
-    background-blend-mode: color-burn;
   }
 
   #status {
