@@ -10,6 +10,7 @@ body {
   --color-base-background: hsl(0, 0%, 100%);
   --color-base-primary: hsl(0, 0%, 0%);
   --color-base-primary-foreground: hsl(0, 0%, 100%);
+  --color-base-black: hsl(0, 0%, 0%);
   --color-base-border: hsl(0, 0%, 90%);
   --color-base-muted-foreground: hsl(0, 0%, 45%);
   --color-base-card: hsl(0, 0%, 100%);
