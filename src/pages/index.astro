@@ -200,14 +200,17 @@ const pains: Pain[] = [
   }
 
   #hero {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: calc(var(--spacing)*8);
+    align-items: center;
+    text-align: center;
 
     h1 {
       margin: 0;
       font-weight: var(--font-weight-extrabold);
-      font-size: var(--text-5xl-font-size);
-      line-height: var(--text-5xl-line-height);
+      font-size: var(--text-6xl-font-size);
+      line-height: var(--text-6xl-line-height);
     }
 
     h2 {
