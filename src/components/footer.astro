@@ -12,11 +12,11 @@ const currentYear = new Date().getFullYear();
   <nav>
     <a href="#">
       Take me to the top
-      <img class="arrow" alt="Arrow pointing up." src="/assets/arrow-up.svg">
+      <img class="arrow" alt="Arrow pointing up." src="/assets/arrow-up.svg" aria-hidden="true">
     </a>
     {links.map((link) => (
       <a href={link.href}>
-        {link.text} <img class="arrow right" alt="Arrow pointing right." src="/assets/arrow-up.svg">
+        {link.text} <img class="arrow right" alt="Arrow pointing right." aria-hidden="true" src="/assets/arrow-up.svg">
       </a>
     ))}
   </nav>
