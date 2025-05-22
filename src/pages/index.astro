@@ -99,7 +99,7 @@ const pains: Pain[] = [
     <section class="comic">
       <div class="title">
         <h2>Let us tell you a story we hear way too often…</h2>
-        <p>as a classic comic strip</p>
+        <p>The story about everything getting in the way of what you actually wanted to build.</p>
       </div>
       <p>This is you, creating your best software ever:</p>
       <div class="strip">
@@ -291,8 +291,14 @@ const pains: Pain[] = [
     .title {
       text-align: center;
 
+      h2 {
+        font-weight: var(--font-weight-extrabold);
+        font-size: var(--text-4xl-font-size);
+        line-height: var(--text-4xl-line-height);
+      }
+
       p {
-        color: hsl(0, 0%, 60%)
+        color: var(--color-base-muted-foreground);
       }
     }
 
