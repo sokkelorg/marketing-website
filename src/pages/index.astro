@@ -104,23 +104,31 @@ const pains: Pain[] = [
       <div class="strip">
         <div class="panel">
           <img alt="todo" src="/assets/comic-panel-1.png" />
-          <p class="title">This is you, creating your best software ever.</p>
-          <p>You're in the flow. Focused. The balloon's right there – everything's working.</p>
+          <div class="description">
+            <p class="title">This is you, creating your best software ever.</p>
+            <p>You're in the flow. Focused. The balloon's right there – everything's working.</p>
+          </div>
         </div>
         <div class="panel">
           <img alt="todo" src="/assets/comic-panel-2.png" />
-          <p class="title">But then the real world starts creeping in…</p>
-          <p>Meetings. Roadmaps. Distractions. Your focus slips – the software drifts.</p>
+          <div class="description">
+            <p class="title">But then the real world starts creeping in…</p>
+            <p>Meetings. Roadmaps. Distractions. Your focus slips – the software drifts.</p>
+          </div>
         </div>
         <div class="panel">
           <img alt="todo" src="/assets/comic-panel-3.png" />
-          <p class="title">And then it hits the fan.</p>
-          <p>Infra's on fire. You're no longer building – you're firefighting.</p>
+          <div class="description">
+            <p class="title">And then it hits the fan.</p>
+            <p>Infra's on fire. You're no longer building – you're firefighting.</p>
+          </div>
         </div>
         <div class="panel">
           <img alt="todo" src="/assets/comic-panel-4.png" />
-          <p class="title">Now you're here. Stuck in migration hell.</p>
-          <p>Everything's tangled. Progress is gone. And your dream? Floating far, far away.</p>
+          <div class="description">
+            <p class="title">Now you're here. Stuck in migration hell.</p>
+            <p>Everything's tangled. Progress is gone. And your dream? Floating far, far away.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -130,36 +138,28 @@ const pains: Pain[] = [
         <h2>So, let's tell the story again.</h2>
         <p>Only with Sokkel and Stacky in the mix.</p>
       </div>
-      <p>Think of Sokkel as a bar.</p>
-      <div class="strip">
-        <img alt="todo" src="/assets/bartender.gif">
-      </div>
 
-      <p>And Stacky (our AI Agent) as your bartender</p>
       <div class="strip">
-        <div class="stacky">
-          <img alt="todo" class="body" src="/assets/stacky-peekaboo.png">
-          <img alt="todo" class="eyes" src="/assets/stacky-eyes.gif">
+        <div class="panel">
+          <p class="title">This is still you, creating your best software ever.</p>
+          <img alt="todo" src="/assets/comic-panel-1.png" />
         </div>
-      </div>
-
-      <p>In Sokkel's bar, you don't need to bring a recipe. You just tell him roughly what you want:</p>
-      <div class="strip">
-        <img alt="todo" class="smile" src="/assets/smile.gif">
-      </div>
-
-      <p>Stacky is already mixing the cloud resources needed, and serves you the perfect setup.</p>
-      <div class="strip">
-        <img alt="todo" src="/assets/bartender-stacky.gif">
+        <div class="panel">
+          <img alt="todo" src="/assets/bartender-stacky.gif" />
+         </div>
+        <div class="panel">
+          <img alt="todo" src="/assets/comic-panel-5.png" />
+        </div>
+        <div class="panel">
+          <img alt="todo" src="/assets/comic-panel-6.png" />
+        </div>
+        <div class="panel">
+          <img alt="todo" src="/assets/comic-panel-7.png" />
+        </div>
       </div>
 
       <p>This is you, creating the best something ever, with Sokkel and Stacky:</p>
       <div class="strip">
-        <img alt="todo" src="/assets/comic-panel-1.png" />
-        <img alt="todo" src="/assets/bartender-stacky.gif" />
-        <img alt="todo" src="/assets/comic-panel-5.png" />
-        <img alt="todo" src="/assets/comic-panel-6.png" />
-        <img alt="todo" src="/assets/comic-panel-7.png" />
       </div>
       <p>But now you've got Sokkel – and Stacky. Effortless software delivery. Continuous optimization. Zero
         friction.</p>
@@ -321,11 +321,13 @@ const pains: Pain[] = [
     }
 
     .strip {
-      display: flex;
-      flex-direction: column;
+      display: grid;
       gap: calc(var(--spacing) * 8);
 
       .panel {
+        display: grid;
+        gap: calc(var(--spacing) * 4);
+
         img {
           border: 2px solid var(--color-base-black);
         }
@@ -335,7 +337,6 @@ const pains: Pain[] = [
         }
 
         .title {
-          margin-top: calc(var(--spacing)*4);
           font-weight: var(--font-weight-bold);
         }
       }
