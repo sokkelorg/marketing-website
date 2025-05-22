@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/header.astro';
 import WaitlistButton from '../components/waitlist-button.astro';
 import Footer from '../components/footer.astro';
+import { waitlistUrl } from '../waitlist';
 
 type PainSource = { title: string; url: string };
 type Pain = { title: string; body: string; sources: PainSource[] };
@@ -187,8 +188,8 @@ const pains: Pain[] = [
   <Footer
     links={[
       { href: '/about-us', text: 'About us' },
+      { href: waitlistUrl, text: 'Join waitlist' }
     ]}
-    }
   />
 </Layout>
 
