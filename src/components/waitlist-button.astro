@@ -1,11 +1,10 @@
 ---
 import LinkButton from './link-button.astro';
+import { waitlistUrl } from '../waitlist';
 
 export type Props = { wide?: true };
 
 const { wide } = Astro.props;
 ---
 
-<LinkButton href="https://tally.so/r/wvKvxA" wide={wide}>
-  Join waitlist
-</LinkButton>
+<LinkButton href={waitlistUrl} wide={wide}>Join waitlist</LinkButton>
