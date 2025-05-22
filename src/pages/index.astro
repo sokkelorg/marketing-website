@@ -221,7 +221,7 @@ const pains: Pain[] = [
       display: flex;
       flex-direction: column;
       gap: calc(var(--spacing)*2);
-      background-color: hsl(0, 90%, 97%);
+      background-color: var(--color-destructive-foreground);
 
       .title {
         margin: 0;
@@ -239,12 +239,13 @@ const pains: Pain[] = [
         a {
           width: fit-content;
           font-weight: var(--font-weight-semibold);
-          padding: calc(var(--spacing)/2) calc(var(--spacing)*2);
+          padding: calc(var(--spacing)*0.5) calc(var(--spacing)*2);
           border-radius: var(--radius-md);
           background-color: var(--color-base-primary);
           color: var(--color-base-primary-foreground);
           text-decoration: none;
-          font-size: 0.75rem;
+          font-size: var(--text-xxs-font-size);
+          line-height: var(--text-xxs-line-height);
           text-transform: uppercase;
         }
       }

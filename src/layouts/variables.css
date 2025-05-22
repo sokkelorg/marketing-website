@@ -45,8 +45,11 @@ body {
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  --font-2xl-size-2xl: 1.5rem;
-  --font-2xl-line-height-normal: 2rem;
+  --text-xxs-font-size: 0.625rem;
+  --text-xxs-line-height: 0.875rem;
+
+  font-size: var(--text-xxs-font-size);
+  line-height: var(--text-xxs-line-height);
 
   --radius-xs: 0.125rem;
   --radius-sm: 0.375rem;
