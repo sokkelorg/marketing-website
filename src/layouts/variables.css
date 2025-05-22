@@ -54,6 +54,9 @@ body {
   --text-xxs-font-size: 0.625rem;
   --text-xxs-line-height: 0.875rem;
 
+  --text-sm-font-size: 0.875rem;
+  --text-sm-line-height: 1.25;
+
   --text-xl-font-size: 1.25rem;
   --text-xl-line-height: 1.75rem;
 
