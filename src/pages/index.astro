@@ -101,7 +101,7 @@ const pains: Pain[] = [
         <h2>Let us tell you a story we hear way too often…</h2>
         <p>The story about everything getting in the way of what you actually wanted to build.</p>
       </div>
-      <div class="strip spaced">
+      <div class="strip">
         <div class="panel">
           <img alt="todo" src="/assets/comic-panel-1.png" />
           <div class="description">
@@ -133,7 +133,7 @@ const pains: Pain[] = [
       </div>
     </section>
 
-    <section class="comic">
+    <section class="comic tight">
       <div class="setup">
         <h2>So, let's tell the story again.</h2>
         <p>Only with Sokkel and Stacky in the mix.</p>
@@ -145,9 +145,6 @@ const pains: Pain[] = [
           <img alt="todo" src="/assets/comic-panel-1.png" />
         </div>
         <div class="panel">
-          <img alt="todo" src="/assets/bartender-stacky.gif" />
-         </div>
-        <div class="panel">
           <img alt="todo" src="/assets/comic-panel-5.png" />
         </div>
         <div class="panel">
@@ -157,12 +154,6 @@ const pains: Pain[] = [
           <img alt="todo" src="/assets/comic-panel-7.png" />
         </div>
       </div>
-
-      <p>This is you, creating the best something ever, with Sokkel and Stacky:</p>
-      <div class="strip">
-      </div>
-      <p>But now you've got Sokkel – and Stacky. Effortless software delivery. Continuous optimization. Zero
-        friction.</p>
     </section>
 
     <section id="promise" class="card pitch">
@@ -321,6 +312,9 @@ const pains: Pain[] = [
     }
 
     .strip {
+      display: grid;
+      gap: calc(var(--spacing) * 8);
+
       .panel {
         display: grid;
         gap: calc(var(--spacing) * 4);
@@ -340,9 +334,16 @@ const pains: Pain[] = [
     }
   }
 
-  .strip.spaced {
-    display: grid;
-    gap: calc(var(--spacing) * 8);
+  .comic.tight {
+    .strip {
+      gap: 0;
+
+      .panel:not(:first-of-type) {
+        img {
+          border-top-width: 0;
+        }
+      }
+    }
   }
 
   .stacky {
