@@ -101,7 +101,7 @@ const pains: Pain[] = [
         <h2>Let us tell you a story we hear way too often…</h2>
         <p>The story about everything getting in the way of what you actually wanted to build.</p>
       </div>
-      <div class="strip">
+      <div class="strip spaced">
         <div class="panel">
           <img alt="todo" src="/assets/comic-panel-1.png" />
           <div class="description">
@@ -321,9 +321,6 @@ const pains: Pain[] = [
     }
 
     .strip {
-      display: grid;
-      gap: calc(var(--spacing) * 8);
-
       .panel {
         display: grid;
         gap: calc(var(--spacing) * 4);
@@ -341,6 +338,11 @@ const pains: Pain[] = [
         }
       }
     }
+  }
+
+  .strip.spaced {
+    display: grid;
+    gap: calc(var(--spacing) * 8);
   }
 
   .stacky {
