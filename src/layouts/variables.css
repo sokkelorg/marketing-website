@@ -41,17 +41,16 @@ body {
   --radius-xl: 0.875rem;
   --radius-2xl: 1rem;
 
-  /* Light mode colors go here. */
-  --color-base-background: hsl(0, 0%, 100%);
-  --color-base-primary: hsl(0, 0%, 0%);
-  --color-base-primary-foreground: hsl(0, 0%, 100%);
-  --color-base-black: hsl(0, 0%, 0%);
-  --color-base-border: hsl(0, 0%, 90%);
-  --color-base-muted-foreground: hsl(0, 0%, 45%);
-  --color-base-card: hsl(0, 0%, 100%);
-  --color-base-card-foreground: hsl(0, 0%, 4%);
+  /* Theme-independent colors go here. */
+  --color-black: hsl(0, 0%, 0%);
+  --color-white: hsl(0, 0%, 100%);
 
-  --color-destructive-foreground: hsl(0, 86%, 97%);
+  /* Light mode colors go here. */
+  --color-base-background: var(--color-white);
+  --color-base-primary: var(--color-black);
+  --color-base-primary-foreground: var(--color-base-background);
+  --color-base-muted-foreground: hsl(0, 0%, 45%);
+  --color-base-border: hsl(0, 0%, 90%);
 
   --color-blue-50: hsl(240, 100%, 90%);
   --color-blue-100: hsl(240, 100%, 80%);
