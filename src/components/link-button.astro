@@ -2,12 +2,13 @@
 export type Props = {
   href: string;
   wide?: true;
+  inverted?: true;
 };
 
-const { href, wide = false } = Astro.props;
+const { href, wide = false, inverted = false } = Astro.props;
 ---
 
-<a href={href} class:list={['link-button', { wide }]}><slot /></a>
+<a href={href} class:list={['link-button', { wide, inverted }]}><slot /></a>
 
 <style>
   a {
@@ -17,21 +18,30 @@ const { href, wide = false } = Astro.props;
     font-size: 14px;
     font-weight: 500;
     text-align: center;
-    color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     text-decoration: none;
     user-select: none;
 
-    background-color: #000000;
+    background-color: var(--color-base-primary);
+    color: var(--color-base-primary-foreground);
   }
 
   a:hover {
-    background-color: #262626;
+    background-color: hotpink;
   }
 
   a.wide {
     width: auto;
+  }
+
+  a.inverted {
+    background-color: var(--color-base-primary-foreground);
+    color: var(--color-base-primary);
+  }
+
+  a.inverted:hover {
+    background-color: hotpink;
   }
 </style>
