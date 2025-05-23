@@ -8,7 +8,8 @@ const { link } = Astro.props;
 
 <header>
   <a id="logo-link" href="/">
-    <img src="/assets/logo-symbol.gif" alt="Sokkel." />
+    <img class="icon" src="/assets/logo-symbol.gif" alt="Logo" aria-hidden="true">
+    <img class="logo" src="/assets/logo.svg" alt="Sokkel." />
   </a>
   <a class="header-link" href={link.href}>{link.text}</a>
 </header>
@@ -16,24 +17,34 @@ const { link } = Astro.props;
 <style>
   header {
     width: 100%;
-    min-height: 64px;
-    margin-bottom: 2rem;
+    margin-bottom: calc(var(--spacing) * 8);
 
     display: flex;
     justify-content: space-between;
 
-    img {
-      max-width: 64px;
-      border-radius: 8px;
-    }
-
     #logo-link {
       font-size: 0; /* The <a> adds 3px to the height if font-size is non-zero. */
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      .icon {
+        max-height: 2rem;
+      }
+
+      .logo {
+        max-height: 1.5rem;
+      }
     }
 
     .header-link {
-      font-size: 14px;
-      color: #0000ff;
+      font-size: 1rem;
+      color: var(--color-base-primary);
+      text-decoration: none;
+    }
+
+    .header-link:hover {
+      text-decoration: underline;
     }
   }
 </style>

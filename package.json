@@ -12,12 +12,11 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.4.0",
-    "@sanity/client": "^7.3.0",
     "astro": "^5.7.13",
     "astro-integration-lottie": "^0.3.2",
     "lottie-web": "^5.12.2",
     "schema-dts": "^1.1.5",
-    "zod": "^3.25.17"
+    "sharp": "^0.34.2"
   },
   "volta": {
     "node": "22.13.2",

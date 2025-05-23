@@ -1,38 +1,44 @@
 ---
-import { z } from 'zod';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/header.astro';
-import DevopsProblem from '../components/devops-problem.astro';
-import Card from '../components/card.astro';
 import WaitlistButton from '../components/waitlist-button.astro';
 import Footer from '../components/footer.astro';
-import { client } from '../sanity-client';
+import { waitlistUrl } from '../waitlist';
 
-const painPoints = [
-  // TODO: Fetch these from Sanity.
-  'Too complex, cloud is a maze.',
-  'Too many tools, config chaos.',
-  'Costs run wild, surprise bills.',
-  'Security is tricky, who has access?',
-  'No visibility, debugging sucks.',
+type PainSource = { title: string; url: string };
+type Pain = { title: string; body: string; sources: PainSource[] };
+
+const pains: Pain[] = [
+  {
+    title: 'Platform-talent crunch',
+    body: '37 % of firms still can\'t hire the DevOps skills they need, stalling roadmaps and inflating salaries.',
+    sources: [
+      { title: 'IT Pro', url: 'https://www.itpro.com/software/software-deployments-are-plagued-by-delays-rampant-skills-shortages-and-underinvestment-are-slowing-down-processes-and-its-costing-businesses-big' },
+    ],
+  },
+  {
+    title: 'Cloud-cost black hole',
+    body: 'Hours disappear hunting idle services; 21–50 % of spend is pure waste for 78 % of companies.',
+    sources: [
+      { title: 'Tech Monitor', url: 'https://www.techmonitor.ai/hardware/cloud/cloud-waste-hits-billions-as-78-of-firms-report-significant-expenditure-losses' },
+      { title: 'BetaNews', url: 'https://betanews.com/2025/03/19/84-percent-of-enterprises-are-struggling-to-manage-cloud-spending'},
+    ],
+  },
+  {
+    title: 'Security roulette',
+    body: 'One breach can wipe you out; SMEs face an average hit of $3.3 M per incident.',
+    sources: [
+      { title: 'newsroom.ibm.com', url: 'https://newsroom.ibm.com/2024-07-30-ibm-report-escalating-data-breach-disruption-pushes-costs-to-new-highs' },
+    ],
+  },
+  {
+    title: 'Tool-chain time sink',
+    body: 'Nearly 40 % of engineering time vanishes maintaining internal & delivery tools instead of shipping features.',
+    sources: [
+      { title: 'DZone', url: 'https://dzone.com/articles/devops-trends-2024-business-impact' },
+    ],
+  },
 ];
-
-const featureCardShape = z.object({
-  emoji: z.string(),
-  title: z.string(),
-  content: z.string(),
-});
-
-const featureCards = z.array(featureCardShape).parse(
-  await client.fetch(`
-    *[_type == 'featureCard'] {
-      _id,
-      emoji,
-      title,
-      content
-    }
-  `),
-);
 ---
 
 <Layout
@@ -70,173 +76,374 @@ const featureCards = z.array(featureCardShape).parse(
   ]}
 >
   <Header link={{ text: 'About us', href: '/about-us' }} />
+
   <main>
     <section id="hero">
-      <img src="/assets/logo.svg" alt="Sokkel." class="logo" />
-      <h1>
-        The AI-powered <span aria-hidden="true">✨</span> platform for managing all
-        your applications. <span class="smoooothly">Smoooothly.</span>
-      </h1>
+      <h1>Effortless<br>software<br>delivery</h1>
+      <h2>
+        The AI-powered <span aria-hidden="true">✨</span> platform that turns cloud complexity into clarity.
+      </h2>
       <WaitlistButton />
     </section>
-    <div id="problem">
-      Because: <DevopsProblem />
-    </div>
 
-    <img
-      class="illustration lambo-tape"
-      src="/assets/lambo-tape.gif"
-      alt="Burning Lamborghini with duct tape."
-    />
-
-    <h2 id="mission-statement">
-      We are on a mission to make DevOps something you <i>don't</i> have to worry
-      about.
-    </h2>
-
-    <section id="pain-points">
-      <h3>DevOps today? Kinda painful.</h3>
-      <ol>
-        {painPoints.map((point) => <li>{point}</li>)}
-      </ol>
+    <section id="stacky-intro">
+      <img class="stacky" alt="Stacky." src="/assets/stacky.svg" />
+      <div class="speech-bubble">
+        <img alt="Speech bubble arrow pointing to Stacky." class="arrow" src="/assets/speech-bubble-arrow.svg">
+        <p class="card message">
+          Hi <span aria-hidden="true">👋</span> I'm Stacky – your AI sidekick for effortless software delivery. I keep
+          things tidy, tuned, and tantrum-free. You dream it, I'll keep it running.
+        </p>
+      </div>
     </section>
 
-    <h2 id="painkiller">So, what's the painkiller?</h2>
+    <section id="mission" class="pitch">
+      <div class="background">
+        <div class="content">
+          <h2 class="title">Our mission is simple</h2>
+          <p class="body">
+            To set a new standard for software delivery — with simple setups, always-optimized, insight-driven, and
+            change-aware environments.
+          </p>
+          <WaitlistButton inverted />
+        </div>
+      </div>
+    </section>
 
-    <section id="cards">
-      {
-        featureCards.map(({ emoji, title, content }) => (
-          <Card emoji={emoji} title={title}>
-            {content}
-          </Card>
-        ))
-      }
+    <section id="pains">
+      <h2>Software delivery today? Kinda painful.</h2>
+      <div class="facts">
+        {pains.map(pain => (
+          <div class="card pain">
+            <h3 class="title">{pain.title}</h3>
+            <p class="body">{pain.body}</p>
+            <div class="sources">
+              {pain.sources.map(link => (
+                <a href={link.url} rel="noopener noreferrer">{link.title}</a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="comic">
+      <div class="setup">
+        <h2>Let us tell you a story we hear way too often…</h2>
+        <p>The story about everything getting in the way of what you actually wanted to build.</p>
+      </div>
+      <div class="strip">
+        <div class="panel">
+          <img alt="You reaching for a nearby hovering yellow balloon labeled 'your amazing software'." src="/assets/comic-panel-1.png" />
+          <div>
+            <p class="title">This is you, creating your best software ever.</p>
+            <p>You're in the flow. Focused. The balloon's right there – everything's working.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <img alt="A pink blob-like monster slightly larger than you, labeled 'status meetings', shows up behind you, and holds you back from reaching the balloon." src="/assets/comic-panel-2.png" />
+          <div>
+            <p class="title">But then the real world starts creeping in…</p>
+            <p>Meetings. Roadmaps. Distractions. Your focus slips – the software drifts.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <img alt="An even larger orange monster labeled 'infrastructure on fire' shows up behind that monster, and holds you both back." src="/assets/comic-panel-3.png" />
+          <div>
+            <p class="title">And then shit hits the fan.</p>
+            <p>Infra's on fire. You're no longer building – you're firefighting.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <img alt="A fourth, giant monster labeled 'migration hell' wraps one arm around the whole cast, and takes the balloon with the other." src="/assets/comic-panel-4.png" />
+          <div>
+            <p class="title">Now you're here. Stuck in migration hell.</p>
+            <p>Everything's tangled. Progress is gone. And your dream? Out of reach.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="comic">
+      <div class="setup">
+        <h2>So, let's tell the story again.</h2>
+        <p>This time with Sokkel and Stacky in the mix.</p>
+      </div>
+
+      <div class="strip">
+        <div class="panel">
+          <img alt="You reaching for a nearby hovering yellow balloon labeled 'your amazing software'." src="/assets/comic-panel-1.png" />
+          <p class="title">This is still you, creating your best software ever.</p>
+        </div>
+        <div class="panel">
+          <img alt="You hugging the balloon labeled 'your amazing software'." src="/assets/comic-panel-5.png" />
+          <p>Only now, you're not fighting the cloud to do it.</p>
+        </div>
+        <div class="panel">
+          <img alt="You hugging the balloon, now labeled 'your greatest feature'." src="/assets/comic-panel-6.png" />
+          <p>Setup is simple, changes are safe, and everything just flows smoooothly.</p>
+        </div>
+        <div class="panel">
+          <img alt="You hugging the balloon, now labeled 'your peace of mind'." src="/assets/comic-panel-7.png" />
+          <p>No fires. No blockers. Just smooth and effortless software delivery – peace of mind every time.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="promise" class="pitch">
+      <div class="background">
+        <div class="content">
+          <img alt="Sokkel." src="/assets/logo-monochrome.svg">
+          <h2 class="text">Not just a platform. A promise. Effortless. Worryless. Smooooth.</h2>
+          <WaitlistButton inverted />
+        </div>
+      </div>
+    </section>
+
+    <section id="status" class="card">
+      <div class="text">
+        <h2 class="title"><span aria-hidden="true">🟢</span> Building mode</h2>
+        <p class="body">We are currently building, testing, and validating the beta version of Sokkel and onboarding pilots.</p>
+      </div>
+      <WaitlistButton wide={true} />
     </section>
   </main>
+
   <Footer
     links={[
       { href: '/about-us', text: 'About us' },
+      { href: waitlistUrl, text: 'Join waitlist' }
     ]}
-    }
   />
 </Layout>
 
 <style>
   main {
-    --gap: 6rem;
-
-    margin-top: 15dvh; /* TODO: I'm not entirely sure about this behaviour. */
-    margin-bottom: var(--gap);
-
     display: flex;
     flex-direction: column;
-
-    font-size: 1.5rem;
-    line-height: 2rem;
-    gap: var(--gap);
+    gap: calc(var(--spacing)*32);
   }
 
-  .illustration {
-    display: block;
-    align-self: center;
-    width: 100%;
-    max-width: 445px;
-    margin-block: 1rem;
-  }
-
-  section#hero {
+  #hero {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-
-    @media (max-height: 850px) {
-      /* Reduce the visual noise on small screens. */
-      justify-content: flex-end;
-      --bottom-margin: 2.5rem;
-
-      /*
-       * 100 dvh: The full page height.
-       * 64px: The header (the logo is 64px tall.)
-       * 2rem: The header's bottom margin.
-       * 15dvh: The <main> element's top margin.
-       * --bottom-margin: The hero's bottom margin.
-       */
-      height: calc(100dvh - 64px - 2rem - 15dvh - var(--bottom-margin));
-      margin-bottom: var(--bottom-margin);
-    }
+    gap: calc(var(--spacing)*8);
+    align-items: center;
+    text-align: center;
 
     h1 {
-      font-size: 2.5rem;
-      font-weight: 900;
-      line-height: 2.9rem;
-      margin-block: 0;
-      text-wrap: pretty;
+      margin: 0;
+      font-weight: var(--font-weight-extrabold);
+      font-size: var(--text-6xl-font-size);
+      line-height: var(--text-6xl-line-height);
+    }
 
-      .smoooothly {
-        background: linear-gradient(
-          270deg,
-          #ccccff 31.45%,
-          #9999ff 40.36%,
-          #6666ff 48.59%,
-          #3333ff 57.5%,
-          #0000ff 65.72%,
-          #0000cc 74.64%,
-          #000099 83.55%,
-          #000066 91.77%,
-          #000033 100%
-        );
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
+    h2 {
+      margin: 0;
+      font-weight: var(--font-weight-medium);
+      font-size: var(--text-xl-font-size);
+      line-height: var(--text-xl-line-height);
+    }
+  }
+
+  .card {
+    border-radius: var(--radius-2xl);
+    padding: calc(var(--spacing)*6);
+  }
+
+  #stacky-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--spacing) * 6);
+
+    .stacky {
+      width: 75%;
+    }
+
+    .speech-bubble {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .arrow {
+        margin-bottom: -8px;
+      }
+
+      .message {
+        margin: 0;
+        background-color: var(--color-gray-100);
+      }
+    }
+  }
+
+  .pitch {
+    overflow: hidden;
+    border-radius: var(--radius-2xl);
+
+    .background {
+      background-size: calc(100% + 20px) calc(100% + 20px);
+      background-position: -10px -10px;
+      background-repeat: no-repeat;
+
+      .content {
+        padding-block: calc(var(--spacing) * 32);
+        padding-inline: calc(var(--spacing) * 6);
+
+        /* Dim the animated background a bit to make the text more readable. */
+        background-color: var(--color-base-primary-alpha-60);
+        color: var(--color-base-background);
+
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--spacing) * 6);
+        align-items: center;
+
+        .title {
+          margin: 0;
+          font-weight: var(--font-weight-normal);
+          font-size: var(--text-base-font-size);
+          line-height: var(--text-base-line-height);
+        }
+
+        .body {
+          margin: 0;
+          font-weight: var(--font-weight-bold);
+          font-size: var(--text-2xl-font-size);
+          line-height: var(--text-2xl-line-height);
+        }
+      }
+    }
+  }
+
+  #mission {
+    .background {
+      background-image: url(/assets/flow-mission.gif);
+    }
+  }
+
+  #promise {
+    .background {
+      background-image: url(/assets/flow-promise.gif);
+    }
+  }
+
+
+  #pains {
+    h2 {
+      font-weight: var(--font-weight-extrabold);
+      font-size: var(--text-2xl-font-size);
+      line-height: var(--text-2xl-line-height);
+    }
+
+    .facts {
+      margin-top: calc(var(--spacing) * 6);
+
+      display: grid;
+      gap: calc(var(--spacing) * 4);
+
+      .pain {
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--spacing) * 2);
+        background: linear-gradient(270deg, hsl(0, 89%, 96%) 0%, hsl(0, 84%, 90%) 100%);
+
+        .title {
+          margin: 0;
+          font-weight: var(--font-weight-bold);
+        }
+
+        .body {
+          margin: 0;
+        }
+
+        .sources {
+          display: flex;
+          gap: calc(var(--spacing) * 2);
+
+          a {
+            width: fit-content;
+            font-weight: var(--font-weight-semibold);
+            padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 2);
+            border-radius: var(--radius-md);
+            background-color: var(--color-base-primary);
+            color: var(--color-base-primary-foreground);
+            text-decoration: none;
+            font-size: var(--text-xxs-font-size);
+            line-height: var(--text-xxs-line-height);
+            text-transform: uppercase;
+          }
+
+          a:hover {
+            background: linear-gradient(0deg, var(--color-base-background-alpha-80) 0%, var(--color-base-background-alpha-80) 100%), var(--color-base-primary);
+          }
+        }
+      }
+    }
+  }
+
+  .comic {
+    display: grid;
+    gap: calc(var(--spacing) * 32);
+
+    .setup {
+      text-align: center;
+
+      h2 {
+        font-weight: var(--font-weight-extrabold);
+        font-size: var(--text-4xl-font-size);
+        line-height: var(--text-4xl-line-height);
+      }
+
+      p {
+        color: var(--color-gray-400);
+        font-size: var(--text-sm-font-size);
+        line-height: var(--text-sm-line-height);
       }
     }
 
-    .logo {
-      max-width: 212px;
-      /* Set the specific height to prevent the content from jumping on page load.*/
-      height: 32px;
+    .strip {
+      display: grid;
+      gap: calc(var(--spacing) * 8);
+
+      .panel {
+        display: grid;
+        gap: calc(var(--spacing) * 2);
+
+        img {
+          border: 3px solid var(--color-black);
+        }
+
+        p {
+          margin: 0;
+          font-size: var(--text-sm-font-size);
+          line-height: var(--text-sm-line-height);
+        }
+
+        .title {
+          font-weight: var(--font-weight-bold);
+        }
+      }
     }
   }
 
-  #problem {
-    font-size: 1rem;
-    line-height: 1.5rem;
-    color: #525252;
-  }
+  #status {
+    border: 2px solid var(--color-base-border);
+    display: grid;
+    gap: calc(var(--spacing) * 8);
 
-  .lambo-tape {
-    max-width: 90%;
-  }
+    .text {
+      .title {
+        margin: 0;
+        font-weight: var(--font-weight-semibold);
+        font-size: var(--text-base-font-size);
+        line-height: var(--text-base-line-height);
+      }
 
-  h2#mission-statement {
-    font-weight: 800;
-    font-size: 2.7rem;
-    line-height: 3rem;
-  }
-
-  section#pain-points {
-    h3 {
-      margin: 0;
-      font-size: 1rem;
-      font-style: italic;
+      .body {
+        color: var(--color-base-muted-foreground);
+      }
     }
-
-    ol {
-      margin: 0;
-      padding-inline: 1.5rem;
-      font-size: 1rem;
-    }
-  }
-
-  h2#painkiller {
-    margin: 0;
-    font-weight: 800;
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-  }
-
-  section#cards {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
   }
 </style>
