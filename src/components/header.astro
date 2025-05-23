@@ -8,7 +8,12 @@ const { link } = Astro.props;
 
 <header>
   <a id="logo-link" href="/">
-    <img class="icon" src="/assets/logo-symbol.gif" alt="Logo" aria-hidden="true">
+    <img
+      class="icon"
+      src="/assets/logo-symbol.gif"
+      alt="Logo"
+      aria-hidden="true"
+    />
     <img class="logo" src="/assets/logo.svg" alt="Sokkel." />
   </a>
   <a class="header-link" href={link.href}>{link.text}</a>

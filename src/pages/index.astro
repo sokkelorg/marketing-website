@@ -11,31 +11,46 @@ type Pain = { title: string; body: string; sources: PainSource[] };
 const pains: Pain[] = [
   {
     title: 'Platform-talent crunch',
-    body: '37 % of firms still can\'t hire the DevOps skills they need, stalling roadmaps and inflating salaries.',
+    body: "37 % of firms still can't hire the DevOps skills they need, stalling roadmaps and inflating salaries.",
     sources: [
-      { title: 'IT Pro', url: 'https://www.itpro.com/software/software-deployments-are-plagued-by-delays-rampant-skills-shortages-and-underinvestment-are-slowing-down-processes-and-its-costing-businesses-big' },
+      {
+        title: 'IT Pro',
+        url: 'https://www.itpro.com/software/software-deployments-are-plagued-by-delays-rampant-skills-shortages-and-underinvestment-are-slowing-down-processes-and-its-costing-businesses-big',
+      },
     ],
   },
   {
     title: 'Cloud-cost black hole',
     body: 'Hours disappear hunting idle services; 21–50 % of spend is pure waste for 78 % of companies.',
     sources: [
-      { title: 'Tech Monitor', url: 'https://www.techmonitor.ai/hardware/cloud/cloud-waste-hits-billions-as-78-of-firms-report-significant-expenditure-losses' },
-      { title: 'BetaNews', url: 'https://betanews.com/2025/03/19/84-percent-of-enterprises-are-struggling-to-manage-cloud-spending'},
+      {
+        title: 'Tech Monitor',
+        url: 'https://www.techmonitor.ai/hardware/cloud/cloud-waste-hits-billions-as-78-of-firms-report-significant-expenditure-losses',
+      },
+      {
+        title: 'BetaNews',
+        url: 'https://betanews.com/2025/03/19/84-percent-of-enterprises-are-struggling-to-manage-cloud-spending',
+      },
     ],
   },
   {
     title: 'Security roulette',
     body: 'One breach can wipe you out; SMEs face an average hit of $3.3 M per incident.',
     sources: [
-      { title: 'newsroom.ibm.com', url: 'https://newsroom.ibm.com/2024-07-30-ibm-report-escalating-data-breach-disruption-pushes-costs-to-new-highs' },
+      {
+        title: 'newsroom.ibm.com',
+        url: 'https://newsroom.ibm.com/2024-07-30-ibm-report-escalating-data-breach-disruption-pushes-costs-to-new-highs',
+      },
     ],
   },
   {
     title: 'Tool-chain time sink',
     body: 'Nearly 40 % of engineering time vanishes maintaining internal & delivery tools instead of shipping features.',
     sources: [
-      { title: 'DZone', url: 'https://dzone.com/articles/devops-trends-2024-business-impact' },
+      {
+        title: 'DZone',
+        url: 'https://dzone.com/articles/devops-trends-2024-business-impact',
+      },
     ],
   },
 ];
@@ -79,9 +94,10 @@ const pains: Pain[] = [
 
   <main>
     <section id="hero">
-      <h1>Effortless<br>software<br>delivery</h1>
+      <h1>Effortless<br />software<br />delivery</h1>
       <h2>
-        The AI-powered <span aria-hidden="true">✨</span> platform that turns cloud complexity into clarity.
+        The AI-powered <span aria-hidden="true">✨</span> platform that turns cloud
+        complexity into clarity.
       </h2>
       <WaitlistButton />
     </section>
@@ -89,10 +105,15 @@ const pains: Pain[] = [
     <section id="stacky-intro">
       <img class="stacky" alt="Stacky." src="/assets/stacky.svg" />
       <div class="speech-bubble">
-        <img alt="Speech bubble arrow pointing to Stacky." class="arrow" src="/assets/speech-bubble-arrow.svg">
+        <img
+          alt="Speech bubble arrow pointing to Stacky."
+          class="arrow"
+          src="/assets/speech-bubble-arrow.svg"
+        />
         <p class="card message">
-          Hi <span aria-hidden="true">👋</span> I'm Stacky – your AI sidekick for effortless software delivery. I keep
-          things tidy, tuned, and tantrum-free. You dream it, I'll keep it running.
+          Hi <span aria-hidden="true">👋</span> I'm Stacky – your AI sidekick for
+          effortless software delivery. I keep things tidy, tuned, and tantrum-free.
+          You dream it, I'll keep it running.
         </p>
       </div>
     </section>
@@ -102,8 +123,8 @@ const pains: Pain[] = [
         <div class="content">
           <h2 class="title">Our mission is simple</h2>
           <p class="body">
-            To set a new standard for software delivery — with simple setups, always-optimized, insight-driven, and
-            change-aware environments.
+            To set a new standard for software delivery — with simple setups,
+            always-optimized, insight-driven, and change-aware environments.
           </p>
           <WaitlistButton inverted />
         </div>
@@ -113,52 +134,82 @@ const pains: Pain[] = [
     <section id="pains">
       <h2>Software delivery today? Kinda painful.</h2>
       <div class="facts">
-        {pains.map(pain => (
-          <div class="card pain">
-            <h3 class="title">{pain.title}</h3>
-            <p class="body">{pain.body}</p>
-            <div class="sources">
-              {pain.sources.map(link => (
-                <a href={link.url} rel="noopener noreferrer">{link.title}</a>
-              ))}
+        {
+          pains.map((pain) => (
+            <div class="card pain">
+              <h3 class="title">{pain.title}</h3>
+              <p class="body">{pain.body}</p>
+              <div class="sources">
+                {pain.sources.map((link) => (
+                  <a href={link.url} rel="noopener noreferrer">
+                    {link.title}
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </section>
 
     <section class="comic">
       <div class="setup">
         <h2>Let us tell you a story we hear way too often…</h2>
-        <p>The story about everything getting in the way of what you actually wanted to build.</p>
+        <p>
+          The story about everything getting in the way of what you actually
+          wanted to build.
+        </p>
       </div>
       <div class="strip">
         <div class="panel">
-          <img alt="You reaching for a nearby hovering yellow balloon labeled 'your amazing software'." src="/assets/comic-panel-1.png" />
+          <img
+            alt="You reaching for a nearby hovering yellow balloon labeled 'your amazing software'."
+            src="/assets/comic-panel-1.png"
+          />
           <div>
             <p class="title">This is you, creating your best software ever.</p>
-            <p>You're in the flow. Focused. The balloon's right there – everything's working.</p>
+            <p>
+              You're in the flow. Focused. The balloon's right there –
+              everything's working.
+            </p>
           </div>
         </div>
         <div class="panel">
-          <img alt="A pink blob-like monster slightly larger than you, labeled 'status meetings', shows up behind you, and holds you back from reaching the balloon." src="/assets/comic-panel-2.png" />
+          <img
+            alt="A pink blob-like monster slightly larger than you, labeled 'status meetings', shows up behind you, and holds you back from reaching the balloon."
+            src="/assets/comic-panel-2.png"
+          />
           <div>
             <p class="title">But then the real world starts creeping in…</p>
-            <p>Meetings. Roadmaps. Distractions. Your focus slips – the software drifts.</p>
+            <p>
+              Meetings. Roadmaps. Distractions. Your focus slips – the software
+              drifts.
+            </p>
           </div>
         </div>
         <div class="panel">
-          <img alt="An even larger orange monster labeled 'infrastructure on fire' shows up behind that monster, and holds you both back." src="/assets/comic-panel-3.png" />
+          <img
+            alt="An even larger orange monster labeled 'infrastructure on fire' shows up behind that monster, and holds you both back."
+            src="/assets/comic-panel-3.png"
+          />
           <div>
             <p class="title">And then shit hits the fan.</p>
-            <p>Infra's on fire. You're no longer building – you're firefighting.</p>
+            <p>
+              Infra's on fire. You're no longer building – you're firefighting.
+            </p>
           </div>
         </div>
         <div class="panel">
-          <img alt="A fourth, giant monster labeled 'migration hell' wraps one arm around the whole cast, and takes the balloon with the other." src="/assets/comic-panel-4.png" />
+          <img
+            alt="A fourth, giant monster labeled 'migration hell' wraps one arm around the whole cast, and takes the balloon with the other."
+            src="/assets/comic-panel-4.png"
+          />
           <div>
             <p class="title">Now you're here. Stuck in migration hell.</p>
-            <p>Everything's tangled. Progress is gone. And your dream? Out of reach.</p>
+            <p>
+              Everything's tangled. Progress is gone. And your dream? Out of
+              reach.
+            </p>
           </div>
         </div>
       </div>
@@ -172,20 +223,40 @@ const pains: Pain[] = [
 
       <div class="strip">
         <div class="panel">
-          <img alt="You reaching for a nearby hovering yellow balloon labeled 'your amazing software'." src="/assets/comic-panel-1.png" />
-          <p class="title">This is still you, creating your best software ever.</p>
+          <img
+            alt="You reaching for a nearby hovering yellow balloon labeled 'your amazing software'."
+            src="/assets/comic-panel-1.png"
+          />
+          <p class="title">
+            This is still you, creating your best software ever.
+          </p>
         </div>
         <div class="panel">
-          <img alt="You hugging the balloon labeled 'your amazing software'." src="/assets/comic-panel-5.png" />
+          <img
+            alt="You hugging the balloon labeled 'your amazing software'."
+            src="/assets/comic-panel-5.png"
+          />
           <p>Only now, you're not fighting the cloud to do it.</p>
         </div>
         <div class="panel">
-          <img alt="You hugging the balloon, now labeled 'your greatest feature'." src="/assets/comic-panel-6.png" />
-          <p>Setup is simple, changes are safe, and everything just flows smoooothly.</p>
+          <img
+            alt="You hugging the balloon, now labeled 'your greatest feature'."
+            src="/assets/comic-panel-6.png"
+          />
+          <p>
+            Setup is simple, changes are safe, and everything just flows
+            smoooothly.
+          </p>
         </div>
         <div class="panel">
-          <img alt="You hugging the balloon, now labeled 'your peace of mind'." src="/assets/comic-panel-7.png" />
-          <p>No fires. No blockers. Just smooth and effortless software delivery – peace of mind every time.</p>
+          <img
+            alt="You hugging the balloon, now labeled 'your peace of mind'."
+            src="/assets/comic-panel-7.png"
+          />
+          <p>
+            No fires. No blockers. Just smooth and effortless software delivery
+            – peace of mind every time.
+          </p>
         </div>
       </div>
     </section>
@@ -193,8 +264,10 @@ const pains: Pain[] = [
     <section id="promise" class="pitch">
       <div class="background">
         <div class="content">
-          <img alt="Sokkel." src="/assets/logo-monochrome.svg">
-          <h2 class="text">Not just a platform. A promise. Effortless. Worryless. Smooooth.</h2>
+          <img alt="Sokkel." src="/assets/logo-monochrome.svg" />
+          <h2 class="text">
+            Not just a platform. A promise. Effortless. Worryless. Smooooth.
+          </h2>
           <WaitlistButton inverted />
         </div>
       </div>
@@ -203,7 +276,10 @@ const pains: Pain[] = [
     <section id="status" class="card">
       <div class="text">
         <h2 class="title"><span aria-hidden="true">🟢</span> Building mode</h2>
-        <p class="body">We are currently building, testing, and validating the beta version of Sokkel and onboarding pilots.</p>
+        <p class="body">
+          We are currently building, testing, and validating the beta version of
+          Sokkel and onboarding pilots.
+        </p>
       </div>
       <WaitlistButton wide={true} />
     </section>
@@ -212,7 +288,7 @@ const pains: Pain[] = [
   <Footer
     links={[
       { href: '/about-us', text: 'About us' },
-      { href: waitlistUrl, text: 'Join waitlist' }
+      { href: waitlistUrl, text: 'Join waitlist' },
     ]}
   />
 </Layout>
@@ -220,14 +296,17 @@ const pains: Pain[] = [
 <style>
   main {
     display: flex;
+    align-items: center;
     flex-direction: column;
-    gap: calc(var(--spacing)*32);
+    gap: calc(var(--spacing) * 32);
   }
+</style>
 
+<style>
   #hero {
     display: flex;
     flex-direction: column;
-    gap: calc(var(--spacing)*8);
+    gap: calc(var(--spacing) * 8);
     align-items: center;
     text-align: center;
 
@@ -248,7 +327,7 @@ const pains: Pain[] = [
 
   .card {
     border-radius: var(--radius-2xl);
-    padding: calc(var(--spacing)*6);
+    padding: calc(var(--spacing) * 6);
   }
 
   #stacky-intro {
@@ -329,7 +408,6 @@ const pains: Pain[] = [
     }
   }
 
-
   #pains {
     h2 {
       font-weight: var(--font-weight-extrabold);
@@ -347,7 +425,11 @@ const pains: Pain[] = [
         display: flex;
         flex-direction: column;
         gap: calc(var(--spacing) * 2);
-        background: linear-gradient(270deg, hsl(0, 89%, 96%) 0%, hsl(0, 84%, 90%) 100%);
+        background: linear-gradient(
+          270deg,
+          hsl(0, 89%, 96%) 0%,
+          hsl(0, 84%, 90%) 100%
+        );
 
         .title {
           margin: 0;
@@ -376,7 +458,13 @@ const pains: Pain[] = [
           }
 
           a:hover {
-            background: linear-gradient(0deg, var(--color-base-background-alpha-80) 0%, var(--color-base-background-alpha-80) 100%), var(--color-base-primary);
+            background:
+              linear-gradient(
+                0deg,
+                var(--color-base-background-alpha-80) 0%,
+                var(--color-base-background-alpha-80) 100%
+              ),
+              var(--color-base-primary);
           }
         }
       }
