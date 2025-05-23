@@ -7,12 +7,26 @@ body {
    */
   --spacing: 0.25rem;
 
+  /*
+   * Font weights go here.
+   */
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
 
+  /*
+   * Text sizes go here.
+   *
+   * For small ("sm") text "leading normal", set both font-size and line-height to their respective "sm" values:
+   *   font-size: var(--text-base-font-size);
+   *   line-height: var(--text-base-line-height);
+   *
+   * For "leading none", instead set both font-size and line-height to the font-size's "sm" value:
+   *   font-size: var(--text-base-font-size);
+   *   line-height: var(--text-base-line-height);
+   */
   --text-base-font-size: 1rem;
   --text-base-line-height: 1.5rem;
 
@@ -34,6 +48,9 @@ body {
   --text-6xl-font-size: 3.75rem;
   --text-6xl-line-height: 3.75rem;
 
+  /*
+   * Radius sizes go here.
+   */
   --radius-xs: 0.125rem;
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
@@ -41,7 +58,9 @@ body {
   --radius-xl: 0.875rem;
   --radius-2xl: 1rem;
 
-  /* Theme-independent colors go here. */
+  /*
+   * Theme-independent colors go here.
+   */
   --color-black: hsl(0, 0%, 0%);
 
   /* Light mode colors go here. */
