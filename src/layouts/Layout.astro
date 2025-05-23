@@ -174,7 +174,8 @@ const canonical = new URL(path, Astro.site);
     background-color: var(--color-base-background);
 
     @media (min-width: 600px) {
-      margin-block: 2rem;
+      margin-block: calc(var(--spacing)*8);
+      padding-block: calc(var(--spacing)*8);
       border-radius: 24px;
     }
   }
