@@ -8,6 +8,17 @@ body {
   --spacing: 0.25rem;
 
   /*
+   * Page breakpoints go here.
+   *
+   * NB: CSS variables cannot be used in @media selectors.
+   */
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem;
+
+  /*
    * Font weights go here.
    */
   --font-weight-normal: 400;

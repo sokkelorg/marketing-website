@@ -94,27 +94,32 @@ const pains: Pain[] = [
 
   <main>
     <section id="hero">
-      <h1>Effortless<br />software<br />delivery</h1>
-      <h2>
-        The AI-powered <span aria-hidden="true">✨</span> platform that turns cloud
-        complexity into clarity.
-      </h2>
-      <WaitlistButton />
-    </section>
+      <div id="headline">
+        <h1>Effortless<br />software<br />delivery</h1>
+        <div class="subtitle">
+          <h2>
+            The AI-powered <span aria-hidden="true">✨</span> platform that turns<br />cloud complexity into clarity.
+          </h2>
+          <WaitlistButton />
+        </div>
+      </div>
 
-    <section id="stacky-intro">
-      <img class="stacky" alt="Stacky." src="/assets/stacky.svg" />
-      <div class="speech-bubble">
-        <img
-          alt="Speech bubble arrow pointing to Stacky."
-          class="arrow"
-          src="/assets/speech-bubble-arrow.svg"
-        />
-        <p class="card message">
-          Hi <span aria-hidden="true">👋</span> I'm Stacky – your AI sidekick for
-          effortless software delivery. I keep things tidy, tuned, and tantrum-free.
-          You dream it, I'll keep it running.
-        </p>
+      <div id="stacky-intro">
+        <div class="content">
+          <img class="stacky" alt="Stacky." src="/assets/stacky.svg" />
+          <div class="speech-bubble">
+            <img
+              alt="Speech bubble arrow pointing to Stacky."
+              class="arrow"
+              src="/assets/speech-bubble-arrow.svg"
+            />
+            <p class="card message">
+              Hi <span aria-hidden="true">👋</span> I'm Stacky – your AI sidekick
+              for effortless software delivery. I keep things tidy, tuned, and tantrum-free.
+              You dream it, I'll keep it running.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -303,60 +308,99 @@ const pains: Pain[] = [
 </style>
 
 <style>
-  #hero {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--spacing) * 8);
-    align-items: center;
-    text-align: center;
-
-    h1 {
-      margin: 0;
-      font-weight: var(--font-weight-extrabold);
-      font-size: var(--text-6xl-font-size);
-      line-height: var(--text-6xl-line-height);
-    }
-
-    h2 {
-      margin: 0;
-      font-weight: var(--font-weight-medium);
-      font-size: var(--text-xl-font-size);
-      line-height: var(--text-xl-line-height);
-    }
-  }
-
   .card {
     border-radius: var(--radius-2xl);
     padding: calc(var(--spacing) * 6);
   }
 
-  #stacky-intro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: calc(var(--spacing) * 6);
+  #hero {
+    width: 100%;
+    display: grid;
+    gap: calc(var(--spacing) * 8);
 
-    .stacky {
-      width: 75%;
+    @media (min-width: 40rem) {
+      grid-template-columns: 1fr 1fr;
+      height: 65dvh;
+      max-height: 65dvh;
     }
 
-    .speech-bubble {
+    #headline {
       display: flex;
       flex-direction: column;
+      gap: calc(var(--spacing) * 8);
       align-items: center;
+      text-align: center;
 
-      .arrow {
-        margin-bottom: -8px;
+      @media (min-width: 40rem) {
+        align-items: start;
+        justify-content: space-between;
+        text-align: start;
       }
 
-      .message {
+      h1 {
         margin: 0;
-        background-color: var(--color-gray-100);
+        font-weight: var(--font-weight-extrabold);
+        font-size: var(--text-6xl-font-size);
+        line-height: var(--text-6xl-line-height);
+      }
+
+      .subtitle {
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--spacing) * 8);
+        align-items: center;
+        @media (min-width: 40rem) {
+          align-items: start;
+        }
+
+        h2 {
+          margin: 0;
+          font-weight: var(--font-weight-medium);
+          font-size: var(--text-xl-font-size);
+          line-height: var(--text-xl-line-height);
+        }
+      }
+    }
+
+    #stacky-intro {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .content {
+        max-width: 18rem;
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--spacing) * 6);
+        align-items: center;
+
+        .stacky {
+          width: 75%;
+          @media (min-width: 40rem) {
+            width: 100%;
+          }
+        }
+
+        .speech-bubble {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .arrow {
+            margin-bottom: -8px;
+          }
+
+          .message {
+            margin: 0;
+            background-color: var(--color-gray-100);
+          }
+        }
       }
     }
   }
 
   .pitch {
+    width: 100%;
     overflow: hidden;
     border-radius: var(--radius-2xl);
 
@@ -388,6 +432,7 @@ const pains: Pain[] = [
 
         .body {
           margin: 0;
+          max-width: 48rem;
           font-weight: var(--font-weight-bold);
           font-size: var(--text-2xl-font-size);
           line-height: var(--text-2xl-line-height);
@@ -420,6 +465,12 @@ const pains: Pain[] = [
 
       display: grid;
       gap: calc(var(--spacing) * 4);
+      @media (min-width: 40rem) {
+        grid-template-columns: 1fr 1fr;
+      }
+      @media (min-width: 64rem) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
 
       .pain {
         display: flex;
@@ -495,12 +546,17 @@ const pains: Pain[] = [
       display: grid;
       gap: calc(var(--spacing) * 8);
 
-      .panel {
-        display: grid;
-        gap: calc(var(--spacing) * 2);
+      @media (min-width: 40rem) {
+        grid-template-columns: 1fr 1fr;
+      }
+      @media (min-width: 64rem) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
 
+      .panel {
         img {
           border: 3px solid var(--color-black);
+          margin-bottom: calc(var(--spacing) * 2);
         }
 
         p {
@@ -517,6 +573,7 @@ const pains: Pain[] = [
   }
 
   #status {
+    max-width: 40rem;
     border: 2px solid var(--color-base-border);
     display: grid;
     gap: calc(var(--spacing) * 8);
