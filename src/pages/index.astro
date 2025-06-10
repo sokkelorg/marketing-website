@@ -8,7 +8,7 @@ import { waitlistUrl } from '../waitlist';
 type PainSource = { title: string; url: string };
 type Pain = { title: string; body: string; sources: PainSource[] };
 
-const pains: Pain[] = [
+const pains = [
   {
     title: 'Platform-talent crunch',
     body: "37 % of firms still can't hire the DevOps skills they need, stalling roadmaps and inflating salaries.",
@@ -53,7 +53,7 @@ const pains: Pain[] = [
       },
     ],
   },
-];
+] satisfies Pain[];
 ---
 
 <Layout
@@ -144,13 +144,48 @@ const pains: Pain[] = [
       </div>
     </section>
 
-    <section id="mission" class="pitch">
+    <section id="mission" class="pitch flow">
       <div class="background">
         <div class="content">
           <h2 class="title">We are on a mission</h2>
           <p class="ingress">To set a new Software Delivery standard for SMEs</p>
           <p class="body">Today, small teams are blocked by the complexity of just keeping software running. Sokkel automates the busywork and provides instant clarity, so they can stop firefighting and build with confidence.</p>
           <WaitlistButton inverted />
+        </div>
+      </div>
+    </section>
+
+    <section id="core-components">
+      <div id="simple-setups" class="component flow">
+        <div class="background">
+          <div class="content">
+            <h2 class="title">Simple setups</h2>
+            <p class="body">From chaos to clarity in minutes. Migrations without headaches.</p>
+          </div>
+        </div>
+      </div>
+      <div id="insight-driven" class="component flow">
+        <div class="background">
+          <div class="content">
+            <h2 class="title">Insight-driven</h2>
+            <p class="body">Live insights, full clarity. Know what's running and how it all fits together.</p>
+          </div>
+        </div>
+      </div>
+      <div id="always-optimized" class="component flow">
+        <div class="background">
+          <div class="content">
+            <h2 class="title">Always optimized</h2>
+            <p class="body">Stacky's always on. Tuning your setup and keeping things smooth.</p>
+          </div>
+        </div>
+      </div>
+      <div id="change-aware" class="component flow">
+        <div class="background">
+          <div class="content">
+            <h2 class="title">Simple setups</h2>
+            <p class="body">Stay effortlessly in sync. Every change surfaced, exactly when it matters.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -285,7 +320,7 @@ const pains: Pain[] = [
       </div>
     </section>
 
-    <section id="promise" class="pitch">
+    <section id="promise" class="pitch flow">
       <div class="background">
         <div class="content">
           <img alt="Sokkel." src="/assets/logo-monochrome.svg" />
@@ -423,49 +458,53 @@ const pains: Pain[] = [
   }
 
   .pitch {
-    width: 100%;
-    overflow: hidden;
+    .content {
+      padding-block: calc(var(--spacing) * 32);
+      padding-inline: calc(var(--spacing) * 6);
+
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--spacing) * 6);
+      align-items: center;
+
+      .title {
+        margin: 0;
+        font-weight: var(--font-weight-medium);
+        font-size: var(--text-base-font-size);
+        line-height: var(--text-base-line-height);
+      }
+
+      .ingress {
+        margin: 0;
+        max-width: 48rem;
+        font-weight: var(--font-weight-extrabold);
+        font-size: var(--text-3xl-font-size);
+        line-height: var(--text-3xl-line-height);
+      }
+
+      .body {
+        font-weight: var(--font-weight-normal);
+        font-size: var(--text-sm-font-size);
+        line-height: var(--text-sm-line-height);
+      }
+    }
+  }
+
+  .flow {
     border-radius: var(--radius-2xl);
+    overflow: hidden;
 
     .background {
+      height: 100%;
       background-size: calc(100% + 20px) calc(100% + 20px);
       background-position: -10px -10px;
       background-repeat: no-repeat;
 
       .content {
-        padding-block: calc(var(--spacing) * 32);
-        padding-inline: calc(var(--spacing) * 6);
-
         /* Dim the animated background a bit to make the text more readable. */
         background-color: var(--color-base-primary-alpha-60);
         color: var(--color-base-background);
-
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        gap: calc(var(--spacing) * 6);
-        align-items: center;
-
-        .title {
-          margin: 0;
-          font-weight: var(--font-weight-medium);
-          font-size: var(--text-base-font-size);
-          line-height: var(--text-base-line-height);
-        }
-
-        .ingress {
-          margin: 0;
-          max-width: 48rem;
-          font-weight: var(--font-weight-extrabold);
-          font-size: var(--text-3xl-font-size);
-          line-height: var(--text-3xl-line-height);
-        }
-
-        .body {
-          font-weight: var(--font-weight-normal);
-          font-size: var(--text-sm-font-size);
-          line-height: var(--text-sm-line-height);
-        }
       }
     }
   }
@@ -479,6 +518,58 @@ const pains: Pain[] = [
   #promise {
     .background {
       background-image: url(/assets/flow-promise.gif);
+    }
+  }
+
+  #core-components {
+    display: grid;
+    gap: calc(var(--spacing) * 4);
+    @media (min-width: 40rem) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (min-width: 64rem) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .component {
+      .content {
+        padding-block: calc(var(--spacing)*20);
+        padding-inline: calc(var(--spacing)*8);
+
+        display: grid;
+        gap: calc(var(--spacing)*2);
+        text-align: center;
+
+        .title {
+          margin: 0;
+          font-size: var(--text-base-font-size);
+          line-height: var(--text-base-line-height);
+          font-weight: var(--font-weight-bold);
+        }
+
+        .body {
+          margin: 0;
+          font-size: var(--text-2xl-font-size);
+          line-height: var(--text-2xl-line-height);
+          font-weight: var(--font-weight-normal);
+        }
+      }
+
+      &#simple-setups .background {
+        background-image: url(/assets/flow-simple-setups.gif);
+      };
+
+      &#insight-driven .background {
+        background-image: url(/assets/flow-insight-driven.gif);
+      }
+
+      &#always-optimized .background {
+        background-image: url(/assets/flow-always-optimized.gif);
+      }
+
+      &#change-aware .background {
+        background-image: url(/assets/flow-change-aware.gif);
+      }
     }
   }
 
