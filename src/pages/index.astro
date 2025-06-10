@@ -205,52 +205,6 @@ import { waitlistUrl } from '../waitlist';
       </div>
     </section>
 
-    <section class="comic">
-      <div class="setup">
-        <h2>So, let's tell the story again.</h2>
-        <p>This time with Sokkel and Stacky in the mix.</p>
-      </div>
-
-      <div class="strip">
-        <div class="panel">
-          <img
-            alt="You reaching for a nearby hovering yellow balloon labeled 'your amazing software'."
-            src="/assets/comic-panel-1.png"
-          />
-          <p class="title">
-            This is still you, creating your best software ever.
-          </p>
-        </div>
-        <div class="panel">
-          <img
-            alt="You hugging the balloon labeled 'your amazing software'."
-            src="/assets/comic-panel-5.png"
-          />
-          <p>Only now, you're not fighting the cloud to do it.</p>
-        </div>
-        <div class="panel">
-          <img
-            alt="You hugging the balloon, now labeled 'your greatest feature'."
-            src="/assets/comic-panel-6.png"
-          />
-          <p>
-            Setup is simple, changes are safe, and everything just flows
-            smoooothly.
-          </p>
-        </div>
-        <div class="panel">
-          <img
-            alt="You hugging the balloon, now labeled 'your peace of mind'."
-            src="/assets/comic-panel-7.png"
-          />
-          <p>
-            No fires. No blockers. Just smooth and effortless software delivery
-            – peace of mind every time.
-          </p>
-        </div>
-      </div>
-    </section>
-
     <section id="promise" class="pitch flow">
       <div class="background">
         <div class="content">
@@ -389,6 +343,8 @@ import { waitlistUrl } from '../waitlist';
   }
 
   .pitch {
+    width: 100%;
+
     .content {
       padding-block: calc(var(--spacing) * 32);
       padding-inline: calc(var(--spacing) * 6);
@@ -440,20 +396,16 @@ import { waitlistUrl } from '../waitlist';
     }
   }
 
-  #promise {
-    .background {
-      background-image: url(/assets/flow-promise.gif);
-    }
+  #promise .background {
+    background-image: url(/assets/flow-promise.gif);
   }
 
   #abstract {
     display: grid;
     gap: calc(var(--spacing)*4);
 
-    #mission {
-      .background {
-        background-image: url(/assets/flow-mission.gif);
-      }
+    #mission .background {
+      background-image: url(/assets/flow-mission.gif);
     }
 
     #core-components {
