@@ -484,7 +484,7 @@ import { waitlistUrl } from '../waitlist';
 
     .strip {
       display: grid;
-      gap: calc(var(--spacing) * 8);
+      row-gap: calc(var(--spacing) * 8);
 
       @media (min-width: 40rem) {
         grid-template-columns: 1fr 1fr;
@@ -495,6 +495,7 @@ import { waitlistUrl } from '../waitlist';
 
       .panel {
         img {
+          box-sizing: content-box;
           border: 3px solid var(--color-black);
           margin-bottom: calc(var(--spacing) * 2);
         }
