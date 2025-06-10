@@ -147,11 +147,9 @@ const pains: Pain[] = [
     <section id="mission" class="pitch">
       <div class="background">
         <div class="content">
-          <h2 class="title">Our mission is simple</h2>
-          <p class="body">
-            To set a new standard for software delivery — with simple setups,
-            always-optimized, insight-driven, and change-aware environments.
-          </p>
+          <h2 class="title">We are on a mission</h2>
+          <p class="ingress">To set a new Software Delivery standard for SMEs</p>
+          <p class="body">Today, small teams are blocked by the complexity of just keeping software running. Sokkel automates the busywork and provides instant clarity, so they can stop firefighting and build with confidence.</p>
           <WaitlistButton inverted />
         </div>
       </div>
@@ -291,7 +289,7 @@ const pains: Pain[] = [
       <div class="background">
         <div class="content">
           <img alt="Sokkel." src="/assets/logo-monochrome.svg" />
-          <h2 class="text">
+          <h2 class="ingress">
             Not just a platform. A promise. Effortless. Worryless. Smooooth.
           </h2>
           <WaitlistButton inverted />
@@ -450,17 +448,23 @@ const pains: Pain[] = [
 
         .title {
           margin: 0;
-          font-weight: var(--font-weight-normal);
+          font-weight: var(--font-weight-medium);
           font-size: var(--text-base-font-size);
           line-height: var(--text-base-line-height);
         }
 
-        .body {
+        .ingress {
           margin: 0;
           max-width: 48rem;
-          font-weight: var(--font-weight-bold);
-          font-size: var(--text-2xl-font-size);
-          line-height: var(--text-2xl-line-height);
+          font-weight: var(--font-weight-extrabold);
+          font-size: var(--text-3xl-font-size);
+          line-height: var(--text-3xl-line-height);
+        }
+
+        .body {
+          font-weight: var(--font-weight-normal);
+          font-size: var(--text-sm-font-size);
+          line-height: var(--text-sm-line-height);
         }
       }
     }
