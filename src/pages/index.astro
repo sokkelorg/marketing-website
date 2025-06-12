@@ -44,29 +44,28 @@ import { waitlistUrl } from '../waitlist';
 
   <main>
     <section id="hero">
-      <div id="headline">
-        <h1>Effortless<br />Software<br />Delivery</h1>
+      <h1 class="title">Effortless<br />Software<br />Delivery</h1>
+      <div class="tag">
         <div class="subtitle">
           <h2>
-            The AI-powered <span aria-hidden="true">✨</span> Software Delivery platform that turns complexity into clarity.
+            The AI-powered <span aria-hidden="true">✨</span> Software<br />Delivery platform that turns<br />complexity into clarity.
           </h2>
           <WaitlistButton />
         </div>
-      </div>
-
-      <div id="stacky-intro">
-        <div class="content">
-          <img class="stacky" alt="Stacky." src="/assets/stacky.svg" />
-          <div class="speech-bubble">
-            <img
-              aria-hidden="true"
-              alt="Speech bubble arrow pointing to Stacky."
-              class="arrow"
-              src="/assets/speech-bubble-arrow.svg"
-            />
-            <p class="card message">
-              Hi <span aria-hidden="true">👋</span> I'm Stacky, your AI-powered Software Delivery sidekick.
-            </p>
+        <div class="stacky-intro">
+          <div class="content">
+            <img class="stacky" alt="Stacky." src="/assets/stacky.svg" />
+            <div class="speech-bubble">
+              <img
+                aria-hidden="true"
+                alt="Speech bubble arrow pointing to Stacky."
+                class="arrow"
+                src="/assets/speech-bubble-arrow.svg"
+              />
+              <p class="card message">
+                Hi <span aria-hidden="true">👋</span> I'm Stacky, your AI-powered Software Delivery sidekick.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -174,32 +173,39 @@ import { waitlistUrl } from '../waitlist';
 
     @media (min-width: 40rem) {
       grid-template-columns: 1fr 1fr;
-      height: 65dvh;
-      max-height: 65dvh;
     }
 
-    #headline {
+    .title {
+      margin: 0;
+      font-weight: var(--font-weight-extrabold);
+      font-size: var(--text-6xl-font-size);
+      line-height: 100%;
+
+      text-align: center;
+      @media (min-width: 40rem) {
+          text-align: start;
+      }
+
+      @media(min-width: 60rem) {
+        font-size: var(--text-9xl-font-size);
+      }
+
+      background-clip: text;
+      color: transparent;
+      background-image: url('/assets/flow-title.gif');
+    }
+
+    .tag {
       display: flex;
       flex-direction: column;
-      gap: calc(var(--spacing) * 8);
+      gap: calc(var(--spacing) * 27);
       align-items: center;
       text-align: center;
 
       @media (min-width: 40rem) {
-        align-items: start;
+        align-items: end;
         justify-content: space-between;
         text-align: start;
-      }
-
-      h1 {
-        margin: 0;
-        font-weight: var(--font-weight-extrabold);
-        font-size: var(--text-6xl-font-size);
-        line-height: var(--text-6xl-line-height);
-
-        background-clip: text;
-        color: transparent;
-        background-image: url('/assets/flow-title.gif');
       }
 
       .subtitle {
@@ -208,7 +214,8 @@ import { waitlistUrl } from '../waitlist';
         gap: calc(var(--spacing) * 8);
         align-items: center;
         @media (min-width: 40rem) {
-          align-items: start;
+          text-align: end;
+          align-items: end;
         }
 
         h2 {
@@ -218,41 +225,52 @@ import { waitlistUrl } from '../waitlist';
           line-height: var(--text-xl-line-height);
         }
       }
-    }
 
-    #stacky-intro {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      .content {
-        max-width: 18rem;
-        display: flex;
-        flex-direction: column;
-        gap: calc(var(--spacing) * 6);
-        align-items: center;
-
-        .stacky {
-          width: 75%;
-          @media (min-width: 40rem) {
-            width: 100%;
-          }
-        }
-
-        .speech-bubble {
+      .stacky-intro {
           display: flex;
-          flex-direction: column;
-          align-items: center;
 
-          .arrow {
-            margin-bottom: -8px;
-          }
+          .content {
+              max-width: 18rem;
+              display: flex;
+              flex-direction: column;
+              gap: calc(var(--spacing) * 6);
+              align-items: center;
 
-          .message {
-            margin: 0;
-            background-color: var(--color-gray-100);
+              @media(min-width: 40rem) {
+                  flex-direction: row-reverse;
+              }
+
+              .stacky {
+                  width: 75%;
+                  @media (min-width: 40rem) {
+                      width: 7.5rem;
+                  }
+              }
+
+              .speech-bubble {
+                  display: flex;
+                  flex-direction: column;
+                  @media(min-width: 40rem) {
+                      flex-direction: row-reverse;
+                  }
+                  align-items: center;
+
+                  .arrow {
+                      position: relative;
+                      top: 8px;
+
+                      @media(min-width: 40rem) {
+                          top: unset;
+                          right: 8px;
+                      }
+                  }
+
+                  .message {
+                      margin: 0;
+                      background-color: var(--color-gray-100);
+                  }
+              }
           }
-        }
       }
     }
   }
