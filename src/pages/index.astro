@@ -142,69 +142,6 @@ import { waitlistUrl } from '../waitlist';
       </div>
     </section>
 
-    <section class="comic">
-      <div class="setup">
-        <h2>Let us tell you a story we hear way too often…</h2>
-        <p>
-          The story about everything getting in the way of what you actually
-          wanted to build.
-        </p>
-      </div>
-      <div class="strip">
-        <div class="panel">
-          <img
-            alt="You reaching for a nearby hovering yellow balloon labeled 'your amazing software'."
-            src="/assets/comic-panel-1.png"
-          />
-          <div>
-            <p class="title">This is you, creating your best software ever.</p>
-            <p>
-              You're in the flow. Focused. The balloon's right there –
-              everything's working.
-            </p>
-          </div>
-        </div>
-        <div class="panel">
-          <img
-            alt="A pink blob-like monster slightly larger than you, labeled 'status meetings', shows up behind you, and holds you back from reaching the balloon."
-            src="/assets/comic-panel-2.png"
-          />
-          <div>
-            <p class="title">But then the real world starts creeping in…</p>
-            <p>
-              Meetings. Roadmaps. Distractions. Your focus slips – the software
-              drifts.
-            </p>
-          </div>
-        </div>
-        <div class="panel">
-          <img
-            alt="An even larger orange monster labeled 'infrastructure on fire' shows up behind that monster, and holds you both back."
-            src="/assets/comic-panel-3.png"
-          />
-          <div>
-            <p class="title">And then shit hits the fan.</p>
-            <p>
-              Infra's on fire. You're no longer building – you're firefighting.
-            </p>
-          </div>
-        </div>
-        <div class="panel">
-          <img
-            alt="A fourth, giant monster labeled 'migration hell' wraps one arm around the whole cast, and takes the balloon with the other."
-            src="/assets/comic-panel-4.png"
-          />
-          <div>
-            <p class="title">Now you're here. Stuck in migration hell.</p>
-            <p>
-              Everything's tangled. Progress is gone. And your dream? Out of
-              reach.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="promise" class="pitch flow">
       <div class="background">
         <div class="content">
@@ -457,58 +394,6 @@ import { waitlistUrl } from '../waitlist';
 
         &#change-aware .background {
           background-image: url(/assets/flow-change-aware.gif);
-        }
-      }
-    }
-  }
-
-  .comic {
-    display: grid;
-    gap: calc(var(--spacing) * 16);
-
-    .setup {
-      text-align: center;
-
-      h2 {
-        font-weight: var(--font-weight-extrabold);
-        font-size: var(--text-4xl-font-size);
-        line-height: var(--text-4xl-line-height);
-      }
-
-      p {
-        color: var(--color-gray-400);
-        font-size: var(--text-sm-font-size);
-        line-height: var(--text-sm-line-height);
-      }
-    }
-
-    .strip {
-      display: grid;
-      row-gap: calc(var(--spacing) * 8);
-
-      @media (min-width: 40rem) {
-        grid-template-columns: 1fr 1fr;
-      }
-      @media (min-width: 64rem) {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-      }
-
-      .panel {
-        img {
-          box-sizing: content-box;
-          border: 3px solid var(--color-black);
-          margin-bottom: calc(var(--spacing) * 2);
-        }
-
-        p {
-          margin: 0;
-          padding-inline: var(--spacing);
-          font-size: var(--text-sm-font-size);
-          line-height: var(--text-sm-line-height);
-        }
-
-        .title {
-          font-weight: var(--font-weight-bold);
         }
       }
     }
