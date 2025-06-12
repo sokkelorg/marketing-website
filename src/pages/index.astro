@@ -178,17 +178,17 @@ import { waitlistUrl } from '../waitlist';
     .title {
       margin: 0;
       font-weight: var(--font-weight-extrabold);
-      font-size: var(--text-6xl-font-size);
       line-height: 100%;
+      font-size: var(--text-6xl-font-size);
+      @media(min-width: 60rem) {
+          font-size: var(--text-9xl-font-size);
+      }
 
       text-align: center;
       @media (min-width: 40rem) {
           text-align: start;
       }
 
-      @media(min-width: 60rem) {
-        font-size: var(--text-9xl-font-size);
-      }
 
       background-clip: text;
       color: transparent;
@@ -233,6 +233,9 @@ import { waitlistUrl } from '../waitlist';
           .content {
               max-width: 18rem;
               @media(min-width: 40rem) {
+                max-width: 100%;
+              }
+              @media(min-width: 60rem) {
                 max-width: 75%;
               }
 
