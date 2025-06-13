@@ -62,8 +62,14 @@ body {
   --text-4xl-font-size: 2.25rem;
   --text-4xl-line-height: 2.5rem;
 
+  --text-5xl-font-size: 3rem;
+  --text-5xl-line-height: 3.6rem;
+
   --text-6xl-font-size: 3.75rem;
   --text-6xl-line-height: 3.75rem;
+
+  --text-8xl-font-size: 6rem;
+  --text-8xl-line-height: 7.2rem;
 
   --text-9xl-font-size: 8rem;
 
@@ -76,6 +82,7 @@ body {
   --radius-lg: 0.625rem;
   --radius-xl: 0.875rem;
   --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
 
   /*
    * Theme-independent colors go here.
