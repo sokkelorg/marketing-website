@@ -505,6 +505,7 @@ import { waitlistUrl } from '../waitlist';
     gap: calc(var(--spacing) * 4);
 
     .problem {
+      width: 22rem;
       padding: calc(var(--spacing) * 8);
       border-radius: var(--radius-3xl);
       border: 1px solid var(--color-base-border);
@@ -517,6 +518,10 @@ import { waitlistUrl } from '../waitlist';
         margin: 0;
         font-size: var(--text-5xl-font-size);
         line-height: var(--text-5xl-line-height);
+
+        .fancy {
+          font-weight: var(--font-weight-medium);
+        }
       }
 
       .ingress {
