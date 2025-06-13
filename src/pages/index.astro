@@ -457,42 +457,23 @@ import { waitlistUrl } from '../waitlist';
     }
   }
 
-  .problem {
-    &#software-delivery-is-broken {
-      .fancy {
-        background-color: red;
-      }
-    }
-    &#manual-work-drains-time {
-      .fancy {
-        background-color: orange;
-      }
-    }
-    &#burnout-is-spiking {
-      .fancy {
-        background-color: yellow;
-      }
-    }
-    &#ai-potential-vs-reality {
-      .fancy {
-        background-color: green;
-      }
-    }
-    &#ai-only-helps-with-one-piece {
-      .fancy {
-        background-color: blue;
-      }
+  #problems {
+    display: flex;
+    gap: calc(var(--spacing)*4);
+
+    .problem {
+      padding: calc(var(--spacing)*8);
+      display: grid;
+      gap: calc(var(--spacing)*6);
+      border-radius: var(--radius-2xl);
+
+      &#software-delivery-is-broken .fancy { background-color: red; }
+      &#manual-work-drains-time .fancy { background-color: orange; }
+      &#burnout-is-spiking .fancy { background-color: yellow; }
+      &#ai-potential-vs-reality .fancy { background-color: green; }
+      &#ai-only-helps-with-one-piece .fancy { background-color: blue; }
     }
   }
-  //<div id="ai-potential-vs-reality" class="problem">
-  //<h2 class="title">AI: potential vs. <span class="fancy">reality</span></h2>
-  //<p class="ingress">AI tools promise relief – but often backfire. They generate more code, but also more bugs, rework, and chaos.</p>
-  //<hr />
-  //<div class="stat">
-  //<p class="fancy">67%</p>
-  //<p class="body">spend more time debugging AI-generated code.</p>
-  //</div>
-  //</div>
 
   #status {
     max-width: 40rem;
@@ -512,11 +493,5 @@ import { waitlistUrl } from '../waitlist';
         color: var(--color-base-muted-foreground);
       }
     }
-  }
-</style>
-
-<style>
-  #problems {
-
   }
 </style>
