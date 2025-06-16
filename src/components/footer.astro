@@ -1,4 +1,5 @@
 ---
+import WaitlistButton from './waitlist-button.astro';
 type Props = {
   links: { href: string; text: string }[];
 };
@@ -8,28 +9,56 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer>
-  <img src="/assets/logo.svg" alt="Sokkel." class="logo" />
-  <nav>
-    <a href="#">
-      Take me to the top
-      <img class="arrow" alt="Arrow pointing up." src="/assets/arrow-up.svg" aria-hidden="true">
-    </a>
-    {links.map((link) => (
-      <a href={link.href}>
-        {link.text} <img class="arrow right" alt="Arrow pointing right." aria-hidden="true" src="/assets/arrow-up.svg">
+  <div id="status" class="card">
+    <div class="text">
+      <h2 class="title"><span aria-hidden="true">🟢</span> Building mode</h2>
+      <p class="body">
+        We are currently building, testing, and validating the beta version of
+        Sokkel and onboarding pilots.
+      </p>
+    </div>
+    <WaitlistButton wide={true} />
+  </div>
+  <div class="nav-panel">
+    <img src="/assets/logo.svg" alt="Sokkel." class="logo" />
+    <nav>
+      <a href="#">
+        Take me to the top
+        <img class="arrow" alt="Arrow pointing up." src="/assets/arrow-up.svg" aria-hidden="true">
       </a>
-    ))}
-  </nav>
-  <div id="company-info">
-    <span>&copy; Sokkel AS – {currentYear}</span>
-    <span>Org nr: 935&nbsp;108&nbsp;500</span>
+      {links.map((link) => (
+        <a href={link.href}>
+          {link.text} <img class="arrow right" alt="Arrow pointing right." aria-hidden="true" src="/assets/arrow-up.svg">
+        </a>
+      ))}
+    </nav>
+    <div id="company-info">
+      <span>&copy; Sokkel AS – {currentYear}</span>
+      <span>Org nr: 935&nbsp;108&nbsp;500</span>
+    </div>
   </div>
 </footer>
 
 <style>
   footer {
-    display: grid;
-    gap: calc(var(--spacing) * 12);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing)*12);
+
+    #status {
+      grid-area: status;
+      width: 100%;
+      display: grid;
+      gap: calc(var(--spacing)*6);
+
+      border: 1px solid var(--color-base-border);
+    }
+
+    .nav-panel {
+      grid-area: nav;
+      display: grid;
+      gap: calc(var(--spacing) * 12);
+    }
 
     .logo {
       height: 16px;

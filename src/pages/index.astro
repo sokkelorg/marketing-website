@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/header.astro';
-import WaitlistButton from '../components/waitlist-button.astro';
 import Hero from '../components/hero.astro';
 import Mission from '../components/mission.astro';
 import Problems from '../components/problems.astro';
@@ -51,17 +50,6 @@ import Promise from '../components/promise.astro';
     <Mission />
     <Problems />
     <Promise />
-
-    <section id="status" class="card">
-      <div class="text">
-        <h2 class="title"><span aria-hidden="true">🟢</span> Building mode</h2>
-        <p class="body">
-          We are currently building, testing, and validating the beta version of
-          Sokkel and onboarding pilots.
-        </p>
-      </div>
-      <WaitlistButton wide={true} />
-    </section>
   </main>
 
   <Footer
