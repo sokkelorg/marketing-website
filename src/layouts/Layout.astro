@@ -243,8 +243,12 @@ const canonical = new URL(path, Astro.site);
         margin: 0;
         max-width: 56.25rem;
         font-weight: var(--font-weight-extrabold);
-        font-size: var(--text-6xl-font-size);
-        line-height: var(--text-6xl-line-height);
+        font-size: var(--text-4xl-font-size);
+        line-height: var(--text-4xl-line-height);
+        @media (min-width: 60rem) {
+          font-size: var(--text-6xl-font-size);
+          line-height: var(--text-6xl-line-height);
+        }
       }
 
       .body {
