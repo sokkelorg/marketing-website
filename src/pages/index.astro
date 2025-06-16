@@ -3,10 +3,11 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/header.astro';
 import WaitlistButton from '../components/waitlist-button.astro';
 import Hero from '../components/hero.astro';
-import Abstract from '../components/abstract.astro';
+import Mission from '../components/mission.astro';
 import Problems from '../components/problems.astro';
 import Footer from '../components/footer.astro';
 import { waitlistUrl } from '../waitlist';
+import Promise from '../components/promise.astro';
 ---
 
 <Layout
@@ -47,8 +48,9 @@ import { waitlistUrl } from '../waitlist';
 
   <main>
     <Hero />
-    <Abstract />
+    <Mission />
     <Problems />
+    <Promise />
 
     <section id="status" class="card">
       <div class="text">
