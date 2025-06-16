@@ -194,7 +194,25 @@ const canonical = new URL(path, Astro.site);
       user-focus: none;
     }
   }
+
+  .flow {
+    border-radius: var(--radius-2xl);
+    overflow-x: hidden;
+
+    .background {
+      height: 100%;
+      background-size: calc(100% + 20px) calc(100% + 20px);
+      background-position: -10px -10px;
+      background-repeat: no-repeat;
+
+      .content {
+        /* Dim the animated background a bit to make the text more readable. */
+        height: 100%;
+        background-color: var(--color-base-primary-alpha-60);
+        color: var(--color-base-background);
+      }
+    }
+  }
 </style>
 
 <script is:inline data-goatcounter="https://sokkel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-
