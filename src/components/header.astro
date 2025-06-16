@@ -7,7 +7,7 @@ type Props = {
     icon?: 'arrow' | 'close'; // Defaults to arrow.
     href: string;
     text: string;
-    wideOnly?: boolean
+    wideOnly?: boolean;
   }[];
 };
 
@@ -25,18 +25,27 @@ const { links } = Astro.props;
     <img class="logo" src="/assets/logo.svg" alt="Sokkel." />
   </a>
   <div class="header-links">
-    {links.map(link => {
-      const icon = link.icon === 'close' ? <Close /> :<Arrow direction="right" /> ;
+    {
+      links.map((link) => {
+        const icon =
+          link.icon === 'close' ? <Close /> : <Arrow direction="right" />;
 
-      const rel = link.href.startsWith('/') ? undefined : 'noopener noreferrer';
+        const rel = link.href.startsWith('/')
+          ? undefined
+          : 'noopener noreferrer';
 
-      return (
-        <a class:list={[{ 'wide-only': link.wideOnly }]} href={link.href} rel={rel}>
-          <span>{link.text}</span>
-          {icon}
-        </a>
-      );
-    })}
+        return (
+          <a
+            class:list={[{ 'wide-only': link.wideOnly }]}
+            href={link.href}
+            rel={rel}
+          >
+            <span>{link.text}</span>
+            {icon}
+          </a>
+        );
+      })
+    }
   </div>
 </header>
 
@@ -68,12 +77,12 @@ const { links } = Astro.props;
       flex-direction: column;
       align-items: end;
 
-      gap: calc(var(--spacing)*2);
+      gap: calc(var(--spacing) * 2);
 
       a {
         display: flex;
         align-items: center;
-        gap: calc(var(--spacing)*2);
+        gap: calc(var(--spacing) * 2);
 
         color: var(--color-base-primary);
         text-decoration: none;
@@ -82,15 +91,13 @@ const { links } = Astro.props;
         line-height: 100%;
         font-weight: var(--font-weight-medium);
 
-
-
         &:hover {
           text-decoration: underline;
         }
 
         &.wide-only {
           display: none;
-          @media(min-width: 40rem) {
+          @media (min-width: 40rem) {
             display: flex;
           }
         }
