@@ -218,6 +218,43 @@ const canonical = new URL(path, Astro.site);
       }
     }
   }
+
+  .pitch {
+    width: 100%;
+
+    .content {
+      padding-block: calc(var(--spacing) * 32);
+      padding-inline: calc(var(--spacing) * 6);
+
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--spacing) * 6);
+      align-items: center;
+
+      .title {
+        margin: 0;
+        font-weight: var(--font-weight-medium);
+        font-size: var(--text-lg-font-size);
+        line-height: var(--text-lg-line-height);
+      }
+
+      .ingress {
+        margin: 0;
+        max-width: 56.25rem;
+        font-weight: var(--font-weight-extrabold);
+        font-size: var(--text-6xl-font-size);
+        line-height: var(--text-6xl-line-height);
+      }
+
+      .body {
+        max-width: 38.875rem;
+        font-weight: var(--font-weight-normal);
+        font-size: var(--text-lg-font-size);
+        line-height: var(--text-lg-line-height);
+      }
+    }
+  }
 </style>
 
 <script is:inline data-goatcounter="https://sokkel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
