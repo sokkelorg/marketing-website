@@ -31,7 +31,7 @@ const { links } = Astro.props;
       const rel = link.href.startsWith('/') ? undefined : 'noopener noreferrer';
 
       return (
-        <a class:list={[{ 'wide-only': link.wideOnly }]} href={link.href}>
+        <a class:list={[{ 'wide-only': link.wideOnly }]} href={link.href} rel={rel}>
           <span>{link.text}</span>
           {icon}
         </a>
