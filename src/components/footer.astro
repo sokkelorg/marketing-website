@@ -9,7 +9,8 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer>
-  <div id="status" class="card">
+  <div class="nav-panels">
+  <div class="card building-status">
     <div class="text">
       <h2 class="title"><span aria-hidden="true">🟢</span> Building mode</h2>
       <p class="body">
@@ -32,61 +33,69 @@ const currentYear = new Date().getFullYear();
         </a>
       ))}
     </nav>
-    <div id="company-info">
-      <span>&copy; Sokkel AS – {currentYear}</span>
-      <span>Org nr: 935&nbsp;108&nbsp;500</span>
-    </div>
+  </div>
+  </div>
+  <div id="company-info">
+    <span>&copy; Sokkel AS – {currentYear}</span>
+    <span>Org nr: 935&nbsp;108&nbsp;500</span>
   </div>
 </footer>
 
 <style>
   footer {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--spacing)*12);
+    display: grid;
+    gap: calc(var(--spacing)*8);
 
-    #status {
-      grid-area: status;
-      width: 100%;
-      display: grid;
-      gap: calc(var(--spacing)*6);
-
-      border: 1px solid var(--color-base-border);
-    }
-
-    .nav-panel {
-      grid-area: nav;
-      display: grid;
-      gap: calc(var(--spacing) * 12);
-    }
-
-    .logo {
-      height: 16px;
-      width: 106px;
-    }
-
-    nav {
+    .nav-panels {
       display: flex;
       flex-direction: column;
-      gap: calc(var(--spacing) * 4);
+      gap: calc(var(--spacing)*12);
+      justify-content: space-between;
 
-      font-weight: var(--font-weight-medium);
-      font-size: var(--text-sm-font-size);
-      line-height: var(--text-sm-font-size);
-
-      color: var(--color-blue-500);
-      a:visited {
-        color: var(--color-blue-500);
+      @media (min-width: 60rem) {
+        flex-direction: row-reverse;
       }
 
-      a {
+      .building-status {
+        display: grid;
+        gap: calc(var(--spacing)*6);
+
+        border: 1px solid var(--color-base-border);
+      }
+
+      .nav-panel {
+        display: grid;
+        gap: calc(var(--spacing) * 12);
+      }
+
+      .logo {
+        height: 16px;
+        width: 106px;
+      }
+
+      nav {
         display: flex;
-        gap: calc(var(--spacing) * 2);
-        align-items: center;
-      }
+        flex-direction: column;
+        gap: calc(var(--spacing) * 4);
 
-      .arrow.right {
-        transform: rotate(90deg);
+        font-weight: var(--font-weight-medium);
+        font-size: var(--text-sm-font-size);
+        line-height: var(--text-sm-font-size);
+
+        color: var(--color-blue-500);
+        a:visited {
+          color: var(--color-blue-500);
+        }
+
+        a {
+          display: flex;
+          gap: calc(var(--spacing) * 2);
+          align-items: center;
+        }
+
+        .arrow.right {
+          transform: rotate(90deg);
+        }
       }
     }
 
