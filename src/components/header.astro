@@ -1,8 +1,10 @@
 ---
 import Arrow from './arrow.astro';
+import Close from './close.astro';
 
 type Props = {
   links: {
+    icon?: 'arrow' | 'close'; // Defaults to arrow.
     href: string;
     text: string;
     wideOnly?: boolean
@@ -23,12 +25,18 @@ const { links } = Astro.props;
     <img class="logo" src="/assets/logo.svg" alt="Sokkel." />
   </a>
   <div class="header-links">
-    {links.map(link => (
-      <a class:list={[{ 'wide-only': link.wideOnly }]} href={link.href}>
-        <span>{link.text}</span>
-        <Arrow direction="right" />
-      </a>
-    ))}
+    {links.map(link => {
+      const icon = link.icon === 'close' ? <Close /> :<Arrow direction="right" /> ;
+
+      const rel = link.href.startsWith('/') ? undefined : 'noopener noreferrer';
+
+      return (
+        <a class:list={[{ 'wide-only': link.wideOnly }]} href={link.href}>
+          <span>{link.text}</span>
+          {icon}
+        </a>
+      );
+    })}
   </div>
 </header>
 
