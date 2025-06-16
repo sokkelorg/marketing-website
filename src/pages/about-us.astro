@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/header.astro';
-import ContactSection from '../components/contact-section.astro';
+import WaitlistButton from '../components/waitlist-button.astro';
 import Footer from '../components/footer.astro';
 import { Picture } from 'astro:assets';
 import theTeam from '../assets/team.jpg';
@@ -14,31 +14,61 @@ import { waitlistUrl } from '../waitlist';
     { href: waitlistUrl, text: 'Join waitlist', icon: 'arrow', wideOnly: true },
   ]} />
   <main>
-    <section>
+    <section id="team">
       <h1>Hello <span aria-hidden="true">👋</span></h1>
 
-      <Picture
-        class="team"
-        src={theTeam}
-        layout="full-width"
-        formats={['avif', 'webp']}
-        alt="The team: Marius, Simen, and Martin."
-      />
+      <div class="team-photo">
+        <Picture
+          src={theTeam}
+          layout="full-width"
+          formats={['avif', 'webp']}
+          alt="The team: Marius, Simen, and Martin."
+        />
+      </div>
 
-      <p>
-        This is us: Marius, Simen, and Martin. Three builders. One designer. Two
-        developers.
-      </p>
+      <div class="intro">
+        <p>
+          This is us: Marius, Simen, and Martin. Three builders. One designer. Two
+          developers.
+        </p>
 
-      <p>
-        Between us, we’ve been at Finn.no, No Isolation, Auk, AYR, Folio, Bjerk
-        and SpotOn. We’ve seen what works, what doesn’t, and what should exist
-        but doesn’t (yet).
-      </p>
+        <p>
+          Between us, we’ve been at Finn.no, No Isolation, Auk, AYR, Folio, Bjerk
+          and SpotOn. We’ve seen what works, what doesn’t, and what should exist
+          but doesn’t (yet).
+        </p>
 
-      <p class="emphasis">So we're building Sokkel!</p>
+        <p class="emphasis">So we're building Sokkel!</p>
+      </div>
+      <div id="contact-card">
+        <h2>Let's talk and connect</h2>
+        <p>
+          We’re building something exciting at Sokkel and are looking for like-minded
+          DevOps nerds, potential pilot users, design partners and future colleagues
+          to join the journey!
+        </p>
+        <WaitlistButton />
+        <dl>
+          <dt>Email:</dt>
+          <dd>
+            <a href="mailto:hello@sokkel.io">hello@sokkel.io</a>
+          </dd>
+
+          <dt>Call:</dt>
+          <dd>
+            <a href="tel:+4795308087">+47 953 08 087</a>
+          </dd>
+
+          <dt>Chat:</dt>
+          <dd>
+            <a href="https://linkedin.com/company/sokkel" rel="noopener noreferrer">LinkedIn</a>
+          </dd>
+        </dl>
+        <p>
+          Reach out – we'd love to hear from you! <span aria-hidden="true">&lt;3</span>
+        </p>
+      </div>
     </section>
-    <ContactSection />
   </main>
   <Footer
     links={[
@@ -50,35 +80,85 @@ import { waitlistUrl } from '../waitlist';
 <style>
   main {
     display: grid;
-    gap: calc(var(--spacing)*12);
+    gap: calc(var(--spacing) * 12);
 
-    section {
+    #team {
       display: grid;
-      gap: calc(var(--spacing)*6);
+      gap: calc(var(--spacing) * 6);
+
+      grid-template-areas:
+        "title"
+        "team-photo"
+        "intro"
+        "contact";
+      @media(min-width: 60rem) {
+        grid-template-areas:
+          "title team-photo"
+          "intro team-photo"
+          "contact team-photo";
+        grid-template-columns: 1fr 2fr;
+      }
 
       h1 {
+        grid-area: title;
+
         margin: 0;
         font-weight: var(--font-weight-extrabold);
         font-size: var(--text-3xl-font-size);
         line-height: var(--text-3xl-line-height);
-        @media (min-width: 40rem) {
+        @media (min-width: 60rem) {
           font-size: var(--text-6xl-font-size);
           line-height: var(--text-6xl-line-height);
         }
       }
 
-      p {
-        margin: 0;
+      .team-photo {
+        grid-area: team-photo;
+        border-radius: calc(var(--spacing)*2);
+        overflow: hidden;
       }
 
-      .emphasis {
-        font-weight: var(--font-weight-medium);
+      .intro {
+        grid-area: intro;
+
+        .emphasis {
+          font-weight: var(--font-weight-medium);
+        }
       }
-    }
 
+      #contact-card {
+        grid-area: contact;
 
-    .team {
-      border-radius: 0.5rem;
+        padding-inline: calc(var(--spacing) * 6);
+        padding-block-start: calc(var(--spacing) * 6);
+        padding-block-end: calc(var(--spacing) * 10);
+
+        background-color: var(--color-blue-50);
+        border-radius: var(--radius-2xl);
+
+        display: grid;
+        gap: calc(var(--spacing) * 6);
+
+        dl {
+          display: grid;
+          grid-template-columns: auto 1fr;
+
+          column-gap: calc(var(--spacing) * 4);
+          row-gap: calc(var(--spacing) * 2);
+        }
+
+        dd {
+          margin: 0;
+
+          a {
+            color: var(--color-blue-500);
+            text-decoration: none;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
     }
   }
 </style>
