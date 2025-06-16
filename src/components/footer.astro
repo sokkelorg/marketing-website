@@ -1,5 +1,6 @@
 ---
 import WaitlistButton from './waitlist-button.astro';
+import Arrow from './arrow.astro';
 type Props = {
   links: { href: string; text: string }[];
 };
@@ -21,12 +22,13 @@ const currentYear = new Date().getFullYear();
       <img src="/assets/logo.svg" alt="Sokkel." class="logo" />
       <nav>
         <a href="#">
-          Take me to the top
-          <img class="arrow" alt="Arrow pointing up." src="/assets/arrow-up.svg" aria-hidden="true">
+          <span>Take me to the top</span>
+          <Arrow direction="up" />
         </a>
         {links.map((link) => (
           <a href={link.href}>
-            {link.text} <img class="arrow right" alt="Arrow pointing right." aria-hidden="true" src="/assets/arrow-up.svg">
+            <span>{link.text}</span>
+            <Arrow direction="right" />
           </a>
         ))}
       </nav>

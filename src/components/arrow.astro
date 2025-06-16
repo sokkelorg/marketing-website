@@ -1,0 +1,37 @@
+---
+export type Props = {
+  direction: 'up' | 'right' | 'down' | 'left';
+};
+---
+
+<svg
+  class={Astro.props.direction}
+  width="16"
+  height="16"
+  viewBox="0 0 16 16"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M5.33331 4.00016L7.99998 1.3335M7.99998 1.3335L10.6666 4.00016M7.99998 1.3335V14.6668"
+    stroke="currentColor"
+    stroke-width="1.33"
+    stroke-linecap="round"
+    stroke-linejoin="round"></path>
+</svg>
+
+<style>
+  svg {
+    font-size: 0; /* The <a> adds 3px to the height if font-size is non-zero. */
+  }
+
+  .right {
+    transform: rotate(90deg);
+  }
+  .down {
+    transform: rotate(180deg);
+  }
+  .left {
+    transform: rotate(270deg);
+  }
+</style>

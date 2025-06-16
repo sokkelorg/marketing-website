@@ -1,9 +1,15 @@
 ---
+import Arrow from './arrow.astro';
+
 type Props = {
-  link: { href: string; text: string };
+  links: {
+    href: string;
+    text: string;
+    wideOnly?: boolean
+  }[];
 };
 
-const { link } = Astro.props;
+const { links } = Astro.props;
 ---
 
 <header>
@@ -16,15 +22,22 @@ const { link } = Astro.props;
     />
     <img class="logo" src="/assets/logo.svg" alt="Sokkel." />
   </a>
-  <a class="header-link" href={link.href}>{link.text}</a>
+  <div class="header-links">
+    {links.map(link => (
+      <a class:list={[{ 'wide-only': link.wideOnly }]} href={link.href}>
+        <span>{link.text}</span>
+        <Arrow direction="right" />
+      </a>
+    ))}
+  </div>
 </header>
 
 <style>
   header {
     width: 100%;
-
     display: flex;
     justify-content: space-between;
+    align-items: start;
 
     #logo-link {
       font-size: 0; /* The <a> adds 3px to the height if font-size is non-zero. */
@@ -42,14 +55,38 @@ const { link } = Astro.props;
       }
     }
 
-    .header-link {
-      font-size: 1rem;
-      color: var(--color-base-primary);
-      text-decoration: none;
-    }
+    .header-links {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
 
-    .header-link:hover {
-      text-decoration: underline;
+      gap: calc(var(--spacing)*2);
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: calc(var(--spacing)*2);
+
+        color: var(--color-base-primary);
+        text-decoration: none;
+
+        font-size: var(--text-sm-font-size);
+        line-height: 100%;
+        font-weight: var(--font-weight-medium);
+
+
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        &.wide-only {
+          display: none;
+          @media(min-width: 40rem) {
+            display: flex;
+          }
+        }
+      }
     }
   }
 </style>

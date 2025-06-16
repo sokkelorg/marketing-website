@@ -44,7 +44,10 @@ import Promise from '../components/promise.astro';
     },
   ]}
 >
-  <Header link={{ text: 'About us', href: '/about-us' }} />
+  <Header links={[
+    { text: 'About us', href: '/about-us', wideOnly: false },
+    { text: 'Join waitlist', href: waitlistUrl, wideOnly: true },
+  ]} />
 
   <main>
     <Hero />

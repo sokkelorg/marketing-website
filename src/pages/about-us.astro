@@ -5,10 +5,14 @@ import ContactSection from '../components/contact-section.astro';
 import Footer from '../components/footer.astro';
 import { Picture } from 'astro:assets';
 import theTeam from '../assets/team.jpg';
+import { waitlistUrl } from '../waitlist';
 ---
 
 <Layout>
-  <Header link={{ href: '/', text: 'Close' }} />
+  <Header links={[
+    { href: '/', text: 'Close' },
+    { href: waitlistUrl, text: 'Join waitlist' },
+  ]} />
   <main>
     <section>
       <h1>Hello <span aria-hidden="true">👋</span></h1>
