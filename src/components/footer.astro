@@ -25,12 +25,16 @@ const currentYear = new Date().getFullYear();
           <span>Take me to the top</span>
           <Arrow direction="up" />
         </a>
-        {links.map((link) => (
-          <a href={link.href}>
-            <span>{link.text}</span>
-            <Arrow direction="right" />
-          </a>
-        ))}
+        {links.map((link) => {
+          const rel = link.href.startsWith('/') ? undefined : 'noopener noreferrer';
+
+          return (
+            <a href={link.href} rel={rel}>
+              <span>{link.text}</span>
+              <Arrow direction="right" />
+            </a>
+          );
+        })}
       </nav>
     </div>
   </div>
