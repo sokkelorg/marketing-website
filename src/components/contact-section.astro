@@ -59,7 +59,10 @@ import WaitlistButton from '../components/waitlist-button.astro';
   }
 
   a {
-    text-decoration: underline;
-    color: black;
+    color: var(--color-blue-500);
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 </style>
