@@ -49,14 +49,19 @@ import { waitlistUrl } from '../waitlist';
 
 <style>
   main {
-    font-size: 1rem;
-    line-height: 1.5rem;
     display: grid;
-    gap: 3rem;
+    gap: calc(var(--spacing)*12);
 
     section {
       display: grid;
-      gap: 1.5rem;
+      gap: calc(var(--spacing)*6);
+
+      h1 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 800;
+        line-height: 1.5rem;
+      }
 
       p {
         margin: 0;
@@ -67,12 +72,6 @@ import { waitlistUrl } from '../waitlist';
       }
     }
 
-    h1 {
-      margin: 0;
-      font-size: 2rem;
-      font-weight: 800;
-      line-height: 1.5rem;
-    }
 
     .team {
       border-radius: 0.5rem;
