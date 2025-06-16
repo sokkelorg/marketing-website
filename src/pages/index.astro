@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/header.astro';
 import WaitlistButton from '../components/waitlist-button.astro';
+import Problems from '../components/problems.astro';
 import Footer from '../components/footer.astro';
 import { waitlistUrl } from '../waitlist';
 ---
@@ -138,78 +139,7 @@ import { waitlistUrl } from '../waitlist';
       </div>
     </section>
 
-    <section id="problems">
-      <div id="software-delivery-is-broken" class="problem">
-        <h2 class="title">
-          Software delivery is <span class="fancy">broken</span>
-        </h2>
-        <p class="ingress">Relentless pressure and complexity are overwhelming teams. Developers are stretched thin across infra, security, UX, and more – and it's breaking them.</p>
-        <div class="line"></div>
-        <div class="stat">
-          <p class="fancy value">$8M</p>
-          <p class="body">lost productivity per engineering team annually.</p>
-        </div>
-      </div>
-      <div id="manual-work-drains-time" class="problem">
-        <h2 class="title">
-          <span class="fancy">Manual work</span> drains time
-        </h2>
-        <p class="ingress">
-          Developers are stuck doing repetitive tasks instead of shipping
-          software. Compliance, QA, and error handling eat up valuable hours.
-        </p>
-        <div class="line"></div>
-        <div class="stat">
-          <p class="fancy value">$32K</p>
-          <p class="body">
-            is wasted per developer annually on repetitive tasks.
-          </p>
-        </div>
-      </div>
-      <div id="burnout-is-spiking" class="problem">
-        <h2 class="title"><span class="fancy">Burnout</span> is spiking</h2>
-        <p class="ingress">
-          Software delivery is taking a toll – not just on output, but on
-          people. Stress, overtime, and context switching are pushing developers
-          out.
-        </p>
-        <div class="line"></div>
-        <div class="stat">
-          <p class="fancy value">50%</p>
-          <p class="body">
-            say software delivery work hurts their personal life.
-          </p>
-        </div>
-      </div>
-      <div id="ai-potential-vs-reality" class="problem">
-        <h2 class="title">
-          AI: potential vs. <span class="fancy">reality</span>
-        </h2>
-        <p class="ingress">
-          AI tools promise relief – but often backfire. They generate more code,
-          but also more bugs, rework, and chaos.
-        </p>
-        <div class="line"></div>
-        <div class="stat">
-          <p class="fancy value">67%</p>
-          <p class="body">spend more time debugging AI-generated code.</p>
-        </div>
-      </div>
-      <div id="ai-only-helps-with-one-piece" class="problem">
-        <h2 class="title">
-          AI <span class="fancy">only</span> helps with one piece
-        </h2>
-        <p class="ingress">
-          Most tools stop at code gen. But software delivery is more than code.
-          Teams need AI across the whole lifecycle — from plan to prod.
-        </p>
-        <div class="line"></div>
-        <div class="stat">
-          <p class="fancy value">95%</p>
-          <p class="body">say AI must support full-lifecycle delivery.</p>
-        </div>
-      </div>
-    </section>
+    <Problems />
 
     <section id="promise" class="pitch flow">
       <div class="background">
@@ -496,78 +426,6 @@ import { waitlistUrl } from '../waitlist';
         &#change-aware .background {
           background-image: url(/assets/flow-change-aware.gif);
         }
-      }
-    }
-  }
-
-  #problems {
-    width: 100%;
-    padding-bottom: calc(var(--spacing)*2);
-    display: flex;
-    gap: calc(var(--spacing) * 4);
-    overflow-x: scroll;
-    scrollbar-color: var(--color-base-border) transparent;
-    scrollbar-gutter: stable;
-
-    .problem {
-      min-width: 23rem;
-      padding: calc(var(--spacing) * 8);
-      border-radius: var(--radius-3xl);
-      border: 1px solid var(--color-base-border);
-
-      display: flex;
-      flex-direction: column;
-      gap: calc(var(--spacing) * 6);
-
-      .title {
-        margin: 0;
-        font-size: var(--text-5xl-font-size);
-        line-height: var(--text-5xl-line-height);
-
-        .fancy {
-          font-weight: var(--font-weight-medium);
-        }
-      }
-
-      .ingress {
-        margin: 0;
-        color: var(--color-base-muted-foreground);
-      }
-
-      .line {
-        padding: 0;
-        height: 0;
-        border-bottom: 1px solid var(--color-base-border);
-      }
-
-      .stat {
-        .value {
-          margin: 0;
-          font-size: var(--text-8xl-font-size);
-          line-height: var(--text-8xl-line-height);
-        }
-
-        .body {
-          font-size: var(--text-sm-font-size);
-          font-weight: var(--font-weight-medium);
-          line-height: var(--text-sm-line-height);
-        }
-      }
-
-      &#software-delivery-is-broken .fancy {
-        font-family: "Rubik Broken Fax", Geist, system-ui;
-      }
-      &#manual-work-drains-time .fancy {
-        font-family: "Rubik Maze", Geist, system-ui;
-      }
-      &#burnout-is-spiking .fancy {
-        font-family: "Rubik Burned", Geist, system-ui;
-      }
-      &#ai-potential-vs-reality .fancy {
-        font-family: "Rubik Beastly", Geist, system-ui;
-      }
-      &#ai-only-helps-with-one-piece .fancy {
-        font-family: "Rubik Puddles", Geist, system-ui;
       }
     }
   }
