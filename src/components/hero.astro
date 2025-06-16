@@ -7,27 +7,9 @@ import WaitlistButton from './waitlist-button.astro';
   <div class="tag">
     <div class="subtitle">
       <h2>
-        The AI-powered <span aria-hidden="true">✨</span> Software<br />Delivery
-        platform that turns<br />complexity into clarity.
+        The AI-powered <span aria-hidden="true">✨</span> Software Delivery platform that turns complexity into clarity.
       </h2>
       <WaitlistButton />
-    </div>
-    <div class="stacky-intro">
-      <div class="content">
-        <img class="stacky" alt="Stacky." src="/assets/stacky.svg" />
-        <div class="speech-bubble">
-          <img
-            aria-hidden="true"
-            alt="Speech bubble arrow pointing to Stacky."
-            class="arrow"
-            src="/assets/speech-bubble-arrow.svg"
-          />
-          <p class="card message">
-            Hi <span aria-hidden="true">👋</span> I'm Stacky, your AI-powered Software
-            Delivery sidekick.
-          </p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -35,12 +17,9 @@ import WaitlistButton from './waitlist-button.astro';
 <style>
   #hero {
     width: 100%;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: calc(var(--spacing) * 27);
-
-    @media (min-width: 40rem) {
-      grid-template-columns: 1fr 1fr;
-    }
 
     .title {
       margin: 0;
@@ -52,10 +31,6 @@ import WaitlistButton from './waitlist-button.astro';
       }
 
       text-align: center;
-      @media (min-width: 40rem) {
-        text-align: start;
-      }
-
       color: transparent;
       background-image: url('/assets/flow-title.gif');
       background-repeat: no-repeat;
@@ -70,84 +45,21 @@ import WaitlistButton from './waitlist-button.astro';
       align-items: center;
       text-align: center;
 
-      @media (min-width: 40rem) {
-        align-items: end;
-        justify-content: space-between;
-        text-align: start;
-      }
-
       .subtitle {
         display: flex;
         flex-direction: column;
         gap: calc(var(--spacing) * 8);
         align-items: center;
-        @media (min-width: 40rem) {
-          text-align: end;
-          align-items: end;
-        }
 
         h2 {
+          max-width: 25rem;
           margin: 0;
-          font-size: var(--text-xl-font-size);
-          line-height: var(--text-xl-line-height);
-          font-weight: var(--font-weight-normal);
-          @media (min-width: 40rem) {
-            font-weight: var(--font-weight-bold);
-          }
-        }
-      }
-
-      .stacky-intro {
-        display: flex;
-        justify-content: end;
-
-        .content {
-          max-width: 18rem;
-          @media (min-width: 40rem) {
-            max-width: 100%;
-          }
+          font-size: var(--text-lg-font-size);
+          line-height: var(--text-lg-line-height);
+          font-weight: var(--font-weight-medium);
           @media (min-width: 60rem) {
-            max-width: 75%;
-          }
-
-          display: flex;
-          gap: calc(var(--spacing) * 6);
-          align-items: center;
-
-          flex-direction: column;
-          @media (min-width: 40rem) {
-            flex-direction: row-reverse;
-          }
-
-          .stacky {
-            width: 75%;
-            @media (min-width: 40rem) {
-              width: 7.5rem;
-            }
-          }
-
-          .speech-bubble {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            @media (min-width: 40rem) {
-              flex-direction: row-reverse;
-            }
-
-            .arrow {
-              position: relative;
-              top: 8px;
-
-              @media (min-width: 40rem) {
-                top: unset;
-                right: 8px;
-              }
-            }
-
-            .message {
-              margin: 0;
-              background-color: var(--color-gray-100);
-            }
+            font-size: var(--text-xl-font-size);
+            line-height: var(--text-xl-line-height);
           }
         }
       }
