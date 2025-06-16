@@ -33,14 +33,15 @@ import WaitlistButton from '../components/waitlist-button.astro';
 
 <style>
   section {
-    line-height: 1.5rem;
-    background-color: #ccccff;
+    padding-inline: calc(var(--spacing)*6);
+    padding-top: calc(var(--spacing)*6);
+    padding-bottom: calc(var(--spacing)*10);
 
-    border-radius: 1rem;
-    padding: 1.5rem 1.5rem 2rem;
+    background-color: var(--color-blue-50);
+    border-radius: var(--radius-2xl);
 
     display: grid;
-    gap: 1.5rem;
+    gap: calc(var(--spacing)*6);
   }
 
   dl {
@@ -48,10 +49,6 @@ import WaitlistButton from '../components/waitlist-button.astro';
     grid-template-columns: auto 1fr;
     gap: 0.5rem 1rem;
     margin-block-end: 1rem;
-  }
-
-  dt {
-    font-weight: 600;
   }
 
   dd {
