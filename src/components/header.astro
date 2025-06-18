@@ -59,21 +59,25 @@ const { links } = Astro.props;
     #logo-link {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: calc(var(--spacing)*3.5);
+      height: 1.5rem;
+      @media(min-width: 40rem) {
+        height: 2rem;
+      }
 
       .icon {
-        max-height: 2rem;
-        border-radius: var(--radius-sm);
+        height: 100%;
+        border-radius: 0.25rem;
       }
 
       .logo {
-        max-height: 1.5rem;
+        max-height: 75%;
       }
     }
 
     .header-links {
       align-self: center;
-      
+
       display: flex;
       flex-direction: column;
       align-items: end;
