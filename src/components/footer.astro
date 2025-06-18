@@ -1,11 +1,8 @@
 ---
 import WaitlistButton from './waitlist-button.astro';
 import Arrow from './arrow.astro';
-type Props = {
-  links: { href: string; text: string }[];
-};
+import { waitlistUrl } from '../waitlist';
 
-const { links } = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
@@ -25,16 +22,15 @@ const currentYear = new Date().getFullYear();
           <span>Take me to the top</span>
           <Arrow direction="up" />
         </a>
-        {links.map((link) => {
-          const rel = link.href.startsWith('/') ? undefined : 'noopener noreferrer';
-
-          return (
-            <a href={link.href} rel={rel}>
-              <span>{link.text}</span>
-              <Arrow direction="right" />
-            </a>
-          );
-        })}
+        <a href="/about-us">
+          <!-- TODO: Style the 'About us' link differently when we're on that page? -->
+          <span>About us</span>
+          <Arrow direction="right" />
+        </a>
+        <a href={waitlistUrl} rel="noopener noreferrer">
+          <span>Join waitlist</span>
+          <Arrow direction="right" />
+        </a>
       </nav>
     </div>
   </div>
