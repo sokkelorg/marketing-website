@@ -245,12 +245,12 @@ const canonical = new URL(path, Astro.site);
       .title {
         margin: 0;
         font-weight: var(--font-weight-medium);
-        font-size: var(--text-sm-font-size);
-        line-height: var(--text-sm-line-height);
+        line-height: 100%;
 
-        @media(min-width: 40rem) {
+        font-size: var(--text-sm-font-size);
+        @media(min-width: 60rem) {
+          // TODO: Use fluid typography (for example: https://utopia.fyi/type/calculator/).
           font-size: var(--text-lg-font-size);
-          line-height: var(--text-lg-line-height);
         }
       }
 
@@ -258,22 +258,20 @@ const canonical = new URL(path, Astro.site);
         margin: 0;
         max-width: 56.25rem;
         font-weight: var(--font-weight-extrabold);
-        font-size: var(--text-3xl-font-size);
         line-height: 100%;
 
-        @media (min-width: 40rem) {
-          // TODO: Use fluid typography (for example: https://utopia.fyi/type/calculator/).
+        font-size: var(--text-3xl-font-size);
+        @media (min-width: 60rem) {
           font-size: var(--text-6xl-font-size);
-          line-height: var(--text-6xl-line-height);
         }
       }
 
       .body {
         max-width: 38.875rem;
+
         font-size: var(--text-sm-font-size);
         line-height: var(--text-sm-line-height);
-
-        @media(min-width: 40rem) {
+        @media(min-width: 60rem) {
           font-size: var(--text-lg-font-size);
           line-height: var(--text-lg-line-height);
         }
