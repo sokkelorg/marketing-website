@@ -27,28 +27,22 @@ import { waitlistUrl } from '../waitlist';
       </div>
 
       <div class="intro">
-        <p>
-          This is us: Marius, Simen, and Martin. Three builders. One designer. Two
-          developers.
-        </p>
+        <div class="text">
+          <p>
+            This is us: Marius, Simen, and Martin. Three builders. One designer. Two
+            developers.
+          </p>
 
-        <p>
-          Between us, we’ve been at Finn.no, No Isolation, Auk, AYR, Folio, Bjerk
-          and SpotOn. We’ve seen what works, what doesn’t, and what should exist
-          but doesn’t (yet).
-        </p>
+          <p>
+            Between us, we’ve been at Finn.no, No Isolation, Auk, AYR, Folio, Bjerk
+            and SpotOn. We’ve seen what works, what doesn’t, and what should exist
+            but doesn’t (yet).
+          </p>
 
-        <p class="emphasis">So we're building Sokkel!</p>
-      </div>
-      <div id="contact-card">
-        <h2>Let's talk and connect</h2>
-        <p>
-          We’re building something exciting at Sokkel and are looking for like-minded
-          DevOps nerds, potential pilot users, design partners and future colleagues
-          to join the journey!
-        </p>
-        <WaitlistButton />
-        <dl>
+          <p class="emphasis">So we're building Sokkel!</p>
+        </div>
+
+        <dl class="contact">
           <dt>Email:</dt>
           <dd>
             <a href="mailto:hello@sokkel.io">hello@sokkel.io</a>
@@ -64,9 +58,6 @@ import { waitlistUrl } from '../waitlist';
             <a href="https://linkedin.com/company/sokkel" rel="noopener noreferrer">LinkedIn</a>
           </dd>
         </dl>
-        <p>
-          Reach out – we'd love to hear from you! <span aria-hidden="true">&lt;3</span>
-        </p>
       </div>
     </section>
   </main>
@@ -118,40 +109,34 @@ import { waitlistUrl } from '../waitlist';
       .intro {
         grid-area: intro;
 
-        .emphasis {
-          font-weight: var(--font-weight-medium);
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--spacing)*14);
+
+        .text {
+          .emphasis {
+            font-weight: var(--font-weight-medium);
+          }
         }
-      }
 
-      #contact-card {
-        grid-area: contact;
+        .contact {
+          grid-area: contact;
 
-        padding-inline: calc(var(--spacing) * 6);
-        padding-block-start: calc(var(--spacing) * 6);
-        padding-block-end: calc(var(--spacing) * 10);
-
-        background-color: var(--color-blue-50);
-        border-radius: var(--radius-2xl);
-
-        display: grid;
-        gap: calc(var(--spacing) * 6);
-
-        dl {
+          margin: 0;
           display: grid;
           grid-template-columns: auto 1fr;
-
           column-gap: calc(var(--spacing) * 4);
-          row-gap: calc(var(--spacing) * 2);
-        }
+          row-gap: calc(var(--spacing)*2);
 
-        dd {
-          margin: 0;
+          dd {
+            margin: 0;
 
-          a {
-            color: var(--color-blue-500);
-            text-decoration: none;
-            &:hover {
-              text-decoration: underline;
+            a {
+              color: var(--color-blue-500);
+              text-decoration: none;
+              &:hover {
+                text-decoration: underline;
+              }
             }
           }
         }
