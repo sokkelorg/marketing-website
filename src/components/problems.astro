@@ -13,7 +13,11 @@
       <p class="fancy value">$8M</p>
       <p class="body">lost productivity per engineering team annually.</p>
     </div>
-    <a class="source" href="https://www.harness.io/state-of-software-delivery" rel="noopener noreferrer">Harness</a>
+    <a
+      class="source"
+      href="https://www.harness.io/state-of-software-delivery"
+      rel="noopener noreferrer">Harness</a
+    >
   </div>
   <div id="manual-work-drains-time" class="problem">
     <h2 class="title">
@@ -28,7 +32,11 @@
       <p class="fancy value">$32K</p>
       <p class="body">is wasted per developer annually on repetitive tasks.</p>
     </div>
-    <a class="source" href="https://www.harness.io/state-of-software-delivery" rel="noopener noreferrer">Harness</a>
+    <a
+      class="source"
+      href="https://www.harness.io/state-of-software-delivery"
+      rel="noopener noreferrer">Harness</a
+    >
   </div>
   <div id="burnout-is-spiking" class="problem">
     <h2 class="title"><span class="fancy">Burnout</span> is spiking</h2>
@@ -41,7 +49,11 @@
       <p class="fancy value">50%</p>
       <p class="body">say software delivery work hurts their personal life.</p>
     </div>
-    <a class="source" href="https://www.harness.io/state-of-software-delivery" rel="noopener noreferrer">Harness</a>
+    <a
+      class="source"
+      href="https://www.harness.io/state-of-software-delivery"
+      rel="noopener noreferrer">Harness</a
+    >
   </div>
   <div id="ai-potential-vs-reality" class="problem">
     <h2 class="title">
@@ -56,7 +68,11 @@
       <p class="fancy value">67%</p>
       <p class="body">spend more time debugging AI-generated code.</p>
     </div>
-    <a class="source" href="https://www.harness.io/state-of-software-delivery" rel="noopener noreferrer">Harness</a>
+    <a
+      class="source"
+      href="https://www.harness.io/state-of-software-delivery"
+      rel="noopener noreferrer">Harness</a
+    >
   </div>
   <div id="ai-only-helps-with-one-piece" class="problem">
     <h2 class="title">
@@ -71,7 +87,11 @@
       <p class="fancy value">95%</p>
       <p class="body">say AI must support full-lifecycle delivery.</p>
     </div>
-    <a class="source" href="https://www.harness.io/state-of-software-delivery" rel="noopener noreferrer">Harness</a>
+    <a
+      class="source"
+      href="https://www.harness.io/state-of-software-delivery"
+      rel="noopener noreferrer">Harness</a
+    >
   </div>
 </section>
 
@@ -134,14 +154,21 @@
       .source {
         width: fit-content;
         border-radius: var(--radius-md);
-        padding-inline: calc(var(--spacing)*2);
-        padding-block: calc(var(--spacing)*0.5);
+        padding-inline: calc(var(--spacing) * 2);
+        padding-block: calc(var(--spacing) * 0.5);
         background-color: var(--color-base-primary);
         color: var(--color-base-primary-foreground);
         text-decoration: none;
         font-size: var(--text-xs-font-size);
         line-height: var(--text-xs-line-height);
         font-weight: var(--font-weight-semibold);
+
+        &:hover {
+          background: linear-gradient(0deg, var(--color-base-background-alpha-70) 0%, var(--color-base-background-alpha-70) 100%), var(--color-base-primary, #0a0a0a);
+        }
+
+
+        // TODO: Style the focus state.
       }
 
       &#software-delivery-is-broken .fancy {
