@@ -76,14 +76,13 @@ import { waitlistUrl } from '../waitlist';
       grid-template-areas:
         "title"
         "team-photo"
-        "intro"
-        "contact";
+        "intro";
       @media(min-width: 60rem) {
         grid-template-areas:
           "title team-photo"
-          "intro team-photo"
-          "contact team-photo";
-        grid-template-columns: 1fr 2fr;
+          "intro team-photo";
+        grid-template-rows: auto 1fr;
+        grid-template-columns: 345px 1fr;
       }
 
       h1 {
@@ -93,10 +92,6 @@ import { waitlistUrl } from '../waitlist';
         font-weight: var(--font-weight-extrabold);
         font-size: var(--text-3xl-font-size);
         line-height: var(--text-3xl-line-height);
-        @media (min-width: 60rem) {
-          font-size: var(--text-6xl-font-size);
-          line-height: var(--text-6xl-line-height);
-        }
       }
 
       .team-photo {
