@@ -54,10 +54,9 @@ const { links } = Astro.props;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
 
     #logo-link {
-      font-size: 0; /* The <a> adds 3px to the height if font-size is non-zero. */
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -73,6 +72,8 @@ const { links } = Astro.props;
     }
 
     .header-links {
+      align-self: center;
+      
       display: flex;
       flex-direction: column;
       align-items: end;
