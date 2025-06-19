@@ -3,6 +3,12 @@ import WaitlistButton from './waitlist-button.astro';
 import Arrow from './arrow.astro';
 import { waitlistUrl } from '../waitlist';
 
+export type Props = {
+  page: 'index' | 'about-us';
+}
+
+const { page } = Astro.props;
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -22,8 +28,7 @@ const currentYear = new Date().getFullYear();
           <span>Take me to the top</span>
           <Arrow direction="up" />
         </a>
-        <a href="/about-us">
-          <!-- TODO: Style the 'About us' link differently when we're on that page? -->
+        <a href="/about-us" class:list={{ current: page === 'about-us' }}>
           <span>About us</span>
           <Arrow direction="right" />
         </a>
@@ -110,6 +115,10 @@ const currentYear = new Date().getFullYear();
             align-items: center;
 
             color: var(--color-blue-500);
+            &.current {
+              color: var(--color-base-primary);
+            }
+
             text-decoration: none;
             &:hover {
               text-decoration: underline;
