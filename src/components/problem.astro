@@ -25,7 +25,6 @@ const { ingress, stat, source, fancyFont } = Astro.props;
 
 <style define:vars={{ 'fancy-font': fancyFont }}>
   .problem {
-    width: fit-content;
     height: fit-content;
     padding: calc(var(--spacing) * 8);
     border-radius: var(--radius-3xl);
@@ -44,6 +43,7 @@ const { ingress, stat, source, fancyFont } = Astro.props;
       margin: 0;
       font-size: var(--text-5xl-font-size);
       line-height: var(--text-5xl-line-height);
+      text-wrap: pretty;
     }
 
     .ingress {
