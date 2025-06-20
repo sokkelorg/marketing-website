@@ -4,10 +4,21 @@ import logo from '../../public/assets/logo-monochrome.svg?raw';
 import background from '../assets/flow-promise.gif';
 ---
 
-<Pitch background={background}>
-  <Fragment slot="title" set:html={logo} />
-  <Fragment slot="ingress">
-    Not just a platform. A promise. Smooooth. Worryless. Effortless Software
-    Delivery.
-  </Fragment>
+<Pitch
+  background={background}
+  ingress="Not just a platform. A promise. Smooooth. Worryless. Effortless Software Delivery."
+>
+  <div slot="title" class="title">
+    <Fragment set:html={logo.replace('<svg', '<svg class="logo"')} />
+  </div>
 </Pitch>
+
+<style>
+  .title :global(svg) {
+    width: 100%;
+    height: 24px;
+    @media(min-width: 60rem) {
+      height: 32px;
+    }
+  }
+</style>

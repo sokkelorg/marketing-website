@@ -4,9 +4,11 @@ import WaitlistButton from './waitlist-button.astro';
 
 type Props = {
   background: ImageMetadata;
+  ingress: string;
+  body?: string;
 }
 
-const { background } = Astro.props;
+const { background, ingress, body } = Astro.props;
 ---
 
 <div class="pitch flow">
@@ -15,15 +17,9 @@ const { background } = Astro.props;
       {Astro.slots.has('title') && (
         <slot name="title" />
       )}
-      {Astro.slots.has('ingress') && (
-        <p class="ingress">
-          <slot name="ingress" />
-        </p>
-      )}
-      {Astro.slots.has('body') && (
-        <p class="body">
-          <slot name="body" />
-        </p>
+      <p class="ingress">{ingress}</p>
+      {body != null && (
+        <p class="body">{body}</p>
       )}
       <WaitlistButton inverted />
     </div>
@@ -65,18 +61,6 @@ const { background } = Astro.props;
       flex-direction: column;
       gap: calc(var(--spacing) * 6);
       align-items: center;
-
-      .title {
-        margin: 0;
-        font-weight: var(--font-weight-medium);
-        line-height: 100%;
-
-        font-size: var(--text-sm-font-size);
-        @media(min-width: 60rem) {
-          // TODO: Use fluid typography (for example: https://utopia.fyi/type/calculator/).
-          font-size: var(--text-lg-font-size);
-        }
-      }
 
       .ingress {
         margin: 0;

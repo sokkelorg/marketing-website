@@ -3,14 +3,22 @@ import Pitch from './pitch.astro';
 import background from '../assets/flow-mission.gif';
 ---
 
-<Pitch background={background}>
-  <h2 class="title" slot="title">We are on a mission</h2>
-  <Fragment slot="ingress"
-    >To set a new Software Delivery standard for SMEs</Fragment
-  >
-  <Fragment slot="body">
-    Today, small teams are blocked by the complexity of just keeping software
-    running. Sokkel automates the busywork and provides instant clarity, so they
-    can stop firefighting and build with confidence.
-  </Fragment>
+<Pitch
+  background={background}
+  ingress="To set a new Software Delivery standard for SMEs"
+  body="Today, small teams are blocked by the complexity of just keeping software running. Sokkel automates the busywork and provides instant clarity, so they can stop firefighting and build with confidence."
+>
+  <h2 slot="title" class="title">We are on a mission</h2>
 </Pitch>
+
+<style>
+  .title {
+    margin: 0;
+    font-size: var(--text-sm-font-size);
+    line-height: 100%;
+
+    @media(min-width: 60rem) {
+      font-size: var(--text-lg-font-size);
+    }
+  }
+</style>
