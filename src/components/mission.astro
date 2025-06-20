@@ -1,24 +1,16 @@
 ---
-import WaitlistButton from './waitlist-button.astro';
+import Pitch from './pitch.astro';
+import background from '../assets/flow-mission.gif';
 ---
 
-<section id="mission" class="pitch flow">
-  <div class="background">
-    <div class="content">
-      <h2 class="title">We are on a mission</h2>
-      <p class="ingress">To set a new Software Delivery standard for SMEs</p>
-      <p class="body">
-        Today, small teams are blocked by the complexity of just keeping
-        software running. Sokkel automates the busywork and provides instant
-        clarity, so they can stop firefighting and build with confidence.
-      </p>
-      <WaitlistButton inverted />
-    </div>
-  </div>
-</section>
-
-<style>
-  #mission .background {
-    background-image: url(/assets/flow-mission.gif);
-  }
-</style>
+<Pitch background={background}>
+  <h2 class="title" slot="title">We are on a mission</h2>
+  <Fragment slot="ingress"
+    >To set a new Software Delivery standard for SMEs</Fragment
+  >
+  <Fragment slot="body">
+    Today, small teams are blocked by the complexity of just keeping software
+    running. Sokkel automates the busywork and provides instant clarity, so they
+    can stop firefighting and build with confidence.
+  </Fragment>
+</Pitch>

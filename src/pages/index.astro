@@ -54,9 +54,13 @@ import Promise from '../components/promise.astro';
   <main>
     <Hero />
     <StackyIntro />
-    <Mission />
+    <section id="mission">
+      <Mission />
+    </section>
     <Problems />
-    <Promise />
+    <section id="promise">
+      <Promise />
+    </section>
   </main>
 
   <Footer page="index" />
@@ -69,27 +73,9 @@ import Promise from '../components/promise.astro';
     flex-direction: column;
     gap: calc(var(--spacing) * 32);
     overflow-x: hidden;
-  }
-</style>
 
-<style>
-  #status {
-    max-width: 40rem;
-    border: 2px solid var(--color-base-border);
-    display: grid;
-    gap: calc(var(--spacing) * 8);
-
-    .text {
-      .title {
-        margin: 0;
-        font-weight: var(--font-weight-semibold);
-        font-size: var(--text-base-font-size);
-        line-height: var(--text-base-line-height);
-      }
-
-      .body {
-        color: var(--color-base-muted-foreground);
-      }
+    section {
+      width: 100%;
     }
   }
 </style>

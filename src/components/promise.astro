@@ -1,21 +1,13 @@
 ---
-import WaitlistButton from './waitlist-button.astro';
+import Pitch from './pitch.astro';
+import logo from '../../public/assets/logo-monochrome.svg?raw';
+import background from '../assets/flow-promise.gif';
 ---
 
-<section id="promise" class="pitch flow">
-  <div class="background">
-    <div class="content">
-      <img alt="Sokkel." src="/assets/logo-monochrome.svg" />
-      <h2 class="ingress">
-        Not just a platform. A promise. Smooooth. Worryless. Effortless Software Delivery.
-      </h2>
-      <WaitlistButton inverted />
-    </div>
-  </div>
-</section>
-
-<style>
-  #promise .background {
-    background-image: url(/assets/flow-promise.gif);
-  }
-</style>
+<Pitch background={background}>
+  <Fragment slot="title" set:html={logo} />
+  <Fragment slot="ingress">
+    Not just a platform. A promise. Smooooth. Worryless. Effortless Software
+    Delivery.
+  </Fragment>
+</Pitch>
