@@ -12,13 +12,19 @@ const { background } = Astro.props;
 <div class="pitch flow">
   <div class="background">
     <div class="content">
-      <slot name="title" />
-      <p class="ingress">
-        <slot name="ingress" />
-      </p>
-      <p class="body">
-        <slot name="body" />
-      </p>
+      {Astro.slots.has('title') && (
+        <slot name="title" />
+      )}
+      {Astro.slots.has('ingress') && (
+        <p class="ingress">
+          <slot name="ingress" />
+        </p>
+      )}
+      {Astro.slots.has('body') && (
+        <p class="body">
+          <slot name="body" />
+        </p>
+      )}
       <WaitlistButton inverted />
     </div>
   </div>
