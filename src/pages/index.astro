@@ -52,15 +52,15 @@ import Promise from '../components/promise.astro';
   />
 
   <main>
-    <div class="pad-md">
+    <div class="comfy">
       <Hero />
       <StackyIntro />
     </div>
-    <section id="mission" class="pad-sm">
+    <section id="mission" class="comfy">
       <Mission />
     </section>
     <Problems />
-    <section id="promise" class="pad-sm">
+    <section id="promise" class="comfy">
       <Promise />
     </section>
   </main>
@@ -74,30 +74,25 @@ import Promise from '../components/promise.astro';
     align-items: center;
     flex-direction: column;
     gap: calc(var(--spacing) * 32);
-    overflow-x: hidden;
+    overflow-x: scroll;
 
     div {
       width: 100%;
       display: inherit;
       flex-direction: inherit;
       gap: inherit;
+      justify-content: inherit;
+      align-items: inherit;
     }
 
     section {
       width: 100%;
     }
 
-    .pad-sm {
+    .comfy {
       padding-inline: calc(var(--spacing)*4);
       @media(min-width: 40rem) {
         padding-inline: calc(var(--spacing)*8);
-      }
-    }
-
-    .pad-md {
-      padding-inline: calc(var(--spacing)*6);
-      @media(min-width: 40rem) {
-        padding-inline: calc(var(--spacing)*10);
       }
     }
   }
