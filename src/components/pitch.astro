@@ -59,7 +59,7 @@ const { background, ingress, body } = Astro.props;
       text-align: center;
       display: flex;
       flex-direction: column;
-      gap: calc(var(--spacing) * 6);
+      gap: calc(var(--spacing) * 8);
       align-items: center;
 
       .ingress {
@@ -75,6 +75,7 @@ const { background, ingress, body } = Astro.props;
       }
 
       .body {
+        margin: 0;
         max-width: 38.875rem;
 
         font-size: var(--text-sm-font-size);
