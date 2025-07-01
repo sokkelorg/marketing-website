@@ -56,6 +56,11 @@ const { links } = Astro.props;
     justify-content: space-between;
     align-items: start;
 
+    padding-inline: calc(var(--spacing)*6);
+    @media(min-width: 40rem) {
+      padding-inline: calc(var(--spacing)*10);
+    }
+
     #logo-link {
       display: flex;
       align-items: center;

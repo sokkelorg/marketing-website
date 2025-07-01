@@ -157,20 +157,17 @@ const canonical = new URL(path, Astro.site);
     {images.map((img) => <meta property="og:image" content={img} />)}
   </head>
   <body>
-    <div class="container">
-      <slot />
-    </div>
+    <slot />
   </body>
 </html>
 
 <style>
-  .container {
+  body {
     display: grid;
     gap: calc(var(--spacing) * 32);
 
     max-width: var(--breakpoint-2xl);
     margin-inline: auto;
-    padding-inline: calc(var(--spacing) * 10);
     padding-block: calc(var(--spacing) * 6);
     @media (min-width: 40rem) {
       gap: calc(var(--spacing) * 20);
