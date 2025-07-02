@@ -1,24 +1,64 @@
 ---
-import Pitch from './pitch.astro';
+import Flow from './flow.astro';
 import background from '../assets/flow-mission.gif';
+import WaitlistButton from './waitlist-button.astro';
 ---
 
-<Pitch
-  background={background}
-  ingress="To set a new Software&nbsp;Delivery standard for SMEs"
-  body="Today, small teams are blocked by the complexity of just keeping software running. Sokkel automates the busywork and provides instant clarity, so they can stop firefighting and build with confidence."
->
-  <h2 slot="title" class="title">We are on a mission</h2>
-</Pitch>
+<Flow background={background}>
+  <div class="pitch">
+    <h2 class="title">We are on a mission</h2>
+    <p class="ingress">To set a new Software&nbsp;Delivery standard for SMEs</p>
+    <p class="body">
+      Today, small teams are blocked by the complexity of just keeping software running. Sokkel automates
+      the busywork and provides instant clarity, so they can stop firefighting and build with confidence.
+    </p>
+    <WaitlistButton inverted />
+  </div>
+</Flow>
 
 <style>
-  .title {
-    margin: 0;
-    font-size: var(--text-sm-font-size);
-    line-height: 100%;
+  .pitch {
+    padding-block: calc(var(--spacing) * 32);
+    padding-inline: calc(var(--spacing) * 6);
 
-    @media(min-width: 60rem) {
-      font-size: var(--text-lg-font-size);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing) * 8);
+    align-items: center;
+
+    .title {
+      margin: 0;
+      font-size: var(--text-sm-font-size);
+      line-height: 100%;
+
+      @media (min-width: 60rem) {
+        font-size: var(--text-lg-font-size);
+      }
+    }
+
+    .ingress {
+      margin: 0;
+      max-width: 56.25rem;
+      font-weight: var(--font-weight-extrabold);
+      line-height: 100%;
+
+      font-size: var(--text-2xl-font-size);
+      @media (min-width: 60rem) {
+        font-size: var(--text-5xl-font-size);
+      }
+    }
+
+    .body {
+      margin: 0;
+      max-width: 38.875rem;
+
+      font-size: var(--text-sm-font-size);
+      line-height: var(--text-sm-line-height);
+      @media (min-width: 60rem) {
+        font-size: var(--text-lg-font-size);
+        line-height: var(--text-lg-line-height);
+      }
     }
   }
 </style>
