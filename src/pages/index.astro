@@ -70,11 +70,17 @@ import { waitlistUrl } from '../waitlist';
 
 <style>
   main {
+    margin-top: calc(var(--spacing) * 27);
+    margin-bottom: calc(var(--spacing) * 32);
+
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: calc(var(--spacing) * 32);
+
     @media (min-width: 40rem) {
+      margin-top: calc(var(--spacing) * 30);
+      margin-bottom: calc(var(--spacing) * 20);
       gap: calc(var(--spacing) * 20);
     }
 
