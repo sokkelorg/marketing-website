@@ -46,9 +46,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     concurrency:
-      group: "Deploy to ${{ inputs.environment }}"
+      group: 'Deploy to ${{ inputs.environment }}'
     environment:
-      name: "${{ inputs.environment }}"
+      name: '${{ inputs.environment }}'
       url: ${{ vars.WEBSITE_URL }}
 
     steps:
@@ -65,7 +65,11 @@ jobs:
       - name: Set up Cloud SDK ⚙️
         uses: google-github-actions/setup-gcloud@v2
         with:
-          version: ">= 502.0.0"
+          project_id: "sokkel-${{ inputs.environment }}"
+          version: '>= 502.0.0'
 
       - name: Sync to bucket 🪣
         run: 'gcloud storage rsync ./website "${{ vars.WEBSITE_BUCKET_URL }}" --recursive --delete-unmatched-destination-objects'
+
+      - name: Invalidate CDN cache 🌱
+        run: 'gcloud compute url-maps invalidate-cdn-cache "${{ vars.URL_MAP_NAME }}" --path "/*"'
