@@ -8,7 +8,7 @@ import WaitlistButton from './waitlist-button.astro';
   <div class="pitch">
     <div class="text">
       <h2 class="title">We are on a mission</h2>
-      <p class="ingress">To set a new Software&nbsp;Delivery standard for SMEs</p>
+      <p class="ingress">To set a new Software Delivery standard for SMEs</p>
       <p class="body">
         Today, small teams are blocked by the complexity of just keeping software running. Sokkel automates
         the busywork and provides instant clarity, so they can stop firefighting and build with confidence.
@@ -36,11 +36,13 @@ import WaitlistButton from './waitlist-button.astro';
     }
 
     .text {
-      display: grid;
-      row-gap: calc(var(--spacing) * 4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: calc(var(--spacing) * 4);
 
       @media(min-width: 60rem) {
-        row-gap: calc(var(--spacing) * 6);
+        gap: calc(var(--spacing) * 6);
       }
 
       .title {
@@ -56,14 +58,26 @@ import WaitlistButton from './waitlist-button.astro';
 
       .ingress {
         margin: 0;
-        font-weight: var(--font-weight-bold);
-        font-size: var(--text-2xl-font-size);
-        line-height: var(--text-2xl-line-height);
+        font-weight: var(--font-weight-extrabold);
+        font-size: var(--text-3xl-font-size);
+        line-height: var(--text-3xl-line-height);
 
         @media (min-width: 60rem) {
-          font-weight: var(--font-weight-extrabold);
-          font-size: var(--text-5xl-font-size);
+          font-size: var(--text-6xl-font-size);
           line-height: 100%;
+        }
+      }
+
+      .body {
+        max-width: 39rem;
+        margin: 0;
+        font-weight: var(--font-weight-normal);
+        font-size: var(--text-sm-font-size);
+        line-height: var(--text-sm-line-height);
+
+        @media(min-width: 60rem) {
+          font-size: var(--text-lg-font-size);
+          line-height: var(--text-lg-line-height);
         }
       }
     }
