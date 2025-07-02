@@ -110,17 +110,23 @@ type HeaderProps = { show: false } | {
 
 type FooterProps = { show: boolean };
 
+type Preload = {
+  href: string;
+  as: 'image';
+}
+
 export type Props = {
   meta: MetaProps;
   header: HeaderProps;
   footer: FooterProps;
+  preloads?: Preload[];
 };
 
 function makeUrl(newPath: string): string {
   return new URL(newPath, Astro.site).toString();
 }
 
-const { meta, header, footer } = Astro.props;
+const { meta, header, footer , preloads } = Astro.props;
 
 const {
   title = 'Sokkel',
@@ -154,7 +160,10 @@ const fontsHref = 'https://fonts.googleapis.com/css2?family=Geist:wght@100..900&
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href={fontsHref} rel="preload" as="font" />
+    <link rel="preload" href={fontsHref} as="font" />
+    {preloads?.map(preload => (
+      <link rel="preload" href={preload.href} as={preload.as} />
+    ))}
 
     <meta name="viewport" content="width=device-width" />
     <link type="text/plain" rel="author" href={makeUrl('/humans.txt')} />
