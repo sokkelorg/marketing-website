@@ -1,58 +1,60 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/header.astro';
 import Hero from '../components/hero.astro';
 import StackyIntro from '../components/stacky-intro.astro';
 import Mission from '../components/mission.astro';
 import Problems from '../components/problems.astro';
-import Footer from '../components/footer.astro';
-import { waitlistUrl } from '../waitlist';
 import Promise from '../components/promise.astro';
+import { waitlistUrl } from '../waitlist';
 ---
 
 <Layout
-  schema={[
-    {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: 'Sokkel',
-      alternateName: ['Sokkel', 'Sokky', 'sokkel.io'],
-      url: 'https://sokkel.io/',
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: 'Sokkel',
-      url: 'https://sokkel.io/',
-      logo: 'https://sokkel.io/assets/logo.svg',
-      sameAs: ['https://www.linkedin.com/company/sokkel'],
-      image: 'https://sokkel.io/assets/team.jpg',
-      description:
-        'Sokkel is the foundation and building blocks for managing your applications, smooooothly.',
-      telephone: '+4795308087',
-      email: 'hello@sokkel.io',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'Arbins gate 11',
-        addressLocality: 'Oslo',
-        addressCountry: 'NO',
-        addressRegion: 'Oslo',
-        postalCode: '0253',
+  meta={{
+    schema: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'Sokkel',
+        alternateName: ['Sokkel', 'Sokky', 'sokkel.io'],
+        url: 'https://sokkel.io/'
       },
-      vatID: 'NO935108500',
-      iso6523Code: '0192:935108500',
-    },
-  ]}
->
-  <Header
-    links={[
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Sokkel',
+        url: 'https://sokkel.io/',
+        logo: 'https://sokkel.io/assets/logo.svg',
+        sameAs: ['https://www.linkedin.com/company/sokkel'],
+        image: 'https://sokkel.io/assets/team.jpg',
+        description:
+          'Sokkel is the foundation and building blocks for managing your applications, smooooothly.',
+        telephone: '+4795308087',
+        email: 'hello@sokkel.io',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Arbins gate 11',
+          addressLocality: 'Oslo',
+          addressCountry: 'NO',
+          addressRegion: 'Oslo',
+          postalCode: '0253',
+        },
+        vatID: 'NO935108500',
+        iso6523Code: '0192:935108500',
+      },
+    ],
+    path: "/"
+  }}
+  header={{
+    show: true,
+    links: [
       { text: 'About us', href: '/about-us', wideOnly: false },
-      { text: 'Join waitlist', href: waitlistUrl, wideOnly: true },
-    ]}
-  />
-
+      { text: 'Join waitlist', href: waitlistUrl, wideOnly: true }
+    ]
+  }}
+  footer={{ show: true }}
+>
   <main>
-    <div class="comfy">
+    <div id="intro" class="comfy">
       <Hero />
       <StackyIntro />
     </div>
@@ -64,8 +66,6 @@ import Promise from '../components/promise.astro';
       <Promise />
     </section>
   </main>
-
-  <Footer page="index" />
 </Layout>
 
 <style>
@@ -74,6 +74,9 @@ import Promise from '../components/promise.astro';
     align-items: center;
     flex-direction: column;
     gap: calc(var(--spacing) * 32);
+    @media (min-width: 40rem) {
+      gap: calc(var(--spacing) * 20);
+    }
 
     div {
       width: 100%;
@@ -88,10 +91,19 @@ import Promise from '../components/promise.astro';
       width: 100%;
     }
 
+    #intro {
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--spacing) * 27);
+      @media (min-width: 40rem) {
+        gap: calc(var(--spacing) * 30);
+      }
+    }
+
     .comfy {
-      padding-inline: calc(var(--spacing)*4);
-      @media(min-width: 40rem) {
-        padding-inline: calc(var(--spacing)*8);
+      padding-inline: calc(var(--spacing) * 4);
+      @media (min-width: 40rem) {
+        padding-inline: calc(var(--spacing) * 8);
       }
     }
   }

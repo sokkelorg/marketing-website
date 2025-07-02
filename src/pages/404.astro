@@ -4,7 +4,11 @@ import LottieAnimation from 'astro-integration-lottie/Lottie.astro';
 import LinkButton from '../components/link-button.astro';
 ---
 
-<Layout>
+<Layout
+  meta={{ path: '/404' }}
+  header={{ show: false }}
+  footer={{ show: false }}
+>
   <main>
     <div class="content">
       <div class="info">

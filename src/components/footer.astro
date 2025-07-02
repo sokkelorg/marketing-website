@@ -4,10 +4,10 @@ import Arrow from './arrow.astro';
 import { waitlistUrl } from '../waitlist';
 
 export type Props = {
-  page: 'index' | 'about-us';
+  path: '/' | '/about-us' | '/404';
 }
 
-const { page } = Astro.props;
+const { path } = Astro.props;
 
 const currentYear = new Date().getFullYear();
 ---
@@ -28,7 +28,7 @@ const currentYear = new Date().getFullYear();
           <span>Take me to the top</span>
           <Arrow direction="up" />
         </a>
-        <a href="/about-us" class:list={{ current: page === 'about-us' }}>
+        <a href="/about-us" class:list={{ current: path === '/about-us' }}>
           <span>About us</span>
           <Arrow direction="right" />
         </a>

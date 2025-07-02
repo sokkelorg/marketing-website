@@ -1,11 +1,12 @@
 ---
 import Arrow from './arrow.astro';
 import Close from './close.astro';
+import type { waitlistUrl } from '../waitlist';
 
-type Props = {
+export type Props = {
   links: {
     icon?: 'arrow' | 'close'; // Defaults to arrow.
-    href: string;
+    href: '/' | '/about-us' | typeof waitlistUrl;
     text: string;
     wideOnly?: boolean;
   }[];
@@ -52,14 +53,17 @@ const { links } = Astro.props;
 <style>
   header {
     width: 100%;
+    margin-bottom: calc(var(--spacing) * 27);
+    padding-inline: calc(var(--spacing) * 6);
+
+    @media (min-width: 40rem) {
+      margin-bottom: calc(var(--spacing) * 30);
+      padding-inline: calc(var(--spacing) * 10);
+    }
+
     display: flex;
     justify-content: space-between;
     align-items: start;
-
-    padding-inline: calc(var(--spacing)*6);
-    @media(min-width: 40rem) {
-      padding-inline: calc(var(--spacing)*10);
-    }
 
     #logo-link {
       display: flex;
