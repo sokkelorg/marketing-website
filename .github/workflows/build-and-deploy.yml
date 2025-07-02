@@ -71,4 +71,4 @@ jobs:
         run: 'gcloud storage rsync ./website "${{ vars.WEBSITE_BUCKET_URL }}" --recursive --delete-unmatched-destination-objects'
 
       - name: Invalidate CDN cache 🌱
-        run: 'gcloud compute url-maps invalidate-cdn-cache "${{ vars.URL_MAP_NAME }}" --path "/*"'
+        run: 'gcloud --project "sokkel-${{ inputs.environment }}" compute url-maps invalidate-cdn-cache "${{ vars.URL_MAP_NAME }}" --path "/*"'
