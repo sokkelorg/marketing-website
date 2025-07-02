@@ -17,7 +17,8 @@ const currentYear = new Date().getFullYear();
     <div class="card building-status">
       <div class="text">
         <h2 class="title"><span aria-hidden="true">🟢</span> Building mode</h2>
-        <p class="body">We are currently building, testing and validating the beta version of the Sokkel platform, and onboarding pilots.</p>
+        <p class="body">We are currently building, testing and validating the beta version of the Sokkel platform, and
+          onboarding pilots.</p>
       </div>
       <WaitlistButton wide={true} />
     </div>
@@ -50,21 +51,23 @@ const currentYear = new Date().getFullYear();
 
 <style>
   footer {
-    padding-bottom: calc(var(--spacing)*8);
-    padding-inline: calc(var(--spacing)*6);
-    @media(min-width: 40rem) {
-      padding-inline: calc(var(--spacing)*10);
+    margin-top: calc(var(--spacing) * 32);
+    padding-bottom: calc(var(--spacing) * 8);
+    padding-inline: calc(var(--spacing) * 6);
+    @media (min-width: 40rem) {
+      margin-top: calc(var(--spacing) * 20);
+      padding-inline: calc(var(--spacing) * 10);
     }
 
     .panels {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: calc(var(--spacing)*32);
+      gap: calc(var(--spacing) * 32);
 
       @media (min-width: 40rem) {
         flex-direction: row-reverse;
-        gap: calc(var(--spacing)*12);
+        gap: calc(var(--spacing) * 12);
       }
 
       .building-status {
@@ -74,7 +77,7 @@ const currentYear = new Date().getFullYear();
 
         border: 1px solid var(--color-base-border);
         display: grid;
-        gap: calc(var(--spacing)*6);
+        gap: calc(var(--spacing) * 6);
 
         .text {
           .title {
@@ -119,11 +122,13 @@ const currentYear = new Date().getFullYear();
             align-items: center;
 
             color: var(--color-blue-500);
+
             &.current {
               color: var(--color-base-primary);
             }
 
             text-decoration: none;
+
             &:hover {
               text-decoration: underline;
             }
@@ -144,7 +149,7 @@ const currentYear = new Date().getFullYear();
 
       a {
         display: flex;
-        gap: calc(var(--spacing)*2);
+        gap: calc(var(--spacing) * 2);
         align-items: center;
 
         text-decoration: none;
