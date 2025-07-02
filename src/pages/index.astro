@@ -1,536 +1,109 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/header.astro';
-import WaitlistButton from '../components/waitlist-button.astro';
-import Footer from '../components/footer.astro';
+import Hero from '../components/hero.astro';
+import StackyIntro from '../components/stacky-intro.astro';
+import Mission from '../components/mission.astro';
+import Problems from '../components/problems.astro';
+import Promise from '../components/promise.astro';
 import { waitlistUrl } from '../waitlist';
-
-type PainSource = { title: string; url: string };
-type Pain = { title: string; body: string; sources: PainSource[] };
-
-const pains: Pain[] = [
-  {
-    title: 'Platform-talent crunch',
-    body: "37 % of firms still can't hire the DevOps skills they need, stalling roadmaps and inflating salaries.",
-    sources: [
-      {
-        title: 'IT Pro',
-        url: 'https://www.itpro.com/software/software-deployments-are-plagued-by-delays-rampant-skills-shortages-and-underinvestment-are-slowing-down-processes-and-its-costing-businesses-big',
-      },
-    ],
-  },
-  {
-    title: 'Cloud-cost black hole',
-    body: 'Hours disappear hunting idle services; 21–50 % of spend is pure waste for 78 % of companies.',
-    sources: [
-      {
-        title: 'Tech Monitor',
-        url: 'https://www.techmonitor.ai/hardware/cloud/cloud-waste-hits-billions-as-78-of-firms-report-significant-expenditure-losses',
-      },
-      {
-        title: 'BetaNews',
-        url: 'https://betanews.com/2025/03/19/84-percent-of-enterprises-are-struggling-to-manage-cloud-spending',
-      },
-    ],
-  },
-  {
-    title: 'Security roulette',
-    body: 'One breach can wipe you out; SMEs face an average hit of $3.3 M per incident.',
-    sources: [
-      {
-        title: 'newsroom.ibm.com',
-        url: 'https://newsroom.ibm.com/2024-07-30-ibm-report-escalating-data-breach-disruption-pushes-costs-to-new-highs',
-      },
-    ],
-  },
-  {
-    title: 'Tool-chain time sink',
-    body: 'Nearly 40 % of engineering time vanishes maintaining internal & delivery tools instead of shipping features.',
-    sources: [
-      {
-        title: 'DZone',
-        url: 'https://dzone.com/articles/devops-trends-2024-business-impact',
-      },
-    ],
-  },
-];
 ---
 
 <Layout
-  schema={[
-    {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: 'Sokkel',
-      alternateName: ['Sokkel', 'Sokky', 'sokkel.io'],
-      url: 'https://sokkel.io/',
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: 'Sokkel',
-      url: 'https://sokkel.io/',
-      logo: 'https://sokkel.io/assets/logo.svg',
-      sameAs: ['https://www.linkedin.com/company/sokkel'],
-      image: 'https://sokkel.io/assets/team.jpg',
-      description:
-        'Sokkel is the foundation and building blocks for managing your applications, smooooothly.',
-      telephone: '+4795308087',
-      email: 'hello@sokkel.io',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'Arbins gate 11',
-        addressLocality: 'Oslo',
-        addressCountry: 'NO',
-        addressRegion: 'Oslo',
-        postalCode: '0253',
+  meta={{
+    schema: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'Sokkel',
+        alternateName: ['Sokkel', 'Sokky', 'sokkel.io'],
+        url: 'https://sokkel.io/'
       },
-      vatID: 'NO935108500',
-      iso6523Code: '0192:935108500',
-    },
-  ]}
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Sokkel',
+        url: 'https://sokkel.io/',
+        logo: 'https://sokkel.io/assets/logo.svg',
+        sameAs: ['https://www.linkedin.com/company/sokkel'],
+        image: 'https://sokkel.io/assets/team.jpg',
+        description:
+          'Sokkel is the foundation and building blocks for managing your applications, smooooothly.',
+        telephone: '+4795308087',
+        email: 'hello@sokkel.io',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Arbins gate 11',
+          addressLocality: 'Oslo',
+          addressCountry: 'NO',
+          addressRegion: 'Oslo',
+          postalCode: '0253',
+        },
+        vatID: 'NO935108500',
+        iso6523Code: '0192:935108500',
+      },
+    ],
+    path: "/"
+  }}
+  header={{
+    show: true,
+    links: [
+      { text: 'About us', href: '/about-us', wideOnly: false },
+      { text: 'Join waitlist', href: waitlistUrl, wideOnly: true }
+    ]
+  }}
+  footer={{ show: true }}
 >
-  <Header link={{ text: 'About us', href: '/about-us' }} />
-
   <main>
-    <section id="hero">
-      <h1>Effortless<br />software<br />delivery</h1>
-      <h2>
-        The AI-powered <span aria-hidden="true">✨</span> platform that turns cloud
-        complexity into clarity.
-      </h2>
-      <WaitlistButton />
+    <div id="intro" class="comfy">
+      <Hero />
+      <StackyIntro />
+    </div>
+    <section id="mission" class="comfy">
+      <Mission />
     </section>
-
-    <section id="stacky-intro">
-      <img class="stacky" alt="Stacky." src="/assets/stacky.svg" />
-      <div class="speech-bubble">
-        <img
-          alt="Speech bubble arrow pointing to Stacky."
-          class="arrow"
-          src="/assets/speech-bubble-arrow.svg"
-        />
-        <p class="card message">
-          Hi <span aria-hidden="true">👋</span> I'm Stacky – your AI sidekick for
-          effortless software delivery. I keep things tidy, tuned, and tantrum-free.
-          You dream it, I'll keep it running.
-        </p>
-      </div>
-    </section>
-
-    <section id="mission" class="pitch">
-      <div class="background">
-        <div class="content">
-          <h2 class="title">Our mission is simple</h2>
-          <p class="body">
-            To set a new standard for software delivery — with simple setups,
-            always-optimized, insight-driven, and change-aware environments.
-          </p>
-          <WaitlistButton inverted />
-        </div>
-      </div>
-    </section>
-
-    <section id="pains">
-      <h2>Software delivery today? Kinda painful.</h2>
-      <div class="facts">
-        {
-          pains.map((pain) => (
-            <div class="card pain">
-              <h3 class="title">{pain.title}</h3>
-              <p class="body">{pain.body}</p>
-              <div class="sources">
-                {pain.sources.map((link) => (
-                  <a href={link.url} rel="noopener noreferrer">
-                    {link.title}
-                  </a>
-                ))}
-              </div>
-            </div>
-          ))
-        }
-      </div>
-    </section>
-
-    <section class="comic">
-      <div class="setup">
-        <h2>Let us tell you a story we hear way too often…</h2>
-        <p>
-          The story about everything getting in the way of what you actually
-          wanted to build.
-        </p>
-      </div>
-      <div class="strip">
-        <div class="panel">
-          <img
-            alt="You reaching for a nearby hovering yellow balloon labeled 'your amazing software'."
-            src="/assets/comic-panel-1.png"
-          />
-          <div>
-            <p class="title">This is you, creating your best software ever.</p>
-            <p>
-              You're in the flow. Focused. The balloon's right there –
-              everything's working.
-            </p>
-          </div>
-        </div>
-        <div class="panel">
-          <img
-            alt="A pink blob-like monster slightly larger than you, labeled 'status meetings', shows up behind you, and holds you back from reaching the balloon."
-            src="/assets/comic-panel-2.png"
-          />
-          <div>
-            <p class="title">But then the real world starts creeping in…</p>
-            <p>
-              Meetings. Roadmaps. Distractions. Your focus slips – the software
-              drifts.
-            </p>
-          </div>
-        </div>
-        <div class="panel">
-          <img
-            alt="An even larger orange monster labeled 'infrastructure on fire' shows up behind that monster, and holds you both back."
-            src="/assets/comic-panel-3.png"
-          />
-          <div>
-            <p class="title">And then shit hits the fan.</p>
-            <p>
-              Infra's on fire. You're no longer building – you're firefighting.
-            </p>
-          </div>
-        </div>
-        <div class="panel">
-          <img
-            alt="A fourth, giant monster labeled 'migration hell' wraps one arm around the whole cast, and takes the balloon with the other."
-            src="/assets/comic-panel-4.png"
-          />
-          <div>
-            <p class="title">Now you're here. Stuck in migration hell.</p>
-            <p>
-              Everything's tangled. Progress is gone. And your dream? Out of
-              reach.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="comic">
-      <div class="setup">
-        <h2>So, let's tell the story again.</h2>
-        <p>This time with Sokkel and Stacky in the mix.</p>
-      </div>
-
-      <div class="strip">
-        <div class="panel">
-          <img
-            alt="You reaching for a nearby hovering yellow balloon labeled 'your amazing software'."
-            src="/assets/comic-panel-1.png"
-          />
-          <p class="title">
-            This is still you, creating your best software ever.
-          </p>
-        </div>
-        <div class="panel">
-          <img
-            alt="You hugging the balloon labeled 'your amazing software'."
-            src="/assets/comic-panel-5.png"
-          />
-          <p>Only now, you're not fighting the cloud to do it.</p>
-        </div>
-        <div class="panel">
-          <img
-            alt="You hugging the balloon, now labeled 'your greatest feature'."
-            src="/assets/comic-panel-6.png"
-          />
-          <p>
-            Setup is simple, changes are safe, and everything just flows
-            smoooothly.
-          </p>
-        </div>
-        <div class="panel">
-          <img
-            alt="You hugging the balloon, now labeled 'your peace of mind'."
-            src="/assets/comic-panel-7.png"
-          />
-          <p>
-            No fires. No blockers. Just smooth and effortless software delivery
-            – peace of mind every time.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="promise" class="pitch">
-      <div class="background">
-        <div class="content">
-          <img alt="Sokkel." src="/assets/logo-monochrome.svg" />
-          <h2 class="text">
-            Not just a platform. A promise. Effortless. Worryless. Smooooth.
-          </h2>
-          <WaitlistButton inverted />
-        </div>
-      </div>
-    </section>
-
-    <section id="status" class="card">
-      <div class="text">
-        <h2 class="title"><span aria-hidden="true">🟢</span> Building mode</h2>
-        <p class="body">
-          We are currently building, testing, and validating the beta version of
-          Sokkel and onboarding pilots.
-        </p>
-      </div>
-      <WaitlistButton wide={true} />
+    <Problems />
+    <section id="promise" class="comfy">
+      <Promise />
     </section>
   </main>
-
-  <Footer
-    links={[
-      { href: '/about-us', text: 'About us' },
-      { href: waitlistUrl, text: 'Join waitlist' },
-    ]}
-  />
 </Layout>
 
 <style>
   main {
+    margin-top: calc(var(--spacing) * 27);
+    margin-bottom: calc(var(--spacing) * 32);
+
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: calc(var(--spacing) * 32);
-  }
-</style>
 
-<style>
-  #hero {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--spacing) * 8);
-    align-items: center;
-    text-align: center;
-
-    h1 {
-      margin: 0;
-      font-weight: var(--font-weight-extrabold);
-      font-size: var(--text-6xl-font-size);
-      line-height: var(--text-6xl-line-height);
+    @media (min-width: 40rem) {
+      margin-top: calc(var(--spacing) * 30);
+      margin-bottom: calc(var(--spacing) * 20);
+      gap: calc(var(--spacing) * 20);
     }
 
-    h2 {
-      margin: 0;
-      font-weight: var(--font-weight-medium);
-      font-size: var(--text-xl-font-size);
-      line-height: var(--text-xl-line-height);
-    }
-  }
-
-  .card {
-    border-radius: var(--radius-2xl);
-    padding: calc(var(--spacing) * 6);
-  }
-
-  #stacky-intro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: calc(var(--spacing) * 6);
-
-    .stacky {
-      width: 75%;
+    section {
+      width: 100%;
     }
 
-    .speech-bubble {
+    #intro {
+      width: 100%;
+      padding-inline: calc(var(--spacing) * 6);
       display: flex;
       flex-direction: column;
       align-items: center;
-
-      .arrow {
-        margin-bottom: -8px;
-      }
-
-      .message {
-        margin: 0;
-        background-color: var(--color-gray-100);
-      }
-    }
-  }
-
-  .pitch {
-    overflow: hidden;
-    border-radius: var(--radius-2xl);
-
-    .background {
-      background-size: calc(100% + 20px) calc(100% + 20px);
-      background-position: -10px -10px;
-      background-repeat: no-repeat;
-
-      .content {
-        padding-block: calc(var(--spacing) * 32);
-        padding-inline: calc(var(--spacing) * 6);
-
-        /* Dim the animated background a bit to make the text more readable. */
-        background-color: var(--color-base-primary-alpha-60);
-        color: var(--color-base-background);
-
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        gap: calc(var(--spacing) * 6);
-        align-items: center;
-
-        .title {
-          margin: 0;
-          font-weight: var(--font-weight-normal);
-          font-size: var(--text-base-font-size);
-          line-height: var(--text-base-line-height);
-        }
-
-        .body {
-          margin: 0;
-          font-weight: var(--font-weight-bold);
-          font-size: var(--text-2xl-font-size);
-          line-height: var(--text-2xl-line-height);
-        }
-      }
-    }
-  }
-
-  #mission {
-    .background {
-      background-image: url(/assets/flow-mission.gif);
-    }
-  }
-
-  #promise {
-    .background {
-      background-image: url(/assets/flow-promise.gif);
-    }
-  }
-
-  #pains {
-    h2 {
-      font-weight: var(--font-weight-extrabold);
-      font-size: var(--text-2xl-font-size);
-      line-height: var(--text-2xl-line-height);
-    }
-
-    .facts {
-      margin-top: calc(var(--spacing) * 6);
-
-      display: grid;
-      gap: calc(var(--spacing) * 4);
-
-      .pain {
-        display: flex;
-        flex-direction: column;
-        gap: calc(var(--spacing) * 2);
-        background: linear-gradient(
-          270deg,
-          hsl(0, 89%, 96%) 0%,
-          hsl(0, 84%, 90%) 100%
-        );
-
-        .title {
-          margin: 0;
-          font-weight: var(--font-weight-bold);
-        }
-
-        .body {
-          margin: 0;
-        }
-
-        .sources {
-          display: flex;
-          gap: calc(var(--spacing) * 2);
-
-          a {
-            width: fit-content;
-            font-weight: var(--font-weight-semibold);
-            padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 2);
-            border-radius: var(--radius-md);
-            background-color: var(--color-base-primary);
-            color: var(--color-base-primary-foreground);
-            text-decoration: none;
-            font-size: var(--text-xxs-font-size);
-            line-height: var(--text-xxs-line-height);
-            text-transform: uppercase;
-          }
-
-          a:hover {
-            background:
-              linear-gradient(
-                0deg,
-                var(--color-base-background-alpha-80) 0%,
-                var(--color-base-background-alpha-80) 100%
-              ),
-              var(--color-base-primary);
-          }
-        }
-      }
-    }
-  }
-
-  .comic {
-    display: grid;
-    gap: calc(var(--spacing) * 32);
-
-    .setup {
-      text-align: center;
-
-      h2 {
-        font-weight: var(--font-weight-extrabold);
-        font-size: var(--text-4xl-font-size);
-        line-height: var(--text-4xl-line-height);
-      }
-
-      p {
-        color: var(--color-gray-400);
-        font-size: var(--text-sm-font-size);
-        line-height: var(--text-sm-line-height);
+      gap: calc(var(--spacing) * 27);
+      @media (min-width: 40rem) {
+        gap: calc(var(--spacing) * 30);
       }
     }
 
-    .strip {
-      display: grid;
-      gap: calc(var(--spacing) * 8);
-
-      .panel {
-        display: grid;
-        gap: calc(var(--spacing) * 2);
-
-        img {
-          border: 3px solid var(--color-black);
-        }
-
-        p {
-          margin: 0;
-          font-size: var(--text-sm-font-size);
-          line-height: var(--text-sm-line-height);
-        }
-
-        .title {
-          font-weight: var(--font-weight-bold);
-        }
-      }
-    }
-  }
-
-  #status {
-    border: 2px solid var(--color-base-border);
-    display: grid;
-    gap: calc(var(--spacing) * 8);
-
-    .text {
-      .title {
-        margin: 0;
-        font-weight: var(--font-weight-semibold);
-        font-size: var(--text-base-font-size);
-        line-height: var(--text-base-line-height);
-      }
-
-      .body {
-        color: var(--color-base-muted-foreground);
+    .comfy {
+      padding-inline: calc(var(--spacing) * 4);
+      @media (min-width: 40rem) {
+        padding-inline: calc(var(--spacing) * 8);
       }
     }
   }

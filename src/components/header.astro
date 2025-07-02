@@ -1,9 +1,18 @@
 ---
-type Props = {
-  link: { href: string; text: string };
+import Arrow from './arrow.astro';
+import Close from './close.astro';
+import type { waitlistUrl } from '../waitlist';
+
+export type Props = {
+  links: {
+    icon?: 'arrow' | 'close'; // Defaults to arrow.
+    href: '/' | '/about-us' | typeof waitlistUrl;
+    text: string;
+    wideOnly?: boolean;
+  }[];
 };
 
-const { link } = Astro.props;
+const { links } = Astro.props;
 ---
 
 <header>
@@ -16,40 +25,93 @@ const { link } = Astro.props;
     />
     <img class="logo" src="/assets/logo.svg" alt="Sokkel." />
   </a>
-  <a class="header-link" href={link.href}>{link.text}</a>
+  <div class="header-links">
+    {
+      links.map((link) => {
+        const icon =
+          link.icon === 'close' ? <Close /> : <Arrow direction="right" />;
+
+        const rel = link.href.startsWith('/')
+          ? undefined
+          : 'noopener noreferrer';
+
+        return (
+          <a
+            class:list={[{ 'wide-only': link.wideOnly }]}
+            href={link.href}
+            rel={rel}
+          >
+            <span>{link.text}</span>
+            {icon}
+          </a>
+        );
+      })
+    }
+  </div>
 </header>
 
 <style>
   header {
     width: 100%;
+    padding-inline: calc(var(--spacing) * 6);
+    @media (min-width: 40rem) {
+      padding-inline: calc(var(--spacing) * 10);
+    }
 
     display: flex;
     justify-content: space-between;
+    align-items: start;
 
     #logo-link {
-      font-size: 0; /* The <a> adds 3px to the height if font-size is non-zero. */
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: calc(var(--spacing)*3.5);
+      height: 1.5rem;
+      @media(min-width: 40rem) {
+        height: 2rem;
+      }
 
       .icon {
-        max-height: 2rem;
-        border-radius: var(--radius-sm);
+        height: 100%;
+        border-radius: 0.25rem;
       }
 
       .logo {
-        max-height: 1.5rem;
+        max-height: 75%;
       }
     }
 
-    .header-link {
-      font-size: 1rem;
-      color: var(--color-base-primary);
-      text-decoration: none;
-    }
+    .header-links {
+      align-self: center;
 
-    .header-link:hover {
-      text-decoration: underline;
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+
+      gap: calc(var(--spacing) * 2);
+
+      a {
+        display: flex;
+        gap: calc(var(--spacing) * 2);
+
+        color: var(--color-base-primary);
+        text-decoration: none;
+
+        font-size: var(--text-sm-font-size);
+        line-height: 100%;
+        font-weight: var(--font-weight-medium);
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        &.wide-only {
+          display: none;
+          @media (min-width: 40rem) {
+            display: flex;
+          }
+        }
+      }
     }
   }
 </style>

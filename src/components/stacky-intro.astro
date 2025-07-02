@@ -1,0 +1,52 @@
+<section id="stacky-intro">
+  <div class="content">
+    <img class="stacky" alt="Stacky." src="/assets/stacky.svg" />
+    <div class="speech-bubble">
+      <p class="message">
+        Hey <span aria-hidden="true">👋</span> I'm Stacky — your AI-powered software delivery sidekick. I understand
+        every part of your setup — from infra and services to deploys and costs. I keep it clean, tuned, and humming.
+        You focus on building and I’ll handle the rest, and only tap your shoulder when it really matters.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  #stacky-intro {
+    display: flex;
+    justify-content: center;
+    max-width: 24rem;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .stacky {
+        max-width: 50%;
+        margin-bottom: 1.375rem;
+      }
+
+      .speech-bubble {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &::before {
+          content: url('/assets/speech-bubble-arrow.svg');
+          height: 0.625rem;
+        }
+
+        .message {
+          margin: 0;
+          padding-inline: calc(var(--spacing)*4);
+          padding-block: calc(var(--spacing)*3);
+          border-radius: var(--radius-md);
+          background-color: var(--color-gray-100);
+          font-size: var(--text-sm-font-size);
+          line-height: var(--text-sm-line-height);
+        }
+      }
+    }
+  }
+</style>

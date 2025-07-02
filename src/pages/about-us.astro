@@ -1,72 +1,158 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/header.astro';
-import ContactSection from '../components/contact-section.astro';
-import Footer from '../components/footer.astro';
 import { Picture } from 'astro:assets';
 import theTeam from '../assets/team.jpg';
+import { waitlistUrl } from '../waitlist';
 ---
 
-<Layout>
-  <Header link={{ href: '/', text: 'Close' }} />
+<Layout
+  meta={{ path: '/about-us' }}
+  header={{
+    show: true,
+    links: [
+      { href: '/', text: 'Close', icon: 'close' },
+      { href: waitlistUrl, text: 'Join waitlist', icon: 'arrow', wideOnly: true }
+    ]
+  }}
+  footer={{ show: true }}
+>
   <main>
-    <section>
+    <section id="team">
       <h1>Hello <span aria-hidden="true">👋</span></h1>
 
-      <Picture
-        class="team"
-        src={theTeam}
-        layout="full-width"
-        formats={['avif', 'webp']}
-        alt="The team: Marius, Simen, and Martin."
-      />
+      <div class="team-photo">
+        <Picture
+          src={theTeam}
+          layout="full-width"
+          formats={['avif', 'webp']}
+          alt="The team: Marius, Simen, and Martin."
+        />
+      </div>
 
-      <p>
-        This is us: Marius, Simen, and Martin. Three builders. One designer. Two
-        developers.
-      </p>
+      <div class="intro">
+        <div class="text">
+          <p>
+            This is us: Marius, Simen, and Martin. Three builders. One designer. Two
+            developers.
+          </p>
 
-      <p>
-        Between us, we’ve been at Finn.no, No Isolation, Auk, AYR, Folio, Bjerk
-        and SpotOn. We’ve seen what works, what doesn’t, and what should exist
-        but doesn’t (yet).
-      </p>
+          <p>
+            Between us, we’ve been at Finn.no, No Isolation, Auk, AYR, Folio, Bjerk
+            and SpotOn. We’ve seen what works, what doesn’t, and what should exist
+            but doesn’t (yet).
+          </p>
 
-      <p>So we're building Sokkel!</p>
+          <p class="emphasis">So we're building Sokkel!</p>
+        </div>
+
+        <dl class="contact">
+          <dt>Email:</dt>
+          <dd>
+            <a href="mailto:hello@sokkel.io">hello@sokkel.io</a>
+          </dd>
+
+          <dt>Call:</dt>
+          <dd>
+            <a href="tel:+4795308087">+47 953 08 087</a>
+          </dd>
+
+          <dt>Chat:</dt>
+          <dd>
+            <a href="https://linkedin.com/company/sokkel" rel="noopener noreferrer">LinkedIn</a>
+          </dd>
+        </dl>
+      </div>
     </section>
-    <ContactSection />
   </main>
-  <Footer
-    links={[
-      { href: '/', text: 'Take me home' },
-    ]}
-  />
 </Layout>
 
 <style>
   main {
-    font-size: 1rem;
-    line-height: 1.5rem;
+    margin-top: calc(var(--spacing) * 27);
+    margin-bottom: calc(var(--spacing) * 32);
+    padding-inline: calc(var(--spacing) * 6);
+
+    @media (min-width: 40rem) {
+      margin-top: calc(var(--spacing) * 20);
+      padding-inline: calc(var(--spacing) * 10);
+    }
+
+    @media(min-width: 60rem) {
+      /* Adjust the margin to the footer when the image moves to the side. */
+      margin-bottom: calc(var(--spacing) * 46);
+    }
+
     display: grid;
-    gap: 3rem;
+    gap: calc(var(--spacing) * 12);
 
-    section {
+    #team {
       display: grid;
-      gap: 1.5rem;
+      gap: calc(var(--spacing) * 6);
 
-      p {
-        margin: 0;
+      grid-template-areas:
+        "title"
+        "team-photo"
+        "intro";
+      @media (min-width: 60rem) {
+        grid-template-areas:
+          "title team-photo"
+          "intro team-photo";
+        grid-template-rows: auto 1fr;
+        grid-template-columns: 345px 1fr;
       }
-    }
 
-    h1 {
-      font-size: 2rem;
-      font-weight: 800;
-      line-height: 1.5rem;
-    }
+      h1 {
+        grid-area: title;
 
-    .team {
-      border-radius: 0.5rem;
+        margin: 0;
+        font-weight: var(--font-weight-extrabold);
+        font-size: var(--text-3xl-font-size);
+        line-height: var(--text-3xl-line-height);
+      }
+
+      .team-photo {
+        height: fit-content;
+        grid-area: team-photo;
+        border-radius: var(--radius-2xl);
+        overflow: hidden;
+      }
+
+      .intro {
+        grid-area: intro;
+
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--spacing) * 14);
+
+        .text {
+          .emphasis {
+            font-weight: var(--font-weight-medium);
+          }
+        }
+
+        .contact {
+          grid-area: contact;
+
+          margin: 0;
+          display: grid;
+          grid-template-columns: auto 1fr;
+          column-gap: calc(var(--spacing) * 4);
+          row-gap: calc(var(--spacing) * 2);
+
+          dd {
+            margin: 0;
+
+            a {
+              color: var(--color-blue-500);
+              text-decoration: none;
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
     }
   }
 </style>

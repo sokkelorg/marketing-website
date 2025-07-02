@@ -1,70 +1,158 @@
 ---
-type Props = {
-  links: { href: string; text: string }[];
-};
+import WaitlistButton from './waitlist-button.astro';
+import Arrow from './arrow.astro';
+import { waitlistUrl } from '../waitlist';
 
-const { links } = Astro.props;
+export type Props = {
+  path: '/' | '/about-us' | '/404';
+}
+
+const { path } = Astro.props;
+
 const currentYear = new Date().getFullYear();
 ---
 
 <footer>
-  <img src="/assets/logo.svg" alt="Sokkel." class="logo" />
-  <nav>
-    <a href="#">
-      Take me to the top
-      <img class="arrow" alt="Arrow pointing up." src="/assets/arrow-up.svg" aria-hidden="true">
-    </a>
-    {links.map((link) => (
-      <a href={link.href}>
-        {link.text} <img class="arrow right" alt="Arrow pointing right." aria-hidden="true" src="/assets/arrow-up.svg">
-      </a>
-    ))}
-  </nav>
+  <div class="panels">
+    <div class="card building-status">
+      <div class="text">
+        <h2 class="title"><span aria-hidden="true">🟢</span> Building mode</h2>
+        <p class="body">We are currently building, testing and validating the beta version of the Sokkel platform, and
+          onboarding pilots.</p>
+      </div>
+      <WaitlistButton wide={true} />
+    </div>
+    <div class="nav-panel">
+      <img src="/assets/logo.svg" alt="Sokkel." class="logo" />
+      <nav>
+        <a href="#">
+          <span>Take me to the top</span>
+          <Arrow direction="up" />
+        </a>
+        <a href="/about-us" class:list={{ current: path === '/about-us' }}>
+          <span>About us</span>
+          <Arrow direction="right" />
+        </a>
+        <a href={waitlistUrl} rel="noopener noreferrer">
+          <span>Join waitlist</span>
+          <Arrow direction="right" />
+        </a>
+      </nav>
+    </div>
+  </div>
   <div id="company-info">
-    <span>&copy; Sokkel AS – {currentYear}</span>
-    <span>Org nr: 935&nbsp;108&nbsp;500</span>
+    <span>&copy; {currentYear} Sokkel&nbsp;AS</span>
+    <a href="https://virksomhet.brreg.no/nb/oppslag/enheter/935108500" rel="noopener noreferrer">
+      <span>Org.nr. 935&nbsp;108&nbsp;500</span>
+      <img alt="External link." src="/assets/external-link-indicator.svg" aria-hidden="true">
+    </a>
   </div>
 </footer>
 
 <style>
   footer {
-    display: grid;
-    gap: calc(var(--spacing) * 12);
+    padding-bottom: calc(var(--spacing) * 8);
+    padding-inline: calc(var(--spacing) * 6);
 
-    .logo {
-      height: 16px;
-      width: 106px;
+    @media (min-width: 40rem) {
+      padding-inline: calc(var(--spacing) * 10);
     }
 
-    nav {
+    .panels {
       display: flex;
       flex-direction: column;
-      gap: calc(var(--spacing) * 4);
+      justify-content: space-between;
+      gap: calc(var(--spacing) * 32);
 
-      font-weight: var(--font-weight-medium);
-      font-size: var(--text-sm-font-size);
-      line-height: var(--text-sm-font-size);
-
-      color: var(--color-blue-500);
-      a:visited {
-        color: var(--color-blue-500);
+      @media (min-width: 40rem) {
+        flex-direction: row-reverse;
+        gap: calc(var(--spacing) * 12);
       }
+
+      .building-status {
+        @media (min-width: 40rem) {
+          max-width: 22rem;
+        }
+
+        border: 1px solid var(--color-base-border);
+        display: grid;
+        gap: calc(var(--spacing) * 6);
+
+        .text {
+          .title {
+            margin: 0;
+            font-size: var(--text-base-font-size);
+            font-weight: var(--font-weight-semibold);
+            line-height: 100%;
+          }
+
+          .body {
+            color: var(--color-base-muted-foreground);
+            font-size: var(--text-sm-font-size);
+            line-height: var(--text-sm-line-height);
+          }
+        }
+      }
+
+      .nav-panel {
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--spacing) * 16);
+
+        .logo {
+          height: 16px;
+          width: 106px;
+        }
+
+        nav {
+          display: flex;
+          flex-direction: column;
+          gap: calc(var(--spacing) * 4);
+
+          font-weight: var(--font-weight-medium);
+          font-size: var(--text-sm-font-size);
+          line-height: var(--text-sm-font-size);
+
+
+          a {
+            display: flex;
+            gap: calc(var(--spacing) * 2);
+            align-items: center;
+
+            color: var(--color-blue-500);
+
+            &.current {
+              color: var(--color-base-primary);
+            }
+
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+
+          .arrow.right {
+            transform: rotate(90deg);
+          }
+        }
+      }
+    }
+
+    #company-info {
+      margin-top: calc(var(--spacing) * 16);
+      display: flex;
+      justify-content: space-between;
+      color: var(--color-base-muted-foreground);
 
       a {
         display: flex;
         gap: calc(var(--spacing) * 2);
         align-items: center;
-      }
 
-      .arrow.right {
-        transform: rotate(90deg);
+        text-decoration: none;
       }
-    }
-
-    #company-info {
-      display: flex;
-      justify-content: space-between;
-      color: var(--color-base-muted-foreground);
     }
   }
 </style>

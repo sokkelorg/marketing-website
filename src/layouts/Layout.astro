@@ -2,8 +2,11 @@
 import type { WithContext, Thing } from 'schema-dts';
 import './reset.css';
 import './variables.css';
+import Header from '../components/header.astro';
+import Footer from '../components/footer.astro';
+import { waitlistUrl } from '../waitlist';
 
-export type Props = {
+type MetaProps = {
   /**
    * The title of the page. The ideal length is approximately 60 characters.
    * When exceeding this limit, search engines will truncate the title.
@@ -14,7 +17,7 @@ export type Props = {
 
   /**
    * The description of the page. The ideal length is between 70 and 155 characters.
-   * Minimum length is 70 characters. When exceeding this limit, search engines will
+   * The minimum length is 70 characters. When exceeding this limit, search engines will
    * truncate the description.
    *
    * @default Default description
@@ -35,21 +38,23 @@ export type Props = {
    */
   heading?: string;
 
-  /**
-   * The title for social media platforms. The ideal length is approximately 47 characters.
-   * When exceeding this limit, platforms will truncate the title. LinkedIn will truncate
-   * the title at 119 characters.
-   *
-   * @default Uses the title prop
-   */
-  socialMediaTitle?: string;
+  socialMedia?: {
+    /**
+     * The title for social media platforms. The ideal length is approximately 47 characters.
+     * When exceeding this limit, platforms will truncate the title. LinkedIn will truncate
+     * the title at 119 characters.
+     *
+     * @default Uses the title prop
+     */
+    title?: string;
 
-  /**
-   * The description for social media platforms. Should not exceed 85 characters to fit most platforms.
-   *
-   * @default Uses the description prop
-   */
-  socialMediaDescription?: string;
+    /**
+     * The description for social media platforms. Should not exceed 85 characters to fit most platforms.
+     *
+     * @default Uses the description prop
+     */
+    description?: string;
+  }
 
   /**
    * Images for social media platforms. The ideal size is 1200 x 630 pixels.
@@ -70,7 +75,7 @@ export type Props = {
   /**
    * The path of the page. Used to generate the canonical URL.
    */
-  path?: string;
+  path: '/' | '/about-us' | '/404';
 
   /**
    * The date the page was published. Only used with type = 'article'.
@@ -91,34 +96,47 @@ export type Props = {
    * JSON-LD structured data for the page.
    */
   schema?: WithContext<Thing> | WithContext<Thing>[];
+}
+
+type HeaderProps = { show: false } | {
+  show: true,
+  links: {
+    icon?: 'arrow' | 'close'; // Defaults to arrow.
+    href: '/' | '/about-us' | typeof waitlistUrl;
+    text: string;
+    wideOnly?: boolean;
+  }[];
 };
 
-const defaultDescription = `
-Sokkel is the foundation and building blocks for managing your applications, smooooothly.
-`;
+type FooterProps = { show: boolean };
 
-const defaultTitle = 'Sokkel';
+export type Props = {
+  meta: MetaProps;
+  header: HeaderProps;
+  footer: FooterProps;
+};
 
-const makeURL = (newPath: string) => new URL(newPath, Astro.site).toString();
+function makeUrl(newPath: string): string {
+  return new URL(newPath, Astro.site).toString();
+}
 
-const defaultImage = new URL('/assets/sharing.png', Astro.site);
+const { meta, header, footer } = Astro.props;
 
 const {
-  title = defaultTitle,
-  description = defaultDescription,
-  socialMediaTitle = title ?? defaultTitle,
-  socialMediaDescription = description ?? defaultDescription,
-  images = [defaultImage.toString()],
-  type = 'website',
-  path = '/',
-  schema,
-} = Astro.props;
+  title = 'Sokkel',
+  description = `
+Sokkel is the foundation and building blocks for managing your applications, smooooothly.
+`,
+  images = [makeUrl('/assets/sharing.png')]
+} = meta;
 
-// const parsedImages = images.map((image) => parseSocialMediaImage(image));
-// const [image] = parsedImages;
+const socialMedia = {
+  title: meta.socialMedia?.title ?? title,
+  description: meta.socialMedia?.description ?? description
+};
 
 const [image] = images;
-const canonical = new URL(path, Astro.site);
+const canonicalUrl = makeUrl(meta.path);
 ---
 
 <!doctype html>
@@ -126,78 +144,81 @@ const canonical = new URL(path, Astro.site);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title set:text={title} />
+    <title set:text={meta.title} />
     <meta property="og:site_name" content="Sokkel" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.svg" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Rubik+Beastly&family=Rubik+Broken+Fax&family=Rubik+Burned&family=Rubik+Maze&family=Rubik+Puddles&display=swap"
+      rel="stylesheet"
+    />
     <meta name="viewport" content="width=device-width" />
-    <link type="text/plain" rel="author" href={makeURL('/humans.txt')} />
+    <link type="text/plain" rel="author" href={makeUrl('/humans.txt')} />
 
     <meta name="robots" content="index,follow" />
     <meta name="description" content={description} />
-    {canonical && <link rel="canonical" href={canonical} />}
+    {canonicalUrl &&
+      <link rel="canonical" href={canonicalUrl} />}
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={socialMediaTitle} />
-    <meta name="twitter:description" content={socialMediaDescription} />
+    <meta name="twitter:title" content={socialMedia.title} />
+    <meta name="twitter:description" content={socialMedia.description} />
     <meta name="twitter:image" content={image} />
 
-    <meta property="og:url" content={canonical} />
-    <meta property="og:type" content={type} />
-    <meta property="og:title" content={socialMediaTitle} />
-    <meta property="og:description" content={socialMediaDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content={meta.type} />
+    <meta property="og:title" content={socialMedia.title} />
+    <meta property="og:description" content={socialMedia.description} />
     {images.map((img) => <meta property="og:image" content={img} />)}
   </head>
   <body>
-    <div class="container">
-      <slot />
-    </div>
+  {header.show &&
+    <Header links={header.links} />}
+
+  <slot />
+
+  {footer.show &&
+    <Footer path={meta.path} />}
   </body>
 </html>
 
 <style>
-  .container {
-    display: grid;
-    gap: calc(var(--spacing)*32);
-    padding-block: calc(var(--spacing)*6);
+  body {
+    max-width: 107rem; /* This is the width of the problem cards + a little bit. */
+    row-gap: calc(var(--spacing) * 30);
+    margin: 0 auto;
+    padding-block: calc(var(--spacing) * 6);
+    @media (min-width: 40rem) {
+      gap: calc(var(--spacing) * 20);
+      padding-block: calc(var(--spacing) * 10);
+    }
 
-    max-width: 450px;
-    margin-inline: auto;
-    padding-inline: calc(var(--spacing)*6);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
     background-color: var(--color-base-background);
-
-    @media (min-width: 600px) {
-      margin-block: calc(var(--spacing)*8);
-      padding-block: calc(var(--spacing)*8);
-      border-radius: 24px;
-    }
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 </style>
 
 <style is:global>
-  html,
-  body {
-    margin: 0;
+  img {
+    user-select: none;
+    user-focus: none;
+  }
 
-    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-    background: #d9d9d9;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-
-    img {
-      user-select: none;
-      user-focus: none;
-    }
+  .card {
+    border-radius: var(--radius-2xl);
+    padding: calc(var(--spacing) * 6);
   }
 </style>
 
-<script is:inline data-goatcounter="https://sokkel.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-
+<script
+  is:inline
+  data-goatcounter="https://sokkel.goatcounter.com/count"
+  async
+  src="https://gc.zgo.at/count.js"></script>
