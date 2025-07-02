@@ -37,8 +37,11 @@ import WaitlistButton from './waitlist-button.astro';
     }
 
     .subtitle {
-      max-width: 25rem;
+      width: 100%;
+      max-width: calc(25rem + 25px);
       margin: 0;
+      padding-inline: 25px;
+
       font-size: var(--text-lg-font-size);
       line-height: var(--text-lg-line-height);
       font-weight: var(--font-weight-medium);
