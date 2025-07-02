@@ -14,9 +14,7 @@ const { background, ingress, body } = Astro.props;
 <div class="pitch flow">
   <div class="background">
     <div class="content">
-      {Astro.slots.has('title') && (
-        <slot name="title" />
-      )}
+      <slot name="title" />
       <p class="ingress">{ingress}</p>
       {body != null && (
         <p class="body">{body}</p>
