@@ -160,7 +160,8 @@ const fontsHref = 'https://fonts.googleapis.com/css2?family=Geist:wght@100..900&
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href={fontsHref} as="font" />
+    <link rel="preload" href={fontsHref} as="style" />
+
     {preloads?.map(preload => (
       <link rel="preload" href={preload.href} as={preload.as} />
     ))}
@@ -183,6 +184,8 @@ const fontsHref = 'https://fonts.googleapis.com/css2?family=Geist:wght@100..900&
     <meta property="og:title" content={socialMedia.title} />
     <meta property="og:description" content={socialMedia.description} />
     {images.map((img) => <meta property="og:image" content={img} />)}
+
+    <link rel="stylesheet" href={fontsHref} />
   </head>
   <body>
   {header.show &&
