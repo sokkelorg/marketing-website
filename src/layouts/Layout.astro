@@ -144,7 +144,7 @@ const socialMedia = {
 const [image] = images;
 const canonicalUrl = makeUrl(meta.path);
 
-const fontsHref = 'https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Rubik+Beastly&family=Rubik+Broken+Fax&family=Rubik+Burned&family=Rubik+Maze&family=Rubik+Puddles&display=swap';
+const googleFontsStylesheetHref = 'https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Rubik+Beastly&family=Rubik+Broken+Fax&family=Rubik+Burned&family=Rubik+Maze&family=Rubik+Puddles&display=swap';
 ---
 
 <!doctype html>
@@ -160,7 +160,20 @@ const fontsHref = 'https://fonts.googleapis.com/css2?family=Geist:wght@100..900&
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href={fontsHref} as="style" />
+
+    <!-- Preload the Google Fonts stylesheet to prevent jumping on the first page load. -->
+    <!-- (Note that we must also preload the individual fonts that should block the first render.) -->
+    <!-- See https://dev.to/pilcrowonpaper/preloading-google-fonts-37h1 for more info. -->
+    <link rel="preload" href={googleFontsStylesheetHref} as="style" crossorigin />
+    <!-- Preload the Geist Latin font, which is used for everything that is visible on the first page load. -->
+    <!-- (Its URL is defined inside the Google Fonts stylesheet.) -->
+    <link
+      rel="preload"
+      href="https://fonts.gstatic.com/s/geist/v3/gyByhwUxId8gMEwcGFWNOITd.woff2"
+      as="font"
+      crossorigin
+      type="font/woff2"
+    />
 
     {preloads?.map(preload => (
       <link rel="preload" href={preload.href} as={preload.as} />
@@ -185,7 +198,7 @@ const fontsHref = 'https://fonts.googleapis.com/css2?family=Geist:wght@100..900&
     <meta property="og:description" content={socialMedia.description} />
     {images.map((img) => <meta property="og:image" content={img} />)}
 
-    <link rel="stylesheet" href={fontsHref} />
+    <link rel="stylesheet" href={googleFontsStylesheetHref} />
   </head>
   <body>
   {header.show &&
