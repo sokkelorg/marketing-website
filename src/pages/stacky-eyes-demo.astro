@@ -38,26 +38,60 @@ import StackyIntro from '../components/stacky-intro.astro';
   }
 </style>
 
-<script is:inline lang="typescript">
+<script is:inline>
+  function distance(a, b) {
+    return Math.sqrt(
+      Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2)
+    );
+  }
+
+  function angle(a, b) {
+    return Math.atan2(p2.y - p1.y, p2.x - p1.x);
+  }
+
   class Eye {
     #iris;
 
     constructor(side) {
       const eye = document.querySelector(`.stacky .eye.${side}`);
-      this.#iris =  eye.querySelector('.iris');
+
+      const socket = eye.querySelector('.socket');
+      const center = {
+        x: Number(socket.getAttribute('x')) + (Number(socket.getAttribute('width')) / 2),
+        y: Number(socket.getAttribute('y')) + Number(socket.getAttribute('height')) / 2,
+      };
+      console.log(center);
+
+      this.#iris = eye.querySelector('.iris');
+      const irisPosition = {
+        x: Number(this.#iris.getAttribute('cx')),
+        y: Number(this.#iris.getAttribute('cy'))
+      }
+      console.log({ irisPosition })
+
+      const radius = distance(center, irisPosition);
+      console.log({ radius });
+
+      this.set(center);
     }
 
-    target(x, y)  {
-      const current = Number(this.#iris.getAttribute('cx'));
-      this.#iris.setAttribute('cx', current + 1);
+    set({ x, y })  {
+      this.#iris.setAttribute('cx', x);
+      this.#iris.setAttribute('cy', y);
+    }
+
+    target({ x, y }) {
+      // TODO: Calculate the angle.
     }
   }
 
   class Eyes {
     #left;
+    #right;
 
     constructor() {
       this.#left = new Eye('left');
+      this.#right = new Eye('right');
     }
 
     target(x, y) {
