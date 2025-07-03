@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StackyIntro from '../components/stacky-intro.astro';
+---
+
+<Layout
+  meta={{ path: '/about-us' }}
+  header={{
+    show: true,
+    links: []
+  }}
+  footer={{ show: true }}
+>
+  <main>
+    <StackyIntro />
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin-top: calc(var(--spacing) * 27);
+    margin-bottom: calc(var(--spacing) * 32);
+    padding-inline: calc(var(--spacing) * 6);
+
+    @media (min-width: 40rem) {
+      margin-top: calc(var(--spacing) * 20);
+      padding-inline: calc(var(--spacing) * 10);
+    }
+
+    @media (min-width: 60rem) {
+      /* Adjust the margin to the footer when the image moves to the side. */
+      margin-bottom: calc(var(--spacing) * 46);
+    }
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
+
+<script is:inline lang="typescript">
+  class Eye {
+    #iris;
+
+    constructor(side) {
+      const eye = document.querySelector(`.stacky .eye.${side}`);
+      this.#iris =  eye.querySelector('.iris');
+    }
+
+    target(x, y)  {
+      const current = Number(this.#iris.getAttribute('cx'));
+      this.#iris.setAttribute('cx', current + 1);
+    }
+  }
+
+  class Eyes {
+    #left;
+
+    constructor() {
+      this.#left = new Eye('left');
+    }
+
+    target(x, y) {
+      this.#left.target(x, y);
+    }
+  }
+
+  (() => {
+    const eyes = new Eyes();
+
+    document.addEventListener('mousemove', (e) => {
+      eyes.target(e.x, e.y);
+    });
+
+    console.log('done');
+  })();
+</script>
