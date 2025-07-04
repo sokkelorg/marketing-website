@@ -40,18 +40,33 @@ import StackyIntro from '../components/stacky-intro.astro';
 
 <script>
   class Point {
-    constructor(
-      readonly x: number,
-      readonly y: number
-    ) {
-      this.x = x;
-      this.y = y;
+    constructor(readonly x: number, readonly y: number) {
     }
 
     distanceTo(target: Point) {
       return Math.sqrt(
         Math.pow(this.x - target.x, 2) + Math.pow(this.y - target.y, 2)
       );
+    }
+  }
+
+  class Vector {
+    constructor(readonly x: number, readonly y: number) {
+    }
+
+    get magnitude(): number {
+      return Math.sqrt(
+        Math.pow(this.x, 2) + Math.pow(this.y, 2)
+      );
+    }
+
+    get normalized(): Vector {
+      const magnitude = this.magnitude;
+      return new Vector(this.x / magnitude, this.y / magnitude);
+    }
+
+    multiply(magnitude: number): Vector {
+      return new Vector(this.x * magnitude, this.y * magnitude);
     }
   }
 
@@ -80,16 +95,32 @@ import StackyIntro from '../components/stacky-intro.astro';
       this.radius = this.center.distanceTo(irisPosition);
       console.log('radius', this.radius);
 
-      this.#set(this.center);
-      // this.target(new Point(0, 0));
+      // this.#set(this.center);
+      this.target(new Point(100, 100));
     }
 
     target(point: Point) {
-      // TODO: Calculate the new point.
-      const socketPosition = this.socket.getBoundingClientRect();
-      console.log('socketPosition', socketPosition);
+      const clientPosition = this.socket.getBoundingClientRect();
+      const clientCenter = new Point(
+        clientPosition.x + this.center.x,
+        clientPosition.y + this.center.y
+      );
 
-      this.#set(point);
+      const vectorToTarget = new Vector(point.x - clientCenter.x, point.y - clientCenter.y);
+      console.log('vectorToTarget', vectorToTarget);
+
+      const normalizedVectorTowardsTarget = vectorToTarget.normalized;
+      console.log('normalizedVectorTowardsTarget', normalizedVectorTowardsTarget);
+
+      const vectorFromCenter = normalizedVectorTowardsTarget.multiply(this.radius);
+      console.log('vectorFromCenter', vectorFromCenter);
+
+      const newPoint = new Point(
+        this.center.x + vectorFromCenter.x,
+        this.center.y + vectorFromCenter.y
+      );
+
+      this.#set(newPoint);
     }
 
     #set(point: Point) {
@@ -143,7 +174,9 @@ import StackyIntro from '../components/stacky-intro.astro';
     const eyes = [leftResult.eye, rightResult.eye];
 
     document.addEventListener('mousemove', (e) => {
-      for (const eye of [eyes[0]]) { // TODO: do both eyes
+      // TODO: do both eyes
+      const leftEye = eyes[0];
+      for (const eye of [leftEye]) {
         eye.target(new Point(e.clientX, e.clientY));
       }
     });
