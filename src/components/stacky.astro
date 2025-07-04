@@ -1,0 +1,157 @@
+---
+import stacky from '../assets/stacky.svg?raw';
+---
+
+<Fragment set:html={stacky} />
+
+<script>
+  class Point {
+    constructor(
+      readonly x: number,
+      readonly y: number,
+    ) {}
+
+    distanceTo(target: Point) {
+      return Math.sqrt(
+        Math.pow(this.x - target.x, 2) + Math.pow(this.y - target.y, 2),
+      );
+    }
+  }
+
+  class Vector {
+    constructor(
+      readonly x: number,
+      readonly y: number,
+    ) {}
+
+    get length(): number {
+      return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+    }
+
+    get normalized(): Vector {
+      const magnitude = this.length;
+      return new Vector(this.x / magnitude, this.y / magnitude);
+    }
+
+    multiply(magnitude: number): Vector {
+      return new Vector(this.x * magnitude, this.y * magnitude);
+    }
+  }
+
+  type Side = 'left' | 'right';
+
+  class Eye {
+    readonly center: Point;
+    readonly maxRadiusFromCenter: number;
+
+    constructor(
+      readonly side: Side,
+      readonly socket: SVGRectElement,
+      readonly iris: SVGEllipseElement,
+    ) {
+      this.center = new Point(
+        Number(socket.getAttribute('x')) +
+          Number(socket.getAttribute('width')) / 2,
+        Number(socket.getAttribute('y')) +
+          Number(socket.getAttribute('height')) / 2,
+      );
+
+      const irisPosition = new Point(
+        Number(this.iris.getAttribute('cx')),
+        Number(this.iris.getAttribute('cy')),
+      );
+
+      this.maxRadiusFromCenter = this.center.distanceTo(irisPosition);
+    }
+
+    target(point: Point) {
+      const clientPosition = this.socket.getBoundingClientRect();
+      const clientCenter = new Point(
+        clientPosition.x + clientPosition.width / 2,
+        clientPosition.y + clientPosition.height / 2,
+      );
+
+      const vectorToTarget = new Vector(
+        point.x - clientCenter.x,
+        point.y - clientCenter.y,
+      );
+
+      // Move the iris towards the target, but clamp it to the max radius so it doesn't leave the socket.
+      const distanceFromCenter = Math.min(
+        vectorToTarget.length,
+        this.maxRadiusFromCenter,
+      );
+
+      const vectorFromCenter =
+        vectorToTarget.normalized.multiply(distanceFromCenter);
+      const newPoint = new Point(
+        this.center.x + vectorFromCenter.x,
+        this.center.y + vectorFromCenter.y,
+      );
+
+      this.#set(newPoint);
+    }
+
+    #set(point: Point) {
+      this.iris.setAttribute('cx', point.x.toString());
+      this.iris.setAttribute('cy', point.y.toString());
+    }
+  }
+
+  type GetEyeResult =
+    | { success: false; reason: string }
+    | { success: true; eye: Eye };
+
+  function getEye(stacky: SVGElement, side: Side): GetEyeResult {
+    const eye = stacky.querySelector(`.eye.${side}`);
+    if (eye == null) {
+      return { success: false, reason: 'eye not found' };
+    }
+
+    const socket = eye.querySelector('.socket');
+    if (!(socket instanceof SVGRectElement)) {
+      return { success: false, reason: 'socket not found' };
+    }
+
+    const iris = eye.querySelector('.iris');
+    if (!(iris instanceof SVGEllipseElement)) {
+      return { success: false, reason: 'iris not found' };
+    }
+
+    return { success: true, eye: new Eye(side, socket, iris) };
+  }
+
+  (() => {
+    const stacky = document.querySelector('.stacky');
+    if (!(stacky instanceof SVGElement)) {
+      return;
+    }
+
+    const leftResult = getEye(stacky, 'left');
+    if (!leftResult.success) {
+      return;
+    }
+
+    const rightResult = getEye(stacky, 'right');
+    if (!rightResult.success) {
+      return;
+    }
+
+    const eyes = [leftResult.eye, rightResult.eye];
+
+    document.addEventListener('mousemove', (e) => {
+      for (const eye of eyes) {
+        eye.target(new Point(e.clientX, e.clientY));
+      }
+    });
+
+    document.addEventListener('touchmove', (e) => {
+      // If there are multiple active touches, take the first one.
+      const touch = e.touches[0];
+
+      for (const eye of eyes) {
+        eye.target(new Point(touch.clientX, touch.clientY));
+      }
+    });
+  })();
+</script>

@@ -1,14 +1,14 @@
-<svg width="201" height="200" viewBox="0 0 201 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg class="stacky" width="201" height="200" viewBox="0 0 201 200" fill="none" xmlns="http://www.w3.org/2000/svg">
     <ellipse cx="100.5" cy="157.143" rx="100" ry="42.8571" transform="rotate(180 100.5 157.143)" fill="#2929FF"/>
     <ellipse cx="100.5" cy="100" rx="100" ry="42.8571" transform="rotate(180 100.5 100)" fill="#2929FF"/>
     <ellipse cx="100.5" cy="42.857" rx="100" ry="42.8571" transform="rotate(180 100.5 42.857)" fill="#2929FF"/>
-    <g clip-path="url(#clip0_1732_3689)">
-        <rect x="55.5" y="40" width="40" height="40" rx="20" fill="white"/>
-        <ellipse cx="65.4995" cy="50.0001" rx="15" ry="15" fill="black"/>
+    <g class="eye left" clip-path="url(#clip0_1732_3689)">
+        <rect class="socket" x="55.5" y="40" width="40" height="40" rx="20" fill="white"/>
+        <ellipse class="iris" cx="65.4995" cy="50.0001" rx="15" ry="15" fill="black"/>
     </g>
-    <g clip-path="url(#clip1_1732_3689)">
-        <rect x="105.5" y="40" width="40" height="40" rx="20" fill="white"/>
-        <ellipse cx="115.499" cy="50.0001" rx="15" ry="15" fill="black"/>
+    <g class="eye right" clip-path="url(#clip1_1732_3689)">
+        <rect class="socket" x="105.5" y="40" width="40" height="40" rx="20" fill="white"/>
+        <ellipse class="iris" cx="115.499" cy="50.0001" rx="15" ry="15" fill="black"/>
     </g>
     <defs>
         <clipPath id="clip0_1732_3689">
