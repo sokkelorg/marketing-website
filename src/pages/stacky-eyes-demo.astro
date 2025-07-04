@@ -74,7 +74,7 @@ import StackyIntro from '../components/stacky-intro.astro';
 
   class Eye {
     readonly center: Point;
-    readonly radius: number;
+    readonly maxRadiusFromCenter: number;
 
     constructor(
       readonly side: Side,
@@ -92,8 +92,8 @@ import StackyIntro from '../components/stacky-intro.astro';
       );
       console.log(irisPosition);
 
-      this.radius = this.center.distanceTo(irisPosition);
-      console.log('radius', this.radius);
+      this.maxRadiusFromCenter = this.center.distanceTo(irisPosition);
+      console.log('radius', this.maxRadiusFromCenter);
 
       // this.#set(this.center);
       this.target(new Point(100, 100));
@@ -102,19 +102,19 @@ import StackyIntro from '../components/stacky-intro.astro';
     target(point: Point) {
       const clientPosition = this.socket.getBoundingClientRect();
       const clientCenter = new Point(
-        clientPosition.x + this.center.x,
-        clientPosition.y + this.center.y
+        clientPosition.x + clientPosition.width / 2,
+        clientPosition.y + clientPosition.height / 2
       );
 
-      const vectorToTarget = new Vector(point.x - clientCenter.x, point.y - clientCenter.y);
-      console.log('vectorToTarget', vectorToTarget);
+      const vectorToTarget = new Vector(
+        point.x - clientCenter.x,
+        point.y - clientCenter.y
+      );
 
-      // Move the iris towards the target, but clamp it to the radius.
-      const distance = Math.min(vectorToTarget.length, this.radius);
+      // Move the iris towards the target, but clamp it to the max radius so it doesn't leave the socket.
+      const distanceFromCenter = Math.min(vectorToTarget.length, this.maxRadiusFromCenter);
 
-      const vectorFromCenter = vectorToTarget.normalized.multiply(distance);
-      console.log('vectorFromCenter', vectorFromCenter);
-
+      const vectorFromCenter = vectorToTarget.normalized.multiply(distanceFromCenter);
       const newPoint = new Point(
         this.center.x + vectorFromCenter.x,
         this.center.y + vectorFromCenter.y
@@ -174,9 +174,7 @@ import StackyIntro from '../components/stacky-intro.astro';
     const eyes = [leftResult.eye, rightResult.eye];
 
     document.addEventListener('mousemove', (e) => {
-      // TODO: do both eyes
-      const leftEye = eyes[0];
-      for (const eye of [leftEye]) {
+      for (const eye of eyes) {
         eye.target(new Point(e.clientX, e.clientY));
       }
     });
