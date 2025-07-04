@@ -54,14 +54,14 @@ import StackyIntro from '../components/stacky-intro.astro';
     constructor(readonly x: number, readonly y: number) {
     }
 
-    get magnitude(): number {
+    get length(): number {
       return Math.sqrt(
         Math.pow(this.x, 2) + Math.pow(this.y, 2)
       );
     }
 
     get normalized(): Vector {
-      const magnitude = this.magnitude;
+      const magnitude = this.length;
       return new Vector(this.x / magnitude, this.y / magnitude);
     }
 
@@ -109,10 +109,10 @@ import StackyIntro from '../components/stacky-intro.astro';
       const vectorToTarget = new Vector(point.x - clientCenter.x, point.y - clientCenter.y);
       console.log('vectorToTarget', vectorToTarget);
 
-      const normalizedVectorTowardsTarget = vectorToTarget.normalized;
-      console.log('normalizedVectorTowardsTarget', normalizedVectorTowardsTarget);
+      // Move the iris towards the target, but clamp it to the radius.
+      const distance = Math.min(vectorToTarget.length, this.radius);
 
-      const vectorFromCenter = normalizedVectorTowardsTarget.multiply(this.radius);
+      const vectorFromCenter = vectorToTarget.normalized.multiply(distance);
       console.log('vectorFromCenter', vectorFromCenter);
 
       const newPoint = new Point(
