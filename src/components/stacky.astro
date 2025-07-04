@@ -60,13 +60,8 @@ import stacky from '../assets/stacky.svg?raw';
         Number(this.iris.getAttribute('cx')),
         Number(this.iris.getAttribute('cy')),
       );
-      console.log(irisPosition);
 
       this.maxRadiusFromCenter = this.center.distanceTo(irisPosition);
-      console.log('radius', this.maxRadiusFromCenter);
-
-      // this.#set(this.center);
-      this.target(new Point(100, 100));
     }
 
     target(point: Point) {
@@ -129,19 +124,16 @@ import stacky from '../assets/stacky.svg?raw';
   (() => {
     const stacky = document.querySelector('.stacky');
     if (!(stacky instanceof SVGElement)) {
-      console.log('stacky not found');
       return;
     }
 
     const leftResult = getEye(stacky, 'left');
     if (!leftResult.success) {
-      console.log('failed to get left eye:', leftResult.reason);
       return;
     }
 
     const rightResult = getEye(stacky, 'right');
     if (!rightResult.success) {
-      console.log('failed to get right eye:', rightResult.reason);
       return;
     }
 
@@ -153,6 +145,13 @@ import stacky from '../assets/stacky.svg?raw';
       }
     });
 
-    console.log('done');
+    document.addEventListener('touchmove', (e) => {
+      // If there are multiple active touches, take the first one.
+      const touch = e.touches[0];
+
+      for (const eye of eyes) {
+        eye.target(new Point(touch.clientX, touch.clientY));
+      }
+    });
   })();
 </script>
