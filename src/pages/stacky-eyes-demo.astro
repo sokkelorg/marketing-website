@@ -38,72 +38,105 @@ import StackyIntro from '../components/stacky-intro.astro';
   }
 </style>
 
-<script is:inline>
-  function distance(a, b) {
-    return Math.sqrt(
-      Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2)
-    );
-  }
+<script>
 
-  function angle(a, b) {
-    return Math.atan2(p2.y - p1.y, p2.x - p1.x);
+  class Point {
+    constructor(readonly x: number, readonly y: number) {
+      this.x = x;
+      this.y = y;
+    }
+
+    distanceTo(target: Point) {
+      return Math.sqrt(
+        Math.pow(this.x - target.x, 2) + Math.pow(this.y - target.y, 2)
+      );
+    }
   }
 
   class Eye {
-    #iris;
+    readonly center: Point;
+    readonly radius: number;
 
-    constructor(side) {
-      const eye = document.querySelector(`.stacky .eye.${side}`);
+    constructor(socket: SVGRectElement, readonly iris: SVGEllipseElement) {
+      this.center = new Point(
+        Number(socket.getAttribute('x')) + (Number(socket.getAttribute('width')) / 2),
+        Number(socket.getAttribute('y')) + Number(socket.getAttribute('height')) / 2
+      );
 
-      const socket = eye.querySelector('.socket');
-      const center = {
-        x: Number(socket.getAttribute('x')) + (Number(socket.getAttribute('width')) / 2),
-        y: Number(socket.getAttribute('y')) + Number(socket.getAttribute('height')) / 2,
-      };
-      console.log(center);
+      console.log(socket);
 
-      this.#iris = eye.querySelector('.iris');
-      const irisPosition = {
-        x: Number(this.#iris.getAttribute('cx')),
-        y: Number(this.#iris.getAttribute('cy'))
-      }
-      console.log({ irisPosition })
+      const irisPosition = new Point(
+        Number(this.iris.getAttribute('cx')),
+        Number(this.iris.getAttribute('cy'))
+      );
+      console.log(irisPosition);
 
-      const radius = distance(center, irisPosition);
-      console.log({ radius });
+      this.radius = this.center.distanceTo(irisPosition);
+      console.log('radius', this.radius);
 
-      this.set(center);
+      this.#set(this.center);
+      // this.target(new Point(0, 0));
     }
 
-    set({ x, y })  {
-      this.#iris.setAttribute('cx', x);
-      this.#iris.setAttribute('cy', y);
+    target(point: Point) {
+      // TODO: Calculate the new point.
+      this.#set(point);
     }
 
-    target({ x, y }) {
-      // TODO: Calculate the angle.
+    #set(point: Point) {
+      this.iris.setAttribute('cx', point.x.toString());
+      this.iris.setAttribute('cy', point.y.toString());
     }
   }
 
-  class Eyes {
-    #left;
-    #right;
+  type GetEyeResult =
+    | { success: false, reason: string }
+    | { success: true; eye: Eye };
 
-    constructor() {
-      this.#left = new Eye('left');
-      this.#right = new Eye('right');
+  function getEye(stacky: SVGElement, side: 'left' | 'right'): GetEyeResult {
+    const eye = stacky.querySelector(`.eye.${side}`);
+    if (eye == null) {
+      return { success: false, reason: 'eye not found' };
     }
 
-    target(x, y) {
-      this.#left.target(x, y);
+    const socket = eye.querySelector('.socket');
+    if (!(socket instanceof SVGRectElement)) {
+      return { success: false, reason: 'socket not found' };
     }
+
+    const iris = eye.querySelector('.iris');
+    if (!(iris instanceof SVGEllipseElement)) {
+      return { success: false, reason: 'iris not found' };
+    }
+
+    return { success: true, eye: new Eye(socket, iris) };
   }
 
   (() => {
-    const eyes = new Eyes();
+    const stacky = document.querySelector('.stacky');
+    if (!(stacky instanceof SVGElement)) {
+      console.log('stacky not found');
+      return
+    }
 
-    document.addEventListener('mousemove', (e) => {
-      eyes.target(e.x, e.y);
+    const leftResult = getEye(stacky, 'left');
+    if (!leftResult.success) {
+      console.log('failed to get left eye:', leftResult.reason);
+      return;
+    }
+
+    const rightResult = getEye(stacky, 'right');
+    if (!rightResult.success) {
+      console.log('failed to get right eye:', rightResult.reason);
+      return;
+    }
+
+    const eyes = [leftResult.eye, rightResult.eye];
+
+    document.addEventListener('mousemove', e => {
+      for (const eye of eyes) {
+        eye.target(new Point(e.clientX, e.clientY));
+      }
     });
 
     console.log('done');
