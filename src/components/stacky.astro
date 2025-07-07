@@ -139,19 +139,30 @@ import stacky from '../assets/stacky.svg?raw';
 
     const eyes = [leftResult.eye, rightResult.eye];
 
-    document.addEventListener('mousemove', (e) => {
-      for (const eye of eyes) {
-        eye.target(new Point(e.clientX, e.clientY));
+    let throttled = false;
+
+    function target({ clientX, clientY }: MouseEvent | Touch) {
+      if (throttled) {
+        // Ignore any events while throttled.
+        return;
       }
+
+      // Ignore all events for 10 ms to allow running smoothly.
+      throttled = true;
+      setTimeout(() => throttled = false, 10);
+
+      for (const eye of eyes) {
+        eye.target(new Point(clientX, clientY));
+      }
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      target(e);
     });
 
     document.addEventListener('touchmove', (e) => {
       // If there are multiple active touches, take the first one.
-      const touch = e.touches[0];
-
-      for (const eye of eyes) {
-        eye.target(new Point(touch.clientX, touch.clientY));
-      }
+      target(e.touches[0]);
     });
   })();
 </script>
