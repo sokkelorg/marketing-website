@@ -139,16 +139,17 @@ import stacky from '../assets/stacky.svg?raw';
 
     const eyes = [leftResult.eye, rightResult.eye];
 
-    let throttled = false;
+    let previousTargetMillis = 0;
     document.addEventListener('pointermove', (e) => {
-      if (throttled) {
-        // Ignore any events while throttled.
+      const nowMillis = Date.now();
+
+      const deltaMillis = nowMillis - previousTargetMillis;
+      if (deltaMillis < 10) {
+        // Ignore all events for 10 ms to keep the rest of the site running smoothly.
         return;
       }
 
-      // Ignore all events for 10 ms to allow running smoothly.
-      throttled = true;
-      setTimeout(() => throttled = false, 10);
+      previousTargetMillis = nowMillis;
 
       for (const eye of eyes) {
         eye.target(new Point(e.clientX, e.clientY));
