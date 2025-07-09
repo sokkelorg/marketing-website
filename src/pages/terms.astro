@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Picture } from 'astro:assets';
+import theTeam from '../assets/team.jpg';
+import { waitlistUrl } from '../waitlist';
+---
+
+<Layout
+  meta={{ path: '/about-us' }}
+  header={{
+    show: true,
+    links: [
+      { href: '/', text: 'Close', icon: 'close' },
+      { href: waitlistUrl, text: 'Join waitlist', icon: 'arrow', wideOnly: true }
+    ]
+  }}
+  footer={{ show: true }}
+>
+  <main>
+    <section id="team">
+      <h1>Terms of Service</h1>
+      <p>We are early stage, so the terms of service are not currently available publicly. Please contact us at hello@sokkel.io.</p>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin-top: calc(var(--spacing) * 27);
+    margin-bottom: calc(var(--spacing) * 32);
+    padding-inline: calc(var(--spacing) * 6);
+
+    @media (min-width: 40rem) {
+      margin-top: calc(var(--spacing) * 20);
+      padding-inline: calc(var(--spacing) * 10);
+    }
+
+    @media(min-width: 60rem) {
+      /* Adjust the margin to the footer when the image moves to the side. */
+      margin-bottom: calc(var(--spacing) * 46);
+    }
+
+    display: grid;
+    gap: calc(var(--spacing) * 12);
+  }
+</style>
