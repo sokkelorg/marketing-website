@@ -6,11 +6,6 @@ on:
     branches:
       - main
   workflow_dispatch:
-    inputs:
-      environment:
-        description: Environment to deploy to
-        required: true
-        type: environment
 
 permissions:
   contents: read
@@ -43,7 +38,6 @@ jobs:
           # when the branch is the default branch.
           tags: |
             type=raw,value=latest,enable=${{ env.IS_DEFAULT_BRANCH }}
-            type=sha,prefix={{branch}}-
             type=ref,event=pr
             type=ref,event=tag
 
