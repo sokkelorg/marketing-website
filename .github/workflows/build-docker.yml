@@ -43,6 +43,7 @@ jobs:
           # when the branch is the default branch.
           tags: |
             type=raw,value=latest,enable=${{ env.IS_DEFAULT_BRANCH }}
+            type=sha,prefix={{branch}}-
             type=ref,event=pr
             type=ref,event=tag
 
