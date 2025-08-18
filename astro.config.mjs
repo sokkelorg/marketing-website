@@ -1,14 +1,17 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
+import assert from 'node:assert/strict';
 import sitemap from '@astrojs/sitemap';
 import lottie from 'astro-integration-lottie';
 
 import node from '@astrojs/node';
 
+assert(process.env.ORIGIN, 'ORIGIN environment variable is required');
+
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://sokkel.io',
+  site: process.env.ORIGIN,
   integrations: [sitemap(), lottie()],
 
   image: {
