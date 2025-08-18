@@ -44,6 +44,8 @@ jobs:
           tags: |
             type=raw,value=latest,enable=${{ env.IS_DEFAULT_BRANCH }}
             type=sha,prefix={{branch}}-,priority=1001
+            type=ref,event=pr
+            type=ref,event=tag
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
