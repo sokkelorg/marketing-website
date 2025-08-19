@@ -18,8 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      IS_DEFAULT_BRANCH:
-        ${{ github.ref == format('refs/heads/{0}',
+      IS_DEFAULT_BRANCH: ${{ github.ref == format('refs/heads/{0}',
         github.event.repository.default_branch) }}
 
     steps:
@@ -33,7 +32,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/${{ github.repository }}
+          images: |
+            name=ghcr.io/${{ github.repository }}
+            name=europe-north2-docker.pkg.dev/sokkel-sandbox/martin-test-1/marketing-website
           # For better caching, images can be tagged with «latest» tag
           # when the branch is the default branch.
           tags: |
@@ -48,7 +49,18 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push to GHCR
+      - name: Authenticate with Google Cloud 🔐
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/184284737035/locations/global/workloadIdentityPools/marketing-website/providers/marketing-website-github-actions
+
+      - name: Set up Cloud SDK ⚙️
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: sokkel-sandbox
+          version: '>= 502.0.0'
+
+      - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
           context: .
