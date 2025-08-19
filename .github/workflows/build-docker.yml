@@ -33,7 +33,6 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            name=ghcr.io/${{ github.repository }}
             name=europe-north2-docker.pkg.dev/sokkel-sandbox/martin-test-1/marketing-website
           # For better caching, images can be tagged with «latest» tag
           # when the branch is the default branch.
