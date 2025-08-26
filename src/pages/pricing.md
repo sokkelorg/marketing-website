@@ -1,3 +1,6 @@
+---
+layout: ../layouts/TermsLayout.astro
+---
 # Pricing
 
 Our pricing model is designed to be flexible and affordable, catering to a wide
