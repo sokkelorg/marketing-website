@@ -37,6 +37,7 @@ jobs:
           # For better caching, images can be tagged with «latest» tag
           # when the branch is the default branch.
           tags: |
+            type=sha,format=long
             type=raw,value=latest,enable=${{ env.IS_DEFAULT_BRANCH }}
             type=ref,event=pr
             type=ref,event=tag
