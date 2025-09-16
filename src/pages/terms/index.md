@@ -180,6 +180,15 @@ The fees do not include any taxes, levies, duties, value added tax or other tax
 applicable to the sale of the Service. Such taxes, when applicable, shall be
 paid by Customer unless Customer provides proof of tax exemption.
 
+### 11.4 Pricing Adjustments
+
+Sokkel may change the Prices at any time unless otherwise expressly agreed in
+an addendum or Order Form. Company will notify Customer at least 30 days in
+advance of any changes.
+
+Customer's pricing will change if and when Customer's Order Term renews after
+the 30-day period. 
+
 ## 12. SUBCONTRACTING
 
 Sokkel may use subcontractors in the provision of the Service. COMPANY shall
