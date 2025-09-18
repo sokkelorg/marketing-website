@@ -33,7 +33,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            name=europe-north2-docker.pkg.dev/sokkel-shared/docker/marketing-website
+            name=europe-north2-docker.pkg.dev/sokkel-shared/docker/marketing
           # For better caching, images can be tagged with «latest» tag
           # when the branch is the default branch.
           tags: |
