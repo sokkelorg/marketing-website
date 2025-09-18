@@ -1,30 +1,30 @@
-FROM node:22-slim AS base
+FROM node:lts-alpine AS builder
+
+WORKDIR /app
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 
-COPY pnpm-lock.yaml /app/pnpm-lock.yaml
-COPY package.json /app/package.json
+# Opt out of sending telemetry about our build to Astro: https://astro.build/telemetry
+ENV ASTRO_TELEMETRY_DISABLED=1
 
-WORKDIR /app
-
-FROM base AS prod-deps
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
-
-FROM base AS build
+# Install dependencies.
+COPY pnpm-lock.yaml package.json ./
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
-COPY . /app
+# Build the app.
+COPY . .
+RUN --mount=type=cache,id=astro-build-artifacts,target=/app/node_modules/.astro pnpm build
 
-RUN pnpm run build
+# ---
+# Serve the static app with nginx.
+# ---
+FROM nginx:stable-alpine
 
-FROM base
-
-COPY --from=prod-deps /app/node_modules /app/node_modules
-COPY --from=build /app/dist /app/dist
-
-ENV HOST=0.0.0.0
 ENV PORT=8080
-EXPOSE 8080
-CMD [ "node", "./dist/server/entry.mjs" ]
+COPY default.conf.template /etc/nginx/templates/default.conf.template
+
+COPY --from=builder /app/dist /usr/share/nginx/html/
+
+EXPOSE ${PORT}
