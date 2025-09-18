@@ -19,8 +19,4 @@ export default defineConfig({
     '/security': '/terms/security',
     '/privacy': '/terms/privacy',
   },
-
-  adapter: node({
-    mode: 'standalone',
-  }),
 });
