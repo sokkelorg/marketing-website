@@ -20,7 +20,7 @@ RUN --mount=type=cache,id=astro-build-artifacts,target=/app/node_modules/.astro 
 # ---
 # Serve the static app with nginx.
 # ---
-FROM nginx:mainline-alpine
+FROM nginx:stable-alpine
 
 ENV PORT=8080
 COPY default.conf.template /etc/nginx/templates/default.conf.template
