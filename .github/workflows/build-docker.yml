@@ -52,7 +52,7 @@ jobs:
       - name: Authenticate with Google Cloud 🔐
         uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: projects/184284737035/locations/global/workloadIdentityPools/marketing-website/providers/marketing-website-github-actions
+          workload_identity_provider: projects/997683670244/locations/global/workloadIdentityPools/github/providers/github
 
       - name: Set up Cloud SDK ⚙️
         uses: google-github-actions/setup-gcloud@v2
