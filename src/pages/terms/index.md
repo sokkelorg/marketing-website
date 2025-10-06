@@ -24,18 +24,18 @@ and the following appendices:
 
 In the event of any conflict or inconsistency between this document and any
 Subscription Form(s), the Subscription Form(s) shall take precedence. In the
-event of any conflict or inconsistency between this document and the
-appendices, this document shall take precedence. In the event of any conflict
-or inconsistency between the appendices, they shall take precedence in the
-order they are listed above.
+event of any conflict or inconsistency between this document and the appendices,
+this document shall take precedence. In the event of any conflict or
+inconsistency between the appendices, they shall take precedence in the order
+they are listed above.
 
 ## 2. RIGHT TO ACCESS AND USE
 
-Sokkel grants to Customer, during the term of the Agreement, a right to
-remotely access and use the Sokkel SaaS services listed in the relevant
-Subscription Form (“Service”) in accordance with this Agreement. The services
-offered by Sokkel in general are described in Appendix 1 and Customer will
-have access to those features that are agreed in the Subscription Form.
+Sokkel grants to Customer, during the term of the Agreement, a right to remotely
+access and use the Sokkel SaaS services listed in the relevant Subscription Form
+(“Service”) in accordance with this Agreement. The services offered by Sokkel in
+general are described in Appendix 1 and Customer will have access to those
+features that are agreed in the Subscription Form.
 
 ## 3. PROVISION OF THE SERVICE
 
@@ -49,17 +49,17 @@ Level Agreement”).
 
 ## 4. SUPPORT
 
-Sokkel will provide support as described in the Subscription Form. The
-Customer will provide access to the necessary resources for Sokkel to be able
-to support the Customer in a timely manner.
+Sokkel will provide support as described in the Subscription Form. The Customer
+will provide access to the necessary resources for Sokkel to be able to support
+the Customer in a timely manner.
 
 ## 5. ADDITIONAL FEATURES AND SERVICES
 
 The parties may from time to time agree to include additional features and
 services (“Add-On Service”). The Agreement will apply for such Add-On Services.
-Specific terms may apply for the individual Add-On Service. Sokkel will
-provide the Customer with such specific terms prior to the Add-On Services is
-agreed upon.
+Specific terms may apply for the individual Add-On Service. Sokkel will provide
+the Customer with such specific terms prior to the Add-On Services is agreed
+upon.
 
 ## 6. MODIFICATIONS AND IMPROVEMENTS
 
@@ -77,8 +77,8 @@ Sokkel has implemented and shall during the term of the Agreement maintain
 appropriate technical and organizational measures, internal controls, and
 information security routines.
 
-The routines applicable at the time of entering into the Agreement are
-described at https://sokkel.io/security.
+The routines applicable at the time of entering into the Agreement are described
+at https://sokkel.io/security.
 
 ## 8. PROCESSING OF PERSONAL DATA
 
@@ -89,8 +89,8 @@ respect to Sokkel’s processing of personal data on behalf of the Customer.
 
 ## 9. DATA EXPORT
 
-Sokkel can export Customer Data in a common machine-readable format (CSV or JSON)
-upon request from Customer.
+Sokkel can export Customer Data in a common machine-readable format (CSV or
+JSON) upon request from Customer.
 
 ## 10. ACCEPTABLE USE
 
@@ -111,8 +111,8 @@ resell, distribute, sublicense, or otherwise transfer any right in and to the
 Service to others, including allowing user rights to third parties not
 specifically granted rights under this Agreement.
 
-Users will need to accept Sokkel’s end user terms before use of the Service.
-In the event of any inconsistency or conflict, the terms of this Agreement take
+Users will need to accept Sokkel’s end user terms before use of the Service. In
+the event of any inconsistency or conflict, the terms of this Agreement take
 precedence over any similar terms in the end user terms of service. Nothing in
 the end user terms of service is intended to limit Customer’s options or rights
 as set forth in this Agreement.
@@ -152,9 +152,9 @@ reserves the right to take necessary measures to prevent misuse.
 
 Sokkel may investigate access logs to verify that Customer complies with the
 acceptable use requirements above. The Customer shall upon request from Sokkel
-reasonably cooperate to clarify compliance. Sokkel reserves the right to
-charge Customer appropriate usage fees in line with the price for the feature
-in question in case of repeated or intentional breach of the acceptable use
+reasonably cooperate to clarify compliance. Sokkel reserves the right to charge
+Customer appropriate usage fees in line with the price for the feature in
+question in case of repeated or intentional breach of the acceptable use
 requirements.
 
 ## 11. FEES, INVOICING AND PAYMENT TERMS
@@ -166,14 +166,14 @@ parties.
 
 ### 11.2. Invoicing
 
-Sokkel will issue invoice for subscription fees no more than 60 days before
-the relevant billing period. Other fees will be invoiced at any time during the
-term when fees are payable. The Customer shall, unless otherwise stated in the
+Sokkel will issue invoice for subscription fees no more than 60 days before the
+relevant billing period. Other fees will be invoiced at any time during the term
+when fees are payable. The Customer shall, unless otherwise stated in the
 Subscription Form, pay all invoices within 30 days of the invoice date.
 
-Sokkel may claim late payment interest of 2% monthly if an invoice is more
-than 30 (thirty) days overdue. Interest shall be calculated from the due date
-until payment is made.
+Sokkel may claim late payment interest of 2% monthly if an invoice is more than
+30 (thirty) days overdue. Interest shall be calculated from the due date until
+payment is made.
 
 ### 11.3. Taxes
 
@@ -183,26 +183,26 @@ paid by Customer unless Customer provides proof of tax exemption.
 
 ### 11.4 Pricing Adjustments
 
-Sokkel may change the Prices at any time unless otherwise expressly agreed in
-an addendum or Order Form. Company will notify Customer at least 30 days in
-advance of any changes.
+Sokkel may change the Prices at any time unless otherwise expressly agreed in an
+addendum or Order Form. Company will notify Customer at least 30 days in advance
+of any changes.
 
 Customer's pricing will change if and when Customer's Order Term renews after
 the 30-day period.
 
 ## 12. SUBCONTRACTING
 
-Sokkel may use subcontractors in the provision of the Service. COMPANY shall
-be liable for the acts and omissions of its subcontractors and any other
-affiliates contributing to the performance of its obligations under this
-Agreement as for its own actions or omission.
+Sokkel may use subcontractors in the provision of the Service. COMPANY shall be
+liable for the acts and omissions of its subcontractors and any other affiliates
+contributing to the performance of its obligations under this Agreement as for
+its own actions or omission.
 
 ## 13. INTELLECTUAL PROPERTY RIGHTS
 
-This Agreement does not constitute any transfer of ownership of any
-intellectual property rights. Sokkel owns and shall always retain all right,
-title, and interest in and to the Service and all intellectual property rights
-associated therewith.
+This Agreement does not constitute any transfer of ownership of any intellectual
+property rights. Sokkel owns and shall always retain all right, title, and
+interest in and to the Service and all intellectual property rights associated
+therewith.
 
 ## 14. CUSTOMER DATA
 
@@ -210,15 +210,15 @@ associated therewith.
 
 Customer Data is and shall remain the exclusive property of Customer and
 Customer has sole responsibility for the content of and the right to use
-Customer Data. “Customer Data” means for the purpose of this Agreement any
-data included by Customer in- or generated by Customer’s use of the Service.
+Customer Data. “Customer Data” means for the purpose of this Agreement any data
+included by Customer in- or generated by Customer’s use of the Service.
 
 ### 14.2. Rights to use Customer Data.
 
 Customer hereby grants to Sokkel, during the term of this Agreement, a limited
 right to access and use such Customer Data that are necessary for Sokkel to
-provide the Service. Sokkel will use Customer Data only as necessary to
-provide the Service to the Customer.
+provide the Service. Sokkel will use Customer Data only as necessary to provide
+the Service to the Customer.
 
 ### 14.3. No sales of data
 
@@ -239,28 +239,28 @@ For the purpose of this Agreement, “Confidential Information” means all
 information disclosed by the disclosing party to the receiving party that is
 designated as confidential, or that reasonably should be understood to be
 confidential given the nature of the information and the circumstances of the
-disclosure. The terms of this Agreement, Customer Data and any other
-information exchanged pursuant to this Agreement, will be considered
-Confidential Information.
+disclosure. The terms of this Agreement, Customer Data and any other information
+exchanged pursuant to this Agreement, will be considered Confidential
+Information.
 
 ### 15.2. Limitations on the duty of non-disclosure of Confidential Information
 
 Confidential Information does not include any information or material that (i)
 is or becomes publicly known other than through violation of this Agreement by
-the receiving party, (ii) was already in the receiving party's possession or
-was available to the receiving party on a non-confidential basis before
-disclosure, (iii) is obtained by the receiving party from a third party that is
-not bound to separate confidentiality obligations to the other party, (iv) was
-later communicated by a third party to the receiving party without any
-confidentiality obligation, or (v) is independently developed by the receiving
-party without use of or reference to the discloser's Confidential Information.
+the receiving party, (ii) was already in the receiving party's possession or was
+available to the receiving party on a non-confidential basis before disclosure,
+(iii) is obtained by the receiving party from a third party that is not bound to
+separate confidentiality obligations to the other party, (iv) was later
+communicated by a third party to the receiving party without any confidentiality
+obligation, or (v) is independently developed by the receiving party without use
+of or reference to the discloser's Confidential Information.
 
 ### 15.3. Disclosures required by Law
 
 The recipient may disclose Confidential Information to the extent required by
-law, provided that the receiving party gives the disclosing party prompt
-written notice of such requirement prior to such disclosure and assistance in
-obtaining an order protecting the information from public disclosure.
+law, provided that the receiving party gives the disclosing party prompt written
+notice of such requirement prior to such disclosure and assistance in obtaining
+an order protecting the information from public disclosure.
 
 ### 15.4. Survival and remedies
 
@@ -281,8 +281,8 @@ for one year if no such period is specified (“Initial Term”).
 
 ### 16.2. Renewal Term
 
-The Agreement will upon expiration of the Initial Term automatically renew for
-a subscription term equivalent in the length to the then expiring subscription
+The Agreement will upon expiration of the Initial Term automatically renew for a
+subscription term equivalent in the length to the then expiring subscription
 term, unless otherwise set out in the Subscription Form (“Renewal Term”). The
 charges for the Renewal Term will be the standard fees listed in the
 Subscription form with a price adjustment of 5%.
@@ -299,10 +299,10 @@ Renewal Term.
 ### 16.4. Termination for breach
 
 Either party may terminate this Agreement for breach by giving the other party
-thirty (30) calendar days prior written notice if the other party has
-materially breached its obligations hereunder and have failed to cure such
-breach within thirty (30) calendar days’ after being notified in writing of the
-details of such breach.
+thirty (30) calendar days prior written notice if the other party has materially
+breached its obligations hereunder and have failed to cure such breach within
+thirty (30) calendar days’ after being notified in writing of the details of
+such breach.
 
 Either party may terminate this Agreement with immediate effect if the other
 party takes or suffers any action for insolvency in any jurisdiction.
@@ -323,9 +323,9 @@ Upon expiration or termination of this Agreement for any reason (i) all access
 rights will cease, (ii) either party shall delete or destroy all Confidential
 Information of the other party (Confidential Information included in backup
 copies will first be deleted upon expiration of such encrypted backup copies),
-and (iii) any and all invoiced and non-invoiced undisputed fees owed by
-Customer to Sokkel under this Agreement shall become immediately due and
-payable to Sokkel.
+and (iii) any and all invoiced and non-invoiced undisputed fees owed by Customer
+to Sokkel under this Agreement shall become immediately due and payable to
+Sokkel.
 
 ## 17. REPRESENTATIONS AND WARRANTIES
 
@@ -337,12 +337,12 @@ representing party, enforceable against it in accordance with its terms.
 
 ## 18. DISCLAIMERS
 
-THE SERVICE IS PROVIDED “AS IS”. Sokkel DOES NOT WARRANT THAT CUSTOMER’S USE
-OF THE SERVICE WILL BE UNINTERRUPTED OR ERROR-FREE. CUSTOMER ASSUMES THE RISK
-OF THE USE, QUALITY, PERFORMANCE, ACCURACY AND COMPLETENESS OF ANY DATA
-PRODUCED BY THE SERVICE. SOKKEL WILL ONLY BE LIABLE FOR A SECURITY INCIDENT
-UNDER THE AGREEMENT IF SOKKEL NEGLIGENTLY BREACHES THE SECURITY MEASURES
-DESCRIBED IN SECTION 7.
+THE SERVICE IS PROVIDED “AS IS”. Sokkel DOES NOT WARRANT THAT CUSTOMER’S USE OF
+THE SERVICE WILL BE UNINTERRUPTED OR ERROR-FREE. CUSTOMER ASSUMES THE RISK OF
+THE USE, QUALITY, PERFORMANCE, ACCURACY AND COMPLETENESS OF ANY DATA PRODUCED BY
+THE SERVICE. SOKKEL WILL ONLY BE LIABLE FOR A SECURITY INCIDENT UNDER THE
+AGREEMENT IF SOKKEL NEGLIGENTLY BREACHES THE SECURITY MEASURES DESCRIBED IN
+SECTION 7.
 
 EXCEPT AS EXPRESSLY PROVIDED IN THIS AGREEMENT, EITHER PARTY DISCLAIMS ANY AND
 ALL WARRANTIES, EXPRESS, IMPLIED, OR STATUTORY, RELATING IN ANY WAY TO THE
@@ -364,8 +364,8 @@ IN NO EVENT SHALL THE AGGREGATE LIABILITY OF EITHER PARTY RELATED TO THIS
 AGREEMENT (INCLUDING THE SERVICE LEVEL AGREEMENT AND THE DATA PROCESSING
 AGREEMENT) EXCEED THE AMOUNT OF FEES RECEIVED BY SOKKEL DURING THE TWELVE (12)
 CALENDAR MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE LIABILITY.
-THE FOREGOING LIMITATION WILL APPLY WHETHER AN ACTION IS IN CONTRACT OR TORT
-AND REGARDLESS OF THE THEORY OF LIABILITY.
+THE FOREGOING LIMITATION WILL APPLY WHETHER AN ACTION IS IN CONTRACT OR TORT AND
+REGARDLESS OF THE THEORY OF LIABILITY.
 
 THE FOREGOING LIMITATIONS OF LIABILITY SHALL NOT APPLY TO DAMAGES ATTRIBUTABLE
 TO GROSS NEGLIGENCE OR INTENTIONAL MISCONDUCT.
@@ -385,9 +385,9 @@ Sokkel shall defend, indemnify and hold harmless Customer and its officers,
 directors, employees, and agents, from and against any losses, costs, expenses
 (including reasonable outside attorneys’ fees and costs) and finally awarded
 damages against Customer resulting from a substantiated claim, demand, suit,
-action or proceeding brought against Customer by a third party alleging that
-the Service used in accordance with this Agreement infringes a valid
-intellectual property right of such third party in the US, EU and/or EEA.
+action or proceeding brought against Customer by a third party alleging that the
+Service used in accordance with this Agreement infringes a valid intellectual
+property right of such third party in the US, EU and/or EEA.
 
 ### 21.2. By Customer
 
@@ -398,8 +398,7 @@ damages against Sokkel resulting from a substantiated claim, demand, suit,
 action or proceeding brought against Sokkel by a third party alleging that any
 Customer Data, or the use of the Service in combination with a non-Sokkel
 application provided by Customer, infringes a valid intellectual property right
-of such third party in the jurisdictions the Customer use or access the
-Service.
+of such third party in the jurisdictions the Customer use or access the Service.
 
 ### 21.3 Process
 
@@ -431,8 +430,8 @@ exclusive remedy for any alleged infringement covered by this section.
 
 Sokkel provides a standard service that can be accessed in any jurisdiction via
 a web interface. Sokkel shall provide the Service in accordance with those laws
-in the country Sokkel is registered that are applicable to Sokkel’s provision
-of its services in general without regard for Customer’s particular use of the
+in the country Sokkel is registered that are applicable to Sokkel’s provision of
+its services in general without regard for Customer’s particular use of the
 Service. Customer is responsible for its own use of the Service, all activities
 that occur under User’s account, and that such use is compliant with legal
 requirements applicable for their business and any local laws that may impact
@@ -453,29 +452,28 @@ upon the parties’ respective permitted successors and assigns.
 
 ### 22.3. Force Majeure
 
-Neither party shall be liable for any failure or delay in its performance of
-its obligations under the Agreement resulting from an event caused by
-conditions beyond the reasonable control of a party, including governmental
-action, war, acts of public enemies, strikes or other labor disturbances, civil
-or military authority, fires, floods, or other natural calamities, acts of God,
+Neither party shall be liable for any failure or delay in its performance of its
+obligations under the Agreement resulting from an event caused by conditions
+beyond the reasonable control of a party, including governmental action, war,
+acts of public enemies, strikes or other labor disturbances, civil or military
+authority, fires, floods, or other natural calamities, acts of God,
 telecommunications failures, electrical outages, any service failure or
-disruption caused by third parties, service providers or systems, severe
-network outages in co-location site networks, error in the coding of electronic
-files or any causes of like or different kind beyond the reasonable control of
-such party.
+disruption caused by third parties, service providers or systems, severe network
+outages in co-location site networks, error in the coding of electronic files or
+any causes of like or different kind beyond the reasonable control of such
+party.
 
 A party experiencing a force majeure event shall provide the other party with
 prompt written notice of such force majeure event. In the event the force
-majeure event has lasted or is likely to last for more than three months,
-either Party may terminate this Agreement immediately without liability to the
-other party.
+majeure event has lasted or is likely to last for more than three months, either
+Party may terminate this Agreement immediately without liability to the other
+party.
 
 ### 22.4. Entire Agreement
 
-The Agreement constitutes the entire agreement between the parties and
-supersede all other agreements, proposals, or representations, whether
-electronic, written, or oral, between the parties concerning its subject
-matter.
+The Agreement constitutes the entire agreement between the parties and supersede
+all other agreements, proposals, or representations, whether electronic,
+written, or oral, between the parties concerning its subject matter.
 
 ### 22.5. Severability
 
@@ -486,9 +484,9 @@ enforceability of any of the remaining portions thereof.
 ### 22.6. Amendment
 
 Amendment or modification of the Agreement shall only be valid or binding upon
-the parties if made in writing and signed by an officer of each party. No
-terms, provisions, or conditions of any purchase order will have any effect on
-the obligations of the parties hereunder or otherwise modify this Agreement.
+the parties if made in writing and signed by an officer of each party. No terms,
+provisions, or conditions of any purchase order will have any effect on the
+obligations of the parties hereunder or otherwise modify this Agreement.
 
 ### 22.7. Notices
 
@@ -510,9 +508,8 @@ The governing law and legal venue depend on which Sokkel company Customer has
 entered into the agreement with. This Agreement and all matters arising
 hereunder or in connection herewith shall be governed by and construed in
 accordance with the governing law noted in the below chart and the parties
-irrevocably consent to the exclusive jurisdiction of- and venue in the
-locations noted the legal venue columns below.
+irrevocably consent to the exclusive jurisdiction of- and venue in the locations
+noted the legal venue columns below.
 
-Sokkel AS
-Organization Number: 935108500
-Address: Gaustadalléen 21, 0349 Oslo, Norway
+Sokkel AS Organization Number: 935108500 Address: Gaustadalléen 21, 0349 Oslo,
+Norway

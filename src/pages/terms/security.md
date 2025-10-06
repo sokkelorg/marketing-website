@@ -4,10 +4,9 @@ layout: ../../layouts/TermsLayout.astro
 
 # Security Policy
 
-This security policy establishes the baseline security requirements for
-Sokkel's operations, protecting customer data, intellectual property, and
-infrastructure while supporting our mission to deliver optimized software
-delivery solutions.
+This security policy establishes the baseline security requirements for Sokkel's
+operations, protecting customer data, intellectual property, and infrastructure
+while supporting our mission to deliver optimized software delivery solutions.
 
 This policy applies to all Sokkel employees, contractors, partners, and systems
 handling customer data or accessing company resources.
@@ -31,8 +30,8 @@ generating and storing unique passwords.
 ### Keep Systems Updated and Monitored
 
 All development machines, servers, and dependencies are kept current with
-security patches. We monitor our systems for unusual activity and have
-automated alerts set up for potential security issues.
+security patches. We monitor our systems for unusual activity and have automated
+alerts set up for potential security issues.
 
 ### Plan for Problems
 
@@ -43,9 +42,9 @@ it in the future.
 
 ## Daily Practices
 
-When developing or deploying code, we scan for vulnerabilities before pushing
-to production. Customer environments are kept separate from each other and from
-our internal systems. Any changes to production systems require at least 2 team
+When developing or deploying code, we scan for vulnerabilities before pushing to
+production. Customer environments are kept separate from each other and from our
+internal systems. Any changes to production systems require at least 2 team
 members to review and approve.
 
 We treat laptops and development environments as potential attack vectors, so
