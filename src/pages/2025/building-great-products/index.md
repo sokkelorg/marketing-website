@@ -1,12 +1,14 @@
 ---
-layout: ../../layouts/ArticleLayout.astro
+layout: ../../../layouts/ArticleLayout.astro
 ---
 
 # Building great products should be simple.
 
-A product manager asks: "Are we shipping Friday?" The engineer answers: "Should
-be good, just working through some edge cases." Meeting done in 90 seconds.
-Efficient, right?
+![People at Sokkel](./people-at-sokkel.jpg)
+
+**A product manager asks: "Are we shipping Friday?" The engineer answers:
+"Should be good, just working through some edge cases." Meeting done in 90
+seconds. Efficient, right?**
 
 Here's what actually happened: The product manager just got a Slack message from
 the CEO asking when the feature would ship. They needed a real answer but didn't
@@ -26,7 +28,9 @@ shared space â€“ no single source of truth that both people can point to and say
 Sokkel amplifies individual efficiency and code quality when tools are connected
 to internal company information, such as source code, documentation, work
 tracking, and communication tools. Not (only) because AI works magic, but
-because context and knowledge sharing make or break software development[^1].
+because context and knowledge sharing make or break software development [^1].
+
+![Sokkel Meme](./meme.png)
 
 Sokkel makes software development understandable to everyone who needs to
 understand it. Instead of treating "applications" and "changes" as technical
@@ -36,8 +40,8 @@ of dependencies, integrations and data flows. A change isn't just a Git commit â
 it's an explicit connection between a user need, the business initiative to
 address that need, and what was actually shipped.
 
-Without a shared understanding, AI quickly creates a reign of chaos[^1][^2], and
-teams spend more time in unscheduled meetings[^3]. Teams who visualise and
+Without a shared understanding, AI quickly creates a reign of chaos [^1] [^2],
+and teams spend more time in unscheduled meetings [^3]. Teams who visualise and
 understand the impact of changes on the system as a whole turn AI adoption into
 organisational performance gains.
 
@@ -48,6 +52,9 @@ system is done, but the accounting integration is blocked. Should we ship
 without that integration?"
 
 It's time.
+
+[Join the waitlist](https://tally.so/r/wvKvxA) or
+[subscribe to stay in the loop](https://luma.com/sokkel).
 
 [^1]:
     [DORA | State of AI-assisted Software Development](https://dora.dev/research/2025/dora-report/)
