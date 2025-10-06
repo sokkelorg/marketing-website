@@ -1,0 +1,32 @@
+---
+import Layout from './Layout.astro';
+---
+
+<Layout
+  meta={{}}
+  header={{
+    show: true,
+    links: [{ href: '/', text: 'Close', icon: 'close' }],
+  }}
+  footer={{ show: true }}
+>
+  <main>
+    <slot />
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin-block: 2.5rem;
+    margin-inline: auto;
+    max-width: 60ch;
+
+    @media (max-width: 40rem) {
+      margin-inline: 1.25rem;
+      margin-block: 1.25rem;
+    }
+
+    display: grid;
+    gap: 1rem;
+  }
+</style>
