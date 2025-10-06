@@ -2,9 +2,11 @@
 import LinkButton from './link-button.astro';
 import { waitlistUrl } from '../waitlist';
 
-export type Props = { wide?: true, inverted?: true };
+export type Props = { wide?: true; inverted?: true };
 
 const { wide, inverted } = Astro.props;
 ---
 
-<LinkButton href={waitlistUrl} wide={wide} inverted={inverted}>Join waitlist</LinkButton>
+<LinkButton href={waitlistUrl} wide={wide} inverted={inverted}
+  >Join waitlist</LinkButton
+>

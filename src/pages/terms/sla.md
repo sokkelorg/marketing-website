@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/TermsLayout.astro
 ---
+
 # SERVICE LEVEL AGREEMENT (SLA)
 
 The Service is provided "as is" as standardized service; the right to use is
@@ -34,21 +35,21 @@ undertakes the following obligations regarding error handling with regards to
 the Service:
 
 - Sokkel will provide support to the Customer during normal business hours
-(0900-1700 CET, Monday to Friday, excluding public holidays in Norway) via
-email and chat.
+  (0900-1700 CET, Monday to Friday, excluding public holidays in Norway) via
+  email and chat.
 - Sokkel will use reasonable efforts to correct errors in the Service as soon
-as possible, in accordance with the error categories and repair times set out
-below.
+  as possible, in accordance with the error categories and repair times set out
+  below.
 
 Error categories and repair times:
 
 - Critial (A): All or material parts of the Service are unavailable and
-critical business functions cannot be performed. Repair time: One (1) business day.
+  critical business functions cannot be performed. Repair time: One (1) business day.
 - Serious (B): The Service is able to perform standard functions, but the
-Service performance or functionality is severely degraded or limited. Repair
-time: Three (3) business days.
+  Service performance or functionality is severely degraded or limited. Repair
+  time: Three (3) business days.
 - Less serious (C): Non-critical functions do not work and this has little or
-no business impact. Repair time: Continuously.
+  no business impact. Repair time: Continuously.
 
 The repair time stated in the table above starts when the Customer has given
 Sokkel notice of the error and sufficient information to assess and understand

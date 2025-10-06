@@ -1,7 +1,8 @@
 ---
 layout: ../../layouts/TermsLayout.astro
 ---
-# DATA PROCESSING AGREEMENT 
+
+# DATA PROCESSING AGREEMENT
 
 ## 1. Background and purpose of the processing
 
@@ -86,7 +87,7 @@ termination of the Agreement.
 The Processor shall not transfer or give access to the personal data or
 information which the Processor processes or handles on behalf of the
 Controller to a third party without the explicit instruction from the
-Controller. Any requests regarding  the personal data or the processing from
+Controller. Any requests regarding the personal data or the processing from
 others or the data subject shall be forwarded to the Controller without undue
 delay if not otherwise agreed in this Agreement or by instruction by the
 Controller.
@@ -153,13 +154,13 @@ notify the Controller. Such notification shall at least:
 
 1. describe the nature of the personal data breach including where possible,
    the categories and approximate number of data subjects concerned and the
-categories and approximate number of personal data records concerned;
+   categories and approximate number of personal data records concerned;
 2. communicate the name and contact details of the contact point where more
    information can be obtained;
 3. describe the likely consequences of the personal data breach;
 4. describe the measures taken or proposed to be taken to address the personal
    data breach, including, where appropriate, measures to mitigate its possible
-adverse effects.
+   adverse effects.
 
 If not all information above may be given in the first notice, the information
 shall be provided as soon as possible. The Controller is responsible for
@@ -211,7 +212,7 @@ processing of personal data and this Agreement. The same contact persons apply
 for the Agreement as under the Main Agreement.
 
 If the Main Agreement is transferred, this Agreement shall be transferred
-accordingly. 
+accordingly.
 
 ## Details on Processing
 
@@ -241,28 +242,28 @@ facilitating uninterrupted service delivery and support.
 
 Data subjects whose Personal Data are transferred:
 
-* The Controller's business contacts, including prospective and current
-customers, partners, and individual vendors.
-* People working on behalf of the Controller, such as staff members,
-representatives, advisors, and freelance professionals.
-* End-users of the Controller
-* Any natural person who becomes identifiable through information provided by
-the Controller while using the service. Types of Personal Data Involved in
-Transfers The agreement covers various categories of personal information that
-may be processed:
-* Identity and access details, including individual names, chosen usernames,
-email addresses, and security credentials.
-* Public-facing profile data, which might encompass names, visual
-representations like avatars or photographs, workplace information,
-professional titles, postal addresses, links to social media profiles, and
-personal or professional biographies.
-* Contact details necessary for communication, such as names, physical
-addresses, email addresses, and phone numbers.
-* Information shared during customer support interactions, detailing service
-requests and assistance provided.
-* Usage analytics data that allows the Controller to assess engagement levels
-of their authorized users, including metrics and statistical information
-related to service utilization.
+- The Controller's business contacts, including prospective and current
+  customers, partners, and individual vendors.
+- People working on behalf of the Controller, such as staff members,
+  representatives, advisors, and freelance professionals.
+- End-users of the Controller
+- Any natural person who becomes identifiable through information provided by
+  the Controller while using the service. Types of Personal Data Involved in
+  Transfers The agreement covers various categories of personal information that
+  may be processed:
+- Identity and access details, including individual names, chosen usernames,
+  email addresses, and security credentials.
+- Public-facing profile data, which might encompass names, visual
+  representations like avatars or photographs, workplace information,
+  professional titles, postal addresses, links to social media profiles, and
+  personal or professional biographies.
+- Contact details necessary for communication, such as names, physical
+  addresses, email addresses, and phone numbers.
+- Information shared during customer support interactions, detailing service
+  requests and assistance provided.
+- Usage analytics data that allows the Controller to assess engagement levels
+  of their authorized users, including metrics and statistical information
+  related to service utilization.
 
 ## Sensitive categories of Personal Data
 
@@ -305,10 +306,10 @@ by the Controller.
 
 However, there are two key exceptions to this general rule:
 
-* Certain laws or regulations may necessitate the retention of specific data
-beyond the subscription term.
-* The Subscription Agreement between the Controller and Processor may include
-clauses that allow for extended data retention under particular circumstances.
+- Certain laws or regulations may necessitate the retention of specific data
+  beyond the subscription term.
+- The Subscription Agreement between the Controller and Processor may include
+  clauses that allow for extended data retention under particular circumstances.
 
 These exceptions ensure compliance with legal obligations and agreed-upon
 terms, while still prioritizing the Controller's authority over their data. The

@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/TermsLayout.astro
 ---
+
 # Security Policy
 
 This security policy establishes the baseline security requirements for

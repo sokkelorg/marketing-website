@@ -5,7 +5,7 @@ import { waitlistUrl } from '../waitlist';
 
 export type Props = {
   path: '/' | '/about-us' | '/404';
-}
+};
 
 const { path } = Astro.props;
 
@@ -17,8 +17,10 @@ const currentYear = new Date().getFullYear();
     <div class="card building-status">
       <div class="text">
         <h2 class="title"><span aria-hidden="true">🟢</span> Building mode</h2>
-        <p class="body">We are currently building, testing and validating the beta version of the Sokkel platform, and
-          onboarding pilots.</p>
+        <p class="body">
+          We are currently building, testing and validating the beta version of
+          the Sokkel platform, and onboarding pilots.
+        </p>
       </div>
       <WaitlistButton wide={true} />
     </div>
@@ -42,9 +44,16 @@ const currentYear = new Date().getFullYear();
   </div>
   <div id="company-info">
     <span>&copy; {currentYear} Sokkel&nbsp;AS</span>
-    <a href="https://virksomhet.brreg.no/nb/oppslag/enheter/935108500" rel="noopener noreferrer">
+    <a
+      href="https://virksomhet.brreg.no/nb/oppslag/enheter/935108500"
+      rel="noopener noreferrer"
+    >
       <span>Org.nr. 935&nbsp;108&nbsp;500</span>
-      <img alt="External link." src="/assets/external-link-indicator.svg" aria-hidden="true">
+      <img
+        alt="External link."
+        src="/assets/external-link-indicator.svg"
+        aria-hidden="true"
+      />
     </a>
   </div>
 </footer>
@@ -113,7 +122,6 @@ const currentYear = new Date().getFullYear();
           font-weight: var(--font-weight-medium);
           font-size: var(--text-sm-font-size);
           line-height: var(--text-sm-font-size);
-
 
           a {
             display: flex;

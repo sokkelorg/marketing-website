@@ -54,7 +54,7 @@ type MetaProps = {
      * @default Uses the description prop
      */
     description?: string;
-  }
+  };
 
   /**
    * Images for social media platforms. The ideal size is 1200 x 630 pixels.
@@ -96,24 +96,26 @@ type MetaProps = {
    * JSON-LD structured data for the page.
    */
   schema?: WithContext<Thing> | WithContext<Thing>[];
-}
-
-type HeaderProps = { show: false } | {
-  show: true,
-  links: {
-    icon?: 'arrow' | 'close'; // Defaults to arrow.
-    href: '/' | '/about-us' | typeof waitlistUrl;
-    text: string;
-    wideOnly?: boolean;
-  }[];
 };
+
+type HeaderProps =
+  | { show: false }
+  | {
+      show: true;
+      links: {
+        icon?: 'arrow' | 'close'; // Defaults to arrow.
+        href: '/' | '/about-us' | typeof waitlistUrl;
+        text: string;
+        wideOnly?: boolean;
+      }[];
+    };
 
 type FooterProps = { show: boolean };
 
 type Preload = {
   href: string;
   as: 'image';
-}
+};
 
 export type Props = {
   meta: MetaProps;
@@ -126,25 +128,26 @@ function makeUrl(newPath: string): string {
   return new URL(newPath, Astro.site).toString();
 }
 
-const { meta, header, footer , preloads } = Astro.props;
+const { meta, header, footer, preloads } = Astro.props;
 
 const {
   title = 'Sokkel',
   description = `
 Sokkel is the foundation and building blocks for managing your applications, smooooothly.
 `,
-  images = [makeUrl('/assets/sharing.png')]
+  images = [makeUrl('/assets/sharing.png')],
 } = meta;
 
 const socialMedia = {
   title: meta.socialMedia?.title ?? title,
-  description: meta.socialMedia?.description ?? description
+  description: meta.socialMedia?.description ?? description,
 };
 
 const [image] = images;
 const canonicalUrl = makeUrl(meta.path);
 
-const googleFontsStylesheetHref = 'https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Rubik+Beastly&family=Rubik+Broken+Fax&family=Rubik+Burned&family=Rubik+Maze&family=Rubik+Puddles&display=swap';
+const googleFontsStylesheetHref =
+  'https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Rubik+Beastly&family=Rubik+Broken+Fax&family=Rubik+Burned&family=Rubik+Maze&family=Rubik+Puddles&display=swap';
 ---
 
 <!doctype html>
@@ -164,7 +167,12 @@ const googleFontsStylesheetHref = 'https://fonts.googleapis.com/css2?family=Geis
     <!-- Preload the Google Fonts stylesheet to prevent jumping on the first page load. -->
     <!-- (Note that we must also preload the individual fonts that should block the first render.) -->
     <!-- See https://dev.to/pilcrowonpaper/preloading-google-fonts-37h1 for more info. -->
-    <link rel="preload" href={googleFontsStylesheetHref} as="style" crossorigin />
+    <link
+      rel="preload"
+      href={googleFontsStylesheetHref}
+      as="style"
+      crossorigin
+    />
     <!-- Preload the Geist Latin font, which is used for everything that is visible on the first page load. -->
     <!-- (Its URL is defined inside the Google Fonts stylesheet.) -->
     <link
@@ -175,17 +183,18 @@ const googleFontsStylesheetHref = 'https://fonts.googleapis.com/css2?family=Geis
       type="font/woff2"
     />
 
-    {preloads?.map(preload => (
-      <link rel="preload" href={preload.href} as={preload.as} />
-    ))}
+    {
+      preloads?.map((preload) => (
+        <link rel="preload" href={preload.href} as={preload.as} />
+      ))
+    }
 
     <meta name="viewport" content="width=device-width" />
     <link type="text/plain" rel="author" href={makeUrl('/humans.txt')} />
 
     <meta name="robots" content="index,follow" />
     <meta name="description" content={description} />
-    {canonicalUrl &&
-      <link rel="canonical" href={canonicalUrl} />}
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={socialMedia.title} />
@@ -201,13 +210,11 @@ const googleFontsStylesheetHref = 'https://fonts.googleapis.com/css2?family=Geis
     <link rel="stylesheet" href={googleFontsStylesheetHref} crossorigin />
   </head>
   <body>
-  {header.show &&
-    <Header links={header.links} />}
+    {header.show && <Header links={header.links} />}
 
-  <slot />
+    <slot />
 
-  {footer.show &&
-    <Footer path={meta.path} />}
+    {footer.show && <Footer path={meta.path} />}
   </body>
 </html>
 
@@ -222,7 +229,18 @@ const googleFontsStylesheetHref = 'https://fonts.googleapis.com/css2?family=Geis
       padding-block: calc(var(--spacing) * 10);
     }
 
-    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family:
+      'Geist',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      'Open Sans',
+      'Helvetica Neue',
+      sans-serif;
 
     background-color: var(--color-base-background);
     text-rendering: optimizeLegibility;

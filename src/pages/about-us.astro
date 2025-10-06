@@ -11,8 +11,13 @@ import { waitlistUrl } from '../waitlist';
     show: true,
     links: [
       { href: '/', text: 'Close', icon: 'close' },
-      { href: waitlistUrl, text: 'Join waitlist', icon: 'arrow', wideOnly: true }
-    ]
+      {
+        href: waitlistUrl,
+        text: 'Join waitlist',
+        icon: 'arrow',
+        wideOnly: true,
+      },
+    ],
   }}
   footer={{ show: true }}
 >
@@ -33,14 +38,14 @@ import { waitlistUrl } from '../waitlist';
       <div class="intro">
         <div class="text">
           <p>
-            This is us: Marius, Simen, and Martin. Three builders. One designer. Two
-            developers.
+            This is us: Marius, Simen, and Martin. Three builders. One designer.
+            Two developers.
           </p>
 
           <p>
-            Between us, we’ve been at Finn.no, No Isolation, Auk, AYR, Folio, Bjerk
-            and SpotOn. We’ve seen what works, what doesn’t, and what should exist
-            but doesn’t (yet).
+            Between us, we’ve been at Finn.no, No Isolation, Auk, AYR, Folio,
+            Bjerk and SpotOn. We’ve seen what works, what doesn’t, and what
+            should exist but doesn’t (yet).
           </p>
 
           <p class="emphasis">So we're building Sokkel!</p>
@@ -59,7 +64,10 @@ import { waitlistUrl } from '../waitlist';
 
           <dt>Chat:</dt>
           <dd>
-            <a href="https://linkedin.com/company/sokkel" rel="noopener noreferrer">LinkedIn</a>
+            <a
+              href="https://linkedin.com/company/sokkel"
+              rel="noopener noreferrer">LinkedIn</a
+            >
           </dd>
         </dl>
       </div>
@@ -78,7 +86,7 @@ import { waitlistUrl } from '../waitlist';
       padding-inline: calc(var(--spacing) * 10);
     }
 
-    @media(min-width: 60rem) {
+    @media (min-width: 60rem) {
       /* Adjust the margin to the footer when the image moves to the side. */
       margin-bottom: calc(var(--spacing) * 46);
     }
@@ -91,13 +99,13 @@ import { waitlistUrl } from '../waitlist';
       gap: calc(var(--spacing) * 6);
 
       grid-template-areas:
-        "title"
-        "team-photo"
-        "intro";
+        'title'
+        'team-photo'
+        'intro';
       @media (min-width: 60rem) {
         grid-template-areas:
-          "title team-photo"
-          "intro team-photo";
+          'title team-photo'
+          'intro team-photo';
         grid-template-rows: auto 1fr;
         grid-template-columns: 345px 1fr;
       }

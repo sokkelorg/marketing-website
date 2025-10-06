@@ -1,9 +1,9 @@
 ---
 export type Props = {
   ingress: string;
-  stat: { value: string; body: string; }
+  stat: { value: string; body: string };
   fancyFont: string;
-  source: { href: string; text: string; }
+  source: { href: string; text: string };
 };
 
 const { ingress, stat, source, fancyFont } = Astro.props;
@@ -19,9 +19,10 @@ const { ingress, stat, source, fancyFont } = Astro.props;
     <p class="fancy value">{stat.value}</p>
     <p class="body">{stat.body}</p>
   </div>
-  <a class="source" href={source.href} rel="noopener noreferrer">{source.text}</a>
+  <a class="source" href={source.href} rel="noopener noreferrer"
+    >{source.text}</a
+  >
 </div>
-
 
 <style define:vars={{ 'fancy-font': fancyFont }}>
   .problem {
@@ -60,7 +61,7 @@ const { ingress, stat, source, fancyFont } = Astro.props;
 
     .stat {
       display: grid;
-      gap: calc(var(--spacing)*0.5);
+      gap: calc(var(--spacing) * 0.5);
 
       .value {
         margin: 0;
@@ -89,7 +90,13 @@ const { ingress, stat, source, fancyFont } = Astro.props;
       font-weight: var(--font-weight-semibold);
 
       &:hover {
-        background: linear-gradient(0deg, var(--color-base-background-alpha-70) 0%, var(--color-base-background-alpha-70) 100%), var(--color-base-primary, #0a0a0a);
+        background:
+          linear-gradient(
+            0deg,
+            var(--color-base-background-alpha-70) 0%,
+            var(--color-base-background-alpha-70) 100%
+          ),
+          var(--color-base-primary, #0a0a0a);
       }
     }
   }
