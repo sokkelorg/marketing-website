@@ -12,10 +12,9 @@ seconds. Efficient, right?**
 
 Here's what actually happened: The product manager just got a Slack message from
 the CEO asking when the feature would ship. They needed a real answer but didn't
-want to sound like they were micromanaging. The engineer was definitely not on
-Slack, they'd discovered the feature required changes to three other systems,
-but didn't want to sound like they were making excuses or unable to estimate
-properly.
+want to sound like they were micromanaging. The engineer discovered the feature
+required changes to three other systems, but didn't want to sound like they were
+making excuses or unable to estimate properly.
 
 The product manager needs to understand: What's blocking this? Which
 dependencies exist? What changed since yesterday? The engineer has most of the
