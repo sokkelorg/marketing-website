@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/hero.astro';
 import StackyIntro from '../components/stacky-intro.astro';
-import CTACard from '../components/cta-card.astro';
 import Promise from '../components/promise.astro';
 import { waitlistUrl } from '../waitlist';
 ---
@@ -24,18 +23,17 @@ import { waitlistUrl } from '../waitlist';
         url: 'https://sokkel.io/',
         logo: 'https://sokkel.io/assets/logo.svg',
         sameAs: ['https://www.linkedin.com/company/sokkel'],
-        image: 'https://sokkel.io/assets/team.jpg',
         description:
           'Sokkel is the foundation and building blocks for managing your applications, smooooothly.',
         telephone: '+4795308087',
         email: 'hello@sokkel.io',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Arbins gate 11',
+          streetAddress: 'Gaustadalléen 21',
           addressLocality: 'Oslo',
           addressCountry: 'NO',
           addressRegion: 'Oslo',
-          postalCode: '0253',
+          postalCode: '0349',
         },
         vatID: 'NO935108500',
         iso6523Code: '0192:935108500',
@@ -59,10 +57,6 @@ import { waitlistUrl } from '../waitlist';
       <Hero />
       <StackyIntro />
     </div>
-    <!-- <section id="mission" class="comfy"> -->
-    <!--   <Mission /> -->
-    <!-- </section> -->
-    <!-- <Problems /> -->
     <section id="promise" class="comfy">
       <Promise />
     </section>

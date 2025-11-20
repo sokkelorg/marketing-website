@@ -5,6 +5,7 @@ import './variables.css';
 import Header from '../components/header.astro';
 import Footer from '../components/footer.astro';
 import { waitlistUrl } from '../waitlist';
+import { Schema } from 'astro-seo-schema';
 
 type MetaProps = {
   /**
@@ -75,7 +76,7 @@ type MetaProps = {
   /**
    * The path of the page. Used to generate the canonical URL.
    */
-  path: '/' | '/about-us' | '/404';
+  path: '/' | '/about-us' | '/terms' | '/404';
 
   /**
    * The date the page was published. Only used with type = 'article'.
@@ -95,7 +96,7 @@ type MetaProps = {
   /**
    * JSON-LD structured data for the page.
    */
-  schema?: WithContext<Thing> | WithContext<Thing>[];
+  schema?: WithContext<Thing>[];
 };
 
 type HeaderProps =
@@ -136,6 +137,7 @@ const {
 Sokkel is the foundation and building blocks for managing your applications, smooooothly.
 `,
   images = [makeUrl('/assets/sharing.png')],
+  schema: schemas,
 } = meta;
 
 const socialMedia = {
@@ -160,6 +162,8 @@ const googleFontsStylesheetHref =
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.svg" />
+
+    {schemas?.map((schema) => <Schema item={schema} />)}
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
