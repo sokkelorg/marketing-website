@@ -24,9 +24,15 @@ const { background } = Astro.props;
     .background {
       height: 100%;
       background-image: var(--background);
+      background-color: black;
       background-size: calc(100% + 20px) calc(100% + 20px);
       background-position: -10px -10px;
       background-repeat: no-repeat;
+
+      @media (prefers-reduced-motion: reduce) {
+        background-image: none;
+        color: var(--color-text-primary);
+      }
 
       .content {
         /* Dim the animated background a bit to make the text more readable. */
