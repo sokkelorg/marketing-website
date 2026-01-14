@@ -76,7 +76,7 @@ type MetaProps = {
   /**
    * The path of the page. Used to generate the canonical URL.
    */
-  path: '/' | '/about-us' | '/terms' | '/404';
+  path: string;
 
   /**
    * The date the page was published. Only used with type = 'article'.
@@ -210,6 +210,15 @@ const googleFontsStylesheetHref =
     <meta property="og:title" content={socialMedia.title} />
     <meta property="og:description" content={socialMedia.description} />
     {images.map((img) => <meta property="og:image" content={img} />)}
+
+    {
+      meta.schema && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(meta.schema)}
+        />
+      )
+    }
 
     <link rel="stylesheet" href={googleFontsStylesheetHref} crossorigin />
   </head>
