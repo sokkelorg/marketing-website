@@ -163,7 +163,11 @@ const googleFontsStylesheetHref =
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.svg" />
 
-    {schemas?.map((schema) => <Schema item={schema} />)}
+    {
+      (Array.isArray(schemas) ? schemas : schemas ? [schemas] : []).map(
+        (schema) => <Schema item={schema} />
+      )
+    }
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -210,15 +214,6 @@ const googleFontsStylesheetHref =
     <meta property="og:title" content={socialMedia.title} />
     <meta property="og:description" content={socialMedia.description} />
     {images.map((img) => <meta property="og:image" content={img} />)}
-
-    {
-      meta.schema && (
-        <script
-          type="application/ld+json"
-          set:html={JSON.stringify(meta.schema)}
-        />
-      )
-    }
 
     <link rel="stylesheet" href={googleFontsStylesheetHref} crossorigin />
   </head>
