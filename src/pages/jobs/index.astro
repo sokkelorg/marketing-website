@@ -4,10 +4,13 @@ import Layout from '../../layouts/Layout.astro';
 import { waitlistUrl } from '../../waitlist';
 
 const jobs = await getCollection('job-postings');
-const sortedJobs = jobs.sort((a, b) => b.data.datePosted.getTime() - a.data.datePosted.getTime());
+const sortedJobs = jobs.sort(
+  (a, b) => b.data.datePosted.getTime() - a.data.datePosted.getTime()
+);
 
 const title = 'Work at Sokkel';
-const description = 'Join us in building the foundation for modern application management.';
+const description =
+  'Join us in building the foundation for modern application management.';
 ---
 
 <Layout
@@ -31,28 +34,101 @@ const description = 'Join us in building the foundation for modern application m
       <h1>{title}</h1>
       <div class="pitch">
         <p>
-          We believe everyone deserves to do work that matters. Sokkel exists to make that
-          real for the people who build things. We are building the foundation and building blocks for managing your applications, smooooothly.
+          We believe everyone deserves to do work that matters. Sokkel exists to
+          make that real for the people who build things. We are building the
+          foundation and building blocks for managing your applications,
+          smooooothly.
         </p>
         <p>
-          We are looking for people who care about the outcome, not just the output. Join us.
+          We are looking for people who care about the outcome, not just the
+          output. Join us.
         </p>
       </div>
     </section>
 
     <section class="jobs">
       <h2>Open Positions</h2>
-      <div class="job-list">
-        {sortedJobs.map((job) => (
-          <a href={`/jobs/${job.slug}`} class="job-card">
-            <span class="job-title">{job.data.title}</span>
-            <span class="job-location">{job.data.location.name}</span>
-          </a>
-        ))}
+      <div class="job-list" id="job-list">
+        {
+          sortedJobs.map((job) => (
+            <a href={`/jobs/${job.slug}`} class="job-card">
+              <span class="job-title">{job.data.title}</span>
+              <span class="job-location">{job.data.location.name}</span>
+            </a>
+          ))
+        }
       </div>
     </section>
   </main>
 </Layout>
+
+<script>
+  let selectedIndex = -1;
+  const jobList = document.getElementById('job-list');
+  const jobCards = jobList
+    ? Array.from(jobList.getElementsByClassName('job-card'))
+    : [];
+
+  function updateSelection() {
+    jobCards.forEach((card, index) => {
+      if (index === selectedIndex) {
+        card.classList.add('selected');
+        // Smooth scroll to the selected item if needed, or just standard scroll
+        (card as HTMLElement).scrollIntoView({
+          block: 'nearest',
+          behavior: 'smooth',
+        });
+        (card as HTMLElement).focus();
+      } else {
+        card.classList.remove('selected');
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (event) => {
+    // Prevent default scrolling for navigation keys
+    const isNavKey =
+      ['j', 'k', 'Enter', 'l'].includes(event.key) ||
+      ((event.ctrlKey || event.metaKey) && ['n', 'p'].includes(event.key));
+
+    if (isNavKey) {
+      // Don't interfere if user is typing in an input (though none exist here yet)
+      if (
+        document.activeElement?.tagName === 'INPUT' ||
+        document.activeElement?.tagName === 'TEXTAREA'
+      ) {
+        return;
+      }
+    }
+
+    if (
+      event.key === 'j' ||
+      ((event.ctrlKey || event.metaKey) && event.key === 'n')
+    ) {
+      if (selectedIndex < jobCards.length - 1) {
+        selectedIndex++;
+        updateSelection();
+      }
+    } else if (
+      event.key === 'k' ||
+      ((event.ctrlKey || event.metaKey) && event.key === 'p')
+    ) {
+      if (selectedIndex > 0) {
+        selectedIndex--;
+        updateSelection();
+      } else if (selectedIndex === -1 && jobCards.length > 0) {
+        // If nothing selected and press up/k, select last one? Or first?
+        // Usually J goes down (select first), K goes up.
+        // If unselected, K doing nothing is fine, or select bottom.
+        // Let's stick to J starts selection at top.
+      }
+    } else if (event.key === 'Enter' || event.key === 'l') {
+      if (selectedIndex !== -1) {
+        (jobCards[selectedIndex] as HTMLAnchorElement).click();
+      }
+    }
+  });
+</script>
 
 <style>
   main {
@@ -122,12 +198,14 @@ const description = 'Join us in building the foundation for modern application m
     color: inherit;
     transition: background-color 0.2s;
 
-    &:hover {
+    &:hover,
+    &.selected {
       background-color: var(--color-gray-50);
       border-color: var(--color-gray-400);
     }
 
-    &:focus-visible {
+    &:focus-visible,
+    &.selected {
       outline: 2px solid var(--color-base-primary);
       outline-offset: 2px;
     }

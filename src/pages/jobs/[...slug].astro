@@ -128,6 +128,16 @@ const schema: WithContext<JobPosting> = {
   </main>
 </Layout>
 
+<script>
+  document.addEventListener('keydown', (event) => {
+    // Check for Ctrl + o
+    if ((event.ctrlKey || event.metaKey) && event.key === 'o') {
+      event.preventDefault(); // Prevent default browser behavior if any
+      window.location.href = '/jobs';
+    }
+  });
+</script>
+
 <style>
   main {
     margin-top: calc(var(--spacing) * 20);
