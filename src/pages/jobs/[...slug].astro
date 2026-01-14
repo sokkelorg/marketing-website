@@ -1,0 +1,289 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { waitlistUrl } from '../../waitlist';
+import type { JobPosting, WithContext } from 'schema-dts';
+
+export async function getStaticPaths() {
+  const jobs = await getCollection('job-postings');
+  return jobs.map((job) => ({
+    params: { slug: job.slug },
+    props: { job },
+  }));
+}
+
+const { job } = Astro.props;
+const { Content } = await job.render();
+
+function extractSection(markdown: string, heading: string): string | undefined {
+  const regex = new RegExp(`## ${heading}\\n([\\s\\S]*?)(?=##|$)`, 'i');
+  const match = markdown.match(regex);
+  if (!match) return;
+
+  return match[1].trim();
+}
+
+const body = job.body.toLowerCase();
+const responsibilities = extractSection(body, 'Key Responsibilities');
+const qualifications = extractSection(body, 'Qualifications and Skills');
+const description = extractSection(body, 'The Role');
+
+const schema: WithContext<JobPosting> = {
+  '@context': 'https://schema.org',
+  '@type': 'JobPosting',
+  title: job.data.title,
+  description: description ?? job.body, // Using raw markdown as fallback since we don't have a markdown parser exposed
+  datePosted: new Date(job.data.datePosted).toISOString(),
+  validThrough: new Date(job.data.validThrough).toISOString(),
+  responsibilities: responsibilities,
+  qualifications: qualifications,
+  employmentType: job.data.employmentType,
+  hiringOrganization: {
+    '@type': 'Organization',
+    name: 'Sokkel',
+    sameAs: 'https://sokkel.io',
+    logo: 'https://sokkel.io/assets/logo.svg',
+  },
+  jobLocation: {
+    '@type': 'Place',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: job.data.location.address.addressLocality,
+      addressCountry: job.data.location.address.addressCountry,
+    },
+  },
+  baseSalary: job.data.incentiveCompensation
+    ? {
+        '@type': 'MonetaryAmount',
+        currency: 'NOK', // Assuming NOK or leaving generic if not specified, schema.org recommends currency. But structure implies text description in this field.
+        // Since incentiveCompensation is a string description, it doesn't fit neatly into baseSalary.value.
+        // We'll skip baseSalary structure if it's just text and put it in description or incentiveCompensation property if valid.
+        // schema.org/JobPosting has incentiveCompensation property which is Text.
+      }
+    : undefined,
+  incentiveCompensation: job.data.incentiveCompensation,
+  jobImmediateStart: job.data.jobImmediateStart,
+};
+
+// Override description to simple text if needed or keep markdown.
+// Ideally this should be HTML.
+---
+
+<Layout
+  meta={{
+    title: `${job.data.title} - Work at Sokkel`,
+    description: `Join Sokkel as a ${job.data.title}.`,
+    path: `/jobs/${job.slug}` as any,
+    schema,
+  }}
+  header={{
+    show: true,
+    links: [
+      { text: 'All jobs', href: '/jobs', wideOnly: false },
+      { text: 'Join waitlist', href: waitlistUrl, wideOnly: true },
+    ],
+  }}
+  footer={{ show: true }}
+>
+  <main>
+    <article class="job-posting">
+      <header>
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><span class="separator" aria-hidden="true">/</span></li>
+            <li><a href="/jobs">Jobs</a></li>
+            <li><span class="separator" aria-hidden="true">/</span></li>
+            <li class="current" aria-current="page">{job.data.title}</li>
+          </ol>
+        </nav>
+
+        <hr />
+
+        <div class="meta">
+          <time datetime={job.data.datePosted.toISOString()}>
+            {
+              job.data.datePosted.toLocaleDateString('en-US', {
+                dateStyle: 'long',
+              })
+            }
+          </time>
+          &bull; {job.data.location.name}
+        </div>
+        <h1>{job.data.title}</h1>
+      </header>
+
+      <div class="content">
+        <Content />
+      </div>
+
+      <div class="apply-section">
+        <p>
+          To apply, please email us at <a href="mailto:hello@sokkel.io"
+            >hello@sokkel.io</a
+          > with your CV/Resume and a short introduction.
+        </p>
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin-top: calc(var(--spacing) * 20);
+    margin-bottom: calc(var(--spacing) * 20);
+    padding-inline: calc(var(--spacing) * 6);
+    display: flex;
+    justify-content: center;
+
+    @media (min-width: 40rem) {
+      padding-inline: calc(var(--spacing) * 10);
+    }
+  }
+
+  .job-posting {
+    max-width: 65ch;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing) * 10);
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing) * 4);
+
+    h1 {
+      font-size: var(--text-4xl-font-size);
+      line-height: var(--text-4xl-line-height);
+      font-weight: var(--font-weight-extrabold);
+      margin: 0;
+    }
+
+    .meta {
+      color: var(--color-gray-600);
+      font-size: var(--text-sm-font-size);
+    }
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--color-gray-200);
+    width: 100%;
+    margin: 0;
+  }
+
+  .content {
+    font-size: var(--text-lg-font-size);
+    line-height: var(--text-lg-line-height);
+
+    /* Basic Markdown Styling */
+    :global(h2) {
+      font-size: var(--text-2xl-font-size);
+      font-weight: var(--font-weight-bold);
+      margin-top: calc(var(--spacing) * 8);
+      margin-bottom: calc(var(--spacing) * 4);
+    }
+
+    :global(h3) {
+      font-size: var(--text-xl-font-size);
+      font-weight: var(--font-weight-bold);
+      margin-top: calc(var(--spacing) * 6);
+      margin-bottom: calc(var(--spacing) * 3);
+    }
+
+    :global(p) {
+      margin-bottom: calc(var(--spacing) * 4);
+    }
+
+    :global(ul),
+    :global(ol) {
+      margin-bottom: calc(var(--spacing) * 4);
+      padding-left: calc(var(--spacing) * 6);
+    }
+
+    :global(li) {
+      margin-bottom: calc(var(--spacing) * 2);
+    }
+
+    :global(strong) {
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  .apply-section {
+    margin-top: calc(var(--spacing) * 10);
+    padding: calc(var(--spacing) * 6);
+    background-color: var(--color-gray-50);
+    border-radius: var(--radius-xl);
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: var(--color-blue-600);
+      text-decoration: underline;
+      font-weight: var(--font-weight-medium);
+
+      &:focus-visible {
+        outline: 2px solid var(--color-blue-600);
+        outline-offset: 2px;
+        border-radius: var(--radius-xs);
+      }
+    }
+  }
+
+  .breadcrumbs {
+    width: 100%;
+    max-width: 65ch;
+
+    ol {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: calc(var(--spacing) * 2);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: var(--text-sm-font-size);
+      color: var(--color-gray-600);
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+
+      &:hover {
+        color: var(--color-base-primary);
+        text-decoration: underline;
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-base-primary);
+        outline-offset: 2px;
+        border-radius: var(--radius-xs);
+      }
+    }
+
+    .separator {
+      color: var(--color-gray-400);
+      margin-inline: calc(var(--spacing) * 1);
+    }
+
+    .current {
+      color: var(--color-base-primary);
+      font-weight: var(--font-weight-medium);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+</style>

@@ -76,7 +76,7 @@ type MetaProps = {
   /**
    * The path of the page. Used to generate the canonical URL.
    */
-  path: '/' | '/about-us' | '/terms' | '/404';
+  path: string;
 
   /**
    * The date the page was published. Only used with type = 'article'.
@@ -163,7 +163,11 @@ const googleFontsStylesheetHref =
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.svg" />
 
-    {schemas?.map((schema) => <Schema item={schema} />)}
+    {
+      (Array.isArray(schemas) ? schemas : schemas ? [schemas] : []).map(
+        (schema) => <Schema item={schema} />
+      )
+    }
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
