@@ -5,7 +5,7 @@ import { waitlistUrl } from '../../waitlist';
 
 const jobs = await getCollection('job-postings');
 const sortedJobs = jobs.sort(
-  (a, b) => b.data.datePosted.getTime() - a.data.datePosted.getTime()
+  (a, b) => b.data.datePosted.getTime() - a.data.datePosted.getTime(),
 );
 
 const title = 'Work at Sokkel';
@@ -34,14 +34,10 @@ const description =
       <h1>{title}</h1>
       <div class="pitch">
         <p>
-          We believe everyone deserves to do work that matters. Sokkel exists to
-          make that real for the people who build things. We are building the
-          foundation and building blocks for managing your applications,
-          smooooothly.
-        </p>
-        <p>
-          We are looking for people who care about the outcome, not just the
-          output. Join us.
+          Everyone who builds applications deserves to work with things that
+          actually matters. A shift towards the value of the outcome, rather
+          than the volume of the output. If this resonates with your thinking,
+          come join us building the next paradigm in tech. Sokkel.
         </p>
       </div>
     </section>
