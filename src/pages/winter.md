@@ -1,3 +1,7 @@
+---
+layout: ../layouts/TermsLayout.astro
+---
+
 # Hi StartupLab Winter Party 👋
 
 Thank you for showing interest in Sokkel. We are in building mode, and we're hiring two people
