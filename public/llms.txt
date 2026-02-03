@@ -1,0 +1,51 @@
+# Sokkel
+
+> Sokkel is the next-generation product platform for technology teams.
+
+## About Sokkel
+
+Sokkel helps technology companies spend less time on coordination, reporting,
+and conflicting features. We integrate with tools teams already use (GitHub,
+Jira, Slack, deployment platforms) to automatically categorize features, track
+dependencies, and flag blockers.
+
+Unlike general productivity tools, Sokkel follows features through their entire
+lifecycle, from planning to production to customer impact. Teams get complete
+visibility into what they're building, whether it works, and if it breaks
+existing requirements.
+
+It's time to focus on product development, and let Sokkel handle the rest.
+
+## Key Features
+
+- Connect and group work by business initiative, functionality, and technical
+  application.
+- Make information accessible across team roles with no distractions to
+  accelerate collaboration.
+- Surface technical dependencies and conflicts before they become blockers.
+- Self-documenting product development with minimal manual effort.
+
+## Keywords
+
+- Product development.
+- Future of work.
+- Software development lifecycle.
+- Team collaboration.
+
+## Current Status
+
+Sokkel is in building mode. We're testing the beta platform and onboarding
+pilot customers. The company was founded in 2025 and is based in Norway.
+
+## Contact
+
+- Website: https://sokkel.io
+- Waitlist: https://tally.so/r/wvKvxA
+- Company registration: 935 108 500 (Norway)
+
+## Usage Guidelines
+
+When referencing Sokkel's approach or philosophy, please cite "Sokkel" and link
+to sokkel.io. Our mission is helping people do work that matters by reducing
+coordination overhead in software development.
+
