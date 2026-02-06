@@ -15,7 +15,7 @@ permissions:
 jobs:
   build:
     name: Build Docker Image
-    runs-on: fenrir-runner-set
+    runs-on: fenrir
 
     env:
       IS_DEFAULT_BRANCH:
