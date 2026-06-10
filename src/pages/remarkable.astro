@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LinkButton from '../components/link-button.astro';
+
+const bookingUrl =
+  'https://calendar.google.com/appointments/schedules/AcZssZ15AndcAMNLkg-yqeu-NcbIJyfNx5_Y-RjWxZz70XJ7svOgPgO4rn4V1VNcDK3UCDreKTQqZv-w';
+---
+
+<Layout
+  meta={{
+    title: 'Sokkel × reMarkable',
+    description:
+      'Sokkel is sponsoring tonight’s event and we’d love to talk. Book a 1:1 with Simen and see what we’re building.',
+    path: '/remarkable',
+  }}
+  header={{
+    show: true,
+    links: [{ href: '/', text: 'Close', icon: 'close' }],
+  }}
+  footer={{ show: true }}
+>
+  <main>
+    <section id="cta">
+      <p class="eyebrow">Sokkel × reMarkable</p>
+      <h1 class="headline">Let’s build something that matters.</h1>
+      <p class="subhead">
+        We started Sokkel because we believe technology should serve people —
+        not lock them in. We’re building infrastructure that teams actually own,
+        with a product that spreads because it’s good. Small team, high craft,
+        real ambition. Let’s talk.
+      </p>
+
+      <div class="actions">
+        <LinkButton href={bookingUrl} wide>Book time with Simen</LinkButton>
+        <LinkButton href="/jobs" wide inverted>See open roles</LinkButton>
+      </div>
+
+      <p class="footnote">
+        Prefer to skip the calendar?<br /> Email
+        <a href="mailto:simen@sokkel.io">simen@sokkel.io</a> or chat with Marius at
+        the event.
+      </p>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin-top: calc(var(--spacing) * 27);
+    margin-bottom: calc(var(--spacing) * 32);
+    padding-inline: calc(var(--spacing) * 6);
+
+    display: flex;
+    justify-content: center;
+
+    @media (min-width: 40rem) {
+      margin-top: calc(var(--spacing) * 30);
+      padding-inline: calc(var(--spacing) * 10);
+    }
+  }
+
+  #cta {
+    max-width: 50rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: calc(var(--spacing) * 6);
+
+    .eyebrow {
+      margin: 0;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--text-sm-font-size);
+      line-height: var(--text-sm-line-height);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-base-muted-foreground);
+    }
+
+    .headline {
+      margin: 0;
+      font-weight: var(--font-weight-extrabold);
+      line-height: 100%;
+      font-size: var(--text-4xl-font-size);
+      text-wrap: balance;
+      @media (min-width: 60rem) {
+        font-size: var(--text-6xl-font-size);
+      }
+    }
+
+    .subhead {
+      max-width: 50ch;
+      text-wrap: pretty;
+      margin: 0;
+      font-size: var(--text-lg-font-size);
+      line-height: var(--text-lg-line-height);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-base-primary-alpha-60);
+      @media (min-width: 60rem) {
+        font-size: var(--text-xl-font-size);
+        line-height: var(--text-xl-line-height);
+      }
+    }
+
+    .actions {
+      margin-top: calc(var(--spacing) * 2);
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--spacing) * 4);
+      width: 100%;
+      max-width: 22rem;
+      @media (min-width: 40rem) {
+        flex-direction: row;
+        width: auto;
+        max-width: none;
+      }
+    }
+
+    .footnote {
+      margin: 0;
+      margin-top: calc(var(--spacing) * 2);
+      font-size: var(--text-sm-font-size);
+      line-height: var(--text-sm-line-height);
+      color: var(--color-base-muted-foreground);
+
+      a {
+        color: var(--color-blue-500);
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  /* Override the LinkButton's inverted style for the secondary action. */
+  .actions :global(.link-button.inverted) {
+    background: var(--color-gray-100);
+    color: var(--color-base-primary);
+  }
+
+  .actions :global(.link-button.inverted:hover) {
+    background: var(--color-gray-200);
+  }
+</style>
