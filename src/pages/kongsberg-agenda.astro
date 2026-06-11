@@ -1,0 +1,232 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+type Presenter = {
+  name: string;
+  role: string;
+  phoneDisplay: string;
+  phoneHref: string;
+  email: string;
+  linkedin: string;
+};
+
+const presenters: Presenter[] = [
+  {
+    name: 'Simen A. W. Olsen',
+    role: 'CEO — Sokkel',
+    phoneDisplay: '+47 953 08 087',
+    phoneHref: '+4795308087',
+    email: 'simen@sokkel.io',
+    linkedin: 'https://www.linkedin.com/in/simenandre/',
+  },
+  {
+    name: 'Jean-Paul Baaklini',
+    role: 'Chief Strategy Officer — Sicra',
+    phoneDisplay: '+47 941 70 073',
+    phoneHref: '+4794170073',
+    email: 'jean.paul.baaklini@sicra.no',
+    linkedin: 'https://www.linkedin.com/in/jpbaaklini/',
+  },
+];
+---
+
+<Layout
+  meta={{
+    title: 'The Art of War for Cyber Security — Kongsberg Agenda 2026',
+    description:
+      'Our talk at Kongsberg Agenda 2026: why strategy beats point solutions in cyber security. Reach out to Simen and Jean-Paul to continue the conversation.',
+    path: '/kongsberg-agenda',
+  }}
+  header={{
+    show: true,
+    partner: { src: '/assets/sicra-logo.svg', alt: 'Sicra' },
+    links: [{ href: '/', text: 'Close', icon: 'close' }],
+  }}
+  footer={{ show: true }}
+>
+  <main>
+    <section id="cta">
+      <p class="eyebrow">Kongsberg Agenda 2026</p>
+      <h1 class="headline">The Art of War for Cyber Security</h1>
+      <p class="kicker">Why strategy beats point solutions</p>
+      <p class="subhead">
+        “Tactics without strategy is the noise before defeat.” Most
+        organizations spend more than ever on security, yet still fight battle
+        by battle. We make the case for treating cyber security as one strategic
+        system — knowing yourself, knowing your enemy, and winning before the
+        fight begins.
+      </p>
+
+      <p class="footnote">
+        Want to carry on the conversation? Reach either of us directly.
+      </p>
+
+      <div class="presenters">
+        {
+          presenters.map((p) => (
+            <div class="card presenter">
+              <div class="who">
+                <p class="name">{p.name}</p>
+                <p class="role">{p.role}</p>
+              </div>
+              <dl class="contact">
+                <dt>Phone</dt>
+                <dd>
+                  <a href={`tel:${p.phoneHref}`}>{p.phoneDisplay}</a>
+                </dd>
+                <dt>Email</dt>
+                <dd>
+                  <a href={`mailto:${p.email}`}>{p.email}</a>
+                </dd>
+                <dt>LinkedIn</dt>
+                <dd>
+                  <a
+                    href={p.linkedin}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    View profile
+                  </a>
+                </dd>
+              </dl>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin-top: calc(var(--spacing) * 27);
+    margin-bottom: calc(var(--spacing) * 32);
+    padding-inline: calc(var(--spacing) * 6);
+
+    display: flex;
+    justify-content: center;
+
+    @media (min-width: 40rem) {
+      margin-top: calc(var(--spacing) * 30);
+      padding-inline: calc(var(--spacing) * 10);
+    }
+  }
+
+  #cta {
+    max-width: 50rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: calc(var(--spacing) * 6);
+
+    .eyebrow {
+      margin: 0;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--text-sm-font-size);
+      line-height: var(--text-sm-line-height);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-base-muted-foreground);
+    }
+
+    .headline {
+      margin: 0;
+      font-weight: var(--font-weight-extrabold);
+      line-height: 100%;
+      font-size: var(--text-4xl-font-size);
+      text-wrap: balance;
+      @media (min-width: 60rem) {
+        font-size: var(--text-6xl-font-size);
+      }
+    }
+
+    .kicker {
+      margin: 0;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--text-lg-font-size);
+      line-height: var(--text-lg-line-height);
+      color: var(--color-base-muted-foreground);
+    }
+
+    .subhead {
+      max-width: 50ch;
+      text-wrap: pretty;
+      margin: 0;
+      font-size: var(--text-lg-font-size);
+      line-height: var(--text-lg-line-height);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-base-primary-alpha-60);
+      @media (min-width: 60rem) {
+        font-size: var(--text-xl-font-size);
+        line-height: var(--text-xl-line-height);
+      }
+    }
+
+    .footnote {
+      margin: 0;
+      margin-top: calc(var(--spacing) * 4);
+      font-size: var(--text-sm-font-size);
+      line-height: var(--text-sm-line-height);
+      color: var(--color-base-muted-foreground);
+    }
+
+    .presenters {
+      width: 100%;
+      display: grid;
+      gap: calc(var(--spacing) * 4);
+      @media (min-width: 40rem) {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .presenter {
+      border: 1px solid var(--color-base-border);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--spacing) * 4);
+
+      .who {
+        .name {
+          margin: 0;
+          font-weight: var(--font-weight-bold);
+          font-size: var(--text-lg-font-size);
+          line-height: var(--text-lg-line-height);
+        }
+
+        .role {
+          margin: 0;
+          font-size: var(--text-sm-font-size);
+          line-height: var(--text-sm-line-height);
+          color: var(--color-base-muted-foreground);
+        }
+      }
+
+      .contact {
+        margin: 0;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: calc(var(--spacing) * 4);
+        row-gap: calc(var(--spacing) * 2);
+
+        dt {
+          font-weight: var(--font-weight-medium);
+          color: var(--color-base-muted-foreground);
+        }
+
+        dd {
+          margin: 0;
+
+          a {
+            color: var(--color-blue-500);
+            text-decoration: none;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>

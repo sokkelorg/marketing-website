@@ -109,6 +109,7 @@ type HeaderProps =
         text: string;
         wideOnly?: boolean;
       }[];
+      partner?: { src: string; alt: string };
     };
 
 type FooterProps = { show: boolean };
@@ -165,7 +166,7 @@ const googleFontsStylesheetHref =
 
     {
       (Array.isArray(schemas) ? schemas : schemas ? [schemas] : []).map(
-        (schema) => <Schema item={schema} />
+        (schema) => <Schema item={schema} />,
       )
     }
 
@@ -218,7 +219,7 @@ const googleFontsStylesheetHref =
     <link rel="stylesheet" href={googleFontsStylesheetHref} crossorigin />
   </head>
   <body>
-    {header.show && <Header links={header.links} />}
+    {header.show && <Header links={header.links} partner={header.partner} />}
 
     <slot />
 

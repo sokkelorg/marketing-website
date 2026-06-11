@@ -10,21 +10,33 @@ export type Props = {
     text: string;
     wideOnly?: boolean;
   }[];
+  /** Optional co-brand logo shown next to the Sokkel logo. */
+  partner?: { src: string; alt: string };
 };
 
-const { links } = Astro.props;
+const { links, partner } = Astro.props;
 ---
 
 <header>
-  <a id="logo-link" href="/">
-    <img
-      class="icon"
-      src="/assets/logo-symbol.gif"
-      alt="Logo"
-      aria-hidden="true"
-    />
-    <img class="logo" src="/assets/logo.svg" alt="Sokkel." />
-  </a>
+  <div class="brand-lockup">
+    <a id="logo-link" href="/">
+      <img
+        class="icon"
+        src="/assets/logo-symbol.gif"
+        alt="Logo"
+        aria-hidden="true"
+      />
+      <img class="logo" src="/assets/logo.svg" alt="Sokkel." />
+    </a>
+    {
+      partner && (
+        <>
+          <span class="brand-sep" aria-hidden="true" />
+          <img class="partner-logo" src={partner.src} alt={partner.alt} />
+        </>
+      )
+    }
+  </div>
   <div class="header-links">
     {
       links.map((link) => {
@@ -62,22 +74,40 @@ const { links } = Astro.props;
     justify-content: space-between;
     align-items: start;
 
-    #logo-link {
+    .brand-lockup {
       display: flex;
       align-items: center;
-      gap: calc(var(--spacing) * 3.5);
+      gap: calc(var(--spacing) * 3);
       height: 1.5rem;
       @media (min-width: 40rem) {
         height: 2rem;
       }
 
-      .icon {
+      #logo-link {
+        display: flex;
+        align-items: center;
+        gap: calc(var(--spacing) * 3.5);
         height: 100%;
-        border-radius: 0.25rem;
+
+        .icon {
+          height: 100%;
+          border-radius: 0.25rem;
+        }
+
+        .logo {
+          max-height: 75%;
+        }
       }
 
-      .logo {
+      .brand-sep {
+        width: 1px;
+        height: 60%;
+        background-color: var(--color-base-border);
+      }
+
+      .partner-logo {
         max-height: 75%;
+        width: auto;
       }
     }
 
